@@ -1,2 +1,2 @@
 # shubham-hosopitals-site
-Repo for final shubham hospitals file. 
+Repo for final shubham hospitals site. 
