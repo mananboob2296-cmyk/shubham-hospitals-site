@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+const treatments = (await getCollection('treatments')).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout
+  title="Departments & Treatments | Shubham Hospitals, Amravati"
+  description="Explore our specialties: IVF & fertility, laparoscopy, obstetrics & gynecology, ultrasound, general surgery, fetal medicine & cosmetic gynecology in Amravati."
+>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Multispecialty Care Under One Roof</span>
+      <h1>Departments &amp; Treatments</h1>
+      <p>From advanced laparoscopy to personalized IVF care, explore the full range of specialties at Shubham Hi-Tech Hospital, Amravati.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="sr-only">Our Departments</h2>
+      <div class="grid cols-3">
+        {treatments.map((t) => (
+          <div class="card">
+            <h3>{t.data.title}</h3>
+            <p>{t.data.excerpt}</p>
+            <a class="more" href={`/treatments/${t.slug}/`}>Explore department →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</BaseLayout>

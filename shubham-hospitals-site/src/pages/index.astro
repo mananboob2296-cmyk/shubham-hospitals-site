@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Reviews from '../components/Reviews.astro';
+import { SITE } from '../consts';
+import { getCollection } from 'astro:content';
+
+const treatments = (await getCollection('treatments')).sort((a, b) => a.data.order - b.data.order);
+const doctors = (await getCollection('doctors')).sort((a, b) => a.data.order - b.data.order);
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
+
+const serviceBlurbs: Record<string, string> = {
+  'advanced-laparoscopy-hysteroscopy': 'Minimally invasive surgical solutions for gynecologic conditions with faster recovery and greater precision.',
+  'obstetrics-gynecology': "Comprehensive women's healthcare, from routine gynecology to high-risk pregnancy management.",
+  'ivf-fertility-treatments': 'Personalized, evidence-based fertility care including IVF, ICSI, and advanced reproductive technologies.',
+  'ultrasound-imaging': 'High-resolution pregnancy and pelvic imaging for accurate diagnosis and treatment planning.',
+  'fetal-medicine': 'Specialized fetal evaluation and screening to ensure early detection of developmental concerns.',
+  'general-surgery-gastroenterology': 'Minimally invasive surgical care for abdominal, gastrointestinal, and emergency surgical conditions.',
+  'cosmetic-aesthetic-gynecology': 'Safe, advanced procedures to enhance feminine comfort, function, and aesthetic confidence.',
+};
+
+const extraLinks: Record<string, { href: string; label: string }> = {
+  'advanced-laparoscopy-hysteroscopy': { href: '/best-laparoscopic-surgeon-in-amravati/', label: 'Best laparoscopic surgeon →' },
+  'ivf-fertility-treatments': { href: '/best-ivf-centre-in-amravati/', label: 'Best IVF centre →' },
+};
+
+const advancedCare = [
+  { title: 'Advanced IVF-ICSI', desc: serviceBlurbs['ivf-fertility-treatments'], href: '/treatments/ivf-fertility-treatments/' },
+  { title: 'Surgical Gastroenterology', desc: serviceBlurbs['general-surgery-gastroenterology'], href: '/treatments/general-surgery-gastroenterology/' },
+  { title: 'Cosmetic Gynecology', desc: serviceBlurbs['cosmetic-aesthetic-gynecology'], href: '/treatments/cosmetic-aesthetic-gynecology/' },
+];
+---
+<BaseLayout
+  title="Shubham Hi-Tech Hospital, Amravati | IVF & Laparoscopy"
+  description="Shubham Hi-Tech Hospital & Test Tube Baby Centre, Amravati – 30+ years of trusted care in IVF, high-risk pregnancy, laparoscopy & gynecology at affordable cost. Book today."
+  ogTitle="Shubham Hi-Tech Hospital & Test Tube Baby Centre | Amravati"
+  ogDescription="IVF, gynecology, laparoscopy & maternity care. 30+ years of trust in Amravati."
+  preloadImage={SITE.heroImage}
+>
+  <section class="hero">
+    <img class="hero-photo" src={SITE.heroImage} alt="Compassionate gynecology and maternity care at Shubham Hi-Tech Hospital, Amravati" loading="eager" fetchpriority="high" width="900" height="1000" />
+    <div class="container">
+      <span class="eyebrow">Since 1995 · Amravati, Maharashtra</span>
+      <h1>Shubham Hi-Tech Hospital &amp; Test Tube Baby Centre — Best IVF &amp; Laparoscopy Centre in Amravati</h1>
+      <p>At Shubham Hi-Tech Hospital, we prioritize your well-being with expert care, advanced technology, and a compassionate touch. Whether it's routine check-ups or specialized treatment, we are here to provide exceptional healthcare every step of the way.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="/contact-us/#book" style="color:#fff">Book Appointment</a>
+        <a class="btn btn-white" href="/about-us/">Know More</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="stats">
+        <div class="stat"><div class="num">20,000+</div><div class="label">Safe Deliveries</div></div>
+        <div class="stat"><div class="num">25,000+</div><div class="label">Laparoscopic Surgeries</div></div>
+        <div class="stat"><div class="num">1,000+</div><div class="label">IVF Babies</div></div>
+        <div class="stat"><div class="num">30+</div><div class="label">Years of Experience</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="badge">Departments</span>
+      <h2>Our Healthcare Services in Amravati</h2>
+      <div class="grid cols-3 services-grid">
+        {treatments.map((t) => (
+          <div class="card">
+            <h3>{t.data.title}</h3>
+            <p>{serviceBlurbs[t.slug] ?? t.data.excerpt}</p>
+            <div class="more-row">
+              <a class="more" href={`/treatments/${t.slug}/`}>Learn more →</a>
+              {extraLinks[t.slug] && <a class="more sub" href={extraLinks[t.slug].href}>{extraLinks[t.slug].label}</a>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="laparo-3d">
+        <div class="cols">
+          <div>
+            <span class="eyebrow">Advanced Technology</span>
+            <h2>3D Laparoscopy — the most advanced keyhole surgery in Amravati district</h2>
+            <p>Shubham Hospitals is home to the district's most advanced 3D laparoscopy system. Unlike conventional 2D laparoscopy, 3D visualisation gives our surgeons true depth perception — meaning greater precision, shorter operating times, less blood loss and faster recovery. Led by Dr. Manan Boob (MS ObGyn – Gold Medalist, DNB, F.MAS), our team performs advanced 3D laparo-hysteroscopic procedures for fibroids, endometriosis, ovarian cysts and complex hysterectomies.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary" style="color:#fff" href="/treatments/advanced-laparoscopy-hysteroscopy/">Explore Laparoscopy &amp; Hysteroscopy</a>
+              <a class="btn btn-outline" href="/dr-manan/">Meet Dr. Manan Boob</a>
+            </div>
+          </div>
+          <div class="visual">
+            <img src="/images/laparoscopy-3d.webp" alt="Advanced 3D laparoscopy surgical care at Shubham Hospitals, Amravati" loading="lazy" width="880" height="1568" />
+          </div>
+        </div>
+        <div class="laparo-more">
+          <h3>More advanced care at Shubham</h3>
+          <div class="grid cols-3 snap-row">
+            {advancedCare.map((c) => (
+              <div class="card">
+                <h3>{c.title}</h3>
+                <p>{c.desc}</p>
+                <a class="more" href={c.href}>Learn more →</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="badge">Our Team</span>
+      <h2>Meet Our Doctors</h2>
+      <div class="grid cols-3 doctors-grid">
+        {doctors.map((d) => (
+          <div class="card doctor-card">
+            <img src={d.data.photo} alt={d.data.name} loading="lazy" width="170" height="170" />
+            <h3>{d.data.name}</h3>
+            <p class="quals">{d.data.qualifications}</p>
+            <p class="role">{d.data.role}</p>
+            <a class="more" href={`/${d.slug}/`}>View profile →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Reviews />
+
+  <section class="section">
+    <div class="container">
+      <span class="badge">Health Blog</span>
+      <h2>Latest from Our Doctors</h2>
+      <div class="grid cols-3">
+        {posts.map((p) => (
+          <div class="card post-card">
+            <div class="meta">{p.data.date.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+            <h3><a href={`/${p.slug}/`}>{p.data.title}</a></h3>
+          </div>
+        ))}
+      </div>
+      <p style="margin-top:20px"><a class="btn btn-outline" href="/blogs/">View all articles</a></p>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

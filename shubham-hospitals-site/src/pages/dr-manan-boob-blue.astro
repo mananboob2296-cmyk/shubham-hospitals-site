@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import cardHtml from '../../extract/card-dr-manan-boob-blue.html?raw';
+---
+<BaseLayout
+  title="Dr Manan Boob | Shubham Hospitals, Amravati"
+  description="Digital visiting card of Dr. Manan Boob — MBBS, MS (Obs & Gyn), DNB, F.MAS. Consultant Obstetrician & Gynaecologist, Advanced 3D Laparo-Hysteroscopic Surgeon, Amravati."
+  noindex={true}
+>
+  <div style="padding: 24px 12px; background: var(--bg-soft);">
+    <Fragment set:html={cardHtml} />
+  </div>
+</BaseLayout>

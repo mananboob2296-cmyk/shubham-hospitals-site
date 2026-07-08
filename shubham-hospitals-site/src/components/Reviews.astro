@@ -1,0 +1,25 @@
+---
+import { SITE } from '../consts';
+import reviews from '../data/reviews.json';
+---
+<section class="section soft">
+  <div class="container">
+    <span class="badge">Patient Voices</span>
+    <h2>What our patients say</h2>
+    <div class="reviews-grid">
+      {reviews.map((r) => (
+        <div class="review-card">
+          <div class="review-stars" aria-label={`${r.rating} out of 5 stars`}>
+            {'★'.repeat(r.rating)}<span class="star-dim">{'★'.repeat(5 - r.rating)}</span>
+          </div>
+          <p class="review-text">{r.text}</p>
+          <div class="review-meta">
+            <span class="review-avatar" aria-hidden="true">{r.initial}</span>
+            <span class="review-name">{r.name}<span class="review-month"> · {r.month}</span></span>
+          </div>
+        </div>
+      ))}
+    </div>
+    <p class="reviews-link"><a href={SITE.google} target="_blank" rel="noopener">See all reviews on Google →</a></p>
+  </div>
+</section>

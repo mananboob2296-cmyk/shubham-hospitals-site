@@ -1,0 +1,58 @@
+<div id="dmb-card">
+<style>
+#dmb-card{--purple:#7b4fa3;--purple-d:#5e3a80;--pink:#c96f98;--ink:#2d2235;max-width:520px;margin:24px auto;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--ink);}
+#dmb-card *{box-sizing:border-box;}
+#dmb-card p,#dmb-card h1,#dmb-card h2,#dmb-card ul,#dmb-card li{margin:0;padding:0;}
+.dmb-shell{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 12px 40px rgba(94,58,128,.25);}
+.dmb-hero{background:linear-gradient(135deg,var(--purple-d) 0%,var(--purple) 55%,var(--pink) 100%);padding:34px 24px 66px;text-align:center;}
+#dmb-card img.dmb-logo{display:inline-block;width:auto !important;max-width:82% !important;height:64px !important;object-fit:contain;background:#fff;border-radius:12px;padding:8px 16px;}
+#dmb-card img.dmb-photo{width:148px !important;height:148px !important;border-radius:50%;border:5px solid #fff;object-fit:cover;object-position:top;margin-top:-74px;position:relative;z-index:2;box-shadow:0 6px 18px rgba(0,0,0,.2);}
+.dmb-body{text-align:center;padding:0 24px 22px;}
+.dmb-body h1{font-size:1.7em;color:var(--purple-d);margin-top:10px;}
+.dmb-degrees{font-weight:600;color:var(--pink);letter-spacing:.06em;margin-top:2px;}
+.dmb-role{margin-top:8px;font-size:.98em;line-height:1.45;color:#555;}
+.dmb-fellow{margin-top:10px;font-size:.88em;color:#777;line-height:1.5;}
+#dmb-card .dmb-actions{display:flex !important;flex-wrap:wrap;gap:10px;padding:16px 24px 4px;}
+#dmb-card .dmb-actions a{display:flex !important;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:600;font-size:.95em;padding:13px 8px;border-radius:14px;border:2px solid var(--purple);color:var(--purple);flex:1 1 44%;min-width:150px;float:none !important;margin:0 !important;}
+#dmb-card .dmb-actions a.dmb-primary{flex:1 1 100%;background:linear-gradient(135deg,var(--purple-d),var(--pink));color:#fff;border:none;font-size:1.05em;padding:16px;}
+#dmb-card .dmb-actions a:hover{background:var(--purple);color:#fff;}
+#dmb-card .dmb-actions a.dmb-primary:hover{opacity:.92;}
+.dmb-section{padding:20px 28px;}
+.dmb-section h2{font-size:.8em;text-transform:uppercase;letter-spacing:.14em;color:var(--pink);margin-bottom:10px;}
+#dmb-card .dmb-section ul{list-style:none !important;margin:0 !important;padding:0 !important;}
+#dmb-card .dmb-section li{list-style:none !important;display:block;padding:5px 0 5px 24px !important;margin:0 !important;position:relative;font-size:.92em;line-height:1.4;color:#444;}
+#dmb-card .dmb-section li:before{content:"\2726";position:absolute;left:2px;top:5px;color:var(--purple);}
+.dmb-addr{background:#f7f2fb;border-radius:14px;padding:16px;font-size:.9em;line-height:1.5;color:#555;margin:14px 24px 20px;text-align:center;}
+.dmb-addr strong{color:var(--purple-d);}
+.dmb-foot{background:var(--purple-d);color:#e9ddf5;text-align:center;font-size:.8em;padding:14px;letter-spacing:.04em;}
+</style>
+<div class="dmb-shell">
+  <div class="dmb-hero"><img class="dmb-logo" src="https://shubham-hospitals.com/wp-content/uploads/2026/06/Shubham-Final-Logo-scaled.png" alt="Shubham Hi-Tech Hospital &amp; Test Tube Baby Centre"></div>
+  <div class="dmb-body">
+    <img class="dmb-photo" src="https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Manjushree-Final-1.jpg" alt="Dr. Manjushree Boob">
+    <h1>Dr. Manjushree Boob</h1>
+    <div class="dmb-degrees">MD &middot; DNB &middot; FICMCH &middot; FICOG</div>
+    <p class="dmb-role">Obstetrician &amp; Gynaecologist<br>Infertility, IVF &amp; ART Specialist<br>Laparo-Hysteroscopic Surgeon</p>
+    <p class="dmb-fellow">Fellowship in Laparoscopic Surgery &mdash; France &nbsp;&bull;&nbsp; Fellowship in IVF &mdash; Germany</p>
+  </div>
+  <div class="dmb-actions">
+    <a class="dmb-primary" href="data:text/x-vcard;base64,QkVHSU46VkNBUkQNClZFUlNJT046My4wDQpOOkJvb2I7TWFuanVzaHJlZTs7RHIuOw0KRk46RHIuIE1hbmp1c2hyZWUgQm9vYg0KVElUTEU6T2JzdGV0cmljaWFuICYgR3luYWVjb2xvZ2lzdCB8IEluZmVydGlsaXR5XCwgSVZGICYgQVJUIFNwZWNpYWxpc3QgfCBMYXBhcm8tSHlzdGVyb3Njb3BpYyBTdXJnZW9uDQpPUkc6U2h1YmhhbSBIaS1UZWNoIEhvc3BpdGFsICYgVGVzdCBUdWJlIEJhYnkgQ2VudHJlDQpURUw7VFlQRT1DRUxMLFZPSUNFOis5MTk5NzAxNjU0MDUNCkVNQUlMO1RZUEU9SU5URVJORVQ6ZHIubWFuanVzaHJlZWJvb2JAZ21haWwuY29tDQpVUkw6aHR0cHM6Ly9zaHViaGFtLWhvc3BpdGFscy5jb20NCkFEUjtUWVBFPVdPUks6OztCYWRuZXJhIFJkXCwgb3BwLiBNYW50cmkgTW90b3JzXCwgRGVvcmFua2FyIE5hZ2FyO0FtcmF2YXRpO01haGFyYXNodHJhOzQ0NDYwNTtJbmRpYQ0KTk9URTpNRFwsIEROQlwsIEZJQ01DSFwsIEZJQ09HLiBGZWxsb3dzaGlwIGluIExhcGFyb3Njb3BpYyBTdXJnZXJ5IChGcmFuY2UpXDsgRmVsbG93c2hpcCBpbiBJVkYgKEdlcm1hbnkpLg0KRU5EOlZDQVJEDQo=" download="Dr-Manjushree-Boob.vcf">&#128100; Save Contact</a>
+    <a href="https://wa.me/919970165405" target="_blank" rel="noopener">&#128172; WhatsApp</a>
+    <a href="tel:+919970165405">&#128222; Call</a>
+    <a href="mailto:dr.manjushreeboob@gmail.com">&#9993;&#65039; Email</a>
+    <a href="https://shubham-hospitals.com" target="_blank" rel="noopener">&#127760; Website</a>
+  </div>
+  <div class="dmb-section">
+    <h2>Highlights</h2>
+    <ul>
+      <li>Founder-consultant, Indo-German Test Tube Baby Centre, Amravati</li>
+      <li>Vigyan Vardan Award, Best Paper &amp; Best Poster Awards &mdash; FOGSI India</li>
+      <li>Authored a Braille book on adolescent health, inaugurated at Rashtrapati Bhawan &amp; distributed free to blind libraries across India</li>
+      <li>Published in JAMA and the Indian Journal of Obstetrics &amp; Gynaecology</li>
+      <li>Past President, OBGY Society Amravati &middot; Organiser, FEMCON-18 State IVF Conference</li>
+    </ul>
+  </div>
+  <div class="dmb-addr"><strong>Shubham Hi-Tech Hospital &amp; Test Tube Baby Centre</strong><br>Badnera Rd, opp. Mantri Motors, Deorankar Nagar,<br>Amravati, Maharashtra 444605, India<br><a href="https://maps.google.com/?q=Shubham+Hi-Tech+Hospital+and+Test+Tube+Baby+Centre+Badnera+Rd+Amravati" target="_blank" rel="noopener" style="color:#7b4fa3;font-weight:600;">Get Directions &rarr;</a></div>
+  <div class="dmb-foot">Scan &middot; Save &middot; Stay in touch</div>
+</div>
+</div>

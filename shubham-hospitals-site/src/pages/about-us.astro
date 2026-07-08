@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE } from '../consts';
+---
+<BaseLayout
+  title="About Shubham Hospitals | Amravati's Trusted Care Since 1995"
+  description="Founded in 1995 by Dr. Murlidhar & Dr. Manjushree Boob, Shubham Hospitals is Amravati's leading multispecialty centre for IVF, laparoscopy, obstetrics & gynecology."
+  ogTitle="About Shubham Hospitals | Amravati's Trusted Healthcare Since 1995"
+  ogDescription="30 years of excellence in IVF, laparoscopy, high-risk obstetrics & cosmetic gynecology in Amravati."
+>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">About Us · 30+ Years</span>
+      <h1>Welcome to Shubham Hospitals, Amravati</h1>
+      <p>Founded in 1995 by the visionary Dr. Murlidhar Boob and Dr. Manjushree Boob, Shubham Hospitals has been at the forefront of providing exceptional healthcare to the people of Amravati and beyond.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <p>Starting as a modest maternity and surgical care center, Shubham Hospitals has grown into a multispecialty center offering state-of-the-art treatments, including advanced laparoscopy, hysteroscopy, IVF, fertility treatments, high-risk obstetrics, and cosmetic gynecology. With nearly three decades of excellence, the hospital has evolved to become one of the most trusted names in the region's healthcare landscape.</p>
+
+      <h2>A Rich History of Healthcare Excellence in Amravati</h2>
+      <p>From its humble beginnings, Shubham Hospitals has always focused on providing quality care backed by advanced medical technologies. It quickly gained a reputation for its pioneering efforts in laparoscopic surgeries, becoming one of the first hospitals in the region to introduce minimally invasive surgery techniques. Over the years, this commitment to innovation led to the successful completion of over 25,000 laparoscopic surgeries and 10,000 gastrointestinal procedures.</p>
+      <p>Follow our work on <a href={SITE.youtubeHospital} target="_blank" rel="noopener">YouTube</a>.</p>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      <div class="stats">
+        <div class="stat"><div class="num">20,000+</div><div class="label">Total Patients</div></div>
+        <div class="stat"><div class="num">25,000+</div><div class="label">Laparoscopic Surgeries</div></div>
+        <div class="stat"><div class="num">30+</div><div class="label">Years of Experience</div></div>
+        <div class="stat"><div class="num">1,000+</div><div class="label">IVF Babies</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Vision and Mission</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Vision</h3>
+          <p>Shubham Hospitals strives to bring the best of global healthcare advancements to Indian patients, particularly focusing on the people of Amravati and surrounding regions. The goal is to provide access to world-class treatments at affordable costs, ensuring that high-quality healthcare is accessible to all.</p>
+        </div>
+        <div class="card">
+          <h3>Mission</h3>
+          <p>The hospital's mission is to combine cutting-edge technology, compassionate care, and clinical excellence to uphold the highest standards in women's healthcare and minimally invasive surgery. Shubham Hospitals continues to be dedicated to improving the health and well-being of its patients with personalized and effective medical solutions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container prose">
+      <h2>Our Experience</h2>
+      <p>With nearly 30 years of dedicated service, Shubham Hospitals has established itself as a trusted name in healthcare. Founded in 1995 by Dr. Murlidhar Boob and Dr. Manjushree Boob, the hospital began as a modest maternity and surgical care center and has since grown into a leading multispecialty facility. Over the years, we have gained extensive experience in advanced laparoscopy, hysteroscopy, IVF, fertility treatments, high-risk obstetrics, and cosmetic gynecology. This rich journey of growth and innovation reflects our unwavering commitment to delivering exceptional medical care and compassionate service to patients across Amravati and beyond.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Why Choose Shubham Hospitals in Amravati</h2>
+      <p class="prose">From advanced laparoscopy to personalized IVF care, our experienced team combines modern technology with a compassionate, patient-first approach for every family in Amravati.</p>
+      <div class="grid cols-3">
+        <div class="card"><h3>Qualified Doctors</h3><p>45 years of combined experience across our senior consultants.</p></div>
+        <div class="card"><h3>Online Consultation</h3><p>Book an online appointment with your specialist doctor.</p></div>
+        <div class="card"><h3>Instant Appointment</h3><p>Quick scheduling with your specialist doctor.</p></div>
+        <div class="card"><h3>24 Hours Care Service</h3><p>Round-the-clock support with our emergency care unit.</p></div>
+      </div>
+      <p style="margin-top:26px"><strong>Dr. Murlidhar Boob</strong> — Founder &amp; Director</p>
+    </div>
+  </section>
+
+  <CtaBand heading="Ready to visit us?" text="Book an appointment or call our team — we're here to help." />
+</BaseLayout>

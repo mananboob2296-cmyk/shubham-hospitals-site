@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AppointmentForm from '../components/AppointmentForm.astro';
+import { SITE } from '../consts';
+---
+<BaseLayout
+  title="Contact Us | Shubham Hospitals, Badnera Rd, Amravati"
+  description="Visit Shubham Hospitals at Badnera Rd, opp. Mantri Motors, Amravati. Call +91-8668954915 for appointments. 24x7 emergency care available."
+  ogTitle="Contact Shubham Hospitals, Amravati"
+  ogDescription="Badnera Rd, opp. Mantri Motors, Deorankar Nagar, Amravati. 24x7 emergency: +91-8668954915."
+>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">We're Here to Help</span>
+      <h1>Contact Us</h1>
+      <p>Book an appointment, get directions, or reach our 24x7 emergency team.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="sr-only">Contact details</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>📞 Phone</h3>
+          <p><a href={SITE.phoneHref}>{SITE.phone}</a></p>
+          <p>Emergency: 24x7, Mon–Sun</p>
+        </div>
+        <div class="card">
+          <h3>✉️ Email</h3>
+          <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+        </div>
+        <div class="card">
+          <h3>📍 Address</h3>
+          <p><a href={SITE.directions} target="_blank" rel="noopener">{SITE.address}</a></p>
+          <p>OPD: Mon–Sat, 11 AM–5 PM &amp; 7–9:30 PM · Sun closed</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      <div class="grid cols-2">
+        <AppointmentForm heading="Send Us A Message" />
+        <div>
+          <h2>Find Us</h2>
+          <iframe
+            src={SITE.mapsEmbed}
+            width="100%" height="380" style="border:0; border-radius:14px;"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Shubham Hospitals location on Google Maps"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

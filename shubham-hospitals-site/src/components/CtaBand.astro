@@ -1,0 +1,19 @@
+---
+import { SITE } from '../consts';
+interface Props { heading?: string; text?: string }
+const { heading = 'Emergency? Call Us', text = '24x7 emergency and labour support in Amravati.' } = Astro.props;
+---
+<section class="section">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h2>{heading}</h2>
+        <p>{text}</p>
+      </div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn btn-white" href={SITE.phoneHref}>📞 {SITE.phone}</a>
+        <a class="btn btn-outline" style="border-color:#fff;color:#fff" href="/contact-us/#book">Book Appointment</a>
+      </div>
+    </div>
+  </div>
+</section>

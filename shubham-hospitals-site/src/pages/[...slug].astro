@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FaqSection from '../components/FaqSection.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { SITE } from '../consts';
+
+export async function getStaticPaths() {
+  const blog = await getCollection('blog');
+  const doctors = await getCollection('doctors');
+  const landing = await getCollection('landing');
+  return [
+    ...blog.map((e) => ({ params: { slug: e.slug }, props: { type: 'blog', entry: e } })),
+    ...doctors.map((e) => ({ params: { slug: e.slug }, props: { type: 'doctor', entry: e } })),
+    ...landing.map((e) => ({ params: { slug: e.slug }, props: { type: 'landing', entry: e } })),
+  ];
+}
+
+const { type, entry } = Astro.props;
+const { Content } = await entry.render();
+
+let title = '', description = '', schema: object[] = [];
+if (type === 'blog') {
+  title = `${entry.data.title} | Shubham Hospitals`;
+  description = entry.data.excerpt;
+  schema = [{
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: entry.data.title,
+    description: entry.data.excerpt,
+    datePublished: entry.data.date.toISOString(),
+    author: { '@type': 'Person', name: entry.data.author },
+    publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: SITE.ogImage } },
+    image: entry.data.image ?? SITE.ogImage,
+    mainEntityOfPage: new URL(`/${entry.slug}/`, SITE.url).href,
+  }];
+} else if (type === 'doctor') {
+  title = entry.data.metaTitle;
+  description = entry.data.metaDescription;
+  schema = [{
+    '@context': 'https://schema.org',
+    '@type': 'Physician',
+    name: entry.data.name,
+    image: entry.data.photo,
+    jobTitle: entry.data.role,
+    description: entry.data.metaDescription,
+    url: new URL(`/${entry.slug}/`, SITE.url).href,
+    worksFor: { '@type': 'MedicalClinic', name: SITE.name, url: SITE.url },
+    telephone: '+918668954915',
+    address: { '@type': 'PostalAddress', addressLocality: 'Amravati', addressRegion: 'Maharashtra', addressCountry: 'IN' },
+  }];
+} else {
+  title = entry.data.metaTitle;
+  description = entry.data.metaDescription;
+}
+---
+<BaseLayout
+  title={title}
+  description={description}
+  ogTitle={type === 'landing' ? entry.data.ogTitle : undefined}
+  ogDescription={type === 'landing' ? entry.data.ogDescription : undefined}
+  ogType={type === 'blog' ? 'article' : 'website'}
+  ogImage={type === 'blog' ? entry.data.image : type === 'doctor' ? entry.data.photo : entry.data.heroImage}
+  schema={schema}
+>
+  {type === 'blog' && (
+    <>
+      <section class="hero">
+        <div class="container">
+          <span class="eyebrow">Health Blog</span>
+          <h1>{entry.data.title}</h1>
+          <p>{entry.data.date.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })} · {entry.data.author}</p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container prose">
+          <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/blogs/">Blog</a> › {entry.data.title}</nav>
+          <Content />
+        </div>
+      </section>
+      <CtaBand heading="Have a question about your health?" text="Book a consultation with our specialists in Amravati." />
+    </>
+  )}
+
+  {type === 'doctor' && (
+    <>
+      <section class="hero">
+        <div class="container">
+          <span class="eyebrow">Our Team</span>
+          <h1>{entry.data.name}</h1>
+          <p>{entry.data.qualifications}</p>
+          <p><strong style="color:#f0a441">{entry.data.role}</strong></p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container doctor-layout">
+          <img src={entry.data.photo} alt={entry.data.name} width="240" height="240" style="border-radius:16px; width:240px; height:auto;" />
+          <div class="prose">
+            <Content />
+            {entry.data.honors.length > 0 && (
+              <>
+                <h2>Honors &amp; Achievements</h2>
+                <ul>{entry.data.honors.map((h) => <li>{h}</li>)}</ul>
+              </>
+            )}
+            <h2>Areas of Expertise</h2>
+            <ul>{entry.data.expertise.map((e) => <li>{e}</li>)}</ul>
+            {entry.slug === 'dr-manan' && (entry.data.youtube ?? SITE.youtubeDrManan) && (
+              <p><a class="btn btn-primary" style="color:#fff" href={entry.data.youtube ?? SITE.youtubeDrManan} target="_blank" rel="noopener">▶ Watch Dr Manan on YouTube</a></p>
+            )}
+          </div>
+        </div>
+      </section>
+      <CtaBand heading={`Consult ${entry.data.name}`} text="Book an appointment at Shubham Hospitals, Amravati." />
+    </>
+  )}
+
+  {type === 'landing' && (
+    <>
+      <section class="hero">
+        <div class="container">
+          <h1>{entry.data.title}</h1>
+          {entry.data.subtitle && <p>{entry.data.subtitle}</p>}
+          <div class="btn-row">
+            <a class="btn btn-primary" style="color:#fff" href="/contact-us/#book">Book Appointment</a>
+            <a class="btn btn-white" href={SITE.phoneHref}>or call {SITE.phone}</a>
+          </div>
+        </div>
+      </section>
+      {entry.data.stats.length > 0 && (
+        <section class="section">
+          <div class="container">
+            <div class="stats">
+              {entry.data.stats.map((s) => (
+                <div class="stat"><div class="num">{s.value}</div><div class="label">{s.label}</div></div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+      {entry.data.whyChoose.length > 0 && (
+        <section class="section soft">
+          <div class="container prose">
+            <h2>Why choose Shubham Hospitals</h2>
+            <ul>{entry.data.whyChoose.map((w) => <li set:html={w.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')} />)}</ul>
+          </div>
+        </section>
+      )}
+      <section class="section">
+        <div class="container prose">
+          <Content />
+          {entry.data.ctaTreatment && (
+            <p><a class="btn btn-outline" href={entry.data.ctaTreatment}>{entry.data.ctaTreatmentLabel ?? 'Explore treatments'}</a></p>
+          )}
+        </div>
+      </section>
+      <section class="section soft">
+        <div class="container prose">
+          <FaqSection faqs={entry.data.faqs} />
+        </div>
+      </section>
+      <CtaBand />
+    </>
+  )}
+</BaseLayout>

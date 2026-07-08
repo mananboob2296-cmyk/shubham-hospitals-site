@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+const doctors = (await getCollection('doctors')).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout
+  title="Our Doctors | Best Gynecologists & Surgeons in Amravati"
+  description="Meet the expert team at Shubham Hospitals, Amravati: Dr. Murlidhar Boob, Dr. Manjushree Boob, Dr. Manan Boob & Dr. Darshana Ajmera – specialists in IVF, gynecology & laparoscopy."
+  ogTitle="Our Doctors | Shubham Hospitals, Amravati"
+  ogDescription="Experienced specialists in IVF, gynecology, laparoscopy & fetal medicine in Amravati."
+>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Our Team</span>
+      <h1>Meet Our Doctors</h1>
+      <p>Experienced specialists in IVF, gynecology, laparoscopy, general surgery and fetal medicine — caring for families across Amravati and Vidarbha.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="sr-only">Our Specialists</h2>
+      <div class="grid cols-2">
+        {doctors.map((d) => (
+          <div class="card doctor-card">
+            <img src={d.data.photo} alt={d.data.name} loading="lazy" width="170" height="170" />
+            <h3>{d.data.name}</h3>
+            <p class="quals">{d.data.qualifications}</p>
+            <p class="role">{d.data.role}</p>
+            <a class="btn btn-outline" href={`/${d.slug}/`}>View Full Profile</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand heading="Consult a specialist" text="Book an appointment with the right doctor for your needs." />
+</BaseLayout>

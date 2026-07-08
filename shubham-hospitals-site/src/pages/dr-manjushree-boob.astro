@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import cardHtml from '../../extract/card-dr-manjushree-boob.html?raw';
+---
+<BaseLayout
+  title="Dr Manjushree Boob | Shubham Hospitals, Amravati"
+  description="Digital visiting card of Dr. Manjushree Boob — MD, DNB, FICMCH, FICOG. Obstetrician, Gynaecologist, Infertility, IVF & ART Specialist, Amravati."
+  noindex={true}
+>
+  <div style="padding: 24px 12px; background: var(--bg-soft);">
+    <Fragment set:html={cardHtml} />
+  </div>
+</BaseLayout>
