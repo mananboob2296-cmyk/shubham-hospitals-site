@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getFaqs, flatFaqs, faqMeta } from '../data/faqs';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const meta = faqMeta[lang];
+const cats = getFaqs(lang);
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: flatFaqs(lang).map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+}];
+---
+<BaseLayout title={meta.title} description={meta.description} schema={schema} lang={lang}>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">{meta.eyebrow}</span>
+      <h1>{meta.heading}</h1>
+      <p>{meta.intro}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container faq-page">
+      {cats.map((c) => (
+        <div class="faq-cat">
+          <h2 id={c.id}>{c.heading}</h2>
+          {c.faqs.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      ))}
+    </div>
+  </section>
+  <CtaBand />
+</BaseLayout>
