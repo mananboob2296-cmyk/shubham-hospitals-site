@@ -19,9 +19,9 @@
   --line: #e9dfe7;
   --line-strong: #d9c9d6;
   /* Type */
-  --font-display: "Libre Franklin", system-ui, sans-serif;
-  --font-body: "Source Sans 3", system-ui, sans-serif;
-  --font-editorial: "Baker Signet", "Playfair Display", Georgia, serif;
+  --font-display: "Libre Franklin", "Noto Sans Devanagari", system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Noto Sans Devanagari", system-ui, sans-serif;
+  --font-editorial: "Baker Signet", "Playfair Display", "Noto Sans Devanagari", Georgia, serif;
   /* Shape & elevation */
   --radius: 22px;
   --radius-panel: 40px;
@@ -76,6 +76,17 @@ h3 { font-size: 1.2rem; }
 .topbar .container { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .topbar a { color: #fff; text-decoration: none; }
 .tb-ic { width: 14px; height: 14px; vertical-align: -2px; margin-right: 6px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.topbar-right { display: inline-flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.lang-switch { position: relative; font-size: .85rem; }
+.lang-switch > summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; color: #fff; padding: 2px 6px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; }
+.lang-switch > summary::-webkit-details-marker { display: none; }
+.lang-switch > summary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.lang-switch[open] > summary { background: rgba(255,255,255,.12); }
+.lang-switch ul { position: absolute; right: 0; top: calc(100% + 6px); z-index: 60; margin: 0; padding: 6px; list-style: none; background: #fff; border-radius: 12px; box-shadow: var(--shadow-md); min-width: 130px; }
+.lang-switch li { margin: 0; }
+.lang-switch ul a { display: block; padding: 8px 12px; border-radius: 8px; color: var(--ink); text-decoration: none; }
+.lang-switch ul a:hover { background: var(--purple-50); color: var(--magenta); }
+.lang-switch ul a[aria-current="true"] { background: var(--purple-50); color: var(--magenta); font-weight: 600; }
 .nav-wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 0; }
 .logo img { height: 68px; width: auto; display: block; }
 @media (max-width: 480px) { .logo img { height: 58px; } }
@@ -167,6 +178,13 @@ body:has(#nav-toggle:checked) { overflow: hidden; }
 .faq details { border: 1px solid var(--line); border-radius: 18px; padding: 14px 20px; margin-bottom: 10px; background: #fff; box-shadow: var(--shadow-sm); }
 .faq summary { font-family: var(--font-display); font-weight: 600; cursor: pointer; color: var(--plum); }
 .faq p { margin: 10px 0 4px; }
+.faq-page { max-width: 860px; }
+.faq-cat { margin-bottom: 40px; }
+.faq-cat h2 { font-family: var(--font-display); color: var(--plum-deep); margin: 0 0 16px; }
+.faq-page details { border: 1px solid var(--line); border-radius: 18px; padding: 14px 20px; margin-bottom: 10px; background: #fff; box-shadow: var(--shadow-sm); }
+.faq-page summary { font-family: var(--font-display); font-weight: 600; cursor: pointer; color: var(--plum); }
+.faq-page details[open] summary { color: var(--magenta); }
+.faq-page p { margin: 10px 0 4px; color: var(--charcoal); }
 
 /* CTA band — gradient magenta→rose */
 .cta-band {
