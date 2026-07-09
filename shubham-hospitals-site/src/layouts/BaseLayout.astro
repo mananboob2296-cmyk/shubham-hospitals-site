@@ -8,8 +8,16 @@ import '@fontsource/source-sans-3/latin-600.css';
 import '@fontsource/source-sans-3/latin-400-italic.css';
 import '@fontsource/playfair-display/latin-500.css';
 import '@fontsource/playfair-display/latin-500-italic.css';
+import '@fontsource/noto-sans-devanagari/devanagari-400.css';
+import '@fontsource/noto-sans-devanagari/devanagari-500.css';
+import '@fontsource/noto-sans-devanagari/devanagari-600.css';
+import '@fontsource/noto-sans-devanagari/devanagari-700.css';
 import '../styles/global.css';
 import { SITE, CLINIC_SCHEMA } from '../consts';
+import { getLangFromUrl, useTranslations, stripLangPrefix } from '../i18n/utils';
+import { isTranslated } from '../i18n/translated';
+import { localeCodes, type Lang } from '../i18n/ui';
+import LangSwitcher from '../components/LangSwitcher.astro';
 
 interface Props {
   title: string;
@@ -21,9 +29,21 @@ interface Props {
   schema?: object[];
   noindex?: boolean;
   preloadImage?: string;
+  lang?: Lang;
 }
-const { title, description, ogTitle, ogDescription, ogImage, ogType = 'website', schema = [], noindex = false, preloadImage } = Astro.props;
+const { title, description, ogTitle, ogDescription, ogImage, ogType = 'website', schema = [], noindex = false, preloadImage, lang: langProp } = Astro.props;
+const lang: Lang = langProp ?? getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+// Prefix an English root path (e.g. '/about-us/') for the active language,
+// but only if that page is translated — otherwise keep the English URL (no 404).
+const L = (p: string) => (lang !== 'en' && isTranslated(lang, p) ? `/${lang}${p}` : p);
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const basePath = stripLangPrefix(Astro.url.pathname);
+const alternates: { code: Lang; href: string }[] = [
+  { code: 'en', href: new URL(basePath, SITE.url).href },
+  { code: 'hi', href: new URL('/hi' + basePath, SITE.url).href },
+  { code: 'mr', href: new URL('/mr' + basePath, SITE.url).href },
+];
 
 const treatments = [
   { title: 'Advanced Laparoscopy & Hysteroscopy', slug: 'advanced-laparoscopy-hysteroscopy' },
@@ -36,15 +56,41 @@ const treatments = [
 ];
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      // First-visit language routing. Respects a manual choice (lang cookie);
+      // otherwise sends Hindi/Marathi browsers to their homepage on the root page only.
+      (function () {
+        try {
+          var path = location.pathname;
+          var seg = path.split('/')[1];
+          var cur = seg === 'hi' || seg === 'mr' ? seg : 'en';
+          var m = document.cookie.match(/(?:^|; )lang=(en|hi|mr)/);
+          var pref = m ? m[1] : null;
+          if (!pref) {
+            var isHome = path === '/' || path === '/hi/' || path === '/mr/';
+            if (!isHome) return;
+            var n = (navigator.language || '').toLowerCase();
+            pref = n.indexOf('hi') === 0 ? 'hi' : n.indexOf('mr') === 0 ? 'mr' : 'en';
+          }
+          if (pref !== cur) {
+            var rest = path.replace(/^\/(hi|mr)(\/|$)/, '/');
+            var target = pref === 'en' ? rest : '/' + pref + rest;
+            if (target !== path) location.replace(target + location.search + location.hash);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={SITE.favicon} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.code} href={a.href} />)}
+    <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     {noindex && <meta name="robots" content="noindex, follow" />}
     <meta property="og:site_name" content={SITE.name} />
@@ -53,7 +99,7 @@ const treatments = [
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content={ogType} />
     <meta property="og:image" content={ogImage ?? SITE.ogImage} />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={localeCodes[lang].replace('-', '_')} />
     <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json" set:html={JSON.stringify(CLINIC_SCHEMA)} />
     {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
@@ -62,35 +108,39 @@ const treatments = [
     <header class="site-header">
       <div class="topbar">
         <div class="container">
-          <span><svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>OPD: Mon–Sat 11 AM–5 PM &amp; 7–9:30 PM · Emergency 24x7</span>
-          <span><svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href={SITE.phoneHref}>{SITE.phone}</a> · <svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7.5l8.5 6 8.5-6"/></svg><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+          <span><svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>{t('topbar.hours')}</span>
+          <span class="topbar-right">
+            <span><svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href={SITE.phoneHref}>{SITE.phone}</a> · <svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7.5l8.5 6 8.5-6"/></svg><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+            <LangSwitcher />
+          </span>
         </div>
       </div>
       <div class="container nav-wrap">
-        <a class="logo" href="/" aria-label={SITE.name}>
+        <a class="logo" href={L('/')} aria-label={SITE.name}>
           <img src={SITE.logoHeader} alt={`${SITE.name} logo`} width="600" height="212" />
         </a>
         <label class="nav-burger" for="nav-toggle" aria-label="Open menu">☰</label>
         <input type="checkbox" id="nav-toggle" />
         <nav class="main-nav" aria-label="Main menu">
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about-us/">About Us</a></li>
+            <li><a href={L('/')}>{t('nav.home')}</a></li>
+            <li><a href={L('/about-us/')}>{t('nav.about')}</a></li>
             <li class="has-dropdown">
-              <a href="/departments/">Departments &amp; Treatments</a>
+              <a href={L('/departments/')}>{t('nav.departments')}</a>
               <ul class="dropdown">
-                {treatments.map((t) => (
-                  <li><a href={`/treatments/${t.slug}/`}>{t.title}</a></li>
+                {treatments.map((tr) => (
+                  <li><a href={L(`/treatments/${tr.slug}/`)}>{tr.title}</a></li>
                 ))}
-                <li><a href="/best-ivf-centre-in-amravati/">Best IVF Centre in Amravati</a></li>
-                <li><a href="/best-gynecologist-in-amravati/">Best Gynecologist in Amravati</a></li>
-                <li><a href="/best-laparoscopic-surgeon-in-amravati/">Best Laparoscopic Surgeon in Amravati</a></li>
+                <li><a href={L('/best-ivf-centre-in-amravati/')}>Best IVF Centre in Amravati</a></li>
+                <li><a href={L('/best-gynecologist-in-amravati/')}>Best Gynecologist in Amravati</a></li>
+                <li><a href={L('/best-laparoscopic-surgeon-in-amravati/')}>Best Laparoscopic Surgeon in Amravati</a></li>
               </ul>
             </li>
-            <li><a href="/doctors/">Doctors</a></li>
-            <li><a href="/blogs/">Blogs</a></li>
-            <li><a href="/contact-us/">Contact Us</a></li>
-            <li class="nav-cta"><a class="btn btn-primary" href="/contact-us/#book" style="color:#fff">Book Appointment</a></li>
+            <li><a href={L('/doctors/')}>{t('nav.doctors')}</a></li>
+            <li><a href={L('/blogs/')}>{t('nav.blogs')}</a></li>
+            <li><a href={L('/faq/')}>{t('nav.faq')}</a></li>
+            <li><a href={L('/contact-us/')}>{t('nav.contact')}</a></li>
+            <li class="nav-cta"><a class="btn btn-primary" href={L('/contact-us/') + '#book'} style="color:#fff">{t('nav.book')}</a></li>
           </ul>
         </nav>
       </div>
@@ -105,7 +155,7 @@ const treatments = [
         <div>
           <img src={SITE.logoWhite} alt={`${SITE.name} logo`} width="200" loading="lazy" />
           <p>{SITE.tagline}</p>
-          <p>Trusted by families across Amravati &amp; Vidarbha since 1995 for IVF, gynecology, laparoscopy and maternity care.</p>
+          <p>{t('footer.trusted')}</p>
           <div class="social-row">
             <a href={SITE.facebook} rel="noopener" target="_blank" aria-label="Facebook">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#1877F2" d="M24 12a12 12 0 1 0-13.88 11.85v-8.38H7.08V12h3.04V9.36c0-3 1.79-4.67 4.53-4.67 1.31 0 2.69.24 2.69.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87V12h3.33l-.53 3.47h-2.8v8.38A12 12 0 0 0 24 12z"/></svg>
@@ -122,38 +172,39 @@ const treatments = [
           </div>
         </div>
         <div>
-          <h2>Departments</h2>
+          <h2>{t('footer.departments')}</h2>
           <ul>
-            {treatments.map((t) => (
-              <li><a href={`/treatments/${t.slug}/`}>{t.title}</a></li>
+            {treatments.map((tr) => (
+              <li><a href={L(`/treatments/${tr.slug}/`)}>{tr.title}</a></li>
             ))}
           </ul>
         </div>
         <div>
-          <h2>Quick Links</h2>
+          <h2>{t('footer.quickLinks')}</h2>
           <ul>
-            <li><a href="/about-us/">About Us</a></li>
-            <li><a href="/doctors/">Our Doctors</a></li>
-            <li><a href="/blogs/">Health Blog</a></li>
-            <li><a href="/contact-us/">Contact &amp; Directions</a></li>
+            <li><a href={L('/about-us/')}>{t('footer.aboutUs')}</a></li>
+            <li><a href={L('/doctors/')}>{t('footer.ourDoctors')}</a></li>
+            <li><a href={L('/blogs/')}>{t('footer.healthBlog')}</a></li>
+            <li><a href={L('/faq/')}>{t('nav.faq')}</a></li>
+            <li><a href={L('/contact-us/')}>{t('footer.contactDirections')}</a></li>
           </ul>
         </div>
         <div>
-          <h2>Contact Us</h2>
+          <h2>{t('footer.contact')}</h2>
           <ul>
             <li><svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 0 0-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><a href={SITE.directions} target="_blank" rel="noopener">{SITE.address}</a></li>
             <li><svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href={SITE.phoneHref}>{SITE.phone}</a></li>
             <li><svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7.5l8.5 6 8.5-6"/></svg><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
-            <li><svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>OPD: Mon–Sat, 11 AM–5 PM &amp; 7–9:30 PM · Sun closed</li>
-            <li><svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg>Emergency: 24x7</li>
+            <li><svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>{t('footer.hours')}</li>
+            <li><svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg>{t('footer.emergency')}</li>
           </ul>
         </div>
       </div>
       <div class="copyright container">
-        Copyright © {new Date().getFullYear()} {SITE.name} – All rights reserved
+        Copyright © {new Date().getFullYear()} {SITE.name} – {t('footer.rights')}
       </div>
     </footer>
 
-    <a class="call-fab" href={SITE.phoneHref}>📞 Call Now</a>
+    <a class="call-fab" href={SITE.phoneHref}><svg class="tb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>{t('cta.callNow')}</a>
   </body>
 </html>
