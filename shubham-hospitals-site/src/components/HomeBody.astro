@@ -1,0 +1,145 @@
+---
+import CtaBand from './CtaBand.astro';
+import Reviews from './Reviews.astro';
+import { SITE } from '../consts';
+import { getCollection } from 'astro:content';
+import { homeStrings, treatmentCards, doctorRole } from '../i18n/home';
+import { isTranslated } from '../i18n/translated';
+import { localeCodes, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const s = homeStrings[lang];
+const cards = treatmentCards[lang];
+const roles = doctorRole[lang];
+
+// Link helper: keep the English URL unless that page is translated in this language.
+const L = (p: string) => (lang !== 'en' && isTranslated(lang, p) ? `/${lang}${p}` : p);
+
+const treatments = (await getCollection('treatments')).sort((a, b) => a.data.order - b.data.order);
+const doctors = (await getCollection('doctors')).sort((a, b) => a.data.order - b.data.order);
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
+
+const extraLinks: Record<string, { href: string; label: string }> = {
+  'advanced-laparoscopy-hysteroscopy': { href: '/best-laparoscopic-surgeon-in-amravati/', label: s.bestLaparo },
+  'ivf-fertility-treatments': { href: '/best-ivf-centre-in-amravati/', label: s.bestIvf },
+};
+const advanced = [
+  { ...s.advancedCare[0], href: '/treatments/ivf-fertility-treatments/' },
+  { ...s.advancedCare[1], href: '/treatments/general-surgery-gastroenterology/' },
+  { ...s.advancedCare[2], href: '/treatments/cosmetic-aesthetic-gynecology/' },
+];
+const stats = ['20,000+', '25,000+', '1,000+', '30+'];
+---
+<section class="hero">
+  <img class="hero-photo" src={SITE.heroImage} alt="Shubham Hi-Tech Hospital, Amravati" loading="eager" fetchpriority="high" width="900" height="1000" />
+  <div class="container">
+    <span class="eyebrow">{s.heroEyebrow}</span>
+    <h1>{s.heroH1}</h1>
+    <p>{s.heroLead}</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href={L('/contact-us/') + '#book'} style="color:#fff">{s.btnBook}</a>
+      <a class="btn btn-white" href={L('/about-us/')}>{s.btnKnow}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="stats">
+      {stats.map((num, i) => (
+        <div class="stat"><div class="num">{num}</div><div class="label">{s.statLabels[i]}</div></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="badge">{s.servicesBadge}</span>
+    <h2>{s.servicesH2}</h2>
+    <div class="grid cols-3 services-grid">
+      {treatments.map((tr) => (
+        <div class="card">
+          <h3>{cards[tr.slug]?.title ?? tr.data.title}</h3>
+          <p>{cards[tr.slug]?.blurb ?? tr.data.excerpt}</p>
+          <div class="more-row">
+            <a class="more" href={L(`/treatments/${tr.slug}/`)}>{s.learnMore}</a>
+            {extraLinks[tr.slug] && <a class="more sub" href={L(extraLinks[tr.slug].href)}>{extraLinks[tr.slug].label}</a>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="laparo-3d">
+      <div class="cols">
+        <div>
+          <span class="eyebrow">{s.laparoEyebrow}</span>
+          <h2>{s.laparoH2}</h2>
+          <p>{s.laparoLead}</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" style="color:#fff" href={L('/treatments/advanced-laparoscopy-hysteroscopy/')}>{s.laparoBtn1}</a>
+            <a class="btn btn-outline" href={L('/dr-manan/')}>{s.laparoBtn2}</a>
+          </div>
+        </div>
+        <div class="visual">
+          <img src="/images/laparoscopy-3d.webp" alt="Advanced 3D laparoscopy at Shubham Hospitals, Amravati" loading="lazy" width="880" height="1568" />
+        </div>
+      </div>
+      <div class="laparo-more">
+        <h3>{s.laparoMoreH3}</h3>
+        <div class="grid cols-3 snap-row">
+          {advanced.map((c) => (
+            <div class="card">
+              <h3>{c.title}</h3>
+              <p>{c.desc}</p>
+              <a class="more" href={L(c.href)}>{s.learnMore}</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="badge">{s.teamBadge}</span>
+    <h2>{s.teamH2}</h2>
+    <div class="grid cols-3 doctors-grid">
+      {doctors.map((d) => (
+        <div class="card doctor-card">
+          <img src={d.data.photo} alt={d.data.name} loading="lazy" width="170" height="170" />
+          <h3>{d.data.name}</h3>
+          <p class="quals">{d.data.qualifications}</p>
+          <p class="role">{roles[d.slug] ?? d.data.role}</p>
+          <a class="more" href={L(`/${d.slug}/`)}>{s.viewProfile}</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<Reviews />
+
+<section class="section">
+  <div class="container">
+    <span class="badge">{s.blogBadge}</span>
+    <h2>{s.blogH2}</h2>
+    <div class="grid cols-3">
+      {posts.map((p) => (
+        <div class="card post-card">
+          <div class="meta">{p.data.date.toLocaleDateString(localeCodes[lang], { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+          <h3><a href={L(`/${p.slug}/`)}>{p.data.title}</a></h3>
+        </div>
+      ))}
+    </div>
+    <p style="margin-top:20px"><a class="btn btn-outline" href={L('/blogs/')}>{s.viewAll}</a></p>
+  </div>
+</section>
+
+<CtaBand />
