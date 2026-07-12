@@ -140,6 +140,11 @@ body:has(#nav-toggle:checked) { overflow: hidden; }
 .hero p { max-width: 720px; font-size: 1.1rem; color: var(--charcoal); }
 .hero .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
 .hero .eyebrow, .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; color: var(--magenta); font-weight: 700; font-family: var(--font-display); }
+/* Devanagari (Hindi/Marathi): letter-spacing & uppercase break conjuncts like ष्ट्र — disable for these scripts */
+[lang="hi"] .eyebrow, [lang="mr"] .eyebrow,
+[lang="hi"] .badge, [lang="mr"] .badge { letter-spacing: normal; text-transform: none; }
+[lang="hi"] h1, [lang="mr"] h1, [lang="hi"] h2, [lang="mr"] h2,
+[lang="hi"] h3, [lang="mr"] h3 { letter-spacing: normal; }
 .hero .btn-white { border: 2px solid var(--magenta); color: var(--magenta); background: transparent; box-shadow: none; }
 .hero .btn-white:hover { background: var(--purple-50); }
 
