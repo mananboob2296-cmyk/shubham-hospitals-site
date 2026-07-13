@@ -4,6 +4,7 @@ import CtaBand from '../../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
 import { deptContent } from '../../i18n/pages';
 import { treatmentCards } from '../../i18n/home';
+import { isTranslated } from '../../i18n/translated';
 const lang = 'hi';
 const p = deptContent[lang];
 const cards = treatmentCards[lang];
@@ -21,13 +22,16 @@ const treatments = (await getCollection('treatments')).sort((a, b) => a.data.ord
     <div class="container">
       <h2 class="sr-only">{p.h1}</h2>
       <div class="grid cols-3">
-        {treatments.map((tr) => (
+        {treatments.map((tr) => {
+          const base = `/treatments/${tr.slug}/`;
+          const href = isTranslated(lang, base) ? `/${lang}${base}` : base;
+          return (
           <div class="card">
             <h3>{cards[tr.slug]?.title ?? tr.data.title}</h3>
             <p>{cards[tr.slug]?.blurb ?? tr.data.excerpt}</p>
-            <a class="more" href={`/treatments/${tr.slug}/`}>{p.explore}</a>
+            <a class="more" href={href}>{p.explore}</a>
           </div>
-        ))}
+        )})}
       </div>
     </div>
   </section>

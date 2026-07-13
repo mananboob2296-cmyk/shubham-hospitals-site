@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FaqSection from '../../../components/FaqSection.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import { treatmentContent } from '../../../i18n/treatments';
+import { deptContent } from '../../../i18n/pages';
+import { useTranslations } from '../../../i18n/utils';
+
+const lang = 'mr';
+
+export function getStaticPaths() {
+  const entries = treatmentContent.mr ?? {};
+  return Object.keys(entries).map((slug) => ({ params: { slug }, props: { e: entries[slug] } }));
+}
+
+const { e } = Astro.props;
+const t = useTranslations(lang);
+const dept = deptContent[lang];
+---
+<BaseLayout title={e.metaTitle} description={e.metaDescription} lang={lang}>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">विभाग</span>
+      <h1>{e.title}</h1>
+      <p>{e.excerpt}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" style="color:#fff" href="/mr/contact-us/#book">{t('cta.book')}</a>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container prose">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/mr/">{t('nav.home')}</a> › <a href="/mr/departments/">{dept.h1}</a> › {e.title}</nav>
+      {e.blocks.map((b) => (
+        b.t === 'h2' ? <h2>{b.s}</h2>
+        : b.t === 'h3' ? <h3>{b.s}</h3>
+        : b.t === 'p' ? <p>{b.s}</p>
+        : <ul>{b.items.map((it) => (<li><strong>{it.b}</strong> {it.s}</li>))}</ul>
+      ))}
+    </div>
+  </section>
+  <section class="section soft">
+    <div class="container prose">
+      <FaqSection faqs={e.faqs} heading={t('faq.heading')} />
+    </div>
+  </section>
+  <CtaBand />
+</BaseLayout>
