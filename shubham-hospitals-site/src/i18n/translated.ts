@@ -5,9 +5,9 @@ import type { Lang } from './ui';
 // switcher 404-safe: links to not-yet-translated pages stay on the English URL,
 // and the switcher sends you to the language homepage instead of a dead path.
 const translated: Record<Exclude<Lang, 'en'>, Set<string>> = {
-  // Batch 1: homepage + FAQ. Extend as more pages are translated.
-  hi: new Set(['/', '/faq/']),
-  mr: new Set(['/', '/faq/']),
+  // Grows as pages are translated: homepage, FAQ, departments, doctors.
+  hi: new Set(['/', '/faq/', '/departments/', '/doctors/']),
+  mr: new Set(['/', '/faq/', '/departments/', '/doctors/']),
 };
 
 export function isTranslated(lang: Lang, basePath: string): boolean {
