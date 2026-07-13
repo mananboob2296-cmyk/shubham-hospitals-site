@@ -59,8 +59,6 @@ For couples who have experienced recurrent pregnancy loss, our specialized team 
 - **Advanced Technology**: We use the latest medical advancements and state-of-the-art facilities to provide the highest quality care.
 - **Personalized Approach**: Every couple's journey is unique, and we create a personalized treatment plan tailored to your individual needs.
 
-## Meet Our IVF Specialists in Amravati
+## Our Fertility Team in Amravati
 
-Our IVF centre in Amravati is led by [Dr. Manjushree Boob](/dr-manjushree/) (MD, DNB, FICMCH, FICOG) — one of the first IVF specialists in Vidarbha — and [Dr. Manan Boob](/dr-manan/) (MS ObGyn, Gold Medalist, DNB). Together they bring decades of fertility expertise and hundreds of successful IVF cycles to patients across Amravati and the Vidarbha region.
-
-📞 Call **+91-8668954915** to book a fertility consultation, or [contact us online](/contact-us/).
+Our experienced team of fertility specialists brings decades of expertise and hundreds of successful IVF cycles to families across Amravati and the Vidarbha region — and is committed to giving you the best possible care. You can read each doctor's profile on the [Doctors page](/doctors/).

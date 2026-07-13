@@ -35,6 +35,7 @@ const dept = deptContent[lang];
         b.t === 'h2' ? <h2>{b.s}</h2>
         : b.t === 'h3' ? <h3>{b.s}</h3>
         : b.t === 'p' ? <p>{b.s}</p>
+        : b.t === 'html' ? <p set:html={b.s} />
         : <ul>{b.items.map((it) => (<li><strong>{it.b}</strong> {it.s}</li>))}</ul>
       ))}
     </div>
