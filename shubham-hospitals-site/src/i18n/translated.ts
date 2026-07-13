@@ -1,13 +1,9 @@
 import type { Lang } from './ui';
 
-// English-root paths (leading + trailing slash) that have Hindi/Marathi versions.
-// Grow these sets as more pages are translated. This keeps the nav and language
-// switcher 404-safe: links to not-yet-translated pages stay on the English URL,
-// and the switcher sends you to the language homepage instead of a dead path.
+// English-root paths that have Hindi/Marathi versions. Keeps nav + switcher 404-safe.
 const translated: Record<Exclude<Lang, 'en'>, Set<string>> = {
-  // Grows as pages are translated: homepage, FAQ, departments, doctors.
-  hi: new Set(['/', '/faq/', '/departments/', '/doctors/']),
-  mr: new Set(['/', '/faq/', '/departments/', '/doctors/']),
+  hi: new Set(['/', '/faq/', '/departments/', '/doctors/', '/about-us/', '/contact-us/']),
+  mr: new Set(['/', '/faq/', '/departments/', '/doctors/', '/about-us/', '/contact-us/']),
 };
 
 export function isTranslated(lang: Lang, basePath: string): boolean {

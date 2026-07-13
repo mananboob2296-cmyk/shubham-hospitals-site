@@ -1,7 +1,11 @@
 ---
 import { SITE } from '../consts';
 import WaIcon from './WaIcon.astro';
+import { getLangFromUrl } from '../i18n/utils';
+import { formContent } from '../i18n/pages';
 interface Props { heading?: string }
+const lang = getLangFromUrl(Astro.url);
+const f = formContent[lang];
 const { heading = 'Book An Appointment' } = Astro.props;
 // WhatsApp number for bookings — hospital main line. No third-party form service:
 // the form only opens WhatsApp on the visitor's own phone with a pre-filled message.
@@ -10,26 +14,26 @@ const WA_NUMBER = '918668954915';
 <div id="book">
   <h2>{heading}</h2>
   <form class="appointment" id="wa-booking">
-    <input type="text" name="name" placeholder="Full Name" required />
-    <input type="tel" name="mobile" placeholder="Mobile Number" pattern="[0-9+ ]{10,15}" required />
-    <input type="number" name="age" placeholder="Age" min="0" max="120" />
+    <input type="text" name="name" placeholder={f.name} required />
+    <input type="tel" name="mobile" placeholder={f.mobile} pattern="[0-9+ ]{10,15}" required />
+    <input type="number" name="age" placeholder={f.age} min="0" max="120" />
     <select name="gender" required>
-      <option value="" disabled selected>Gender</option>
-      <option>Female</option>
-      <option>Male</option>
+      <option value="" disabled selected>{f.gender}</option>
+      <option>{f.female}</option>
+      <option>{f.male}</option>
     </select>
     <select name="source">
-      <option value="" disabled selected>How did you hear about us?</option>
-      <option>Friends</option>
-      <option>Family</option>
-      <option>Google</option>
-      <option>Social media</option>
-      <option>Other</option>
+      <option value="" disabled selected>{f.source}</option>
+      <option>{f.friends}</option>
+      <option>{f.family}</option>
+      <option>{f.google}</option>
+      <option>{f.social}</option>
+      <option>{f.other}</option>
     </select>
-    <textarea name="issue" rows="4" placeholder="What issue are you facing?" required></textarea>
-    <button class="btn btn-primary" type="submit"><WaIcon class="btn-ic" />Book via WhatsApp</button>
+    <textarea name="issue" rows="4" placeholder={f.issue} required></textarea>
+    <button class="btn btn-primary" type="submit"><WaIcon class="btn-ic" />{f.submit}</button>
   </form>
-  <p><small>Submitting opens WhatsApp with your details pre-filled — nothing is sent anywhere else. Prefer to call? <a href={SITE.phoneHref}>{SITE.phone}</a> (24x7 for emergencies) or email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</small></p>
+  <p><small>{f.note1} <a href={SITE.phoneHref}>{SITE.phone}</a> {f.note2} <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</small></p>
 </div>
 
 <script define:vars={{ WA_NUMBER }}>
