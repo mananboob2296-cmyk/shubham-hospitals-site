@@ -6,8 +6,8 @@ import type { Lang } from './ui';
 // and the switcher sends you to the language homepage instead of a dead path.
 const translated: Record<Exclude<Lang, 'en'>, Set<string>> = {
   // Grows as pages are translated.
-  hi: new Set(['/', '/faq/', '/departments/', '/doctors/', '/about-us/', '/contact-us/', '/treatments/advanced-laparoscopy-hysteroscopy/', '/treatments/ivf-fertility-treatments/', '/treatments/obstetrics-gynecology/', '/treatments/cosmetic-aesthetic-gynecology/', '/treatments/fetal-medicine/', '/treatments/ultrasound-imaging/', '/treatments/general-surgery-gastroenterology/']),
-  mr: new Set(['/', '/faq/', '/departments/', '/doctors/', '/about-us/', '/contact-us/', '/treatments/advanced-laparoscopy-hysteroscopy/', '/treatments/ivf-fertility-treatments/', '/treatments/obstetrics-gynecology/', '/treatments/cosmetic-aesthetic-gynecology/', '/treatments/fetal-medicine/', '/treatments/ultrasound-imaging/', '/treatments/general-surgery-gastroenterology/']),
+  hi: new Set(['/', '/faq/', '/departments/', '/doctors/', '/about-us/', '/contact-us/', '/treatments/advanced-laparoscopy-hysteroscopy/', '/treatments/ivf-fertility-treatments/', '/treatments/obstetrics-gynecology/', '/treatments/cosmetic-aesthetic-gynecology/', '/treatments/fetal-medicine/', '/treatments/ultrasound-imaging/', '/treatments/general-surgery-gastroenterology/', '/best-gynecologist-in-amravati/', '/best-ivf-centre-in-amravati/', '/best-laparoscopic-surgeon-in-amravati/', '/dr-murlidhar/', '/dr-manjushree/', '/dr-manan/', '/dr-darshana/']),
+  mr: new Set(['/', '/faq/', '/departments/', '/doctors/', '/about-us/', '/contact-us/', '/treatments/advanced-laparoscopy-hysteroscopy/', '/treatments/ivf-fertility-treatments/', '/treatments/obstetrics-gynecology/', '/treatments/cosmetic-aesthetic-gynecology/', '/treatments/fetal-medicine/', '/treatments/ultrasound-imaging/', '/treatments/general-surgery-gastroenterology/', '/best-gynecologist-in-amravati/', '/best-ivf-centre-in-amravati/', '/best-laparoscopic-surgeon-in-amravati/', '/dr-murlidhar/', '/dr-manjushree/', '/dr-manan/', '/dr-darshana/']),
 };
 
 export function isTranslated(lang: Lang, basePath: string): boolean {
