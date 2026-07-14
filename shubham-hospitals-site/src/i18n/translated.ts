@@ -6,8 +6,8 @@ import type { Lang } from './ui';
 // and the switcher sends you to the language homepage instead of a dead path.
 const translated: Record<Exclude<Lang, 'en'>, Set<string>> = {
   // Grows as pages are translated.
-  hi: new Set(['/', '/faq/', '/departments/', '/doctors/', '/about-us/', '/contact-us/', '/treatments/advanced-laparoscopy-hysteroscopy/', '/treatments/ivf-fertility-treatments/', '/treatments/obstetrics-gynecology/']),
-  mr: new Set(['/', '/faq/', '/departments/', '/doctors/', '/about-us/', '/contact-us/', '/treatments/advanced-laparoscopy-hysteroscopy/', '/treatments/ivf-fertility-treatments/', '/treatments/obstetrics-gynecology/']),
+  hi: new Set(['/', '/faq/', '/departments/', '/doctors/', '/about-us/', '/contact-us/', '/treatments/advanced-laparoscopy-hysteroscopy/', '/treatments/ivf-fertility-treatments/', '/treatments/obstetrics-gynecology/', '/treatments/cosmetic-aesthetic-gynecology/', '/treatments/fetal-medicine/']),
+  mr: new Set(['/', '/faq/', '/departments/', '/doctors/', '/about-us/', '/contact-us/', '/treatments/advanced-laparoscopy-hysteroscopy/', '/treatments/ivf-fertility-treatments/', '/treatments/obstetrics-gynecology/', '/treatments/cosmetic-aesthetic-gynecology/', '/treatments/fetal-medicine/']),
 };
 
 export function isTranslated(lang: Lang, basePath: string): boolean {

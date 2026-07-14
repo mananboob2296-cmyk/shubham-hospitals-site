@@ -3,13 +3,14 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import FaqSection from '../../../components/FaqSection.astro';
 import CtaBand from '../../../components/CtaBand.astro';
 import { treatmentContent } from '../../../i18n/treatments';
+import { treatmentContentB } from '../../../i18n/treatments-b';
 import { deptContent } from '../../../i18n/pages';
 import { useTranslations } from '../../../i18n/utils';
 
 const lang = 'hi';
 
 export function getStaticPaths() {
-  const entries = treatmentContent.hi ?? {};
+  const entries = { ...(treatmentContent.hi ?? {}), ...(treatmentContentB.hi ?? {}) };
   return Object.keys(entries).map((slug) => ({ params: { slug }, props: { e: entries[slug] } }));
 }
 
