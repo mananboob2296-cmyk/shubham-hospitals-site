@@ -21,7 +21,16 @@ const L = (p: string) => (lang !== 'en' && isTranslated(lang, p) ? `/${lang}${p}
 
 const treatments = (await getCollection('treatments')).sort((a, b) => a.data.order - b.data.order);
 const doctors = (await getCollection('doctors')).sort((a, b) => a.data.order - b.data.order);
-const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter((p) => p.slug.startsWith('en/'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3)
+  .map((p) => {
+    const slug = p.slug.replace(/^en\//, '');
+    const tl = lang !== 'en' ? allPosts.find((e) => e.slug === `${lang}/${slug}`) : undefined;
+    return { href: tl ? `/${lang}/blogs/${slug}/` : `/${slug}/`, data: (tl ?? p).data };
+  });
 
 const extraLinks: Record<string, { href: string; label: string }> = {
   'advanced-laparoscopy-hysteroscopy': { href: '/best-laparoscopic-surgeon-in-amravati/', label: s.bestLaparo },
@@ -138,7 +147,7 @@ const stats = ['20,000+', '25,000+', '1,000+', '30+'];
       {posts.map((p) => (
         <div class="card post-card">
           <div class="meta">{p.data.date.toLocaleDateString(localeCodes[lang], { day: 'numeric', month: 'long', year: 'numeric' })}</div>
-          <h3><a href={L(`/${p.slug}/`)}>{p.data.title}</a></h3>
+          <h3><a href={p.href}>{p.data.title}</a></h3>
         </div>
       ))}
     </div>
