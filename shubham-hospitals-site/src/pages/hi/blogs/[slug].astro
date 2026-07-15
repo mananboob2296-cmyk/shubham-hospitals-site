@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FaqSection from '../../../components/FaqSection.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../../i18n/utils';
+import type { Lang } from '../../../i18n/ui';
+import { SITE } from '../../../consts';
+
+const lang: Lang = 'hi';
+
+export async function getStaticPaths() {
+  const blog = await getCollection('blog');
+  return blog
+    .filter((e) => e.slug.startsWith('hi/'))
+    .map((e) => ({ params: { slug: e.slug.replace(/^hi\//, '') }, props: { entry: e } }));
+}
+
+const { entry } = Astro.props;
+const slug = entry.slug.replace(/^hi\//, '');
+const { Content } = await entry.render();
+const t = useTranslations(lang);
+
+// hreflang / language switcher: a translation exists iff the file exists in the collection.
+const all = await getCollection('blog');
+const altPaths: Partial<Record<Lang, string>> = { en: `/${slug}/`, hi: `/hi/blogs/${slug}/` };
+if (all.some((e) => e.slug === `mr/${slug}`)) altPaths.mr = `/mr/blogs/${slug}/`;
+
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: entry.data.title,
+  description: entry.data.excerpt,
+  datePublished: entry.data.date.toISOString(),
+  inLanguage: 'hi-IN',
+  author: { '@type': 'Person', name: entry.data.author },
+  publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: SITE.ogImage } },
+  image: entry.data.image ?? SITE.ogImage,
+  mainEntityOfPage: new URL(`/hi/blogs/${slug}/`, SITE.url).href,
+}];
+---
+<BaseLayout
+  title={`${entry.data.title} | शुभम हॉस्पिटल्स`}
+  description={entry.data.excerpt}
+  ogType="article"
+  ogImage={entry.data.image}
+  lang={lang}
+  schema={schema}
+  altPaths={altPaths}
+>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">हेल्थ ब्लॉग</span>
+      <h1>{entry.data.title}</h1>
+      <p>{entry.data.date.toLocaleDateString('hi-IN', { day: 'numeric', month: 'long', year: 'numeric' })} · {entry.data.author}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container prose">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/hi/">{t('nav.home')}</a> › <a href="/hi/blogs/">ब्लॉग</a> › {entry.data.title}</nav>
+      <Content />
+    </div>
+  </section>
+  <section class="section soft">
+    <div class="container prose">
+      <FaqSection faqs={entry.data.faqs} heading={t('faq.heading')} />
+      <p><em>अस्वीकरण: यह लेख केवल सामान्य जानकारी के लिए है और पेशेवर चिकित्सा सलाह का विकल्प नहीं है। कृपया अपनी स्थिति के अनुसार मार्गदर्शन के लिए किसी योग्य डॉक्टर से परामर्श करें।</em></p>
+    </div>
+  </section>
+  <CtaBand />
+</BaseLayout>
