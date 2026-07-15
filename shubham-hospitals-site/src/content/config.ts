@@ -9,8 +9,10 @@ const blog = defineCollection({
     date: z.coerce.date(),
     author: z.string(),
     excerpt: z.string(),
+    lang: z.enum(['en', 'hi', 'mr']).optional(), // informational; the folder (en/ hi/ mr/) is authoritative
     image: z.string().optional(),
     imageAlt: z.string().optional(),
+    faqs: z.array(faq).default([]), // rendered as an FAQ section + FAQPage schema on hi/mr posts
   }),
 });
 
