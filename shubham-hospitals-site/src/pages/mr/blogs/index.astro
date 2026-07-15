@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { blogContent } from '../../../i18n/blog';
+
+const lang = 'mr';
+const posts = Object.entries(blogContent.mr ?? {})
+  .map(([slug, e]) => ({ slug, ...e }))
+  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+const fmt = (d: string) => new Date(d).toLocaleDateString('mr-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<BaseLayout
+  title="हेल्थ ब्लॉग | शुभम हॉस्पिटल्स, अमरावती"
+  description="अमरावतीतील डॉक्टरांनी लिहिलेले व वैद्यकीयदृष्ट्या पुनरावलोकित आरोग्य लेख — IVF, गर्भधारणा, स्त्रीरोग व शस्त्रक्रिया सोप्या भाषेत."
+  lang={lang}
+>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">आमच्या डॉक्टरांकडून</span>
+      <h1>हेल्थ ब्लॉग</h1>
+      <p>अमरावती व विदर्भातील कुटुंबांसाठी व्यावहारिक, वैद्यकीयदृष्ट्या पुनरावलोकित आरोग्य मार्गदर्शन.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="grid cols-3">
+        {posts.map((p) => (
+          <div class="card post-card">
+            <div class="meta">{fmt(p.date)} · {p.author}</div>
+            <h3><a href={`/mr/${p.slug}/`}>{p.title}</a></h3>
+            <p>{p.excerpt}</p>
+            <a class="more" href={`/mr/${p.slug}/`}>लेख वाचा →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
