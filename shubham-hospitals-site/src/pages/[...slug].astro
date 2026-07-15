@@ -10,7 +10,9 @@ export async function getStaticPaths() {
   const doctors = await getCollection('doctors');
   const landing = await getCollection('landing');
   return [
-    ...blog.map((e) => ({ params: { slug: e.slug }, props: { type: 'blog', entry: e } })),
+    ...blog
+      .filter((e) => e.slug.startsWith('en/'))
+      .map((e) => ({ params: { slug: e.slug.replace(/^en\//, '') }, props: { type: 'blog', entry: e } })),
     ...doctors.map((e) => ({ params: { slug: e.slug }, props: { type: 'doctor', entry: e } })),
     ...landing.map((e) => ({ params: { slug: e.slug }, props: { type: 'landing', entry: e } })),
   ];
@@ -20,7 +22,13 @@ const { type, entry } = Astro.props;
 const { Content } = await entry.render();
 
 let title = '', description = '', schema: object[] = [];
+let altPaths: Partial<Record<'en' | 'hi' | 'mr', string>> | undefined;
 if (type === 'blog') {
+  const blogSlug = entry.slug.replace(/^en\//, '');
+  const all = await getCollection('blog');
+  altPaths = { en: `/${blogSlug}/` };
+  if (all.some((e) => e.slug === `hi/${blogSlug}`)) altPaths.hi = `/hi/blogs/${blogSlug}/`;
+  if (all.some((e) => e.slug === `mr/${blogSlug}`)) altPaths.mr = `/mr/blogs/${blogSlug}/`;
   title = `${entry.data.title} | Shubham Hospitals`;
   description = entry.data.excerpt;
   schema = [{
@@ -32,7 +40,7 @@ if (type === 'blog') {
     author: { '@type': 'Person', name: entry.data.author },
     publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: SITE.ogImage } },
     image: entry.data.image ?? SITE.ogImage,
-    mainEntityOfPage: new URL(`/${entry.slug}/`, SITE.url).href,
+    mainEntityOfPage: new URL(`/${blogSlug}/`, SITE.url).href,
   }];
 } else if (type === 'doctor') {
   title = entry.data.metaTitle;
@@ -62,6 +70,7 @@ if (type === 'blog') {
   ogType={type === 'blog' ? 'article' : 'website'}
   ogImage={type === 'blog' ? entry.data.image : type === 'doctor' ? entry.data.photo : entry.data.heroImage}
   schema={schema}
+  altPaths={altPaths}
 >
   {type === 'blog' && (
     <>

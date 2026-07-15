@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { blogContent } from '../../../i18n/blog';
+import { getCollection } from 'astro:content';
 
 const lang = 'hi';
-const posts = Object.entries(blogContent.hi ?? {})
-  .map(([slug, e]) => ({ slug, ...e }))
-  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
-const fmt = (d: string) => new Date(d).toLocaleDateString('hi-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+const posts = (await getCollection('blog'))
+  .filter((p) => p.slug.startsWith('hi/'))
+  .map((p) => ({ slug: p.slug.replace(/^hi\//, ''), ...p.data }))
+  .sort((a, b) => b.date.valueOf() - a.date.valueOf());
+const fmt = (d: Date) => d.toLocaleDateString('hi-IN', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 <BaseLayout
   title="हेल्थ ब्लॉग | शुभम हॉस्पिटल्स, अमरावती"
@@ -26,9 +27,9 @@ const fmt = (d: string) => new Date(d).toLocaleDateString('hi-IN', { day: 'numer
         {posts.map((p) => (
           <div class="card post-card">
             <div class="meta">{fmt(p.date)} · {p.author}</div>
-            <h3><a href={`/hi/${p.slug}/`}>{p.title}</a></h3>
+            <h3><a href={`/hi/blogs/${p.slug}/`}>{p.title}</a></h3>
             <p>{p.excerpt}</p>
-            <a class="more" href={`/hi/${p.slug}/`}>लेख पढ़ें →</a>
+            <a class="more" href={`/hi/blogs/${p.slug}/`}>लेख पढ़ें →</a>
           </div>
         ))}
       </div>
