@@ -47,16 +47,6 @@ faqs:
 
 <p>IVF success depends heavily on the woman's age and the underlying cause. Younger couples generally have higher success rates per cycle, while chances decline gradually with age. No ethical clinic can promise a baby in one cycle. What a good team can offer is an honest assessment of your individual chances, a plan tailored to your diagnosis, and clear pricing at every step.</p>
 
-<h2>Frequently Asked Questions</h2>
-
-<p><strong>How much does one IVF cycle cost in Amravati?</strong><br>As a general guide, a single cycle usually falls in the range of around ₹1.2 to ₹2.5 lakh, depending mainly on the medication dose and any add-on procedures such as ICSI or embryo freezing. A consultation gives you an exact, personalised estimate.</p>
-
-<p><strong>Is medication included in the IVF price?</strong><br>Not always. Stimulation injections are one of the largest costs and are sometimes billed separately, so always ask whether your quote includes medicines.</p>
-
-<p><strong>Does insurance cover IVF?</strong><br>Some health insurance policies now offer partial fertility cover, though many still exclude it. Check your specific policy and keep all documents for any claim.</p>
-
-<p><strong>Will I need more than one cycle?</strong><br>Possibly. Many couples conceive in the first cycle, but some need a second. Frozen embryo transfers from a previous cycle usually cost considerably less than starting fresh.</p>
-
 <h2>Speak to an IVF Specialist in Amravati</h2>
 
 <p>The clearest way to understand your real cost — and your real chances — is a personal consultation with the <a href="/best-ivf-centre-in-amravati/">best IVF centre in Amravati</a>. At Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati, we explain your diagnosis, your treatment options and a fully itemised estimate before you commit to anything. To book an appointment, call <strong>+91-8668954915</strong> or reach us through our <a href="/contact-us/">contact page</a>. Taking the first step is often the hardest part, and we are here to make it simpler.</p>
