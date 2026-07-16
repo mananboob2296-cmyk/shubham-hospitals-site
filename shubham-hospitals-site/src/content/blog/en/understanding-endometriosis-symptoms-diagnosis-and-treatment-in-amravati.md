@@ -3,6 +3,16 @@ title: "Endometriosis: Why \"Just Bad Periods\" Sometimes Isn't"
 date: 2026-07-08
 author: "Dr Manan Boob"
 excerpt: "If your period pain has quietly taken over a few days of every month, it may not be normal — and it may not be something you have to live with. A gynaecologist explains endometriosis in plain language."
+lang: en
+faqs:
+  - q: "Is bad period pain always endometriosis?"
+    a: "No. There are several causes of painful periods and many are not endometriosis. But pain that is severe, worsening, or disrupting your life should always be looked at properly, because endometriosis is one possibility we don't want to miss."
+  - q: "Can endometriosis be cured completely?"
+    a: "Treatment can dramatically reduce symptoms. Because it can recur over time, doctors usually plan long-term care that fits your age, symptoms, and family plans rather than a single one-off fix."
+  - q: "Do I definitely need surgery for endometriosis?"
+    a: "Not necessarily. Many women do very well on medication or hormonal treatment alone. Surgery is considered when it is the best way to confirm the diagnosis or to relieve pain and improve fertility."
+  - q: "When should I see a gynaecologist about period pain?"
+    a: "If your period pain is severe or getting worse, or if you have pelvic pain outside your period, pain during intimacy, or difficulty conceiving, that is the point to come in rather than waiting for it to become unbearable."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-manan/">Dr. Manan Boob</a> — MBBS (KEM), MS ObGyn (Gold Medalist), DNB, Consultant Gynaecologist &amp; Laparoscopic Surgeon.</em></p>
@@ -94,16 +104,3 @@ excerpt: "If your period pain has quietly taken over a few days of every month, 
 <p>📞 Call <strong>+91-8668954915</strong> to book a consultation, or see our <a href="/contact-us/">Contact Us</a> page for the address, timings, and directions.</p>
 
 <p><em>Disclaimer: This article is general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "Is bad period pain always endometriosis?","acceptedAnswer": {"@type": "Answer","text": "No. There are several causes of painful periods and many are not endometriosis. But pain that is severe, worsening, or disrupting your life should always be looked at properly, because endometriosis is one possibility we don't want to miss."}},
-    {"@type": "Question","name": "Can endometriosis be cured completely?","acceptedAnswer": {"@type": "Answer","text": "Treatment can dramatically reduce symptoms. Because it can recur over time, doctors usually plan long-term care that fits your age, symptoms, and family plans rather than a single one-off fix."}},
-    {"@type": "Question","name": "Do I definitely need surgery for endometriosis?","acceptedAnswer": {"@type": "Answer","text": "Not necessarily. Many women do very well on medication or hormonal treatment alone. Surgery is considered when it is the best way to confirm the diagnosis or to relieve pain and improve fertility."}},
-    {"@type": "Question","name": "When should I see a gynaecologist about period pain?","acceptedAnswer": {"@type": "Answer","text": "If your period pain is severe or getting worse, or if you have pelvic pain outside your period, pain during intimacy, or difficulty conceiving, that is the point to come in rather than waiting for it to become unbearable."}}
-  ]
-}
-</script>
