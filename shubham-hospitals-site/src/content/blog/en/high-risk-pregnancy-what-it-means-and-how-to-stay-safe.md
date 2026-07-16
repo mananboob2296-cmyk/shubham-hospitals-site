@@ -3,6 +3,16 @@ title: "High-Risk Pregnancy: What It Means and How to Stay Safe"
 date: 2026-06-10
 author: "Dr Darshana Ajmera"
 excerpt: "What makes a pregnancy high-risk, the warning signs to watch for, and how Shubham Hospitals Amravati manages high-risk pregnancies with 20,000+ safe deliveries."
+lang: en
+faqs:
+  - q: "Does a high-risk pregnancy always mean a caesarean?"
+    a: "No. Many women with a high-risk pregnancy have a safe normal delivery. The decision depends on your condition, the baby's position and wellbeing, and is made closer to your due date."
+  - q: "How often will I need check-ups in a high-risk pregnancy?"
+    a: "More often than a routine pregnancy — sometimes every two weeks and then weekly near the end — so any change can be caught early."
+  - q: "Can I have a healthy baby if I am over 35?"
+    a: "Yes. Age alone is just one factor. With appropriate screening and monitoring, most women over 35 have healthy pregnancies and babies."
+  - q: "Is bed rest necessary in a high-risk pregnancy?"
+    a: "Not usually. Strict bed rest is rarely advised today; your doctor will guide you on activity based on your specific situation."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-darshana/">Dr. Darshana Ajmera</a> — MBBS (Nair, Mumbai), MS ObGyn (Honors), Obstetrician, Gynecologist &amp; Fetal Medicine Specialist, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -58,16 +68,3 @@ excerpt: "What makes a pregnancy high-risk, the warning signs to watch for, and 
 <p><strong>Related:</strong> Read our guide to the <a href="/best-gynecologist-in-amravati/">best gynecologist in Amravati</a> for pregnancy and maternity care.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "Does a high-risk pregnancy always mean a caesarean?","acceptedAnswer": {"@type": "Answer","text": "No. Many women with a high-risk pregnancy have a safe normal delivery. The decision depends on your condition, the baby's position and wellbeing, and is made closer to your due date."}},
-    {"@type": "Question","name": "How often will I need check-ups in a high-risk pregnancy?","acceptedAnswer": {"@type": "Answer","text": "More often than a routine pregnancy — sometimes every two weeks and then weekly near the end — so any change can be caught early."}},
-    {"@type": "Question","name": "Can I have a healthy baby if I am over 35?","acceptedAnswer": {"@type": "Answer","text": "Yes. Age alone is just one factor. With appropriate screening and monitoring, most women over 35 have healthy pregnancies and babies."}},
-    {"@type": "Question","name": "Is bed rest necessary in a high-risk pregnancy?","acceptedAnswer": {"@type": "Answer","text": "Not usually. Strict bed rest is rarely advised today; your doctor will guide you on activity based on your specific situation."}}
-  ]
-}
-</script>
