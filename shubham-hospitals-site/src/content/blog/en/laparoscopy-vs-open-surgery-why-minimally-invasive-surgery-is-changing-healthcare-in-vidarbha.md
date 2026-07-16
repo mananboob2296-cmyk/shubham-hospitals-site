@@ -3,6 +3,16 @@ title: "Laparoscopy vs Open Surgery: Why Minimally Invasive Surgery Is Changing 
 date: 2026-06-10
 author: "Dr Murlidhar Boob"
 excerpt: "Laparoscopy vs open surgery — pain, recovery, cost and safety compared. Why 25,000+ patients chose minimally invasive surgery at Shubham Hospitals, Amravati."
+lang: en
+faqs:
+  - q: "Is every surgery suitable for the laparoscopic approach?"
+    a: "Most, but not all. Some complex or emergency situations are safer as open surgery. Your surgeon will advise the best and safest option for your specific case."
+  - q: "Will I have visible scars after laparoscopy?"
+    a: "Only a few small marks, usually under 1 cm, which fade significantly over time — far less than a single long open-surgery scar."
+  - q: "How soon can I return to work after laparoscopic surgery?"
+    a: "Many patients resume light or desk work within about a week, depending on the procedure and their recovery. Hospital stay is often just 1–2 days."
+  - q: "Is laparoscopy safe for gynecological conditions and fertility?"
+    a: "Yes — it is often preferred for fibroids, cysts and endometriosis precisely because it minimises tissue damage and adhesions, which helps protect fertility."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-murlidhar/">Dr. Murlidhar Boob</a> — MS, FAIS, DLS, FMAS, Laparoscopic Surgeon &amp; Surgical Gastroenterologist, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -55,16 +65,3 @@ excerpt: "Laparoscopy vs open surgery — pain, recovery, cost and safety compar
 <p><strong>Related:</strong> See our guide to the <a href="/best-laparoscopic-surgeon-in-amravati/">best laparoscopic surgeon in Amravati</a>.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "Is every surgery suitable for the laparoscopic approach?","acceptedAnswer": {"@type": "Answer","text": "Most, but not all. Some complex or emergency situations are safer as open surgery. Your surgeon will advise the best and safest option for your specific case."}},
-    {"@type": "Question","name": "Will I have visible scars after laparoscopy?","acceptedAnswer": {"@type": "Answer","text": "Only a few small marks, usually under 1 cm, which fade significantly over time — far less than a single long open-surgery scar."}},
-    {"@type": "Question","name": "How soon can I return to work after laparoscopic surgery?","acceptedAnswer": {"@type": "Answer","text": "Many patients resume light or desk work within about a week, depending on the procedure and their recovery. Hospital stay is often just 1–2 days."}},
-    {"@type": "Question","name": "Is laparoscopy safe for gynecological conditions and fertility?","acceptedAnswer": {"@type": "Answer","text": "Yes — it is often preferred for fibroids, cysts and endometriosis precisely because it minimises tissue damage and adhesions, which helps protect fertility."}}
-  ]
-}
-</script>
