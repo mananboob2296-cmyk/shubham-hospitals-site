@@ -54,23 +54,6 @@ faqs:
 
 <p>First, an unclear or "soft" finding does not automatically mean a serious problem. Many minor markers turn out to be entirely normal variations. If the specialist sees something that needs a closer look, the next steps may include a repeat or more detailed scan, a fetal echocardiography (a focused scan of the heart), or referral for further testing and counselling. At every stage you will have the findings explained clearly and gently, and you will be part of every decision. The aim is never to alarm you, but to give you accurate information and a clear plan.</p>
 
-<h2>Frequently Asked Questions</h2>
-
-<h3>Is the anomaly scan compulsory?</h3>
-<p>It is not legally compulsory, but it is strongly recommended for every pregnancy by obstetricians worldwide. It is one of the most important scans you will have, and skipping it means missing the best chance to detect treatable conditions early.</p>
-
-<h3>Will the anomaly scan tell me the baby's gender?</h3>
-<p>The scan can show the baby's sex, but under Indian law (the PCPNDT Act) revealing the gender of an unborn baby is strictly prohibited. Our team will never disclose this, and you should be cautious of anyone who offers to. The scan's purpose is purely the baby's health.</p>
-
-<h3>Is the scan safe for my baby?</h3>
-<p>Yes. Ultrasound uses sound waves, not radiation, and has been used safely in pregnancy for decades. There is no known risk to you or your baby.</p>
-
-<h3>What if my baby will not move into a good position?</h3>
-<p>This is common and not a cause for worry. We may ask you to take a short walk, change position, or come back a little later. Occasionally a follow-up scan is needed simply to complete the views — this does not mean anything is wrong.</p>
-
-<h3>I already had a normal early scan — do I still need this one?</h3>
-<p>Yes. An early dating scan and the anomaly scan check different things. Many organs simply cannot be assessed until around 20 weeks, which is why this separate detailed scan is so important.</p>
-
 <h2>Book Your Anomaly Scan in Amravati</h2>
 
 <p>At Shubham Hi-Tech Hospital and Test Tube Baby Centre in Amravati, our obstetrics and fetal medicine team performs detailed anomaly scans and a full range of pregnancy ultrasounds, with clear explanations and compassionate guidance at every step. Whether this is your first pregnancy or you are being monitored for a high-risk pregnancy, getting your level 2 scan done on time is one of the kindest things you can do for your baby.</p>
