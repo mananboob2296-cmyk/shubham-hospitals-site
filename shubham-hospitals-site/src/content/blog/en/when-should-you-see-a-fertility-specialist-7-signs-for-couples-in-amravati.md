@@ -3,6 +3,14 @@ title: "When Should You See a Fertility Specialist? 7 Signs for Couples in Amrav
 date: 2026-06-10
 author: "Dr Manjushree Boob"
 excerpt: "Trying to conceive? Learn the 7 signs it's time to consult a fertility specialist, and how Shubham Hospitals' IVF centre in Amravati can help."
+lang: en
+faqs:
+  - q: "How long should we try before seeing a fertility specialist?"
+    a: "Twelve months of regular, unprotected intercourse if the woman is under 35, or six months if she is over 35. See a specialist sooner if you have irregular periods, a known condition like PCOS or endometriosis, or a history of miscarriage."
+  - q: "Is infertility usually the woman's problem?"
+    a: "No. A male factor contributes in roughly 40–50% of cases, which is why both partners should be evaluated together from the start with simple tests like a semen analysis."
+  - q: "Does seeing a fertility specialist mean I need IVF?"
+    a: "Not at all. Many couples conceive with simpler treatments such as ovulation induction or IUI. IVF is recommended only when it is genuinely the right next step for your diagnosis."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-manjushree/">Dr. Manjushree Boob</a> — MD, DNB, FICMCH, FICOG, Infertility &amp; IVF Consultant, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -46,15 +54,3 @@ excerpt: "Trying to conceive? Learn the 7 signs it's time to consult a fertility
 <p><strong>Related:</strong> Compare your options in our guide to the <a href="/best-ivf-centre-in-amravati/">best IVF centre in Amravati</a>.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "How long should we try before seeing a fertility specialist?","acceptedAnswer": {"@type": "Answer","text": "Twelve months of regular, unprotected intercourse if the woman is under 35, or six months if she is over 35. See a specialist sooner if you have irregular periods, a known condition like PCOS or endometriosis, or a history of miscarriage."}},
-    {"@type": "Question","name": "Is infertility usually the woman's problem?","acceptedAnswer": {"@type": "Answer","text": "No. A male factor contributes in roughly 40–50% of cases, which is why both partners should be evaluated together from the start with simple tests like a semen analysis."}},
-    {"@type": "Question","name": "Does seeing a fertility specialist mean I need IVF?","acceptedAnswer": {"@type": "Answer","text": "Not at all. Many couples conceive with simpler treatments such as ovulation induction or IUI. IVF is recommended only when it is genuinely the right next step for your diagnosis."}}
-  ]
-}
-</script>
