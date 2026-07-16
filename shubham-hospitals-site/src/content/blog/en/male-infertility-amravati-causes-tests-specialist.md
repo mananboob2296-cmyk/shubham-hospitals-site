@@ -5,6 +5,16 @@ author: "Dr Manjushree Boob"
 excerpt: "Male factors cause almost half of infertility. An IVF specialist in Amravati explains the common causes, the simple tests involved, lifestyle changes that help, and when a couple should see a fertility specialist."
 image: "https://shubham-hospitals.com/wp-content/uploads/2026/07/male-infertility-semen-analysis-amravati.jpeg"
 imageAlt: "Lab technician examining a semen analysis sample under a microscope during male infertility testing in Amravati"
+lang: en
+faqs:
+  - q: "Is male infertility common?"
+    a: "Yes. A male factor is involved in roughly 40 to 50 per cent of couples who cannot conceive, either alone or together with a female factor. This is why both partners should always be evaluated."
+  - q: "Does male infertility have symptoms?"
+    a: "Usually not. Most men feel completely well and have a normal sex life, so the only reliable way to know is a semen analysis."
+  - q: "Can male infertility be cured?"
+    a: "Many causes can be treated or improved — through lifestyle changes, medicines, or a minor procedure for a varicocele. Even when the sperm count is very low, treatments such as IVF with ICSI can help a couple conceive."
+  - q: "How long should we try to conceive before getting tested?"
+    a: "Twelve months of regular, unprotected intercourse — or six months if the woman is over 35, or sooner if there is a known male problem such as a previous testicular injury or surgery."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-manjushree/">Dr. Manjushree Boob</a> — MD, DNB, FICMCH, FICOG, Infertility &amp; IVF Consultant, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -72,16 +82,3 @@ imageAlt: "Lab technician examining a semen analysis sample under a microscope d
 <p>If you and your partner have been trying for a baby without success, the most helpful step is a joint consultation where both of you are assessed together. At Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati, we offer complete male and female fertility evaluation under one roof, explain your results clearly, and build a plan around your diagnosis. To book an appointment, call <strong>+91-8668954915</strong> or reach us through our <a href="/contact-us/">contact page</a>. Getting both partners checked early is one of the smartest decisions a couple can make.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "Is male infertility common?","acceptedAnswer": {"@type": "Answer","text": "Yes. A male factor is involved in roughly 40 to 50 per cent of couples who cannot conceive, either alone or together with a female factor. This is why both partners should always be evaluated."}},
-    {"@type": "Question","name": "Does male infertility have symptoms?","acceptedAnswer": {"@type": "Answer","text": "Usually not. Most men feel completely well and have a normal sex life, so the only reliable way to know is a semen analysis."}},
-    {"@type": "Question","name": "Can male infertility be cured?","acceptedAnswer": {"@type": "Answer","text": "Many causes can be treated or improved — through lifestyle changes, medicines, or a minor procedure for a varicocele. Even when the sperm count is very low, treatments such as IVF with ICSI can help a couple conceive."}},
-    {"@type": "Question","name": "How long should we try to conceive before getting tested?","acceptedAnswer": {"@type": "Answer","text": "Twelve months of regular, unprotected intercourse — or six months if the woman is over 35, or sooner if there is a known male problem such as a previous testicular injury or surgery."}}
-  ]
-}
-</script>
