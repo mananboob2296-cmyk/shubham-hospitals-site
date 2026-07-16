@@ -27,7 +27,7 @@ export const homeStrings: Record<Lang, HomeStrings> = {
     bestLaparo: 'Best laparoscopic surgeon →', bestIvf: 'Best IVF centre →',
     laparoEyebrow: 'Advanced Technology',
     laparoH2: '3D Laparoscopy — the most advanced keyhole surgery in Amravati district',
-    laparoLead: 'Shubham Hospitals is home to the district’s most advanced 3D laparoscopy system. Unlike conventional 2D laparoscopy, 3D visualisation gives our surgeons true depth perception — meaning greater precision, shorter operating times, less blood loss and faster recovery. Led by Dr. Manan Boob (MS ObGyn – Gold Medalist, DNB, F.MAS), our team performs advanced 3D laparo-hysteroscopic procedures for fibroids, endometriosis, ovarian cysts and complex hysterectomies.',
+    laparoLead: 'Shubham Hospitals is home to the district’s most advanced 3D laparoscopy system. Unlike conventional 2D laparoscopy, 3D visualisation gives our surgeons true depth perception — meaning greater precision, shorter operating times, less blood loss and faster recovery. Our experienced surgical team performs advanced 3D laparo-hysteroscopic procedures for fibroids, endometriosis, ovarian cysts and complex hysterectomies.',
     laparoBtn1: 'Explore Laparoscopy & Hysteroscopy', laparoBtn2: 'Meet Dr. Manan Boob',
     laparoMoreH3: 'More advanced care at Shubham',
     advancedCare: [
@@ -52,7 +52,7 @@ export const homeStrings: Record<Lang, HomeStrings> = {
     bestLaparo: 'सर्वश्रेष्ठ लेप्रोस्कोपिक सर्जन →', bestIvf: 'सर्वश्रेष्ठ आईवीएफ केंद्र →',
     laparoEyebrow: 'उन्नत तकनीक',
     laparoH2: '3D लेप्रोस्कोपी — अमरावती ज़िले की सबसे उन्नत कीहोल सर्जरी',
-    laparoLead: 'शुभम हॉस्पिटल्स में ज़िले की सबसे उन्नत 3D लेप्रोस्कोपी प्रणाली है। पारंपरिक 2D लेप्रोस्कोपी के विपरीत, 3D दृश्य हमारे सर्जनों को वास्तविक गहराई का बोध देता है — यानी अधिक सटीकता, कम ऑपरेशन समय, कम रक्तस्राव और तेज़ रिकवरी। डॉ. मनन बूब (MS ObGyn – गोल्ड मेडलिस्ट, DNB, F.MAS) के नेतृत्व में हमारी टीम फाइब्रॉइड, एंडोमेट्रियोसिस, ओवेरियन सिस्ट और जटिल हिस्टेरेक्टॉमी के लिए उन्नत 3D लेप्रो-हिस्टेरोस्कोपिक प्रक्रियाएँ करती है।',
+    laparoLead: 'शुभम हॉस्पिटल्स में ज़िले की सबसे उन्नत 3D लेप्रोस्कोपी प्रणाली है। पारंपरिक 2D लेप्रोस्कोपी के विपरीत, 3D दृश्य हमारे सर्जनों को वास्तविक गहराई का बोध देता है — यानी अधिक सटीकता, कम ऑपरेशन समय, कम रक्तस्राव और तेज़ रिकवरी। हमारी अनुभवी सर्जिकल टीम फाइब्रॉइड, एंडोमेट्रियोसिस, ओवेरियन सिस्ट और जटिल हिस्टेरेक्टॉमी के लिए उन्नत 3D लेप्रो-हिस्टेरोस्कोपिक प्रक्रियाएँ करती है।',
     laparoBtn1: 'लेप्रोस्कोपी एवं हिस्टेरोस्कोपी देखें', laparoBtn2: 'डॉ. मनन बूब से मिलें',
     laparoMoreH3: 'शुभम में और भी उन्नत देखभाल',
     advancedCare: [
@@ -77,7 +77,7 @@ export const homeStrings: Record<Lang, HomeStrings> = {
     bestLaparo: 'सर्वोत्तम लॅपरोस्कोपिक सर्जन →', bestIvf: 'सर्वोत्तम आयव्हीएफ केंद्र →',
     laparoEyebrow: 'प्रगत तंत्रज्ञान',
     laparoH2: '3D लॅपरोस्कोपी — अमरावती जिल्ह्यातील सर्वात प्रगत कीहोल शस्त्रक्रिया',
-    laparoLead: 'शुभम हॉस्पिटल्समध्ये जिल्ह्यातील सर्वात प्रगत 3D लॅपरोस्कोपी प्रणाली आहे. पारंपरिक 2D लॅपरोस्कोपीच्या विरुद्ध, 3D दृश्य आमच्या सर्जनांना खरी खोलीची जाणीव देते — म्हणजे अधिक अचूकता, कमी शस्त्रक्रिया वेळ, कमी रक्तस्राव व जलद रिकव्हरी. डॉ. मनन बूब (MS ObGyn – गोल्ड मेडलिस्ट, DNB, F.MAS) यांच्या नेतृत्वाखाली आमची टीम फायब्रॉइड, एंडोमेट्रिओसिस, ओव्हेरियन सिस्ट व गुंतागुंतीच्या हिस्टेरेक्टॉमीसाठी प्रगत 3D लॅपरो-हिस्टेरोस्कोपिक प्रक्रिया करते.',
+    laparoLead: 'शुभम हॉस्पिटल्समध्ये जिल्ह्यातील सर्वात प्रगत 3D लॅपरोस्कोपी प्रणाली आहे. पारंपरिक 2D लॅपरोस्कोपीच्या विरुद्ध, 3D दृश्य आमच्या सर्जनांना खरी खोलीची जाणीव देते — म्हणजे अधिक अचूकता, कमी शस्त्रक्रिया वेळ, कमी रक्तस्राव व जलद रिकव्हरी. आमची अनुभवी सर्जिकल टीम फायब्रॉइड, एंडोमेट्रिओसिस, ओव्हेरियन सिस्ट व गुंतागुंतीच्या हिस्टेरेक्टॉमीसाठी प्रगत 3D लॅपरो-हिस्टेरोस्कोपिक प्रक्रिया करते.',
     laparoBtn1: 'लॅपरोस्कोपी व हिस्टेरोस्कोपी पाहा', laparoBtn2: 'डॉ. मनन बूब यांना भेटा',
     laparoMoreH3: 'शुभममध्ये अधिक प्रगत काळजी',
     advancedCare: [
