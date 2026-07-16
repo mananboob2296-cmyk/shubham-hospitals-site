@@ -45,23 +45,3 @@ faqs:
 
 <h2>25,000+ successful surgeries in Amravati</h2>
 <p>Shubham Hi-Tech Hospital is one of Vidarbha's pioneering centres for minimally invasive surgery, with over 25,000 successful procedures. <a href="/dr-murlidhar/">Dr. Murlidhar Boob</a> (MS, FAIS, DLS, FMAS), a pioneer of laparoscopic and GI surgery in the region with more than 10,000 procedures, and <a href="/dr-manan/">Dr. Manan Boob</a> (MS ObGyn – Gold Medalist, DNB), an advanced laparo-hysteroscopic surgeon, are part of an experienced surgical team serving patients from Amravati, Akola, Yavatmal and across Vidarbha. You can <a href="/doctors/">meet our full team of specialists here</a>.</p>
-
-<h2>Frequently asked questions</h2>
-
-<h3>Is every surgery suitable for the laparoscopic approach?</h3>
-<p>Most, but not all. Some complex or emergency situations are safer as open surgery. Your surgeon will advise the best and safest option for your specific case.</p>
-
-<h3>Will I have visible scars?</h3>
-<p>Only a few small marks, usually under 1 cm, which fade significantly over time — far less than a single long open-surgery scar.</p>
-
-<h3>How soon can I return to work?</h3>
-<p>Many patients resume light or desk work within about a week, depending on the procedure and their recovery.</p>
-
-<h3>Is laparoscopy safe for gynecological conditions and fertility?</h3>
-<p>Yes — it is often preferred for fibroids, cysts and endometriosis precisely because it minimises tissue damage and adhesions, which helps protect fertility.</p>
-
-<p><strong>Advised surgery and want a minimally invasive opinion?</strong> <a href="/contact-us/">Book a consultation</a> or call +91-8668954915.</p>
-
-<p><strong>Related:</strong> See our guide to the <a href="/best-laparoscopic-surgeon-in-amravati/">best laparoscopic surgeon in Amravati</a>.</p>
-
-<p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
