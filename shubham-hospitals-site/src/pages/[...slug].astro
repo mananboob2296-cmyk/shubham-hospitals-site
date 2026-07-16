@@ -13,8 +13,12 @@ export async function getStaticPaths() {
     ...blog
       .filter((e) => e.slug.startsWith('en/'))
       .map((e) => ({ params: { slug: e.slug.replace(/^en\//, '') }, props: { type: 'blog', entry: e } })),
-    ...doctors.map((e) => ({ params: { slug: e.slug }, props: { type: 'doctor', entry: e } })),
-    ...landing.map((e) => ({ params: { slug: e.slug }, props: { type: 'landing', entry: e } })),
+    ...doctors
+      .filter((e) => !e.slug.includes('/'))
+      .map((e) => ({ params: { slug: e.slug }, props: { type: 'doctor', entry: e } })),
+    ...landing
+      .filter((e) => !e.slug.includes('/'))
+      .map((e) => ({ params: { slug: e.slug }, props: { type: 'landing', entry: e } })),
   ];
 }
 

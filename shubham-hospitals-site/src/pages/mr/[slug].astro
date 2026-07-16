@@ -2,8 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FaqSection from '../../components/FaqSection.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { landingContent } from '../../i18n/landing';
-import { doctorContent } from '../../i18n/doctors';
+import { getCollection } from 'astro:content';
 import { useTranslations } from '../../i18n/utils';
 import { SITE } from '../../consts';
 
@@ -13,16 +12,22 @@ const honorsHeading = 'सन्मान व कामगिरी';
 const expertiseHeading = 'तज्ज्ञतेची क्षेत्रे';
 const ytLabel = '▶ यूट्यूबवर डॉ. मनन पाहा';
 
-export function getStaticPaths() {
-  const L = landingContent.mr ?? {};
-  const D = doctorContent.mr ?? {};
+// NOTE: doctor profiles keep their existing live URLs at /mr/<doctor-slug>/
+// (not /mr/doctors/<slug>/) — do not change these paths.
+export async function getStaticPaths() {
+  const strip = (s: string) => s.replace(/^mr\//, '');
+  const landing = (await getCollection('landing')).filter((e) => e.slug.startsWith('mr/'));
+  const doctors = (await getCollection('doctors')).filter((e) => e.slug.startsWith('mr/'));
   return [
-    ...Object.keys(L).map((slug) => ({ params: { slug }, props: { kind: 'landing', e: L[slug], slug } })),
-    ...Object.keys(D).map((slug) => ({ params: { slug }, props: { kind: 'doctor', e: D[slug], slug } })),
+    ...landing.map((e) => ({ params: { slug: strip(e.slug) }, props: { kind: 'landing', entry: e } })),
+    ...doctors.map((e) => ({ params: { slug: strip(e.slug) }, props: { kind: 'doctor', entry: e } })),
   ];
 }
 
-const { kind, e, slug } = Astro.props;
+const { kind, entry } = Astro.props;
+const slug = entry.slug.replace(/^mr\//, '');
+const e = entry.data;
+const { Content } = await entry.render();
 const t = useTranslations(lang);
 ---
 <BaseLayout
@@ -57,13 +62,7 @@ const t = useTranslations(lang);
         </div></section>
       )}
       <section class="section"><div class="container prose">
-        {e.blocks.map((b) => (
-          b.t === 'h2' ? <h2>{b.s}</h2>
-          : b.t === 'h3' ? <h3>{b.s}</h3>
-          : b.t === 'p' ? <p>{b.s}</p>
-          : b.t === 'html' ? <p set:html={b.s} />
-          : <ul>{b.items.map((it) => (<li><strong>{it.b}</strong> {it.s}</li>))}</ul>
-        ))}
+        <Content />
         {e.ctaTreatment && (<p><a class="btn btn-outline" href={e.ctaTreatment}>{e.ctaTreatmentLabel}</a></p>)}
       </div></section>
       <section class="section soft"><div class="container prose">
@@ -87,13 +86,7 @@ const t = useTranslations(lang);
         <div class="container doctor-layout">
           <img src={e.photo} alt={e.name} width="240" height="240" style="border-radius:16px; width:240px; height:auto;" />
           <div class="prose">
-            {e.blocks.map((b) => (
-              b.t === 'h2' ? <h2>{b.s}</h2>
-              : b.t === 'h3' ? <h3>{b.s}</h3>
-              : b.t === 'p' ? <p>{b.s}</p>
-              : b.t === 'html' ? <p set:html={b.s} />
-              : <ul>{b.items.map((it) => (<li><strong>{it.b}</strong> {it.s}</li>))}</ul>
-            ))}
+            <Content />
             {e.honors && e.honors.length > 0 && (
               <>
                 <h2>{honorsHeading}</h2>

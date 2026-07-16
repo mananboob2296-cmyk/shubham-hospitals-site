@@ -4,11 +4,12 @@ import CtaBand from '../../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
 import { deptContent } from '../../i18n/pages';
 import { treatmentCards } from '../../i18n/home';
-import { isTranslated } from '../../i18n/translated';
+import { translatedPaths } from '../../i18n/translations';
 const lang = 'mr';
 const p = deptContent[lang];
 const cards = treatmentCards[lang];
-const treatments = (await getCollection('treatments')).sort((a, b) => a.data.order - b.data.order);
+const treatments = (await getCollection('treatments')).filter((e) => !e.slug.includes('/')).sort((a, b) => a.data.order - b.data.order);
+const tset = await translatedPaths(lang);
 ---
 <BaseLayout title={p.title} description={p.description} lang={lang}>
   <section class="hero">
@@ -24,7 +25,7 @@ const treatments = (await getCollection('treatments')).sort((a, b) => a.data.ord
       <div class="grid cols-3">
         {treatments.map((tr) => {
           const base = `/treatments/${tr.slug}/`;
-          const href = isTranslated(lang, base) ? `/${lang}${base}` : base;
+          const href = tset.has(base) ? `/${lang}${base}` : base;
           return (
           <div class="card">
             <h3>{cards[tr.slug]?.title ?? tr.data.title}</h3>

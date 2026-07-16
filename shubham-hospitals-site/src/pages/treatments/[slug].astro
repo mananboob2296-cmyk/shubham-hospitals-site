@@ -6,7 +6,9 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const treatments = await getCollection('treatments');
-  return treatments.map((t) => ({ params: { slug: t.slug }, props: { entry: t } }));
+  return treatments
+    .filter((t) => !t.slug.includes('/')) // English entries live at the collection root
+    .map((t) => ({ params: { slug: t.slug }, props: { entry: t } }));
 }
 const { entry } = Astro.props;
 const { Content } = await entry.render();

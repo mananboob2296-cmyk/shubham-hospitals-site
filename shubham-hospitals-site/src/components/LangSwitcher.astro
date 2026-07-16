@@ -1,19 +1,20 @@
 ---
 import { languages, type Lang } from '../i18n/ui';
 import { getLangFromUrl, localizePath, stripLangPrefix } from '../i18n/utils';
-import { isTranslated } from '../i18n/translated';
+import { translatedPaths } from '../i18n/translations';
 
 const { altPaths } = Astro.props as { altPaths?: Partial<Record<Lang, string>> };
 const lang = getLangFromUrl(Astro.url);
 const path = Astro.url.pathname;
 const base = stripLangPrefix(path);
 const codes = Object.keys(languages) as Lang[];
+const sets = { hi: await translatedPaths('hi'), mr: await translatedPaths('mr') };
 
 // If the current page isn't translated in a target language, send the user to
 // that language's homepage instead of a dead URL.
 function hrefFor(code: Lang): string {
   if (altPaths) return altPaths[code] ?? (code === 'en' ? '/' : `/${code}/`);
-  if (isTranslated(code, base)) return localizePath(path, code);
+  if (code === 'en' || sets[code].has(base)) return localizePath(path, code);
   return code === 'en' ? '/' : `/${code}/`;
 }
 ---

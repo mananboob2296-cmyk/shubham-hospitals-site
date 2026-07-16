@@ -4,7 +4,7 @@ import Reviews from './Reviews.astro';
 import { SITE } from '../consts';
 import { getCollection } from 'astro:content';
 import { homeStrings, treatmentCards, doctorRole } from '../i18n/home';
-import { isTranslated } from '../i18n/translated';
+import { translatedPaths } from '../i18n/translations';
 import { useTranslations } from '../i18n/utils';
 import { localeCodes, type Lang } from '../i18n/ui';
 import WaIcon from './WaIcon.astro';
@@ -17,10 +17,11 @@ const cards = treatmentCards[lang];
 const roles = doctorRole[lang];
 
 // Link helper: keep the English URL unless that page is translated in this language.
-const L = (p: string) => (lang !== 'en' && isTranslated(lang, p) ? `/${lang}${p}` : p);
+const tset = lang === 'en' ? null : await translatedPaths(lang);
+const L = (p: string) => (tset?.has(p) ? `/${lang}${p}` : p);
 
-const treatments = (await getCollection('treatments')).sort((a, b) => a.data.order - b.data.order);
-const doctors = (await getCollection('doctors')).sort((a, b) => a.data.order - b.data.order);
+const treatments = (await getCollection('treatments')).filter((e) => !e.slug.includes('/')).sort((a, b) => a.data.order - b.data.order);
+const doctors = (await getCollection('doctors')).filter((e) => !e.slug.includes('/')).sort((a, b) => a.data.order - b.data.order);
 const allPosts = await getCollection('blog');
 const posts = allPosts
   .filter((p) => p.slug.startsWith('en/'))
