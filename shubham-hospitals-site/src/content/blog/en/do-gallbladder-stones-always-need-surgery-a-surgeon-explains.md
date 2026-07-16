@@ -65,20 +65,6 @@ faqs:
 
 <p>A common worry is: "How will I digest food without a gallbladder?" The reassuring answer is that you can live a completely normal life without it. The liver continues to make bile, which simply flows directly into the intestine. Most people eat normally after a short adjustment period, though we advise easing back into very oily food gradually.</p>
 
-<h2>Frequently Asked Questions</h2>
-
-<h3>Can gallstones go away on their own?</h3>
-<p>No. Gallstones do not dissolve by themselves, and there is no proven home remedy or "flush" that removes them safely. Silent stones can simply be watched, but once they cause symptoms, surgery is the definitive treatment.</p>
-
-<h3>Is laparoscopic gallbladder surgery safe?</h3>
-<p>Yes. It is one of the most commonly performed and well-established operations in the world, with a high success rate and a short recovery when done by an experienced laparoscopic surgeon.</p>
-
-<h3>What happens if I delay surgery for symptomatic stones?</h3>
-<p>Delaying raises the risk of repeated attacks and serious complications such as infection, jaundice and pancreatitis — which may then require more complex emergency surgery.</p>
-
-<h3>Will my diet need to change after surgery?</h3>
-<p>Most people return to a normal diet. We recommend reintroducing fatty and fried foods slowly in the first few weeks and keeping to a balanced diet long term.</p>
-
 <h2>Consult a Gallstone Surgeon in Amravati</h2>
 
 <p>If you have been told you have gallbladder stones — whether they are silent or causing pain — the safest step is a proper evaluation by a qualified surgeon who can advise whether to watch or operate. At Shubham Hi-Tech Hospital and Test Tube Baby Centre in Amravati, we offer modern laparoscopic gallbladder surgery with personalised care for patients across Vidarbha.</p>
