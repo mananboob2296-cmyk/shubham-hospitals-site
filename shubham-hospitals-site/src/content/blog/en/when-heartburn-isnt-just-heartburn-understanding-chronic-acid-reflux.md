@@ -82,20 +82,6 @@ faqs:
 
 <p>Usually we start by simply talking through your pattern of symptoms — when it happens, what makes it worse, how long it's been going on. Depending on that, and especially if there are any of the red-flag symptoms, an endoscopy (a thin camera passed to look at the food pipe and stomach) may be suggested to see things directly. It's a short procedure, and it takes a lot of the guesswork out.</p>
 
-<h2>Common questions I get asked</h2>
-
-<h3>Is long-term acidity dangerous?</h3>
-<p>Occasional acidity isn't. But frequent reflux left unchecked for years can inflame and damage the food pipe, which is exactly why a long-standing pattern is worth evaluating rather than simply medicating indefinitely.</p>
-
-<h3>Do I need an endoscopy for reflux?</h3>
-<p>Not everyone does. It's particularly recommended if you have warning symptoms like difficulty swallowing, weight loss, or bleeding, or if symptoms persist despite treatment. Your doctor will advise based on your specific situation.</p>
-
-<h3>Will I have to take acid-reducing medicines forever?</h3>
-<p>Many people use them for a defined course while the food pipe heals, alongside lifestyle changes, and then step down. Some need them longer. If you find yourself dependent on them daily with no end in sight, that's worth discussing — sometimes there's a better long-term answer.</p>
-
-<h3>Is the surgery for reflux safe?</h3>
-<p>The keyhole procedure to correct reflux is well established and, in the right patient, very effective. As with any operation there are risks, which your surgeon will explain clearly. It's reserved for selected cases, not routine heartburn.</p>
-
 <h2>You don't have to just live around it</h2>
 
 <p>If your evenings have quietly started revolving around avoiding that burn, that's a sign worth acting on. Chronic reflux is common, very treatable, and rarely needs anything dramatic — but it does deserve a proper diagnosis rather than an endless supply of antacids. The team at Shubham Hi-Tech Hospital, Amravati, can help you get to the bottom of it, from simple lifestyle guidance right through to advanced keyhole surgery when it's genuinely needed.</p>
