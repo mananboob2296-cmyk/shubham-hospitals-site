@@ -45,16 +45,6 @@ faqs:
 
 <p>See a doctor if your periods come less often than every 35 days or are unpredictable, if you have troubling acne or unwanted hair, if you are gaining weight without explanation, or if you have been trying to conceive for several months without success. For women across Amravati and the wider Vidarbha region — Akola, Yavatmal, Achalpur and beyond — early evaluation makes management far easier. You can find the right specialist on our guide to the <a href="/best-gynecologist-in-amravati/">best gynecologist in Amravati</a>.</p>
 
-<h2>Frequently Asked Questions</h2>
-
-<p><strong>Can PCOS be cured?</strong><br>PCOS cannot be cured, but it can be very well controlled with lifestyle changes and, where needed, medication. Symptoms often improve markedly with consistent management.</p>
-
-<p><strong>Can I get pregnant with PCOS?</strong><br>Yes. Many women with PCOS conceive, sometimes with lifestyle changes alone and sometimes with help from fertility medication or treatment guided by a specialist.</p>
-
-<p><strong>Does PCOS always cause weight gain?</strong><br>No. While many women with PCOS gain weight, some have a normal weight. Lean PCOS exists, so a normal weight does not rule it out.</p>
-
-<p><strong>Will losing weight help my PCOS?</strong><br>Often, yes. Even a small, sustained weight loss can restore more regular periods and improve symptoms and fertility.</p>
-
 <h2>Talk to a Gynecologist in Amravati</h2>
 
 <p>If these signs sound familiar, a simple consultation can give you clarity and a plan. At Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati, we diagnose and manage PCOS with a focus on both your symptoms today and your health for years to come. To book an appointment, call <strong>+91-8668954915</strong> or reach us through our <a href="/contact-us/">contact page</a>.</p>
