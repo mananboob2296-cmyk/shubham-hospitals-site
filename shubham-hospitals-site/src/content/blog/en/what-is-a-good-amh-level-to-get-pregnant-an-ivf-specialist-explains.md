@@ -60,18 +60,3 @@ faqs:
 <p>Consider an evaluation if you are under 35 and have been trying for a year, over 35 and trying for six months, have irregular periods, or have a known condition such as PCOS or endometriosis. An early AMH test and consultation give you the most options.</p>
 
 <p>At Shubham Hospitals, one of the oldest IVF centres in Amravati with over 1,000 IVF cycles completed, we tailor every treatment plan to your individual reports — never a one-size-fits-all protocol. If you would like your AMH and fertility assessed, <a href="/contact-us/">book a consultation</a> or call +91-8668954915.</p>
-
-<h2>Frequently asked questions</h2>
-
-<h3>Can AMH levels be increased naturally?</h3>
-<p>AMH reflects your existing egg reserve and cannot be meaningfully "raised" by supplements. However, good general health — balanced diet, adequate vitamin D, not smoking, and managing stress — supports the eggs you have.</p>
-
-<h3>Does a high AMH mean better fertility?</h3>
-<p>Not always. A very high AMH can be a sign of PCOS and may need careful handling during IVF to avoid over-stimulation. Both very low and very high results deserve specialist interpretation.</p>
-
-<h3>On which day of the cycle is AMH tested?</h3>
-<p>Unlike many hormone tests, AMH is stable through the cycle and can be checked on any day.</p>
-
-<p><strong>Related:</strong> Choosing where to start treatment? See our guide to the <a href="/best-ivf-centre-in-amravati/">best IVF centre in Amravati</a>.</p>
-
-<p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
