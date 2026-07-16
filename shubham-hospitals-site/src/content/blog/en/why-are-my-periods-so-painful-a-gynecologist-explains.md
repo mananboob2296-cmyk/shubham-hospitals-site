@@ -3,6 +3,16 @@ title: "Why Are My Periods So Painful? A Gynecologist Explains"
 date: 2026-06-15
 author: "Dr Manan Boob"
 excerpt: "Period pain that disrupts your life could signal endometriosis, fibroids, or adenomyosis — here's when to get checked and what treatment options exist."
+lang: en
+faqs:
+  - q: "Is it normal to have period pain every single month?"
+    a: "Mild cramping on day 1–2 is common and usually normal. However, pain that is severe, disrupts your routine, or is getting worse over time is not something to ignore — it deserves a proper evaluation."
+  - q: "Can painful periods affect my ability to have children later?"
+    a: "Some causes of painful periods, particularly endometriosis and untreated fibroids, can affect fertility over time. Early diagnosis and treatment can help protect your reproductive health."
+  - q: "Will I need surgery for painful periods?"
+    a: "Not necessarily. Many cases are managed successfully with medication or hormonal treatment. Surgery (hysteroscopy or laparoscopy) is reserved for cases where a structural cause is identified and needs to be corrected."
+  - q: "At what age should I get checked if my periods are painful?"
+    a: "Any age. While primary dysmenorrhea is common in teenagers and young adults, new or worsening pain at any age — including the late 20s, 30s, or 40s — should be evaluated."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-manan/">Dr. Manan Boob</a> — MBBS (KEM), MS ObGyn (Gold Medalist), DNB, Consultant Gynecologist &amp; Laparoscopic Surgeon, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -81,16 +91,3 @@ excerpt: "Period pain that disrupts your life could signal endometriosis, fibroi
 <p><strong>Related:</strong> Learn more in our guide to the <a href="/best-gynecologist-in-amravati/">best gynecologist in Amravati</a>.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "Is it normal to have period pain every single month?","acceptedAnswer": {"@type": "Answer","text": "Mild cramping on day 1–2 is common and usually normal. However, pain that is severe, disrupts your routine, or is getting worse over time is not something to ignore — it deserves a proper evaluation."}},
-    {"@type": "Question","name": "Can painful periods affect my ability to have children later?","acceptedAnswer": {"@type": "Answer","text": "Some causes of painful periods, particularly endometriosis and untreated fibroids, can affect fertility over time. Early diagnosis and treatment can help protect your reproductive health."}},
-    {"@type": "Question","name": "Will I need surgery for painful periods?","acceptedAnswer": {"@type": "Answer","text": "Not necessarily. Many cases are managed successfully with medication or hormonal treatment. Surgery (hysteroscopy or laparoscopy) is reserved for cases where a structural cause is identified and needs to be corrected."}},
-    {"@type": "Question","name": "At what age should I get checked if my periods are painful?","acceptedAnswer": {"@type": "Answer","text": "Any age. While primary dysmenorrhea is common in teenagers and young adults, new or worsening pain at any age — including the late 20s, 30s, or 40s — should be evaluated."}}
-  ]
-}
-</script>
