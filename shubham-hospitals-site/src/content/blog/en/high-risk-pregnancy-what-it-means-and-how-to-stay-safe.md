@@ -48,23 +48,3 @@ faqs:
 
 <h2>High-risk pregnancy care at Shubham Hospitals, Amravati</h2>
 <p>With more than 20,000 safe deliveries since 1995, the <a href="/treatments/obstetrics-gynecology/">Obstetrics &amp; Gynecology department</a> at Shubham Hi-Tech Hospital is equipped to manage complicated pregnancies — from gestational diabetes and hypertension to twins and post-IVF pregnancies. Our obstetric team, including <a href="/dr-darshana/">Dr. Darshana Ajmera</a> (Obstetrician &amp; Fetal Medicine Specialist), provides personalised birth plans, advanced fetal monitoring and 24x7 emergency support for families across Amravati and Vidarbha. You can <a href="/doctors/">meet our full team of specialists here</a>.</p>
-
-<h2>Frequently asked questions</h2>
-
-<h3>Does a high-risk pregnancy always mean a caesarean?</h3>
-<p>No. Many women with a high-risk pregnancy have a safe normal delivery. The decision depends on your condition, the baby's position and wellbeing, and is made closer to your due date.</p>
-
-<h3>How often will I need check-ups?</h3>
-<p>More often than a routine pregnancy — sometimes every two weeks and then weekly near the end — so any change can be caught early.</p>
-
-<h3>Can I have a healthy baby if I am over 35?</h3>
-<p>Yes. Age alone is just one factor. With appropriate screening and monitoring, most women over 35 have healthy pregnancies and babies.</p>
-
-<h3>Is bed rest necessary?</h3>
-<p>Not usually. Strict bed rest is rarely advised today; your doctor will guide you on activity based on your specific situation.</p>
-
-<p><strong>Expecting and worried about risk factors?</strong> <a href="/contact-us/">Book an antenatal consultation</a> at Shubham Hospitals, Badnera Road, Amravati, or call +91-8668954915.</p>
-
-<p><strong>Related:</strong> Read our guide to the <a href="/best-gynecologist-in-amravati/">best gynecologist in Amravati</a> for pregnancy and maternity care.</p>
-
-<p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
