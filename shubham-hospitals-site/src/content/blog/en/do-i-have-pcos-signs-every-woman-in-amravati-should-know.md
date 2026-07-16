@@ -3,6 +3,16 @@ title: "Do I Have PCOS? Signs Every Woman in Amravati Should Know"
 date: 2026-06-29
 author: "Dr Manan Boob"
 excerpt: "Irregular periods, acne, unwanted hair or trouble conceiving? A gynecologist explains the common signs of PCOS, why it matters for your long-term health, and when women in Amravati should get checked."
+lang: en
+faqs:
+  - q: "Can PCOS be cured?"
+    a: "PCOS cannot be cured, but it can be very well controlled with lifestyle changes and, where needed, medication. Symptoms often improve markedly with consistent management."
+  - q: "Can I get pregnant with PCOS?"
+    a: "Yes. Many women with PCOS conceive, sometimes with lifestyle changes alone and sometimes with help from fertility medication or treatment guided by a specialist."
+  - q: "Does PCOS always cause weight gain?"
+    a: "No. While many women with PCOS gain weight, some have a normal weight. Lean PCOS exists, so a normal weight does not rule it out."
+  - q: "Will losing weight help my PCOS?"
+    a: "Often, yes. Even a small, sustained weight loss can restore more regular periods and improve PCOS symptoms and fertility."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-manan/">Dr. Manan Boob</a> — MBBS (KEM), MS ObGyn (Gold Medalist), DNB, Consultant Gynecologist &amp; Laparoscopic Surgeon, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -50,16 +60,3 @@ excerpt: "Irregular periods, acne, unwanted hair or trouble conceiving? A gyneco
 <p>If these signs sound familiar, a simple consultation can give you clarity and a plan. At Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati, we diagnose and manage PCOS with a focus on both your symptoms today and your health for years to come. To book an appointment, call <strong>+91-8668954915</strong> or reach us through our <a href="/contact-us/">contact page</a>.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "Can PCOS be cured?","acceptedAnswer": {"@type": "Answer","text": "PCOS cannot be cured, but it can be very well controlled with lifestyle changes and, where needed, medication. Symptoms often improve markedly with consistent management."}},
-    {"@type": "Question","name": "Can I get pregnant with PCOS?","acceptedAnswer": {"@type": "Answer","text": "Yes. Many women with PCOS conceive, sometimes with lifestyle changes alone and sometimes with help from fertility medication or treatment guided by a specialist."}},
-    {"@type": "Question","name": "Does PCOS always cause weight gain?","acceptedAnswer": {"@type": "Answer","text": "No. While many women with PCOS gain weight, some have a normal weight. Lean PCOS exists, so a normal weight does not rule it out."}},
-    {"@type": "Question","name": "Will losing weight help my PCOS?","acceptedAnswer": {"@type": "Answer","text": "Often, yes. Even a small, sustained weight loss can restore more regular periods and improve PCOS symptoms and fertility."}}
-  ]
-}
-</script>
