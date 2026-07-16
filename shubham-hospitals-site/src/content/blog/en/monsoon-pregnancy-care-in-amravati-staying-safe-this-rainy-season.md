@@ -3,6 +3,16 @@ title: "Monsoon Pregnancy Care in Amravati: Staying Safe This Rainy Season"
 date: 2026-06-18
 author: "Dr Darshana Ajmera"
 excerpt: "A practical monsoon guide for expecting mothers in Amravati and Vidarbha — how to avoid seasonal infections, eat safely, prevent mosquito-borne illness, and know the warning signs that need a doctor."
+lang: en
+faqs:
+  - q: "Is it safe to travel during monsoon while pregnant?"
+    a: "Short, essential travel is usually fine in a normal pregnancy. Avoid long, bumpy road journeys in heavy rain, especially in the third trimester, and always keep your doctor's number and your reports with you."
+  - q: "Can I get my vaccinations during the rains?"
+    a: "Yes. The Tdap and, where advised, influenza vaccines are recommended in pregnancy and the flu shot is especially worthwhile before the viral-fever season. Confirm timing with your obstetrician."
+  - q: "I have a mild fever in pregnancy — can I take paracetamol?"
+    a: "Paracetamol in the correct dose is generally considered safe, but a fever in pregnancy should still be reported to your doctor so the cause can be checked. Avoid ibuprofen and other painkillers unless your doctor specifically allows them."
+  - q: "Is dengue dangerous in pregnancy?"
+    a: "It can be, particularly near delivery, so prevention and early testing matter. If you have a high fever with severe body ache during the monsoon, get reviewed promptly rather than waiting."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-darshana/">Dr. Darshana Ajmera</a> — MBBS (Nair, Mumbai), MS ObGyn (Honors), Obstetrician, Gynecologist &amp; Fetal Medicine Specialist, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -65,16 +75,3 @@ excerpt: "A practical monsoon guide for expecting mothers in Amravati and Vidarb
 <p><strong>Related:</strong> For antenatal and women's health care through every season, see our guide to the <a href="/best-gynecologist-in-amravati/">best gynecologist in Amravati</a>.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "Is it safe to travel during monsoon while pregnant?","acceptedAnswer": {"@type": "Answer","text": "Short, essential travel is usually fine in a normal pregnancy. Avoid long, bumpy road journeys in heavy rain, especially in the third trimester, and always keep your doctor's number and your reports with you."}},
-    {"@type": "Question","name": "Can I get my vaccinations during the rains?","acceptedAnswer": {"@type": "Answer","text": "Yes. The Tdap and, where advised, influenza vaccines are recommended in pregnancy and the flu shot is especially worthwhile before the viral-fever season. Confirm timing with your obstetrician."}},
-    {"@type": "Question","name": "I have a mild fever in pregnancy — can I take paracetamol?","acceptedAnswer": {"@type": "Answer","text": "Paracetamol in the correct dose is generally considered safe, but a fever in pregnancy should still be reported to your doctor so the cause can be checked. Avoid ibuprofen and other painkillers unless your doctor specifically allows them."}},
-    {"@type": "Question","name": "Is dengue dangerous in pregnancy?","acceptedAnswer": {"@type": "Answer","text": "It can be, particularly near delivery, so prevention and early testing matter. If you have a high fever with severe body ache during the monsoon, get reviewed promptly rather than waiting."}}
-  ]
-}
-</script>
