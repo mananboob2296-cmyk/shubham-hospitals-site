@@ -34,12 +34,15 @@
 - The English blog template renders `FaqSection` when `entry.data.faqs` is populated.
 - Hindi and Marathi blog templates also render `FaqSection`; their old body-level FAQ blocks were removed to prevent duplication.
 
+## Verified build
+
+- [x] Fresh `npm install` and `npm run build` completed successfully on `claude/md-restructure`.
+- [x] Astro generated 117 static pages, including all 17 English, Hindi, and Marathi blog routes.
+
 ## Next step
 
-1. Run a fresh `npm run build` from `shubham-hospitals-site/` on `claude/md-restructure`.
-2. Deploy a preview and smoke-test:
+1. Deploy a preview and smoke-test:
    - one English, Hindi, and Marathi article;
    - the two newest posts;
    - an article with FAQs (for example, Male Infertility) to confirm exactly one FAQ section appears.
-3. Resolve the known treatment-route deployment issue before merging: the root `src/pages/treatments/[slug].astro` route must exclude localized `hi/` and `mr/` treatment entries.
-4. Open a PR from `claude/md-restructure` to `main`, merge after the preview passes, then point Cloudflare Pages to `main`.
+2. Open a PR from `claude/md-restructure` to `main`, merge after the preview passes, then point Cloudflare Pages to `main`.
