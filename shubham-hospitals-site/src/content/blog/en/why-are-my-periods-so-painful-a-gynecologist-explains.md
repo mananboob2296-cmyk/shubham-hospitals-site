@@ -69,20 +69,6 @@ faqs:
 
 <p>Most women see significant improvement once the underlying cause is treated, rather than just masking the pain every month.</p>
 
-<h2>Frequently Asked Questions</h2>
-
-<h3>Is it normal to have period pain every single month?</h3>
-<p>Mild cramping on day 1–2 is common and usually normal. However, pain that is severe, disrupts your routine, or is getting worse over time is not something to ignore — it deserves a proper evaluation.</p>
-
-<h3>Can painful periods affect my ability to have children later?</h3>
-<p>Some causes of painful periods, particularly endometriosis and untreated fibroids, can affect fertility over time. Early diagnosis and treatment can help protect your reproductive health.</p>
-
-<h3>Will I need surgery for painful periods?</h3>
-<p>Not necessarily. Many cases are managed successfully with medication or hormonal treatment. Surgery (hysteroscopy or laparoscopy) is reserved for cases where a structural cause is identified and needs to be corrected.</p>
-
-<h3>At what age should I get checked if my periods are painful?</h3>
-<p>Any age. While primary dysmenorrhea is common in teenagers and young adults, new or worsening pain at any age — including the late 20s, 30s, or 40s — should be evaluated.</p>
-
 <h2>Take the First Step Towards Pain-Free Periods</h2>
 <p>If period pain is affecting your work, studies, or quality of life, you don't have to manage it alone. The gynecology team at Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati, offers comprehensive gynecological evaluation, ultrasound, and advanced laparoscopic and hysteroscopic treatment under one roof.</p>
 
