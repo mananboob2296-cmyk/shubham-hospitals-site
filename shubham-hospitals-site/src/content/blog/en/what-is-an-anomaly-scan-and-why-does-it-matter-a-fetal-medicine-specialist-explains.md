@@ -3,6 +3,16 @@ title: "What Is an Anomaly Scan and Why Does It Matter? A Fetal Medicine Special
 date: 2026-06-29
 author: "Dr Darshana Ajmera"
 excerpt: "A fetal medicine specialist in Amravati explains what the anomaly scan (level 2 ultrasound) checks, when it is done, what the results mean, and why this 18-22 week scan matters for every pregnancy."
+lang: en
+faqs:
+  - q: "Is the anomaly scan compulsory?"
+    a: "It is not legally compulsory, but it is strongly recommended for every pregnancy by obstetricians worldwide. It is one of the most important scans, and skipping it means missing the best chance to detect treatable conditions early."
+  - q: "Will the anomaly scan tell me the baby's gender?"
+    a: "The scan can show the baby's sex, but under Indian law (the PCPNDT Act) revealing the gender of an unborn baby is strictly prohibited. The scan's purpose is purely the baby's health."
+  - q: "Is the anomaly scan safe for my baby?"
+    a: "Yes. Ultrasound uses sound waves, not radiation, and has been used safely in pregnancy for decades. There is no known risk to you or your baby."
+  - q: "I already had a normal early scan — do I still need the anomaly scan?"
+    a: "Yes. An early dating scan and the anomaly scan check different things. Many organs simply cannot be assessed until around 20 weeks, which is why this separate detailed scan is so important."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-darshana/">Dr. Darshana Ajmera</a> — MBBS (Nair, Mumbai), MS ObGyn (Honors), Obstetrician, Gynecologist &amp; Fetal Medicine Specialist, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -70,16 +80,3 @@ excerpt: "A fetal medicine specialist in Amravati explains what the anomaly scan
 <p><strong>Related:</strong> Read our guide to the <a href="/best-gynecologist-in-amravati/">best gynecologist in Amravati</a> for pregnancy and women's health care.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "Is the anomaly scan compulsory?","acceptedAnswer": {"@type": "Answer","text": "It is not legally compulsory, but it is strongly recommended for every pregnancy by obstetricians worldwide. It is one of the most important scans, and skipping it means missing the best chance to detect treatable conditions early."}},
-    {"@type": "Question","name": "Will the anomaly scan tell me the baby's gender?","acceptedAnswer": {"@type": "Answer","text": "The scan can show the baby's sex, but under Indian law (the PCPNDT Act) revealing the gender of an unborn baby is strictly prohibited. The scan's purpose is purely the baby's health."}},
-    {"@type": "Question","name": "Is the anomaly scan safe for my baby?","acceptedAnswer": {"@type": "Answer","text": "Yes. Ultrasound uses sound waves, not radiation, and has been used safely in pregnancy for decades. There is no known risk to you or your baby."}},
-    {"@type": "Question","name": "I already had a normal early scan — do I still need the anomaly scan?","acceptedAnswer": {"@type": "Answer","text": "Yes. An early dating scan and the anomaly scan check different things. Many organs simply cannot be assessed until around 20 weeks, which is why this separate detailed scan is so important."}}
-  ]
-}
-</script>
