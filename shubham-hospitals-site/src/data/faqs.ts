@@ -80,7 +80,7 @@ const en: FaqCategory[] = [
     faqs: [
       { q: 'How much do treatments like IVF or surgery cost?', a: 'Costs depend on your diagnosis and the exact treatment plan, so an accurate figure is given after consultation. Our guiding promise is “Hi-Tech Treatment, At Truly Affordable Cost,” and the team explains charges transparently before you proceed.' },
       { q: 'Do you provide reports and second opinions?', a: 'Yes. You receive your investigation reports, and you are welcome to seek a second opinion or bring outside reports for review. Clear, honest counselling is part of how we work.' },
-      { q: 'Who are the doctors I will see?', a: 'Care is led by Dr. Manan Boob (MS ObGyn – Gold Medalist, DNB, F.MAS) and our team of gynecology, fertility, surgery and fetal-medicine specialists. You can read each doctor’s profile on the Doctors page.' },
+      { q: 'Who are the doctors I will see?', a: 'Care is provided by our team of gynecology, fertility, surgery and fetal-medicine specialists, including Dr. Manan Boob (MS ObGyn – Gold Medalist, DNB, F.MAS). You can read each doctor’s profile on the Doctors page.' },
       { q: 'How can I follow the hospital’s health information online?', a: 'Our health blog covers fertility, pregnancy, gynecology and surgery topics for families in Amravati and Vidarbha, and you can follow us on Facebook, Instagram and YouTube for updates.' },
     ],
   },
@@ -186,7 +186,7 @@ const hi: FaqCategory[] = [
     faqs: [
       { q: 'IVF या सर्जरी जैसे उपचारों की लागत कितनी है?', a: 'लागत आपके निदान और सटीक उपचार योजना पर निर्भर करती है, इसलिए सही आँकड़ा परामर्श के बाद दिया जाता है। हमारा वादा है "हाई-टेक इलाज, सच में किफ़ायती दाम में," और आगे बढ़ने से पहले टीम पारदर्शी रूप से खर्च समझाती है।' },
       { q: 'क्या आप रिपोर्ट और सेकंड ओपिनियन देते हैं?', a: 'हाँ। आपको आपकी जाँच रिपोर्ट मिलती है, और आप सेकंड ओपिनियन ले सकते हैं या बाहरी रिपोर्ट समीक्षा के लिए ला सकते हैं। स्पष्ट और ईमानदार परामर्श हमारे काम का हिस्सा है।' },
-      { q: 'मुझे कौन से डॉक्टर देखेंगे?', a: 'देखभाल का नेतृत्व डॉ. मनन बूब (MS ObGyn – गोल्ड मेडलिस्ट, DNB, F.MAS) और हमारी स्त्री रोग, प्रजनन, सर्जरी व भ्रूण चिकित्सा विशेषज्ञों की टीम करती है। हर डॉक्टर का विवरण डॉक्टर पृष्ठ पर पढ़ा जा सकता है।' },
+      { q: 'मुझे कौन से डॉक्टर देखेंगे?', a: 'आपकी देखभाल हमारी स्त्री रोग, प्रजनन, सर्जरी व भ्रूण चिकित्सा विशेषज्ञों की टीम करती है, जिसमें डॉ. मनन बूब (MS ObGyn – गोल्ड मेडलिस्ट, DNB, F.MAS) शामिल हैं। हर डॉक्टर का विवरण डॉक्टर पृष्ठ पर पढ़ा जा सकता है।' },
       { q: 'मैं अस्पताल की स्वास्थ्य जानकारी ऑनलाइन कैसे देखूँ?', a: 'हमारा हेल्थ ब्लॉग अमरावती और विदर्भ के परिवारों के लिए प्रजनन, गर्भावस्था, स्त्री रोग और सर्जरी विषयों पर लेख देता है, और आप अपडेट के लिए हमें फेसबुक, इंस्टाग्राम और यूट्यूब पर फॉलो कर सकते हैं।' },
     ],
   },
@@ -266,7 +266,7 @@ const mr: FaqCategory[] = [
     faqs: [
       { q: 'IVF किंवा शस्त्रक्रियेसारख्या उपचारांचा खर्च किती?', a: 'खर्च तुमच्या निदान व नेमक्या उपचार योजनेवर अवलंबून असतो, म्हणून अचूक आकडा सल्ल्यानंतर दिला जातो. आमचे ब्रीदवाक्य आहे "हाय-टेक उपचार, खरोखर परवडणाऱ्या दरात," आणि पुढे जाण्यापूर्वी टीम पारदर्शकपणे खर्च समजावते.' },
       { q: 'तुम्ही अहवाल व सेकंड ओपिनियन देता का?', a: 'होय. तुम्हाला तुमचे तपासणी अहवाल मिळतात, आणि तुम्ही सेकंड ओपिनियन घेऊ शकता किंवा बाहेरील अहवाल तपासणीसाठी आणू शकता. स्पष्ट व प्रामाणिक समुपदेशन हा आमच्या कामाचा भाग आहे.' },
-      { q: 'मला कोणते डॉक्टर तपासतील?', a: 'काळजीचे नेतृत्व डॉ. मनन बूब (MS ObGyn – गोल्ड मेडलिस्ट, DNB, F.MAS) व आमच्या स्त्रीरोग, प्रजनन, शस्त्रक्रिया व गर्भ वैद्यकशास्त्र तज्ज्ञांची टीम करते. प्रत्येक डॉक्टरची माहिती डॉक्टर पानावर वाचता येते.' },
+      { q: 'मला कोणते डॉक्टर तपासतील?', a: 'तुमची काळजी आमची स्त्रीरोग, प्रजनन, शस्त्रक्रिया व गर्भ वैद्यकशास्त्र तज्ज्ञांची टीम घेते, ज्यात डॉ. मनन बूब (MS ObGyn – गोल्ड मेडलिस्ट, DNB, F.MAS) यांचा समावेश आहे. प्रत्येक डॉक्टरची माहिती डॉक्टर पानावर वाचता येते.' },
       { q: 'मी रुग्णालयाची आरोग्य माहिती ऑनलाइन कशी पाहू?', a: 'आमचा हेल्थ ब्लॉग अमरावती व विदर्भातील कुटुंबांसाठी प्रजनन, गर्भधारणा, स्त्रीरोग व शस्त्रक्रिया विषयांवर लेख देतो, आणि अपडेटसाठी तुम्ही आम्हाला फेसबुक, इन्स्टाग्राम व यूट्यूबवर फॉलो करू शकता.' },
     ],
   },
