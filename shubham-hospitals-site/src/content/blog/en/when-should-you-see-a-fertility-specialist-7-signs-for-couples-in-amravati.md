@@ -40,17 +40,3 @@ faqs:
 
 <h2>Why couples across Vidarbha choose Shubham Hospitals</h2>
 <p>Shubham Hi-Tech Hospital &amp; Test Tube Baby Centre, Amravati, is one of the region's oldest IVF centres, with over 1,000 IVF cycles completed and more than 30 years of experience in women's healthcare. Our experienced fertility team follows international protocols while keeping treatment affordable for families from Amravati, Badnera, Achalpur, Morshi, Warud, Akola and Yavatmal.</p>
-
-<h2>Frequently asked questions</h2>
-
-<p><strong>How long should we try before seeing a fertility specialist?</strong><br>Twelve months of regular, unprotected intercourse if the woman is under 35, or six months if she is over 35. See a specialist sooner if you have irregular periods, a known condition like PCOS or endometriosis, or a history of miscarriage.</p>
-
-<p><strong>Is infertility usually the woman's problem?</strong><br>No. A male factor contributes in roughly 40–50% of cases, which is why both partners should be evaluated together from the start with simple tests like a semen analysis.</p>
-
-<p><strong>Does seeing a fertility specialist mean I need IVF?</strong><br>Not at all. Many couples conceive with simpler treatments such as ovulation induction or IUI. IVF is recommended only when it is genuinely the right next step for your diagnosis.</p>
-
-<p><strong>Ready to take the first step?</strong> Call +91-8668954915 or <a href="/contact-us/">book a consultation</a> at Shubham Hospitals, Badnera Road, Amravati.</p>
-
-<p><strong>Related:</strong> Compare your options in our guide to the <a href="/best-ivf-centre-in-amravati/">best IVF centre in Amravati</a>.</p>
-
-<p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
