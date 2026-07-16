@@ -51,16 +51,6 @@ faqs:
 
 <p>Most scans are done over the abdomen with a little gel; early scans are sometimes done internally for a clearer view. They are painless and usually take 15–30 minutes, with the detailed anomaly scan taking longer. For mothers travelling from across Amravati and Vidarbha — Akola, Yavatmal, Achalpur and nearby towns — it helps to book the anomaly scan in good time, as it must be done within a specific window.</p>
 
-<h2>Frequently Asked Questions</h2>
-
-<p><strong>How many scans are needed in pregnancy?</strong><br>A typical healthy pregnancy involves around three to four key scans, though your doctor may advise more if you have a high-risk pregnancy or any specific concern.</p>
-
-<p><strong>Which is the most important pregnancy scan?</strong><br>The anomaly scan at 18–22 weeks is the most detailed, as it checks the baby's organs and development. The NT scan and growth scans are also important milestones.</p>
-
-<p><strong>Are ultrasound scans safe for my baby?</strong><br>Yes. Ultrasound uses sound waves rather than radiation and has a long record of safe use in pregnancy when performed as part of routine care.</p>
-
-<p><strong>Can a scan tell me my baby's gender?</strong><br>In India, by law, clinics cannot reveal the baby's sex, as prenatal sex determination is prohibited. Scans are used only to assess health and development.</p>
-
 <h2>Plan Your Pregnancy Care in Amravati</h2>
 
 <p>Well-timed scans are the backbone of a safe, reassuring pregnancy. At Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati, our fetal medicine and imaging services guide you through every scan at the right time. To book an appointment, call <strong>+91-8668954915</strong> or reach us through our <a href="/contact-us/">contact page</a>.</p>
