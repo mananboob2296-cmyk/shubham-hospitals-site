@@ -3,6 +3,16 @@ title: "IVF Cost in Amravati: What to Expect Before You Begin"
 date: 2026-06-26
 author: "Dr Manjushree Boob"
 excerpt: "Thinking about IVF in Amravati but unsure about the cost? An IVF specialist breaks down what a cycle includes, why prices vary, hidden extras to watch for, and how to plan your budget."
+lang: en
+faqs:
+  - q: "How much does one IVF cycle cost in Amravati?"
+    a: "As a general guide, a single IVF cycle in Amravati usually falls in the range of around ₹1.2 to ₹2.5 lakh, depending mainly on the medication dose and any add-on procedures such as ICSI or embryo freezing. A consultation gives you an exact, personalised estimate."
+  - q: "Is medication included in the IVF price?"
+    a: "Not always. Stimulation injections are one of the largest costs of an IVF cycle and are sometimes billed separately, so always ask whether your quote includes medicines."
+  - q: "Does insurance cover IVF?"
+    a: "Some health insurance policies now offer partial fertility cover, though many still exclude it. Check your specific policy and keep all documents for any claim."
+  - q: "Will I need more than one IVF cycle?"
+    a: "Possibly. Many couples conceive in the first cycle, but some need a second. Frozen embryo transfers from a previous cycle usually cost considerably less than starting a fresh cycle."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-manjushree/">Dr. Manjushree Boob</a> — MD, DNB, FICMCH, FICOG, Infertility &amp; IVF Consultant, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -52,16 +62,3 @@ excerpt: "Thinking about IVF in Amravati but unsure about the cost? An IVF speci
 <p>The clearest way to understand your real cost — and your real chances — is a personal consultation with the <a href="/best-ivf-centre-in-amravati/">best IVF centre in Amravati</a>. At Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati, we explain your diagnosis, your treatment options and a fully itemised estimate before you commit to anything. To book an appointment, call <strong>+91-8668954915</strong> or reach us through our <a href="/contact-us/">contact page</a>. Taking the first step is often the hardest part, and we are here to make it simpler.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "How much does one IVF cycle cost in Amravati?","acceptedAnswer": {"@type": "Answer","text": "As a general guide, a single IVF cycle in Amravati usually falls in the range of around ₹1.2 to ₹2.5 lakh, depending mainly on the medication dose and any add-on procedures such as ICSI or embryo freezing. A consultation gives you an exact, personalised estimate."}},
-    {"@type": "Question","name": "Is medication included in the IVF price?","acceptedAnswer": {"@type": "Answer","text": "Not always. Stimulation injections are one of the largest costs of an IVF cycle and are sometimes billed separately, so always ask whether your quote includes medicines."}},
-    {"@type": "Question","name": "Does insurance cover IVF?","acceptedAnswer": {"@type": "Answer","text": "Some health insurance policies now offer partial fertility cover, though many still exclude it. Check your specific policy and keep all documents for any claim."}},
-    {"@type": "Question","name": "Will I need more than one IVF cycle?","acceptedAnswer": {"@type": "Answer","text": "Possibly. Many couples conceive in the first cycle, but some need a second. Frozen embryo transfers from a previous cycle usually cost considerably less than starting a fresh cycle."}}
-  ]
-}
-</script>
