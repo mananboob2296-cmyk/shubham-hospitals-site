@@ -83,20 +83,6 @@ faqs:
 
 <p>This is usually the question underneath all the others, so let me answer it plainly. Endometriosis is a recognised cause of fertility trouble — but "cause of trouble" is not the same as "impossible." Many women with endometriosis conceive, some on their own and some with help. Finding it early gives us the best chance to protect your fertility rather than react to a problem later.</p>
 
-<h2>Frequently asked questions</h2>
-
-<h3>Is bad period pain always endometriosis?</h3>
-<p>No. There are several causes of painful periods and many are not endometriosis. But pain that's severe, worsening, or disrupting your life should always be looked at properly, because endometriosis is one of the possibilities we don't want to miss.</p>
-
-<h3>Can endometriosis be cured completely?</h3>
-<p>Treatment can dramatically reduce symptoms and give you your life back. Because it can come back over time, we usually think in terms of a long-term plan that fits your age, your symptoms, and your family plans — not a single one-off fix.</p>
-
-<h3>Do I definitely need surgery?</h3>
-<p>Not necessarily. Many women do very well on medication or hormonal treatment alone. Surgery is considered when it's the best way to confirm the diagnosis or to relieve pain and improve fertility.</p>
-
-<h3>When should I actually see a gynaecologist?</h3>
-<p>If your period pain is severe or getting worse, if you have pelvic pain outside your period, pain during intimacy, or difficulty conceiving — that's the point to come in, rather than waiting for it to become unbearable.</p>
-
 <h2>You don't have to just live with it</h2>
 
 <p>If any of this sounded uncomfortably familiar, take it as a nudge. Severe period pain is common, but "common" doesn't mean you're meant to suffer through it. The team at Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati, offers a full evaluation, ultrasound, and advanced keyhole care under one roof — and a calm, unhurried conversation to start with.</p>
