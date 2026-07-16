@@ -3,6 +3,16 @@ title: "What Is a Good AMH Level to Get Pregnant? An IVF Specialist Explains"
 date: 2026-06-11
 author: "Dr Manjushree Boob"
 excerpt: "An AMH level of 1.0–4.0 ng/ml is favourable for pregnancy. Dr. Manjushree Boob, IVF specialist in Amravati, explains what your AMH means and how it guides IVF."
+lang: en
+faqs:
+  - q: "What is a good AMH level to get pregnant?"
+    a: "An AMH level between 1.0 and 4.0 ng/ml is generally considered normal and favourable for conception. A level below 1.0 ng/ml points to a lower egg reserve, but it does not mean you cannot become pregnant."
+  - q: "Can AMH levels be increased naturally?"
+    a: "AMH reflects your existing egg reserve and cannot be meaningfully raised by supplements. However, good general health — balanced diet, adequate vitamin D, not smoking, and managing stress — supports the eggs you have."
+  - q: "Does a high AMH mean better fertility?"
+    a: "Not always. A very high AMH can be a sign of PCOS and may need careful handling during IVF to avoid over-stimulation. Both very low and very high results deserve specialist interpretation."
+  - q: "On which day of the cycle is AMH tested?"
+    a: "Unlike many hormone tests, AMH is stable through the menstrual cycle and can be checked on any day."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-manjushree/">Dr. Manjushree Boob</a> — MD, DNB, FICMCH, FICOG, Infertility &amp; IVF Consultant, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -65,16 +75,3 @@ excerpt: "An AMH level of 1.0–4.0 ng/ml is favourable for pregnancy. Dr. Manju
 <p><strong>Related:</strong> Choosing where to start treatment? See our guide to the <a href="/best-ivf-centre-in-amravati/">best IVF centre in Amravati</a>.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "What is a good AMH level to get pregnant?","acceptedAnswer": {"@type": "Answer","text": "An AMH level between 1.0 and 4.0 ng/ml is generally considered normal and favourable for conception. A level below 1.0 ng/ml points to a lower egg reserve, but it does not mean you cannot become pregnant."}},
-    {"@type": "Question","name": "Can AMH levels be increased naturally?","acceptedAnswer": {"@type": "Answer","text": "AMH reflects your existing egg reserve and cannot be meaningfully raised by supplements. However, good general health — balanced diet, adequate vitamin D, not smoking, and managing stress — supports the eggs you have."}},
-    {"@type": "Question","name": "Does a high AMH mean better fertility?","acceptedAnswer": {"@type": "Answer","text": "Not always. A very high AMH can be a sign of PCOS and may need careful handling during IVF to avoid over-stimulation. Both very low and very high results deserve specialist interpretation."}},
-    {"@type": "Question","name": "On which day of the cycle is AMH tested?","acceptedAnswer": {"@type": "Answer","text": "Unlike many hormone tests, AMH is stable through the menstrual cycle and can be checked on any day."}}
-  ]
-}
-</script>
