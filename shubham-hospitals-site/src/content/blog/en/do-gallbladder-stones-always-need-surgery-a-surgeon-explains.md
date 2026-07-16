@@ -3,6 +3,16 @@ title: "Do Gallbladder Stones Always Need Surgery? A Surgeon Explains"
 date: 2026-06-22
 author: "Dr Murlidhar Boob"
 excerpt: "A surgeon in Amravati explains when gallbladder stones need surgery, when they can be watched, the risks of waiting, and what keyhole gallbladder removal involves."
+lang: en
+faqs:
+  - q: "Can gallstones go away on their own?"
+    a: "No. Gallstones do not dissolve by themselves, and there is no proven home remedy or flush that removes them safely. Silent stones can simply be watched, but once they cause symptoms, surgery is the definitive treatment."
+  - q: "Is laparoscopic gallbladder surgery safe?"
+    a: "Yes. It is one of the most commonly performed and well-established operations in the world, with a high success rate and a short recovery when done by an experienced laparoscopic surgeon."
+  - q: "What happens if I delay surgery for symptomatic gallstones?"
+    a: "Delaying raises the risk of repeated attacks and serious complications such as infection, jaundice and pancreatitis — which may then require more complex emergency surgery."
+  - q: "Will my diet need to change after gallbladder surgery?"
+    a: "Most people return to a normal diet. Reintroduce fatty and fried foods slowly in the first few weeks and keep to a balanced diet long term."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-murlidhar/">Dr. Murlidhar Boob</a> — MS, FAIS, DLS, FMAS, Laparoscopic Surgeon &amp; Surgical Gastroenterologist, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -78,16 +88,3 @@ excerpt: "A surgeon in Amravati explains when gallbladder stones need surgery, w
 <p><strong>Related:</strong> For keyhole gallbladder removal and other minimally invasive procedures, see our guide to the <a href="/best-laparoscopic-surgeon-in-amravati/">best laparoscopic surgeon in Amravati</a>.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "Can gallstones go away on their own?","acceptedAnswer": {"@type": "Answer","text": "No. Gallstones do not dissolve by themselves, and there is no proven home remedy or flush that removes them safely. Silent stones can simply be watched, but once they cause symptoms, surgery is the definitive treatment."}},
-    {"@type": "Question","name": "Is laparoscopic gallbladder surgery safe?","acceptedAnswer": {"@type": "Answer","text": "Yes. It is one of the most commonly performed and well-established operations in the world, with a high success rate and a short recovery when done by an experienced laparoscopic surgeon."}},
-    {"@type": "Question","name": "What happens if I delay surgery for symptomatic gallstones?","acceptedAnswer": {"@type": "Answer","text": "Delaying raises the risk of repeated attacks and serious complications such as infection, jaundice and pancreatitis — which may then require more complex emergency surgery."}},
-    {"@type": "Question","name": "Will my diet need to change after gallbladder surgery?","acceptedAnswer": {"@type": "Answer","text": "Most people return to a normal diet. Reintroduce fatty and fried foods slowly in the first few weeks and keep to a balanced diet long term."}}
-  ]
-}
-</script>
