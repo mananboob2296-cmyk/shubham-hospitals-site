@@ -3,6 +3,16 @@ title: "Pregnancy Scans Explained: Which Scan, When & Why in Amravati"
 date: 2026-07-02
 author: "Dr Darshana Ajmera"
 excerpt: "Confused about which pregnancy scan happens when? An obstetrician explains the dating, NT, anomaly and growth scans — what each one checks and why they matter — for expecting mothers in Amravati."
+lang: en
+faqs:
+  - q: "How many scans are needed in pregnancy?"
+    a: "A typical healthy pregnancy involves around three to four key scans — dating, NT, anomaly and growth — though your doctor may advise more if you have a high-risk pregnancy or any specific concern."
+  - q: "Which is the most important pregnancy scan?"
+    a: "The anomaly scan at 18–22 weeks is the most detailed, as it checks the baby's organs and development. The NT scan and growth scans are also important milestones."
+  - q: "Are ultrasound scans safe for my baby?"
+    a: "Yes. Ultrasound uses sound waves rather than radiation and has a long record of safe use in pregnancy when performed as part of routine care."
+  - q: "Can a scan tell me my baby's gender?"
+    a: "In India, by law, clinics cannot reveal the baby's sex, as prenatal sex determination is prohibited. Scans are used only to assess health and development."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-darshana/">Dr. Darshana Ajmera</a> — MBBS (Nair, Mumbai), MS ObGyn (Honors), Obstetrician, Gynecologist &amp; Fetal Medicine Specialist, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -56,16 +66,3 @@ excerpt: "Confused about which pregnancy scan happens when? An obstetrician expl
 <p>Well-timed scans are the backbone of a safe, reassuring pregnancy. At Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati, our fetal medicine and imaging services guide you through every scan at the right time. To book an appointment, call <strong>+91-8668954915</strong> or reach us through our <a href="/contact-us/">contact page</a>.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "How many scans are needed in pregnancy?","acceptedAnswer": {"@type": "Answer","text": "A typical healthy pregnancy involves around three to four key scans — dating, NT, anomaly and growth — though your doctor may advise more if you have a high-risk pregnancy or any specific concern."}},
-    {"@type": "Question","name": "Which is the most important pregnancy scan?","acceptedAnswer": {"@type": "Answer","text": "The anomaly scan at 18–22 weeks is the most detailed, as it checks the baby's organs and development. The NT scan and growth scans are also important milestones."}},
-    {"@type": "Question","name": "Are ultrasound scans safe for my baby?","acceptedAnswer": {"@type": "Answer","text": "Yes. Ultrasound uses sound waves rather than radiation and has a long record of safe use in pregnancy when performed as part of routine care."}},
-    {"@type": "Question","name": "Can a scan tell me my baby's gender?","acceptedAnswer": {"@type": "Answer","text": "In India, by law, clinics cannot reveal the baby's sex, as prenatal sex determination is prohibited. Scans are used only to assess health and development."}}
-  ]
-}
-</script>
