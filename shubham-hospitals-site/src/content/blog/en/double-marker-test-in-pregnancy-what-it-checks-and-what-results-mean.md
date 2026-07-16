@@ -70,23 +70,6 @@ faqs:
 
 <p>There is nothing to dread. You do not usually need to fast. A small blood sample is drawn from your arm, and the NT scan — a painless ultrasound over your abdomen — is done around the same time. Results typically take a few days. When they arrive, ask your doctor to explain the actual risk figure to you rather than reading only the words "low" or "high". Understanding your own number is empowering.</p>
 
-<h2>Frequently Asked Questions</h2>
-
-<h3>Is the double marker test compulsory?</h3>
-<p>No, it is optional. But it is widely recommended in early pregnancy because it is safe, simple, and gives useful reassurance or early warning. Whether to have it is your choice, and we are happy to talk it through.</p>
-
-<h3>Is the double marker test the same as the triple or quadruple marker test?</h3>
-<p>No. The double marker measures two substances in the first trimester. The triple and quadruple marker tests measure more markers and are done later, in the second trimester, usually for women who missed the first-trimester window.</p>
-
-<h3>Can the double marker test be wrong?</h3>
-<p>Because it is a screening test, it estimates risk rather than giving a yes or no. A high-risk result does not mean the baby is affected, and rarely an affected baby can screen low risk. This is why a definite answer, when needed, comes from a diagnostic test.</p>
-
-<h3>Will the test tell me my baby's gender?</h3>
-<p>No. It does not report gender, and under Indian law (the PCPNDT Act) disclosing the sex of an unborn baby is prohibited in any case. The test is purely about the baby's health.</p>
-
-<h3>What if I missed the 11 to 13 week window?</h3>
-<p>Do not worry — other options such as the quadruple marker test or NIPT may still be suitable. Speak to your obstetrician about the best choice for your stage of pregnancy.</p>
-
 <h2>Talk to a Specialist in Amravati</h2>
 
 <p>At Shubham Hi-Tech Hospital and Test Tube Baby Centre in Amravati, our obstetrics and fetal medicine team offers first-trimester screening, NT scans and clear, unhurried counselling so you always understand what your results mean. If you are early in your pregnancy or have just received a report you are unsure about, please do reach out — it is always better to ask than to worry alone.</p>
