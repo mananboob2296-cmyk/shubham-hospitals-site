@@ -65,16 +65,6 @@ faqs:
 
 <p>If you are only at the thinking stage, your first visit is nothing to fear. Bring any previous reports and your partner. We will talk through your history, do a scan and a few tests, and I will explain your particular options in plain words. You will leave with a clear picture and a written plan — not a rushed decision.</p>
 
-<h2>Frequently Asked Questions</h2>
-
-<p><strong>How long does one IVF cycle take?</strong><br>From the first stimulation injection to the pregnancy test, an active cycle usually takes about two to three weeks, all within a single menstrual cycle. Preparation and tests may add a little time beforehand.</p>
-
-<p><strong>How many injections will I need for IVF?</strong><br>Most women take stimulation injections for around nine to twelve days, followed by a single trigger injection. The exact number depends on how your ovaries respond, which we monitor with scans.</p>
-
-<p><strong>Is egg retrieval painful?</strong><br>No. It is done under short anaesthesia, so you feel nothing during it. Afterwards, mild bloating or period-like cramps for a day or two are normal.</p>
-
-<p><strong>Does more eggs mean a guaranteed pregnancy?</strong><br>Not directly. There is a natural reduction at each stage, so a good number of eggs may yield a smaller number of strong embryos. This is expected and is why several eggs are collected.</p>
-
 <h2>Talk to an IVF Specialist in Amravati</h2>
 
 <p>Every couple's path through IVF is a little different, and the best way to understand yours is a calm, unhurried consultation. At Shubham Hi-Tech Hospital and Test Tube Baby Centre in Amravati, we explain each step, answer every question, and build a plan around you. To book an appointment, call <strong>+91-8668954915</strong> or reach us through our <a href="/contact-us/">contact page</a>. Taking that first step is often the hardest — and you do not have to take it alone.</p>
