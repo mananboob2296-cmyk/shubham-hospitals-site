@@ -91,6 +91,13 @@ if (type === 'blog') {
           <Content />
         </div>
       </section>
+      {entry.data.faqs.length > 0 && (
+        <section class="section soft">
+          <div class="container prose">
+            <FaqSection faqs={entry.data.faqs} />
+          </div>
+        </section>
+      )}
       <CtaBand heading="Have a question about your health?" text="Book a consultation with our specialists in Amravati." />
     </>
   )}
