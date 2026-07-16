@@ -3,6 +3,16 @@ title: "What Is Hysteroscopy? A Simple Guide for Women in Amravati"
 date: 2026-07-08
 author: "Dr Manan Boob"
 excerpt: "Hysteroscopy lets a gynecologist look inside the uterus with a thin camera — often diagnosing and treating problems in a single sitting, with no external cuts. Here's what to expect."
+lang: en
+faqs:
+  - q: "Is hysteroscopy painful?"
+    a: "Most women describe diagnostic hysteroscopy as involving mild cramping rather than sharp pain. For operative procedures, anaesthesia is used so you do not feel discomfort during the procedure. Your doctor will choose the option best suited to your comfort."
+  - q: "Will hysteroscopy affect my chances of getting pregnant?"
+    a: "Hysteroscopy does not reduce fertility — in fact, by correcting problems like polyps, adhesions, or a septum inside the uterus, it can sometimes improve the chances of conception. It is often part of a fertility evaluation."
+  - q: "How soon can I go home after hysteroscopy?"
+    a: "In most cases it is a day-care procedure, so you can go home the same day once you have recovered from any anaesthesia and the doctor is satisfied you are comfortable."
+  - q: "Do I need to stay admitted in hospital?"
+    a: "Usually not. Overnight admission is rarely needed for a straightforward hysteroscopy, though your doctor will advise based on your individual situation."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-manan/">Dr. Manan Boob</a> — MBBS (KEM), MS ObGyn (Gold Medalist), DNB, Consultant Gynecologist &amp; Laparoscopic Surgeon, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
@@ -75,16 +85,3 @@ excerpt: "Hysteroscopy lets a gynecologist look inside the uterus with a thin ca
 <p><strong>Related:</strong> Learn more in our guide to the <a href="/best-gynecologist-in-amravati/">best gynecologist in Amravati</a>.</p>
 
 <p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "Is hysteroscopy painful?","acceptedAnswer": {"@type": "Answer","text": "Most women describe diagnostic hysteroscopy as involving mild cramping rather than sharp pain. For operative procedures, anaesthesia is used so you do not feel discomfort during the procedure. Your doctor will choose the option best suited to your comfort."}},
-    {"@type": "Question","name": "Will hysteroscopy affect my chances of getting pregnant?","acceptedAnswer": {"@type": "Answer","text": "Hysteroscopy does not reduce fertility — in fact, by correcting problems like polyps, adhesions, or a septum inside the uterus, it can sometimes improve the chances of conception. It is often part of a fertility evaluation."}},
-    {"@type": "Question","name": "How soon can I go home after hysteroscopy?","acceptedAnswer": {"@type": "Answer","text": "In most cases it is a day-care procedure, so you can go home the same day once you have recovered from any anaesthesia and the doctor is satisfied you are comfortable."}},
-    {"@type": "Question","name": "Do I need to stay admitted in hospital?","acceptedAnswer": {"@type": "Answer","text": "Usually not. Overnight admission is rarely needed for a straightforward hysteroscopy, though your doctor will advise based on your individual situation."}}
-  ]
-}
-</script>
