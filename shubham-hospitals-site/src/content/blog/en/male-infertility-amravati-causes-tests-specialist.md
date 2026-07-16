@@ -67,16 +67,6 @@ faqs:
 
 <p>Above all, remember that male testing should never be delayed or skipped. A semen analysis is far simpler and cheaper than many of the tests women undergo, so it makes sense to check both partners early rather than putting the man's evaluation off for months or years.</p>
 
-<h2>Frequently Asked Questions</h2>
-
-<p><strong>Is male infertility common?</strong><br>Yes. A male factor is involved in roughly 40 to 50 per cent of couples who cannot conceive, either alone or together with a female factor. This is why both partners should always be evaluated.</p>
-
-<p><strong>Does male infertility have symptoms?</strong><br>Usually not. Most men feel completely well and have a normal sex life, so the only reliable way to know is a semen analysis.</p>
-
-<p><strong>Can male infertility be cured?</strong><br>Many causes can be treated or improved — through lifestyle changes, medicines, or a minor procedure for a varicocele. Even when the sperm count is very low, treatments such as IVF with ICSI can help a couple conceive.</p>
-
-<p><strong>How long should we try before getting tested?</strong><br>Twelve months of regular, unprotected intercourse — or six months if the woman is over 35, or sooner if there is a known male problem.</p>
-
 <h2>Talk to a Fertility Specialist in Amravati</h2>
 
 <p>If you and your partner have been trying for a baby without success, the most helpful step is a joint consultation where both of you are assessed together. At Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati, we offer complete male and female fertility evaluation under one roof, explain your results clearly, and build a plan around your diagnosis. To book an appointment, call <strong>+91-8668954915</strong> or reach us through our <a href="/contact-us/">contact page</a>. Getting both partners checked early is one of the smartest decisions a couple can make.</p>
