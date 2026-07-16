@@ -3,6 +3,16 @@ title: "When Heartburn Isn't Just Heartburn: Making Sense of Chronic Acid Reflux
 date: 2026-07-08
 author: "Dr Murlidhar Boob"
 excerpt: "The occasional burning after a heavy meal is normal. Reflux that shows up several times a week, for months, is a different conversation — and one worth having before it quietly damages your food pipe."
+lang: en
+faqs:
+  - q: "Is long-term acidity dangerous?"
+    a: "Occasional acidity isn't. But frequent reflux left unchecked for years can inflame and damage the food pipe, which is why a long-standing pattern is worth evaluating rather than simply medicating indefinitely."
+  - q: "Do I need an endoscopy for acid reflux?"
+    a: "Not everyone does. It is particularly recommended if you have warning symptoms like difficulty swallowing, weight loss, or bleeding, or if symptoms persist despite treatment. Your doctor will advise based on your situation."
+  - q: "Will I have to take acid-reducing medicines forever?"
+    a: "Many people use them for a defined course while the food pipe heals, alongside lifestyle changes, and then step down. Some need them longer. If you find yourself dependent on them daily with no end in sight, that is worth discussing with your doctor."
+  - q: "Is surgery for reflux safe?"
+    a: "The keyhole procedure to correct reflux is well established and, in the right patient, very effective. As with any operation there are risks, which your surgeon will explain. It is reserved for selected cases, not routine heartburn."
 ---
 
 <p><em>Medically reviewed by <a href="/dr-murlidhar/">Dr. Murlidhar Boob</a> — MS (Surgery), FAIS, DLS, FMAS, Laparoscopic Surgeon &amp; Surgical Gastroenterologist.</em></p>
@@ -93,16 +103,3 @@ excerpt: "The occasional burning after a heavy meal is normal. Reflux that shows
 <p>📞 Call <strong>+91-8668954915</strong> to book a consultation, or see our <a href="/contact-us/">Contact Us</a> page for the address, timings, and directions.</p>
 
 <p><em>Disclaimer: This article is general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "Is long-term acidity dangerous?","acceptedAnswer": {"@type": "Answer","text": "Occasional acidity isn't. But frequent reflux left unchecked for years can inflame and damage the food pipe, which is why a long-standing pattern is worth evaluating rather than simply medicating indefinitely."}},
-    {"@type": "Question","name": "Do I need an endoscopy for acid reflux?","acceptedAnswer": {"@type": "Answer","text": "Not everyone does. It is particularly recommended if you have warning symptoms like difficulty swallowing, weight loss, or bleeding, or if symptoms persist despite treatment. Your doctor will advise based on your situation."}},
-    {"@type": "Question","name": "Will I have to take acid-reducing medicines forever?","acceptedAnswer": {"@type": "Answer","text": "Many people use them for a defined course while the food pipe heals, alongside lifestyle changes, and then step down. Some need them longer. If you find yourself dependent on them daily with no end in sight, that is worth discussing with your doctor."}},
-    {"@type": "Question","name": "Is surgery for reflux safe?","acceptedAnswer": {"@type": "Answer","text": "The keyhole procedure to correct reflux is well established and, in the right patient, very effective. As with any operation there are risks, which your surgeon will explain. It is reserved for selected cases, not routine heartburn."}}
-  ]
-}
-</script>
