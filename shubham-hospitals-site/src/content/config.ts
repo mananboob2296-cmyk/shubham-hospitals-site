@@ -58,6 +58,8 @@ const landing = defineCollection({
     heroImageAlt: z.string().optional(),
     ctaTreatment: z.string().optional(),
     ctaTreatmentLabel: z.string().optional(),
+    callLabel: z.string().optional(), // hi/mr hero call-button label
+    whyHeading: z.string().optional(), // hi/mr "Why choose" heading
     stats: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
     whyChoose: z.array(z.string()).default([]),
     faqs: z.array(faq).default([]),
