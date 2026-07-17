@@ -53,8 +53,10 @@ More text. Bold like **this**.
   page and emitted as FAQPage structured data automatically.
 - Optional: `image: "/images/....webp"` and `imageAlt: "description"` for a hero image.
 - Links inside a Hindi post should point to `/hi/...` pages, Marathi to `/mr/...`.
-- Do **not** add the medical disclaimer at the end of hi/mr posts — the page
-  template adds it automatically. (English posts currently carry it in the body.)
+- **Always end the post body with the one-line medical disclaimer in italics, in
+  the post's own language** (copy the exact line from any existing post in the
+  same folder). The page template does NOT add one — every language, every post,
+  carries it in the body. Exactly once.
 - Wording: always team-focused. Never write "led by Dr. …" / "के नेतृत्व में" /
   "यांच्या नेतृत्वाखाली".
 - Devanagari: paste text directly; make sure no invisible control characters
