@@ -5,6 +5,7 @@ export const SITE = {
   url: 'https://shubham-hospitals.com',
   phone: '+91-8668954915',
   phoneHref: 'tel:+918668954915',
+  whatsapp: 'https://wa.me/918668954915',
   email: 'shubhamhospital111@gmail.com',
   address: 'Badnera Rd, opp. Mantri Motors, Deorankar Nagar, Amravati, Maharashtra 444605',
   facebook: 'https://www.facebook.com/shubhamhitechhospital',

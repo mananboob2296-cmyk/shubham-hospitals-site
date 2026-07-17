@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FaqSection from '../../../components/FaqSection.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { deptContent } from '../../../i18n/pages';
+import { useTranslations } from '../../../i18n/utils';
+
+const lang = 'mr';
+
+export async function getStaticPaths() {
+  const treatments = await getCollection('treatments');
+  return treatments
+    .filter((t) => t.slug.startsWith('mr/'))
+    .map((t) => ({ params: { slug: t.slug.replace(/^mr\//, '') }, props: { entry: t } }));
+}
+
+const { entry } = Astro.props;
+const e = entry.data;
+const { Content } = await entry.render();
+const t = useTranslations(lang);
+const dept = deptContent[lang];
+---
+<BaseLayout title={e.metaTitle} description={e.metaDescription} lang={lang}>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">विभाग</span>
+      <h1>{e.title}</h1>
+      <p>{e.excerpt}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" style="color:#fff" href="/mr/contact-us/#book">{t('cta.book')}</a>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container prose">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/mr/">{t('nav.home')}</a> › <a href="/mr/departments/">{dept.h1}</a> › {e.title}</nav>
+      <Content />
+    </div>
+  </section>
+  <section class="section soft">
+    <div class="container prose">
+      <FaqSection faqs={e.faqs} heading={t('faq.heading')} />
+    </div>
+  </section>
+  <CtaBand />
+</BaseLayout>

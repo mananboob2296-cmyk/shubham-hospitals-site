@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { doctorsContent } from '../../i18n/pages';
+import { doctorRole } from '../../i18n/home';
+const lang = 'mr';
+const p = doctorsContent[lang];
+const roles = doctorRole[lang];
+const doctors = (await getCollection('doctors')).filter((e) => !e.slug.includes('/')).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title={p.title} description={p.description} lang={lang}>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">{p.eyebrow}</span>
+      <h1>{p.h1}</h1>
+      <p>{p.lead}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="sr-only">{p.h1}</h2>
+      <div class="grid cols-2">
+        {doctors.map((d) => (
+          <div class="card doctor-card">
+            <img src={d.data.photo} alt={d.data.name} loading="lazy" width="170" height="170" />
+            <h3>{d.data.name}</h3>
+            <p class="quals">{d.data.qualifications}</p>
+            <p class="role">{roles[d.slug] ?? d.data.role}</p>
+            <a class="btn btn-outline" href={`/${d.slug}/`}>{p.viewProfile}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand heading={p.ctaHeading} text={p.ctaText} />
+</BaseLayout>

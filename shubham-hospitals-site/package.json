@@ -11,8 +11,10 @@
   "dependencies": {
     "@astrojs/sitemap": "3.1.6",
     "@fontsource/libre-franklin": "^5.2.8",
+    "@fontsource/mukta": "^5.2.8",
     "@fontsource/playfair-display": "^5.2.8",
     "@fontsource/source-sans-3": "^5.2.9",
+    "@fontsource/tiro-devanagari-marathi": "^5.2.7",
     "astro": "^4.16.18"
   }
 }

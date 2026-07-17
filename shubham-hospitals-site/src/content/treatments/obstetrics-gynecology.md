@@ -58,6 +58,6 @@ From fibroids and prolapse to infections and tumors, Shubham Hospitals provides 
 
 ## Our Obstetrics & Gynecology Team in Amravati
 
-Shubham Hospitals' women's health team in Amravati is led by [Dr. Manjushree Boob](/dr-manjushree/) (MD, DNB, FICOG) and [Dr. Manan Boob](/dr-manan/) (MS ObGyn, Gold Medalist). For high-risk pregnancies and fetal medicine, [Dr. Darshana Ajmera](/dr-darshana/) (MS ObGyn, Honors) provides specialist care.
+Shubham Hospitals' experienced women's health team brings extensive expertise across obstetrics, gynecology, high-risk pregnancy and fetal medicine — and is dedicated to providing the best possible care for you and your baby. You can read each doctor's profile on the [Doctors page](/doctors/).
 
 Read our article on [high-risk pregnancy care](/high-risk-pregnancy-what-it-means-and-how-to-stay-safe/) to learn when to seek specialist help. 📞 **+91-8668954915**

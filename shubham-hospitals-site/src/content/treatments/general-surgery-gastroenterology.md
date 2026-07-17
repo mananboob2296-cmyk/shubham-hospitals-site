@@ -1,9 +1,9 @@
 ---
 title: "General Surgery & Gastroenterology"
 metaTitle: "General Surgery & Gastroenterology in Amravati | Shubham Hospitals"
-metaDescription: "Advanced general surgery & GI care in Amravati led by Dr. Murlidhar Boob — 10,000+ procedures. Laparoscopic gallbladder, appendix, hernia, piles & GI surgery."
+metaDescription: "Advanced general surgery & GI care in Amravati with 10,000+ procedures. Laparoscopic gallbladder, appendix, hernia, piles & GI surgery."
 order: 5
-excerpt: "Advanced general surgery and gastroenterology under Dr. Murlidhar Boob, with 10,000+ successful procedures."
+excerpt: "Advanced general surgery and gastroenterology with over 10,000 successful procedures."
 faqs:
   - q: "What is the recovery time for laparoscopic surgeries?"
     a: "Recovery time varies depending on the procedure, but most laparoscopic surgeries at Shubham Hospitals have a much shorter recovery time than traditional open surgery. Patients typically return to normal activities within 1-2 weeks."
@@ -19,7 +19,7 @@ faqs:
     a: "If you experience persistent pain, bleeding, or discomfort due to piles, fissures, or fistulas, a consultation with our specialists is recommended. In many cases, surgery is the most effective way to relieve symptoms and improve quality of life."
 ---
 
-At **Shubham Hospitals**, we are proud to offer advanced **general surgery and gastroenterology services** under the expert leadership of **Dr. Murlidhar Boob**, a pioneer in **laparoscopic and gastrointestinal (GI) surgery**. With over **10,000 successful procedures** performed, our department specializes in **minimally invasive techniques**, ensuring faster recovery, smaller scars, and fewer complications for our patients.
+At **Shubham Hospitals**, we are proud to offer advanced **general surgery and gastroenterology services** backed by an experienced surgical team, pioneers in **laparoscopic and gastrointestinal (GI) surgery**. With over **10,000 successful procedures** performed, our department specializes in **minimally invasive techniques**, ensuring faster recovery, smaller scars, and fewer complications for our patients.
 
 We are committed to providing high-quality surgical care that addresses a wide range of **gastrointestinal** and **general surgical conditions**, offering both **laparoscopic** and **open surgical options** based on individual patient needs.
 
@@ -52,13 +52,13 @@ Our andrology services focus on male infertility and urology-related care, inclu
 ## Benefits of General Surgery & Gastroenterology in Amravati
 
 - **Minimally Invasive Techniques**: We specialize in **laparoscopic surgeries**, offering patients **faster recovery**, **less pain**, and **smaller scars**.
-- **Expert Team**: Led by **Dr. Murlidhar Boob**, a **pioneer** in laparoscopic and GI surgery, our team brings years of expertise and a high success rate in complex surgeries.
+- **Expert Team**: Our experienced surgical team, **pioneers** in laparoscopic and GI surgery, brings decades of expertise and a high success rate in complex surgeries.
 - **Comprehensive Care**: From general surgical needs to specialized gastroenterology and urology services, we provide comprehensive care tailored to each patient's condition.
 - **High Success Rates**: With **10,000+ procedures** successfully completed, our patients benefit from the highest level of surgical expertise and care.
 - **Personalized Treatment Plans**: Each patient's condition is unique, and we tailor treatment plans to best meet individual needs, ensuring the best outcomes.
 
 ## Our Surgical Team in Amravati
 
-General surgery and laparoscopic procedures at Shubham Hospitals, Amravati are led by [Dr. Murlidhar Boob](/dr-murlidhar/) (MS Surgery, FAIS, DLS, FMAS) — a pioneer of minimally invasive surgery in Vidarbha with 30+ years of experience and 10,000+ successful laparoscopic procedures.
+Our experienced surgical team at Shubham Hospitals, Amravati are pioneers of minimally invasive surgery in Vidarbha, with 30+ years of experience and 10,000+ successful laparoscopic procedures. You can read each doctor's profile on the [Doctors page](/doctors/).
 
 Read our guide on [laparoscopy vs open surgery](/laparoscopy-vs-open-surgery-why-minimally-invasive-surgery-is-changing-healthcare-in-vidarbha/) to understand your options. 📞 **+91-8668954915**

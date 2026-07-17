@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomeBody from '../../components/HomeBody.astro';
+import { SITE } from '../../consts';
+import { homeStrings } from '../../i18n/home';
+const lang = 'mr';
+const s = homeStrings[lang];
+---
+<BaseLayout title={s.title} description={s.description} ogTitle={s.ogTitle} ogDescription={s.ogDescription} preloadImage={SITE.heroImage} lang={lang}>
+  <HomeBody lang={lang} />
+</BaseLayout>

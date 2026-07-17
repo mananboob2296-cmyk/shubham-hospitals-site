@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SITE } from '../../consts';
+import { aboutContent } from '../../i18n/pages';
+const lang = 'hi';
+const a = aboutContent[lang];
+const stats = ['20,000+', '25,000+', '30+', '1,000+'];
+---
+<BaseLayout title={a.title} description={a.description} lang={lang}>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">{a.eyebrow}</span>
+      <h1>{a.h1}</h1>
+      <p>{a.heroLead}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container prose">
+      <p>{a.p1}</p>
+      <h2>{a.historyH2}</h2>
+      <p>{a.hist1}</p>
+      <p><a href={SITE.youtubeHospital} target="_blank" rel="noopener">{a.followYt}</a></p>
+    </div>
+  </section>
+  <section class="section soft">
+    <div class="container">
+      <div class="stats">
+        {stats.map((n, i) => (<div class="stat"><div class="num">{n}</div><div class="label">{a.statLabels[i]}</div></div>))}
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2>{a.vmH2}</h2>
+      <div class="grid cols-2">
+        <div class="card"><h3>{a.visionH3}</h3><p>{a.visionP}</p></div>
+        <div class="card"><h3>{a.missionH3}</h3><p>{a.missionP}</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="section soft">
+    <div class="container prose">
+      <h2>{a.expH2}</h2>
+      <p>{a.expP}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2>{a.whyH2}</h2>
+      <p class="prose">{a.whyLead}</p>
+      <div class="grid cols-3">
+        {a.whyCards.map((c) => (<div class="card"><h3>{c.h}</h3><p>{c.p}</p></div>))}
+      </div>
+      <p style="margin-top:26px"><strong>{a.founder}</strong></p>
+    </div>
+  </section>
+  <CtaBand heading={a.ctaHeading} text={a.ctaText} />
+</BaseLayout>

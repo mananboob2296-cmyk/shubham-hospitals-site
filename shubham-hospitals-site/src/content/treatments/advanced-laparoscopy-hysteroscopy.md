@@ -19,7 +19,7 @@ faqs:
 
 ## 3D Laparoscopy
 
-Shubham Hospitals is home to the district's most advanced 3D laparoscopy system. Unlike conventional 2D laparoscopy, 3D visualisation gives our surgeons true depth perception — meaning greater precision, shorter operating times, less blood loss and faster recovery. Led by Dr. Manan Boob (MS ObGyn – Gold Medalist, DNB, F.MAS), our team performs advanced 3D laparo-hysteroscopic procedures for fibroids, endometriosis, ovarian cysts and complex hysterectomies.
+Shubham Hospitals is home to the district's most advanced 3D laparoscopy system. Unlike conventional 2D laparoscopy, 3D visualisation gives our surgeons true depth perception — meaning greater precision, shorter operating times, less blood loss and faster recovery. Our experienced surgical team performs advanced 3D laparo-hysteroscopic procedures for fibroids, endometriosis, ovarian cysts and complex hysterectomies with precision and care.
 
 At Shubham Hospital, we take pride in being one of the leading centers for advanced laparoscopy and hysteroscopy in Amravati. With a track record of over 25,000 successful surgeries, our team has transformed the way surgical care is delivered. These minimally invasive techniques not only ensure faster recovery, less pain, and minimal scarring, but also significantly lower the risk of complications compared to conventional surgeries. Our commitment is to provide patients with world-class care, the latest technology, and a compassionate healing experience—helping them return to their daily lives with confidence and comfort.
 

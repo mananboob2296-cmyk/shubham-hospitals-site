@@ -1,0 +1,41 @@
+---
+import { languages, type Lang } from '../i18n/ui';
+import { getLangFromUrl, localizePath, stripLangPrefix } from '../i18n/utils';
+import { translatedPaths } from '../i18n/translations';
+
+const { altPaths } = Astro.props as { altPaths?: Partial<Record<Lang, string>> };
+const lang = getLangFromUrl(Astro.url);
+const path = Astro.url.pathname;
+const base = stripLangPrefix(path);
+const codes = Object.keys(languages) as Lang[];
+const sets = { hi: await translatedPaths('hi'), mr: await translatedPaths('mr') };
+
+// If the current page isn't translated in a target language, send the user to
+// that language's homepage instead of a dead URL.
+function hrefFor(code: Lang): string {
+  if (altPaths) return altPaths[code] ?? (code === 'en' ? '/' : `/${code}/`);
+  if (code === 'en' || sets[code].has(base)) return localizePath(path, code);
+  return code === 'en' ? '/' : `/${code}/`;
+}
+---
+<details class="lang-switch">
+  <summary aria-label="Change language">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg>
+    <span>{languages[lang]}</span>
+  </summary>
+  <ul>
+    {codes.map((code) => (
+      <li>
+        <a href={hrefFor(code)} hreflang={code} data-lang={code} aria-current={code === lang ? 'true' : undefined}>{languages[code]}</a>
+      </li>
+    ))}
+  </ul>
+</details>
+
+<script>
+  document.querySelectorAll('.lang-switch a[data-lang]').forEach((a) => {
+    a.addEventListener('click', () => {
+      document.cookie = `lang=${a.getAttribute('data-lang')}; path=/; max-age=31536000; samesite=lax`;
+    });
+  });
+</script>

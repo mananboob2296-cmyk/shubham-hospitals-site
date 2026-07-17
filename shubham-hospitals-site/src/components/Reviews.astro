@@ -1,11 +1,14 @@
 ---
 import { SITE } from '../consts';
 import reviews from '../data/reviews.json';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 <section class="section soft">
   <div class="container">
-    <span class="badge">Patient Voices</span>
-    <h2>What our patients say</h2>
+    <span class="badge">{t('reviews.badge')}</span>
+    <h2>{t('reviews.h2')}</h2>
     <div class="reviews-grid">
       {reviews.map((r) => (
         <div class="review-card">
@@ -20,6 +23,6 @@ import reviews from '../data/reviews.json';
         </div>
       ))}
     </div>
-    <p class="reviews-link"><a href={SITE.google} target="_blank" rel="noopener">See all reviews on Google →</a></p>
+    <p class="reviews-link"><a href={SITE.google} target="_blank" rel="noopener">{t('reviews.seeAll')}</a></p>
   </div>
 </section>
