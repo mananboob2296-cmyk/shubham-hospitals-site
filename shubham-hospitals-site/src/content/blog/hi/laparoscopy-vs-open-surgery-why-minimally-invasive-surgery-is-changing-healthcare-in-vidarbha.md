@@ -1,49 +1,49 @@
 ---
-title: "Laparoscopy vs Open Surgery: Why Minimally Invasive Surgery Is Changing Healthcare in Vidarbha"
+title: "लेप्रोस्कोपी बनाम ओपन सर्जरी: क्यों मिनिमली इनवेसिव सर्जरी विदर्भ में स्वास्थ्य सेवा को बदल रही है"
 date: 2026-06-10
 author: "Dr Murlidhar Boob"
-excerpt: "Laparoscopy vs open surgery — pain, recovery, cost and safety compared. Why 25,000+ patients chose minimally invasive surgery at Shubham Hospitals, Amravati."
-lang: en
+excerpt: "लैप्रोस्कोपी बनाम ओपन सर्जरी - दर्द, रिकवरी, लागत और सुरक्षा की तुलना। क्यों 25,000 से अधिक रोगियों ने शुभम हॉस्पिटल्स, अमरावती में न्यूनतम इनवेसिव सर्जरी को चुना।"
+lang: hi
 faqs:
-  - q: "Is every surgery suitable for the laparoscopic approach?"
-    a: "Most, but not all. Some complex or emergency situations are safer as open surgery. Your surgeon will advise the best and safest option for your specific case."
-  - q: "Will I have visible scars after laparoscopy?"
-    a: "Only a few small marks, usually under 1 cm, which fade significantly over time — far less than a single long open-surgery scar."
-  - q: "How soon can I return to work after laparoscopic surgery?"
-    a: "Many patients resume light or desk work within about a week, depending on the procedure and their recovery. Hospital stay is often just 1–2 days."
-  - q: "Is laparoscopy safe for gynecological conditions and fertility?"
-    a: "Yes — it is often preferred for fibroids, cysts and endometriosis precisely because it minimises tissue damage and adhesions, which helps protect fertility."
+  - q: "क्या प्रत्येक सर्जरी लैप्रोस्कोपिक दृष्टिकोण के लिए उपयुक्त है?"
+    a: "अधिकांश, लेकिन सभी नहीं। कुछ जटिल या आपातकालीन स्थितियाँ ओपन सर्जरी की तरह अधिक सुरक्षित होती हैं। आपका सर्जन आपके विशिष्ट मामले के लिए सर्वोत्तम और सुरक्षित विकल्प की सलाह देगा।"
+  - q: "क्या लैप्रोस्कोपी के बाद मुझे निशान दिखाई देंगे?"
+    a: "केवल कुछ छोटे निशान, आमतौर पर 1 सेमी से कम, जो समय के साथ काफी हद तक कम हो जाते हैं - एक लंबी खुली सर्जरी के निशान से बहुत कम।"
+  - q: "लैप्रोस्कोपिक सर्जरी के बाद मैं कितनी जल्दी काम पर लौट सकता हूँ?"
+    a: "प्रक्रिया और उनके ठीक होने के आधार पर, कई मरीज़ लगभग एक सप्ताह के भीतर हल्का या डेस्क काम फिर से शुरू कर देते हैं। अस्पताल में रहना अक्सर 1-2 दिन का होता है।"
+  - q: "क्या लैप्रोस्कोपी स्त्री रोग संबंधी स्थितियों और प्रजनन क्षमता के लिए सुरक्षित है?"
+    a: "हां - इसे अक्सर फाइब्रॉएड, सिस्ट और एंडोमेट्रियोसिस के लिए प्राथमिकता दी जाती है क्योंकि यह ऊतक क्षति और आसंजन को कम करता है, जो प्रजनन क्षमता की रक्षा करने में मदद करता है।"
 ---
 
-<p><em>Medically reviewed by <a href="/dr-murlidhar/">Dr. Murlidhar Boob</a> — MS, FAIS, DLS, FMAS, Laparoscopic Surgeon &amp; Surgical Gastroenterologist, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
+<p><em>द्वारा चिकित्सकीय समीक्षा की गई <a href="/dr-murlidhar/">डॉ. मुरलीधर बूब</a> - एमएस, एफएआईएस, डीएलएस, एफएमएएस, लेप्रोस्कोपिक सर्जन और सर्जिकल गैस्ट्रोएंटेरोलॉजिस्ट, शुभम हाई-टेक हॉस्पिटल और टेस्ट ट्यूब बेबी सेंटर, अमरावती।</em></p>
 
-<p>If you have been advised surgery for fibroids, ovarian cysts, gallbladder stones, hernia or endometriosis, you may have a choice between traditional open surgery and laparoscopy (keyhole surgery). Understanding the difference helps you make a confident, informed decision about your own care.</p>
+<p>यदि आपको फाइब्रॉएड, डिम्बग्रंथि अल्सर, पित्ताशय की पथरी, हर्निया या एंडोमेट्रियोसिस के लिए सर्जरी की सलाह दी गई है, तो आपके पास पारंपरिक ओपन सर्जरी और लैप्रोस्कोपी (कीहोल सर्जरी) के बीच विकल्प हो सकता है। अंतर को समझने से आपको अपनी देखभाल के बारे में एक आश्वस्त, सूचित निर्णय लेने में मदद मिलती है।</p>
 
-<h2>What is laparoscopic surgery?</h2>
-<p>Laparoscopy is performed through a few tiny incisions of about 0.5–1 cm. The surgeon inserts a high-definition camera (a laparoscope) and slim instruments, and operates while viewing a magnified image on a screen. This magnification allows greater precision than the naked eye, while the small cuts mean far less disruption to the body than a large open incision.</p>
+<h2>लेप्रोस्कोपिक सर्जरी क्या है?</h2>
+<p>लैप्रोस्कोपी लगभग 0.5-1 सेमी के कुछ छोटे चीरों के माध्यम से की जाती है। सर्जन एक हाई-डेफिनेशन कैमरा (एक लैप्रोस्कोप) और पतले उपकरण डालता है, और स्क्रीन पर एक आवर्धित छवि देखते हुए ऑपरेशन करता है। यह आवर्धन नग्न आंखों की तुलना में अधिक सटीकता की अनुमति देता है, जबकि छोटे कट का मतलब बड़े खुले चीरे की तुलना में शरीर में बहुत कम व्यवधान होता है।</p>
 
-<h2>Laparoscopy vs open surgery: the key differences</h2>
+<h2>लैप्रोस्कोपी बनाम ओपन सर्जरी: मुख्य अंतर</h2>
 <ul>
-<li><strong>Incision size:</strong> a few keyhole cuts instead of one large abdominal incision</li>
-<li><strong>Pain:</strong> significantly less post-operative pain and a lower need for painkillers</li>
-<li><strong>Hospital stay:</strong> often just 1–2 days instead of 5–7 days</li>
-<li><strong>Recovery:</strong> most patients return to normal activity within 1–2 weeks</li>
-<li><strong>Scarring and infection:</strong> minimal scarring and a lower risk of wound infection</li>
-<li><strong>Blood loss:</strong> generally less bleeding during the procedure</li>
-<li><strong>Fertility:</strong> for gynecological conditions, laparoscopy often preserves fertility better by minimising tissue damage and adhesions</li>
+<li><strong>चीरा का आकार:</strong> एक बड़े पेट के चीरे के बजाय कुछ कीहोल कट</li>
+<li><strong>दर्द:</strong> ऑपरेशन के बाद काफी कम दर्द होता है और दर्द निवारक दवाओं की कम आवश्यकता होती है</li>
+<li><strong>अस्पताल में ठहराव:</strong> अक्सर 5-7 दिनों के बजाय केवल 1-2 दिन</li>
+<li><strong>वसूली:</strong> अधिकांश मरीज़ 1-2 सप्ताह के भीतर सामान्य गतिविधि पर लौट आते हैं</li>
+<li><strong>घाव और संक्रमण:</strong> न्यूनतम घाव और घाव के संक्रमण का कम जोखिम</li>
+<li><strong>खून की कमी:</strong> प्रक्रिया के दौरान आमतौर पर कम रक्तस्राव होता है</li>
+<li><strong>प्रजनन क्षमता:</strong> स्त्री रोग संबंधी स्थितियों के लिए, लैप्रोस्कोपी अक्सर ऊतक क्षति और आसंजन को कम करके प्रजनन क्षमता को बेहतर बनाए रखती है</li>
 </ul>
 
-<h2>Conditions treated with keyhole surgery</h2>
-<p><strong>In women's health:</strong> fibroids (laparoscopic myomectomy), ovarian cysts, endometriosis, ectopic pregnancy and hysterectomy when needed. <strong>Hysteroscopy</strong> — a camera passed through the cervix with no external cuts at all — treats polyps, a uterine septum and some causes of infertility.</p>
-<p><strong>In general and GI surgery:</strong> gallbladder stones (laparoscopic cholecystectomy), appendicitis, hernia repair and several other abdominal conditions are now routinely done laparoscopically. Learn more about <a href="/treatments/advanced-laparoscopy-hysteroscopy/">advanced laparoscopy &amp; hysteroscopy</a> and <a href="/treatments/general-surgery-gastroenterology/">general &amp; GI surgery</a> at Shubham Hospitals.</p>
+<h2>कीहोल सर्जरी से स्थितियों का इलाज किया गया</h2>
+<p><strong>महिलाओं के स्वास्थ्य में:</strong> आवश्यकता पड़ने पर फाइब्रॉएड (लैप्रोस्कोपिक मायोमेक्टॉमी), डिम्बग्रंथि सिस्ट, एंडोमेट्रियोसिस, एक्टोपिक गर्भावस्था और हिस्टेरेक्टॉमी। <strong>गर्भाशयदर्शन</strong> - एक कैमरा बिना किसी बाहरी कट के गर्भाशय ग्रीवा से होकर गुजरा - पॉलीप्स, गर्भाशय सेप्टम और बांझपन के कुछ कारणों का इलाज करता है।</p>
+<p><strong>सामान्य तौर पर और जीआई सर्जरी:</strong> पित्ताशय की पथरी (लैप्रोस्कोपिक कोलेसिस्टेक्टोमी), एपेंडिसाइटिस, हर्निया की मरम्मत और पेट की कई अन्य स्थितियों का इलाज अब नियमित रूप से लैप्रोस्कोपिक तरीके से किया जाता है। बारे में और सीखो <a href="/treatments/advanced-laparoscopy-hysteroscopy/">उन्नत लैप्रोस्कोपी और हिस्टेरोस्कोपी</a> और <a href="/treatments/general-surgery-gastroenterology/">सामान्य एवं जीआई सर्जरी</a> शुभम् हॉस्पिटल में.</p>
 
-<h2>What recovery is really like</h2>
-<p>Because the incisions are small, most patients are walking within hours and home within a day or two. Mild shoulder-tip discomfort from the gas used during surgery settles quickly. Stitches are minimal, scars fade to tiny marks, and the majority of people are back to desk work within a week and to fuller activity within two to three weeks — far quicker than the six weeks often needed after open surgery.</p>
+<h2>पुनर्प्राप्ति वास्तव में कैसी होती है</h2>
+<p>चूँकि चीरे छोटे होते हैं, अधिकांश मरीज़ कुछ ही घंटों में चल कर एक या दो दिन में घर चले जाते हैं। सर्जरी के दौरान उपयोग की जाने वाली गैस से कंधे की नोक तक की हल्की असुविधा जल्दी ही ठीक हो जाती है। टांके न्यूनतम होते हैं, घाव छोटे-छोटे निशानों में बदल जाते हैं, और अधिकांश लोग एक सप्ताह के भीतर डेस्क पर काम पर वापस आ जाते हैं और दो से तीन सप्ताह के भीतर पूर्ण गतिविधि में लौट आते हैं - ओपन सर्जरी के बाद अक्सर आवश्यक छह सप्ताह की तुलना में बहुत जल्दी।</p>
 
-<h2>Is laparoscopy safe? Does it cost more?</h2>
-<p>In experienced hands, laparoscopy is as safe as — and often safer than — open surgery, with fewer wound complications. While the procedure itself may cost slightly more due to the technology involved, the shorter hospital stay, fewer complications and faster return to work usually make the overall cost comparable or even lower. The most important factor is the experience of your surgical team.</p>
+<h2>क्या लैप्रोस्कोपी सुरक्षित है? क्या इसकी लागत अधिक है?</h2>
+<p>अनुभवी हाथों में, लैप्रोस्कोपी उतनी ही सुरक्षित है - और अक्सर ओपन सर्जरी की तुलना में अधिक सुरक्षित होती है, जिसमें घाव की जटिलताएं कम होती हैं। हालाँकि इसमें शामिल तकनीक के कारण प्रक्रिया में थोड़ी अधिक लागत आ सकती है, अस्पताल में कम समय तक रहना, कम जटिलताएँ और काम पर तेजी से वापसी आमतौर पर कुल लागत को तुलनीय या उससे भी कम कर देती है। सबसे महत्वपूर्ण कारक आपकी सर्जिकल टीम का अनुभव है।</p>
 
-<h2>25,000+ successful surgeries in Amravati</h2>
-<p>Shubham Hi-Tech Hospital is one of Vidarbha's pioneering centres for minimally invasive surgery, with over 25,000 successful procedures. <a href="/dr-murlidhar/">Dr. Murlidhar Boob</a> (MS, FAIS, DLS, FMAS), a pioneer of laparoscopic and GI surgery in the region with more than 10,000 procedures, and <a href="/dr-manan/">Dr. Manan Boob</a> (MS ObGyn – Gold Medalist, DNB), an advanced laparo-hysteroscopic surgeon, are part of an experienced surgical team serving patients from Amravati, Akola, Yavatmal and across Vidarbha. You can <a href="/doctors/">meet our full team of specialists here</a>.</p>
+<h2>अमरावती में 25,000 से अधिक सफल सर्जरी</h2>
+<p>25,000 से अधिक सफल प्रक्रियाओं के साथ, शुभम हाई-टेक अस्पताल न्यूनतम इनवेसिव सर्जरी के लिए विदर्भ के अग्रणी केंद्रों में से एक है। <a href="/dr-murlidhar/">डॉ. मुरलीधर बूब</a> (एमएस, एफएआईएस, डीएलएस, एफएमएएस), 10,000 से अधिक प्रक्रियाओं के साथ क्षेत्र में लेप्रोस्कोपिक और जीआई सर्जरी के अग्रणी, और <a href="/dr-manan/">डॉ मनन बूब</a> (एमएस ओबगिन - गोल्ड मेडलिस्ट, डीएनबी), एक उन्नत लेप्रो-हिस्टेरोस्कोपिक सर्जन, अमरावती, अकोला, यवतमाल और पूरे विदर्भ के मरीजों की सेवा करने वाली हमारी टीम का हिस्सा हैं। तुम कर सकते हो <a href="/doctors/">यहां हमारे विशेषज्ञों की पूरी टीम से मिलें</a>.</p>
 
-<p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
+<p><em>अस्वीकरण: यह लेख केवल सामान्य जानकारी के लिए है और पेशेवर चिकित्सा सलाह का विकल्प नहीं है। कृपया अपनी स्थिति के अनुसार मार्गदर्शन के लिए किसी योग्य चिकित्सक से परामर्श लें।</em></p>

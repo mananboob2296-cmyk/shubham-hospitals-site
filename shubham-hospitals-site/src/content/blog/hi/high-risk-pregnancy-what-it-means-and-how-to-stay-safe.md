@@ -1,52 +1,52 @@
 ---
-title: "High-Risk Pregnancy: What It Means and How to Stay Safe"
+title: "उच्च जोखिम वाली गर्भावस्था: इसका क्या मतलब है और कैसे सुरक्षित रहें"
 date: 2026-06-10
 author: "Dr Darshana Ajmera"
-excerpt: "What makes a pregnancy high-risk, the warning signs to watch for, and how Shubham Hospitals Amravati manages high-risk pregnancies with 20,000+ safe deliveries."
-lang: en
+excerpt: "क्या गर्भावस्था को उच्च जोखिम वाला बनाता है, चेतावनी के संकेतों पर ध्यान देना चाहिए और कैसे शुभम हॉस्पिटल्स अमरावती 20,000 से अधिक सुरक्षित प्रसव के साथ उच्च जोखिम वाली गर्भावस्थाओं का प्रबंधन करता है।"
+lang: hi
 faqs:
-  - q: "Does a high-risk pregnancy always mean a caesarean?"
-    a: "No. Many women with a high-risk pregnancy have a safe normal delivery. The decision depends on your condition, the baby's position and wellbeing, and is made closer to your due date."
-  - q: "How often will I need check-ups in a high-risk pregnancy?"
-    a: "More often than a routine pregnancy — sometimes every two weeks and then weekly near the end — so any change can be caught early."
-  - q: "Can I have a healthy baby if I am over 35?"
-    a: "Yes. Age alone is just one factor. With appropriate screening and monitoring, most women over 35 have healthy pregnancies and babies."
-  - q: "Is bed rest necessary in a high-risk pregnancy?"
-    a: "Not usually. Strict bed rest is rarely advised today; your doctor will guide you on activity based on your specific situation."
+  - q: "क्या उच्च जोखिम वाली गर्भावस्था का मतलब हमेशा सिजेरियन ही होता है?"
+    a: "नहीं, उच्च जोखिम वाली गर्भावस्था वाली कई महिलाओं की सुरक्षित सामान्य डिलीवरी होती है। निर्णय आपकी स्थिति, शिशु की स्थिति और भलाई पर निर्भर करता है, और आपकी नियत तारीख के करीब लिया जाता है।"
+  - q: "उच्च जोखिम वाली गर्भावस्था में मुझे कितनी बार जांच की आवश्यकता होगी?"
+    a: "नियमित गर्भावस्था की तुलना में अधिक बार - कभी-कभी हर दो सप्ताह में और फिर अंत के करीब साप्ताहिक - ताकि किसी भी बदलाव को जल्दी पकड़ा जा सके।"
+  - q: "अगर मेरी उम्र 35 से अधिक है तो क्या मैं स्वस्थ बच्चा पैदा कर सकती हूँ?"
+    a: "हाँ। केवल उम्र ही एक कारक है। उचित जांच और निगरानी के साथ, 35 वर्ष से अधिक उम्र की अधिकांश महिलाओं की गर्भावस्था और बच्चे स्वस्थ होते हैं।"
+  - q: "क्या उच्च जोखिम वाली गर्भावस्था में बिस्तर पर आराम आवश्यक है?"
+    a: "आम तौर पर नहीं। आज सख्त बिस्तर पर आराम की सलाह शायद ही कभी दी जाती है; आपका डॉक्टर आपकी विशिष्ट स्थिति के आधार पर गतिविधि पर आपका मार्गदर्शन करेगा।"
 ---
 
-<p><em>Medically reviewed by <a href="/dr-darshana/">Dr. Darshana Ajmera</a> — MBBS (Nair, Mumbai), MS ObGyn (Honors), Obstetrician, Gynecologist &amp; Fetal Medicine Specialist, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
+<p><em>द्वारा चिकित्सकीय समीक्षा की गई <a href="/dr-darshana/">डॉ दर्शना अजमेरा</a> - एमबीबीएस (नायर, मुंबई), एमएस ऑब्गिन (ऑनर्स), प्रसूति रोग विशेषज्ञ, स्त्री रोग विशेषज्ञ और भ्रूण चिकित्सा विशेषज्ञ, शुभम हाई-टेक अस्पताल और टेस्ट ट्यूब बेबी सेंटर, अमरावती।</em></p>
 
-<p>Hearing the words "high-risk pregnancy" can be frightening — but it is important to understand that the label does not mean something will go wrong. It simply means you need closer monitoring. With the right antenatal care, the vast majority of high-risk pregnancies end with a healthy mother and a healthy baby. Here is what every expecting family in Amravati and the Vidarbha region should know.</p>
+<p>"उच्च जोखिम वाली गर्भावस्था" शब्द सुनना भयावह हो सकता है - लेकिन यह समझना महत्वपूर्ण है कि लेबल का मतलब यह नहीं है कि कुछ गलत हो जाएगा। इसका सीधा सा मतलब है कि आपको नज़दीकी निगरानी की ज़रूरत है। उचित प्रसवपूर्व देखभाल के साथ, उच्च जोखिम वाली अधिकांश गर्भावस्थाएँ एक स्वस्थ माँ और एक स्वस्थ बच्चे के साथ समाप्त होती हैं। यह वह है जो अमरावती और विदर्भ क्षेत्र के प्रत्येक अपेक्षित परिवार को जानना चाहिए।</p>
 
-<h2>What makes a pregnancy high-risk?</h2>
-<p>A pregnancy is considered high-risk when the mother, the baby, or both face a higher-than-normal chance of complications. The most common reasons include:</p>
+<h2>क्या गर्भावस्था को उच्च जोखिम वाला बनाता है?</h2>
+<p>गर्भावस्था को उच्च जोखिम वाला माना जाता है जब मां, बच्चे या दोनों को जटिलताओं की सामान्य से अधिक संभावना का सामना करना पड़ता है। सबसे आम कारणों में शामिल हैं:</p>
 <ul>
-<li>Maternal age under 18 or over 35</li>
-<li>High blood pressure, diabetes (including gestational diabetes) or thyroid disorders</li>
-<li>Twin or multiple pregnancy</li>
-<li>A previous miscarriage, preterm birth or caesarean delivery</li>
-<li>Placenta previa or other placental problems</li>
-<li>Pregnancy conceived through IVF or other fertility treatment</li>
-<li>Obesity, significant anaemia, or a known heart, kidney or autoimmune condition</li>
+<li>मातृ आयु 18 से कम या 35 से अधिक</li>
+<li>उच्च रक्तचाप, मधुमेह (गर्भकालीन मधुमेह सहित) या थायरॉयड विकार</li>
+<li>जुड़वां या एकाधिक गर्भावस्था</li>
+<li>पिछला गर्भपात, समय से पहले जन्म या सिजेरियन डिलीवरी</li>
+<li>प्लेसेंटा प्रीविया या अन्य प्लेसेंटल समस्याएं</li>
+<li>आईवीएफ या अन्य प्रजनन उपचार के माध्यम से गर्भधारण किया गया</li>
+<li>मोटापा, महत्वपूर्ण रक्ताल्पता, या ज्ञात हृदय, गुर्दे या स्वप्रतिरक्षी स्थिति</li>
 </ul>
 
-<h2>Common conditions explained</h2>
-<p><strong>High blood pressure and pre-eclampsia:</strong> Raised blood pressure in pregnancy needs careful control, as it can affect the baby's growth and, if it progresses to pre-eclampsia, the mother's health. Regular blood pressure checks and urine tests catch it early.</p>
-<p><strong>Gestational diabetes:</strong> Some women develop high blood sugar only during pregnancy. With diet, monitoring and sometimes medication, it is very manageable and usually resolves after delivery.</p>
-<p><strong>Thyroid and anaemia:</strong> Under-active or over-active thyroid and low haemoglobin are common in our region and are easily corrected once identified, protecting both mother and baby.</p>
-<p><strong>Twins and pregnancy after IVF:</strong> Multiple pregnancies and post-IVF pregnancies are watched more closely for growth and timing of delivery, but with planning they very often go well.</p>
+<h2>सामान्य स्थितियों की व्याख्या की गई</h2>
+<p><strong>उच्च रक्तचाप और प्री-एक्लेमप्सिया:</strong> गर्भावस्था में बढ़े हुए रक्तचाप पर सावधानीपूर्वक नियंत्रण की आवश्यकता होती है, क्योंकि यह बच्चे के विकास को प्रभावित कर सकता है और, यदि यह प्री-एक्लेमप्सिया तक बढ़ जाता है, तो माँ के स्वास्थ्य पर भी असर पड़ सकता है। नियमित रक्तचाप जांच और मूत्र परीक्षण इसे जल्दी पकड़ लेते हैं।</p>
+<p><strong>गर्भावस्थाजन्य मधुमेह:</strong> कुछ महिलाओं में गर्भावस्था के दौरान ही उच्च रक्त शर्करा विकसित हो जाती है। आहार, निगरानी और कभी-कभी दवा के साथ, यह बहुत प्रबंधनीय है और आमतौर पर प्रसव के बाद ठीक हो जाता है।</p>
+<p><strong>थायराइड और एनीमिया:</strong> कम सक्रिय या अधिक सक्रिय थायराइड और कम हीमोग्लोबिन हमारे क्षेत्र में आम हैं और पहचान होने पर इन्हें आसानी से ठीक किया जा सकता है, जिससे माँ और बच्चे दोनों की सुरक्षा होती है।</p>
+<p><strong>आईवीएफ के बाद जुड़वाँ बच्चे और गर्भावस्था:</strong> एकाधिक गर्भधारण और आईवीएफ के बाद के गर्भधारण को विकास और प्रसव के समय के लिए अधिक बारीकी से देखा जाता है, लेकिन योजना के साथ वे अक्सर अच्छी तरह से चलते हैं।</p>
 
-<h2>Warning signs you should never ignore</h2>
-<p>Contact your obstetrician immediately if you experience any of the following: vaginal bleeding, severe or persistent headaches, blurred vision, sudden swelling of the face or hands, reduced or absent baby movements, severe abdominal pain, high fever, or fluid leakage before 37 weeks. In an emergency, our labour and emergency team is available 24x7 at +91-8668954915.</p>
+<h2>चेतावनी के संकेत जिन्हें आपको कभी भी नज़रअंदाज़ नहीं करना चाहिए</h2>
+<p>यदि आपको निम्नलिखित में से कोई भी अनुभव हो तो तुरंत अपने प्रसूति विशेषज्ञ से संपर्क करें: योनि से रक्तस्राव, गंभीर या लगातार सिरदर्द, धुंधली दृष्टि, चेहरे या हाथों की अचानक सूजन, बच्चे की हलचल कम या अनुपस्थित, गंभीर पेट दर्द, तेज बुखार, या 37 सप्ताह से पहले तरल पदार्थ का रिसाव। किसी आपात स्थिति में, हमारी श्रम और आपातकालीन टीम +91-8668954915 पर 24x7 उपलब्ध है।</p>
 
-<h2>How a high-risk pregnancy is monitored and managed</h2>
-<p>Modern high-risk obstetrics is built on closer monitoring rather than fear. Depending on your situation, your care may include more frequent antenatal visits, targeted blood tests, blood pressure and blood sugar control, and regular <a href="/treatments/ultrasound-imaging/">3D/4D ultrasound and color Doppler scans</a> to track the baby's growth and blood flow. Non-stress tests (NST) check the baby's wellbeing in later weeks. Crucially, the timing and mode of delivery are planned in advance, with an operation theatre and newborn care available round the clock.</p>
+<h2>उच्च जोखिम वाली गर्भावस्था की निगरानी और प्रबंधन कैसे किया जाता है</h2>
+<p>आधुनिक उच्च जोखिम वाली प्रसूति विज्ञान डर के बजाय नज़दीकी निगरानी पर आधारित है। आपकी स्थिति के आधार पर, आपकी देखभाल में अधिक बार प्रसवपूर्व दौरे, लक्षित रक्त परीक्षण, रक्तचाप और रक्त शर्करा नियंत्रण और नियमित शामिल हो सकते हैं। <a href="/treatments/ultrasound-imaging/">3डी/4डी अल्ट्रासाउंड और कलर डॉपलर स्कैन</a> बच्चे के विकास और रक्त प्रवाह को ट्रैक करने के लिए। गैर-तनाव परीक्षण (एनएसटी) बाद के हफ्तों में बच्चे की भलाई की जांच करते हैं। महत्वपूर्ण बात यह है कि प्रसव के समय और तरीके की योजना पहले से बनाई जाती है, जिसमें ऑपरेशन थिएटर और नवजात शिशु की देखभाल चौबीसों घंटे उपलब्ध होती है।</p>
 
-<h2>What you can do to stay safe</h2>
-<p>Attend every scheduled antenatal visit, take your prescribed folic acid, iron and calcium, eat a balanced diet, stay gently active unless advised otherwise, avoid smoking and alcohol, and report any warning sign promptly. Keeping your blood pressure and sugar in range, and your stress low, makes a real difference.</p>
+<h2>सुरक्षित रहने के लिए आप क्या कर सकते हैं</h2>
+<p>प्रत्येक निर्धारित प्रसवपूर्व जांच में भाग लें, अपना निर्धारित फोलिक एसिड, आयरन और कैल्शियम लें, संतुलित आहार लें, जब तक सलाह न दी जाए तब तक धीरे-धीरे सक्रिय रहें, धूम्रपान और शराब से बचें और किसी भी चेतावनी संकेत के बारे में तुरंत बताएं। अपने रक्तचाप और शुगर को एक सीमा में रखने और अपने तनाव को कम रखने से वास्तव में फर्क पड़ता है।</p>
 
-<h2>High-risk pregnancy care at Shubham Hospitals, Amravati</h2>
-<p>With more than 20,000 safe deliveries since 1995, the <a href="/treatments/obstetrics-gynecology/">Obstetrics &amp; Gynecology department</a> at Shubham Hi-Tech Hospital is equipped to manage complicated pregnancies — from gestational diabetes and hypertension to twins and post-IVF pregnancies. Our obstetric team, including <a href="/dr-darshana/">Dr. Darshana Ajmera</a> (Obstetrician &amp; Fetal Medicine Specialist), provides personalised birth plans, advanced fetal monitoring and 24x7 emergency support for families across Amravati and Vidarbha. You can <a href="/doctors/">meet our full team of specialists here</a>.</p>
+<h2>शुभम हॉस्पिटल, अमरावती में उच्च जोखिम वाली गर्भावस्था देखभाल</h2>
+<p>1995 से अब तक 20,000 से अधिक सुरक्षित प्रसव के साथ <a href="/treatments/obstetrics-gynecology/">प्रसूति एवं स्त्री रोग विभाग</a> शुभम हाई-टेक अस्पताल जटिल गर्भधारण के प्रबंधन के लिए सुसज्जित है - गर्भकालीन मधुमेह और उच्च रक्तचाप से लेकर जुड़वा बच्चों और आईवीएफ के बाद के गर्भधारण तक। हमारी प्रसूति टीम सहित <a href="/dr-darshana/">डॉ दर्शना अजमेरा</a> (प्रसूति एवं भ्रूण चिकित्सा विशेषज्ञ), अमरावती और विदर्भ में परिवारों के लिए व्यक्तिगत जन्म योजना, उन्नत भ्रूण निगरानी और 24x7 आपातकालीन सहायता प्रदान करता है। तुम कर सकते हो <a href="/doctors/">यहां हमारे विशेषज्ञों की पूरी टीम से मिलें</a>.</p>
 
-<p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
+<p><em>अस्वीकरण: यह लेख केवल सामान्य जानकारी के लिए है और पेशेवर चिकित्सा सलाह का विकल्प नहीं है। कृपया अपनी स्थिति के अनुसार मार्गदर्शन के लिए किसी योग्य चिकित्सक से परामर्श लें।</em></p>

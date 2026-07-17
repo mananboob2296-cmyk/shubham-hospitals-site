@@ -1,44 +1,44 @@
 ---
-title: "When Should You See a Fertility Specialist? 7 Signs for Couples in Amravati"
+title: "आपको प्रजनन विशेषज्ञ से कब मिलना चाहिए? अमरावती में जोड़ों के लिए 7 संकेत"
 date: 2026-06-10
 author: "Dr Manjushree Boob"
-excerpt: "Trying to conceive? Learn the 7 signs it's time to consult a fertility specialist, and how Shubham Hospitals' IVF centre in Amravati can help."
-lang: en
+excerpt: "गर्भधारण करने की कोशिश? जानें 7 संकेत, अब समय आ गया है कि फर्टिलिटी स्पेशलिस्ट से सलाह लें और अमरावती में शुभम हॉस्पिटल्स का आईवीएफ सेंटर कैसे मदद कर सकता है।"
+lang: hi
 faqs:
-  - q: "How long should we try before seeing a fertility specialist?"
-    a: "Twelve months of regular, unprotected intercourse if the woman is under 35, or six months if she is over 35. See a specialist sooner if you have irregular periods, a known condition like PCOS or endometriosis, or a history of miscarriage."
-  - q: "Is infertility usually the woman's problem?"
-    a: "No. A male factor contributes in roughly 40–50% of cases, which is why both partners should be evaluated together from the start with simple tests like a semen analysis."
-  - q: "Does seeing a fertility specialist mean I need IVF?"
-    a: "Not at all. Many couples conceive with simpler treatments such as ovulation induction or IUI. IVF is recommended only when it is genuinely the right next step for your diagnosis."
+  - q: "किसी प्रजनन विशेषज्ञ से मिलने से पहले हमें कितने समय तक प्रयास करना चाहिए?"
+    a: "यदि महिला 35 से कम है तो बारह महीने नियमित, असुरक्षित संभोग, या 35 से अधिक होने पर छह महीने। यदि आपको अनियमित मासिक धर्म, पीसीओएस या एंडोमेट्रियोसिस जैसी ज्ञात स्थिति, या गर्भपात का इतिहास है, तो जल्द ही किसी विशेषज्ञ से मिलें।"
+  - q: "क्या बांझपन आमतौर पर महिलाओं की समस्या है?"
+    a: "नहीं, लगभग 40-50% मामलों में पुरुष कारक का योगदान होता है, यही कारण है कि वीर्य विश्लेषण जैसे सरल परीक्षणों के साथ शुरू से ही दोनों भागीदारों का एक साथ मूल्यांकन किया जाना चाहिए।"
+  - q: "क्या किसी प्रजनन विशेषज्ञ से मिलने का मतलब यह है कि मुझे आईवीएफ की आवश्यकता है?"
+    a: "बिल्कुल नहीं। कई जोड़े ओव्यूलेशन इंडक्शन या आईयूआई जैसे सरल उपचारों से गर्भधारण करते हैं। आईवीएफ की सिफारिश केवल तभी की जाती है जब यह वास्तव में आपके निदान के लिए सही अगला कदम हो।"
 ---
 
-<p><em>Medically reviewed by <a href="/dr-manjushree/">Dr. Manjushree Boob</a> — MD, DNB, FICMCH, FICOG, Infertility &amp; IVF Consultant, Shubham Hi-Tech Hospital and Test Tube Baby Centre, Amravati.</em></p>
+<p><em>द्वारा चिकित्सकीय समीक्षा की गई <a href="/dr-manjushree/">डॉ. मंजुश्री बूब</a> - एमडी, डीएनबी, एफआईसीएमसीएच, एफआईसीओजी, इनफर्टिलिटी और आईवीएफ सलाहकार, शुभम हाई-टेक हॉस्पिटल और टेस्ट ट्यूब बेबी सेंटर, अमरावती।</em></p>
 
-<p>Trying to conceive can be an emotional journey, and many couples in Amravati and the wider Vidarbha region wait years before seeking help. Knowing when to consult a fertility specialist can save precious time and significantly improve your chances of a successful pregnancy.</p>
+<p>गर्भधारण करने की कोशिश करना एक भावनात्मक यात्रा हो सकती है, और अमरावती और व्यापक विदर्भ क्षेत्र में कई जोड़े मदद मांगने से पहले वर्षों तक इंतजार करते हैं। यह जानने से कि प्रजनन विशेषज्ञ से कब परामर्श लेना है, कीमती समय बचाया जा सकता है और एक सफल गर्भावस्था की संभावना में काफी सुधार हो सकता है।</p>
 
-<h2>1. You've been trying for over a year (or 6 months if you're over 35)</h2>
-<p>Doctors define infertility as the inability to conceive after 12 months of regular, unprotected intercourse. If the woman is over 35, that window shortens to 6 months, because egg quality and quantity decline with age.</p>
+<h2>1. आप एक वर्ष से अधिक समय से प्रयास कर रहे हैं (या यदि आपकी उम्र 35 से अधिक है तो 6 महीने से)</h2>
+<p>डॉक्टर बांझपन को 12 महीने के नियमित, असुरक्षित संभोग के बाद गर्भधारण करने में असमर्थता के रूप में परिभाषित करते हैं। यदि महिला की उम्र 35 से अधिक है, तो वह अवधि घटकर 6 महीने रह जाती है, क्योंकि उम्र के साथ अंडे की गुणवत्ता और मात्रा में गिरावट आती है।</p>
 
-<h2>2. Irregular or absent periods</h2>
-<p>Irregular cycles often signal ovulation problems such as PCOS (polycystic ovary syndrome), one of the most common causes of infertility in Indian women. These conditions are very treatable when diagnosed early.</p>
+<h2>2. अनियमित या अनुपस्थित मासिक धर्म</h2>
+<p>अनियमित चक्र अक्सर पीसीओएस (पॉलीसिस्टिक ओवरी सिंड्रोम) जैसी ओव्यूलेशन समस्याओं का संकेत देते हैं, जो भारतीय महिलाओं में बांझपन के सबसे आम कारणों में से एक है। यदि शीघ्र निदान किया जाए तो इन स्थितियों का उपचार संभव है।</p>
 
-<h2>3. Known conditions like PCOS, endometriosis or fibroids</h2>
-<p>If you have been diagnosed with PCOS, endometriosis, uterine fibroids or thyroid disorders, it is wise to consult a specialist before trying for long on your own. Many of these conditions can be managed with medication or minimally invasive <a href="/treatments/advanced-laparoscopy-hysteroscopy/">laparoscopic surgery</a>.</p>
+<h2>3. पीसीओएस, एंडोमेट्रियोसिस या फाइब्रॉएड जैसी ज्ञात स्थितियाँ</h2>
+<p>यदि आपको पीसीओएस, एंडोमेट्रियोसिस, गर्भाशय फाइब्रॉएड या थायरॉयड विकारों का निदान किया गया है, तो लंबे समय तक अकेले प्रयास करने से पहले किसी विशेषज्ञ से परामर्श करना बुद्धिमानी है। इनमें से कई स्थितियों को दवा या न्यूनतम आक्रामक तरीके से प्रबंधित किया जा सकता है <a href="/treatments/advanced-laparoscopy-hysteroscopy/">लेप्रोस्कोपिक सर्जरी</a>.</p>
 
-<h2>4. Two or more miscarriages</h2>
-<p>Recurrent pregnancy loss deserves a thorough evaluation. Causes can include hormonal imbalances, genetic factors, or structural issues with the uterus — most of which can be identified and treated.</p>
+<h2>4. दो या दो से अधिक गर्भपात</h2>
+<p>बार-बार गर्भावस्था के नुकसान का गहन मूल्यांकन आवश्यक है। कारणों में हार्मोनल असंतुलन, आनुवंशिक कारक या गर्भाशय के साथ संरचनात्मक समस्याएं शामिल हो सकती हैं - जिनमें से अधिकांश की पहचान और इलाज किया जा सकता है।</p>
 
-<h2>5. Male factor concerns</h2>
-<p>Infertility is a couple's issue: in roughly 40–50% of cases, a male factor contributes. A simple semen analysis checks sperm count, motility and morphology. Advanced options such as ICSI, TESE and PESA can help even in severe cases.</p>
+<h2>5. पुरुष कारक संबंधी चिंताएँ</h2>
+<p>बांझपन एक जोड़े का मुद्दा है: लगभग 40-50% मामलों में, पुरुष कारक योगदान देता है। एक साधारण वीर्य विश्लेषण शुक्राणुओं की संख्या, गतिशीलता और आकारिकी की जाँच करता है। ICSI, TESE और PESA जैसे उन्नत विकल्प गंभीर मामलों में भी मदद कर सकते हैं।</p>
 
-<h2>6. Age is a factor</h2>
-<p>If you are a woman over 35 or a man over 45 and planning a family, an early fertility assessment gives you the most options — including fertility preservation through egg, sperm or embryo freezing.</p>
+<h2>6. उम्र एक कारक है</h2>
+<p>यदि आप 35 वर्ष से अधिक की महिला हैं या 45 वर्ष से अधिक के पुरुष हैं और परिवार की योजना बना रहे हैं, तो प्रारंभिक प्रजनन मूल्यांकन आपको सबसे अधिक विकल्प देता है - जिसमें अंडा, शुक्राणु या भ्रूण फ्रीजिंग के माध्यम से प्रजनन संरक्षण शामिल है।</p>
 
-<h2>7. Previous treatments haven't worked</h2>
-<p>If you've tried ovulation induction or IUI elsewhere without success, it may be time to discuss <a href="/treatments/ivf-fertility-treatments/">IVF and advanced fertility treatments</a> with an experienced team.</p>
+<h2>7. पिछले उपचारों ने काम नहीं किया है</h2>
+<p>यदि आपने कहीं और ओव्यूलेशन इंडक्शन या आईयूआई की कोशिश की है लेकिन सफलता नहीं मिली है, तो इस पर चर्चा करने का समय आ गया है <a href="/treatments/ivf-fertility-treatments/">आईवीएफ और उन्नत प्रजनन उपचार</a> एक अनुभवी टीम के साथ.</p>
 
-<h2>Why couples across Vidarbha choose Shubham Hospitals</h2>
-<p>Shubham Hi-Tech Hospital &amp; Test Tube Baby Centre, Amravati, is one of the region's oldest IVF centres, with over 1,000 IVF cycles completed and more than 30 years of experience in women's healthcare. Our experienced fertility team follows international protocols while keeping treatment affordable for families from Amravati, Badnera, Achalpur, Morshi, Warud, Akola and Yavatmal.</p>
+<h2>विदर्भ भर के जोड़े शुभम हॉस्पिटल्स को क्यों चुनते हैं?</h2>
+<p>शुभम हाई-टेक हॉस्पिटल एंड टेस्ट ट्यूब बेबी सेंटर, अमरावती, क्षेत्र के सबसे पुराने आईवीएफ केंद्रों में से एक है, जिसके 1,000 से अधिक आईवीएफ चक्र पूरे हो चुके हैं और महिलाओं की स्वास्थ्य देखभाल में 30 से अधिक वर्षों का अनुभव है। हमारी टीम - जिसमें <a href="/dr-manjushree/">डॉ. मंजुश्री बूब</a> (बांझपन और आईवीएफ सलाहकार) शामिल हैं - अमरावती, बडनेरा, अचलपुर, मोर्शी, वरुड, अकोला और यवतमाल के परिवारों के लिए इलाज को किफायती रखते हुए अंतरराष्ट्रीय प्रोटोकॉल का पालन करता है।</p>
 
-<p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
+<p><em>अस्वीकरण: यह लेख केवल सामान्य जानकारी के लिए है और पेशेवर चिकित्सा सलाह का विकल्प नहीं है। कृपया अपनी स्थिति के अनुसार मार्गदर्शन के लिए किसी योग्य चिकित्सक से परामर्श लें।</em></p>
