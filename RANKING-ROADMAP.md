@@ -18,14 +18,19 @@ Recorded here only as the baseline the rest builds on. Details in RESTRUCTURE-LO
 ## Phase 1 — Google Business Profile (GBP) + Local Pack (Weeks 1–2) — HIGHEST LEVERAGE
 For "IVF centre in Amravati", "gynecologist near me" etc., the **Google Map Pack + GBP is usually seen before the blue links** — and it feeds AI Overviews for local queries. This is the single biggest ranking lever for a local clinic.
 
-- [ ] **Claim & fully verify the GBP** for Shubham Hi-Tech Hospital and Test Tube Baby Centre. Confirm ownership, not just management.
-- [ ] **NAP consistency:** Name, Address, Phone must match the website *exactly* (Badnera Rd, opp. Mantri Motors, Deorankar Nagar, Amravati, Maharashtra 444605 · +91-8668954915). Any mismatch across the web dilutes ranking.
-- [ ] **Primary category:** "Fertility clinic" or "Obstetrician-gynecologist" (test which fits the main money term). Add secondary categories: Hospital, Gynecologist, Surgeon, Reproductive health clinic, Fetal medicine.
-- [ ] **Complete every field:** services (list IVF, IUI, ICSI, laparoscopy, hysteroscopy, high-risk pregnancy, anomaly scan, etc.), OPD hours (Mon–Sat 11–5 & 7–9:30, Sun closed, 24×7 emergency), attributes, description, appointment link → `/contact-us/#book`.
-- [ ] **Photos:** 15–25 real photos — exterior, reception, OT, 3D laparoscopy setup, ultrasound room, the doctors, team. Geo-relevant, high quality. Refresh monthly.
-- [ ] **GBP Posts:** publish a short update weekly (offer, health tip, new service) — signals activity.
-- [ ] **Products/Services with prices or "on request"** where appropriate (IVF, laparoscopy consultation).
-- [ ] Link GBP → website homepage and to relevant treatment pages.
+*Live audit 2026-07-17: profile verified & managed, 4.8★ / 412 reviews, 3,368 monthly views, 737 interactions. Most items below are done; remaining gaps listed after.*
+
+- [x] **Claim & fully verify the GBP** — done ("You manage this Business Profile").
+- [x] **NAP consistency (GBP itself):** GBP name/address/phone match the website exactly (Badnera Rd, opp. Mantri Motors, Deorankar Nagar, Amravati 444605 · 8668954915). Social-profile NAP moved to Phase 3.
+- [x] **Primary category:** "Fertility clinic" is set. Secondary categories: verify Hospital, Gynecologist, Surgeon, Reproductive health clinic, Fetal medicine are all added.
+- [ ] **Fix hours:** currently only "Open 24 hours." Set OPD hours as main hours (Mon–Sat 11–5 & 7–9:30, Sun closed) and use GBP "More hours" for 24×7 emergency. Confirm upcoming holiday hours (Independence Day prompt pending).
+- [ ] **Reach "Complete" profile strength:** GBP is prompting to finish the profile — services list, attributes, missing fields. Directly improves conversion of the 3,368 monthly views.
+- [x] **Photos:** baseline photos exist; **keep the monthly refresh cadence** (GBP is prompting "Add new photos").
+- [x] **GBP Posts:** active (recent posts Jul 5 & Jul 9, 2026). Keep weekly cadence.
+- [ ] **Products/Services with prices or "on request"** where appropriate (IVF, laparoscopy consultation) — verify populated.
+- [x] Link GBP → website + appointment link (`shubham-hospitals.com`, wa.me) — done.
+- [ ] **Link all social profiles under GBP "Profiles":** only Facebook is linked; add Instagram and both YouTube channels.
+- [ ] **Respond to the new 5-star review** (pending prompt). Also consider removing the 7-year-old review posted from the owner account — self-reviews undermine trust.
 
 **Owner action; Claude can draft the description, service list, and weekly GBP post copy in en/hi/mr.**
 
@@ -35,10 +40,11 @@ For "IVF centre in Amravati", "gynecologist near me" etc., the **Google Map Pack
 Reviews drive both Map-Pack ranking and patient conversion, and are a strong YMYL trust signal.
 
 - [ ] **Systematic review collection:** a simple flow to ask happy patients for a Google review at discharge/follow-up (QR card at reception, WhatsApp follow-up link). Target a steady trickle (e.g. 5–10/month) rather than a spike.
+- [ ] **Route reviewers to Google first.** Justdial already has 473 reviews (4.8) vs Google's 412 — but Google reviews are what feed the Map Pack and AI Overviews. Point QR cards / WhatsApp links at the Google review form.
 - [ ] **Respond to every review** — thank positive ones by name; respond to any negative one calmly, professionally, without disclosing medical details (privacy). Response rate is itself a ranking/trust signal.
 - [ ] **Aim past competitors** on both review count and average rating for "IVF Amravati" / "gynecologist Amravati". Track competitor counts monthly.
 - [ ] Encourage a few reviews to mention the *service + city* naturally ("IVF at Shubham in Amravati") — helps relevance.
-- [ ] Once real ratings exist, add `aggregateRating` to schema (optional Phase-0 leftover).
+- [x] **`aggregateRating` added to schema** (PR #5, 2026-07-17) using live GBP figures via the `GOOGLE_RATING` const in `src/consts.ts`. **Caveats:** Google treats self-serving LocalBusiness ratings as ineligible for star rich-results — the value is entity/AI-assistant grounding, not SERP stars. **Re-sync the two numbers monthly** (2-line edit, "last synced" comment in the const) so the markup never goes stale.
 
 **Owner action; Claude can draft the review-request message (en/hi/mr) and a response template bank.**
 
@@ -47,6 +53,9 @@ Reviews drive both Map-Pack ranking and patient conversion, and are a strong YMY
 ## Phase 3 — Local Citations & NAP (Weeks 3–6)
 Consistent listings across directories reinforce that the clinic is a real, established local entity — a signal Google and AI systems both use.
 
+- [ ] **Own social profiles first (audited 2026-07-17):** phone number is now correct on both FB & IG (8668954915 ✓). Remaining fixes:
+  - Instagram bio: address says "**Rajaphate**" (typo → Rajapeth) and omits Deorankar Nagar / "opp. Mantri Motors"; standardize to the GBP address. Add `shubham-hospitals.com` link to the bio.
+  - Facebook: address reads "Shubham Hospital Rajapeth, Badnera Road, Amravati., Amravati, India" — no pincode, no Deorankar Nagar, duplicated city; standardize to the GBP address. Hours show "Always open" (mirror the GBP OPD + emergency split). Remove the odd "Outdoor seating" attribute. Consider enabling FB reviews (currently "Not yet rated").
 - [ ] **Core directories:** Justdial, Practo, Lybrate, Sulekha, Bing Places, Apple Maps, IndiaMART (if relevant), local Amravati business directories, hospital-finder sites.
 - [ ] **Identical NAP everywhere.** Even formatting differences ("opp." vs "opposite") should be standardized.
 - [ ] **Practo / Lybrate doctor profiles** for each consultant (Dr. Manan, Dr. Manjushree, Dr. Darshana, Dr. Murlidhar) — these rank and feed patient trust.
@@ -86,6 +95,7 @@ Backlinks from relevant, trusted sites remain a core ranking factor — especial
 ## Phase 6 — Measure, Monitor & Iterate (continuous)
 - [ ] **GSC weekly:** indexing coverage (target: 116/116), Performance → top queries & positions, any errors, hreflang/coverage. Watch old WP URLs for 404s → add redirects in `public/_redirects`.
 - [ ] **Rank tracking:** track the priority terms (best IVF/gynecologist/laparoscopic surgeon in Amravati; IVF cost Amravati; etc.) monthly, en/hi/mr.
+- [ ] **Review velocity:** track Google reviews/month and the delta vs top local competitors (not just totals). Baseline 2026-07-17: 412 reviews, 4.8★. While in there, re-sync `GOOGLE_RATING` in `src/consts.ts`.
 - [ ] **AI-Overview / assistant monitoring:** periodically query the money terms in Google (AI Overview), ChatGPT, Perplexity, Gemini — see whether Shubham is cited; adjust content to close gaps.
 - [ ] **Core Web Vitals:** re-check PageSpeed after content/image additions; keep LCP/CLS green (add explicit image width/height — the one open PSI item).
 - [ ] **Competitor watch:** review counts, new pages, new links monthly.
