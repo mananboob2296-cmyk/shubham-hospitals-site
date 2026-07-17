@@ -48,3 +48,5 @@ faqs:
 
 <h2>High-risk pregnancy care at Shubham Hospitals, Amravati</h2>
 <p>With more than 20,000 safe deliveries since 1995, the <a href="/treatments/obstetrics-gynecology/">Obstetrics &amp; Gynecology department</a> at Shubham Hi-Tech Hospital is equipped to manage complicated pregnancies — from gestational diabetes and hypertension to twins and post-IVF pregnancies. Our obstetric team, including <a href="/dr-darshana/">Dr. Darshana Ajmera</a> (Obstetrician &amp; Fetal Medicine Specialist), provides personalised birth plans, advanced fetal monitoring and 24x7 emergency support for families across Amravati and Vidarbha. You can <a href="/doctors/">meet our full team of specialists here</a>.</p>
+
+<p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>

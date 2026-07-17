@@ -60,3 +60,5 @@ faqs:
 <p>Consider an evaluation if you are under 35 and have been trying for a year, over 35 and trying for six months, have irregular periods, or have a known condition such as PCOS or endometriosis. An early AMH test and consultation give you the most options.</p>
 
 <p>At Shubham Hospitals, one of the oldest IVF centres in Amravati with over 1,000 IVF cycles completed, we tailor every treatment plan to your individual reports — never a one-size-fits-all protocol. If you would like your AMH and fertility assessed, <a href="/contact-us/">book a consultation</a> or call +91-8668954915.</p>
+
+<p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>

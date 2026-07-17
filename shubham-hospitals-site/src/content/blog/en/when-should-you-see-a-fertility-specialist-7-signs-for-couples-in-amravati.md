@@ -40,3 +40,5 @@ faqs:
 
 <h2>Why couples across Vidarbha choose Shubham Hospitals</h2>
 <p>Shubham Hi-Tech Hospital &amp; Test Tube Baby Centre, Amravati, is one of the region's oldest IVF centres, with over 1,000 IVF cycles completed and more than 30 years of experience in women's healthcare. Our experienced fertility team follows international protocols while keeping treatment affordable for families from Amravati, Badnera, Achalpur, Morshi, Warud, Akola and Yavatmal.</p>
+
+<p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>

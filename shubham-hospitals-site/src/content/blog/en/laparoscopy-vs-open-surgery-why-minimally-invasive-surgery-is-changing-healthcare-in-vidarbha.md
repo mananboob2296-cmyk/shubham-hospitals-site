@@ -45,3 +45,5 @@ faqs:
 
 <h2>25,000+ successful surgeries in Amravati</h2>
 <p>Shubham Hi-Tech Hospital is one of Vidarbha's pioneering centres for minimally invasive surgery, with over 25,000 successful procedures. <a href="/dr-murlidhar/">Dr. Murlidhar Boob</a> (MS, FAIS, DLS, FMAS), a pioneer of laparoscopic and GI surgery in the region with more than 10,000 procedures, and <a href="/dr-manan/">Dr. Manan Boob</a> (MS ObGyn – Gold Medalist, DNB), an advanced laparo-hysteroscopic surgeon, are part of an experienced surgical team serving patients from Amravati, Akola, Yavatmal and across Vidarbha. You can <a href="/doctors/">meet our full team of specialists here</a>.</p>
+
+<p><em>Disclaimer: This article is for general information only and is not a substitute for professional medical advice. Please consult a qualified doctor for guidance specific to your situation.</em></p>
