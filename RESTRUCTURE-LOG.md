@@ -1,48 +1,29 @@
 # Restructure Log — shubham-hospitals-site
+Single source of truth. New session: read ONLY this file, then do the next unchecked step. Update this file after every session.
 
-## Working branch
+## Owner working style (apply always)
+- Token-frugal: small steps, small commits, no echoing file contents in chat, brief replies.
+- Owner uploads via GitHub web UI and supplies translations himself — never bulk-translate.
+- Wording rule: never "led by Dr. [name]" (en/hi/mr) — always team-focused.
+- Zero visual change on live site unless explicitly asked.
+- Break work into one-session chunks; log here before ending a session.
 
-`claude/md-restructure` is the active branch. The project lives in `shubham-hospitals-site/` and uses Astro with Cloudflare Pages.
+## Repo facts
+- `mananboob2296-cmyk/shubham-hospitals-site`, project under `shubham-hospitals-site/`. Astro + Cloudflare Pages.
+- **Active branch: `claude/md-restructure`.** `main` is stale; `claude/i18n-and-faq` (PR #3) is obsolete — close without merging once md-restructure lands.
+- Live 404s on `/hi/...` exist until Cloudflare deploys the merged `main`.
 
-## Completed
+## DONE (verified 2026-07-16, head `74fc4e2`)
+Restructure complete. All content is .md collections under `src/content/{blog,treatments,landing,doctors}/{en,hi,mr}/` with `lang` + YAML `faqs` frontmatter; routes/hreflang/switcher are collection-driven; old TS modules (`treatments*.ts`, `landing.ts`, `doctors.ts`, `translated.ts`, `blog.ts`) deleted; `src/src/` cleaned; team-wording fixes applied. **All 17 blog posts translated: 17 en + 17 hi + 17 mr, matching slugs, exactly one FAQ section each.** Fresh build green: 117 pages. Blog template for owner uploads: `src/content/blog/_README.md`.
 
-- [x] Restructured blog content into language folders:
-  - `src/content/blog/en/`
-  - `src/content/blog/hi/`
-  - `src/content/blog/mr/`
-- [x] Standardised all blog frontmatter to include the language code and YAML FAQ data:
-  - English: `lang: en`
-  - Hindi: `lang: hi`
-  - Marathi: `lang: mr`
-  - FAQs use `faqs:` in frontmatter; legacy JSON-LD FAQ blocks were removed.
-- [x] Added all current English blog posts and their Hindi and Marathi counterparts:
-  - 17 English posts
-  - 17 Hindi posts
-  - 17 Marathi posts
-  - Matching slugs are present across all three folders.
-- [x] Added the newer Double Marker Test and IVF Process posts to all language folders.
-- [x] Updated blog templates to render the YAML FAQs as one visible FAQ section.
-- [x] Removed duplicate inline FAQ HTML from English, Hindi, and Marathi article bodies.
-- [x] Preserved HTML article content, internal links, CTAs, and medical acronyms/scientific terms where appropriate.
-- [x] Created matching local Markdown folders during the content work:
-  - `Desktop/Hindi_Blog_Posts/`
-  - `Desktop/Marathi_Blog_Posts/`
+## NEXT STEPS (each ≈ one small session)
+- [ ] **S1 — Preview smoke test**: deploy preview of `claude/md-restructure`; check 1 en + 1 hi + 1 mr article, the 2 newest posts (double-marker, ivf-process), and male-infertility (exactly one FAQ section). Also 1 treatment + 1 doctor + 1 landing page in hi/mr — appearance must match live site.
+- [ ] **S2 — Merge to `main`**: open PR `claude/md-restructure` → `main`; owner merges; point Cloudflare Pages at `main`; confirm live `/hi/blogs/...` URLs resolve (fixes 404s). Close PR #3 unmerged; delete stale branches.
+- [ ] **S3 — Post-merge live check**: spot-check ~8 live URLs (home en/hi/mr, treatment, doctor, landing, blog listing + article hi). Update this log; mark project complete.
+- [ ] **S-opt — home.ts / pages.ts**: still TS (UI structure, fine to keep). One-time grep for any leftover "led by / नेतृत्व" wording; fix if found.
 
-## Important implementation notes
-
-- Blog routes derive language availability from the content collection and use matching slugs for language switching.
-- The English blog template renders `FaqSection` when `entry.data.faqs` is populated.
-- Hindi and Marathi blog templates also render `FaqSection`; their old body-level FAQ blocks were removed to prevent duplication.
-
-## Verified build
-
-- [x] Fresh `npm install` and `npm run build` completed successfully on `claude/md-restructure`.
-- [x] Astro generated 117 static pages, including all 17 English, Hindi, and Marathi blog routes.
-
-## Next step
-
-1. Deploy a preview and smoke-test:
-   - one English, Hindi, and Marathi article;
-   - the two newest posts;
-   - an article with FAQs (for example, Male Infertility) to confirm exactly one FAQ section appears.
-2. Open a PR from `claude/md-restructure` to `main`, merge after the preview passes, then point Cloudflare Pages to `main`.
+## Session log
+- 2026-07-16 a: blogs → .md collections (85 pages green).
+- 2026-07-16 b: treatments/landing/doctors → .md, TS modules deleted, wording + src/src cleanup (95 pages green).
+- 2026-07-16 c: all 17 posts × hi + mr added, FAQ dedupe, fresh build 117 pages green.
+- 2026-07-17: log compressed to next-steps-only (this commit).
