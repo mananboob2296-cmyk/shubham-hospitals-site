@@ -22,6 +22,14 @@ export const SITE = {
   ogImage: 'https://shubham-hospitals.com/wp-content/uploads/2026/06/Shubham-Final-Logo-scaled.png',
 };
 
+// Live Google Business Profile rating. Update these two numbers periodically
+// (e.g. monthly) so the markup always reflects the real, current GBP figures.
+// Last synced: 2026-07-17 — 4.8 stars, 412 Google reviews.
+export const GOOGLE_RATING = {
+  value: '4.8',
+  count: '412',
+};
+
 export const CLINIC_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'MedicalClinic',
@@ -43,6 +51,13 @@ export const CLINIC_SCHEMA = {
     addressCountry: 'IN',
   },
   medicalSpecialty: ['Gynecologic', 'Obstetric', 'Surgical'],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: GOOGLE_RATING.value,
+    reviewCount: GOOGLE_RATING.count,
+    bestRating: '5',
+    worstRating: '1',
+  },
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -57,5 +72,5 @@ export const CLINIC_SCHEMA = {
       closes: '21:30',
     },
   ],
-  sameAs: [SITE.facebook, SITE.instagram],
+  sameAs: [SITE.facebook, SITE.instagram, SITE.youtubeHospital, SITE.youtubeDrManan, SITE.google],
 };
