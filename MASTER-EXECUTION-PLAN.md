@@ -36,6 +36,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | 2026-07-18 | Claude (Cowork) | T3 | DONE (pending deploy) | Added /sitemap.xml -> /sitemap-index.xml 301 in _redirects; build passes |
 | 2026-07-18 | Claude (Cowork) | T4 | DONE (pending deploy) | Fetal Medicine marked opening-soon (banner + meta + nav/footer label), led by Dr. Darshana Ajmera; EN/HI/MR; build passes |
 | 2026-07-18 | Claude (Cowork) | T5 | DONE (pending deploy) | #book anchor: booking heading (EN/HI/MR) + scroll-margin-top; build passes |
+| 2026-07-18 | Claude (Cowork) | T6 | DONE (pending deploy) | Localized nav/footer dept names + 3 Best-X links + tagline (HI/MR); build passes |
 
 ---
 
@@ -113,14 +114,14 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 ## PHASE 2 — Localization completion
 
 ### T6. Translate nav dropdown + footer department names on HI/MR pages
-**Status:** `TODO`
+**Status:** `DONE (pending deploy)`
 **Problem (verified live 2026-07-18):** On `/hi/*` and `/mr/*`, the "विभाग एवं उपचार" dropdown items and the footer Departments list are still English ("Advanced Laparoscopy & Hysteroscopy", "Best IVF Centre in Amravati", …). The tagline "Hi-Tech Treatment, At Truly Affordable Cost!" is also untranslated.
 **Steps:**
 1. Locate the nav/footer department labels — likely in `src/i18n/` dictionaries or `src/consts.ts` / `src/data/`.
 2. Add HI and MR strings for all 7 departments + 3 "Best X" pages + the tagline. (Draft translations, keep medical terms recognizable: e.g. HI "एडवांस्ड लेप्रोस्कोपी एवं हिस्टेरोस्कोपी".)
 3. Wire the components to use locale strings instead of EN constants.
 **Verification:** Build; `dist/hi/index.html` nav/footer contain Devanagari department names; no EN leakage except proper nouns.
-**Notes:** — (T4 added the English "Fetal Medicine (opening soon)" label — carry the "(opening soon)" suffix into the HI/MR translations here.)
+**Notes:** 2026-07-18. Made `src/layouts/BaseLayout.astro` locale-aware (this one file drives both the nav dropdown and the footer Departments list). Added HI + MR labels for all 7 departments (reusing the content-collection titles; Fetal Medicine carries '(जल्द ही शुरू)' / '(लवकरच सुरू)'), the 3 'Best X in Amravati' landing links (with locale-prefixed hrefs via `L()`), and the tagline (`SITE.tagline` stays English; footer now shows 'हाई-टेक इलाज, वास्तव में किफ़ायती दाम पर!' / 'हाय-टेक उपचार, खरोखर परवडणाऱ्या दरात!'). Build passes (117 pages); verified Devanagari dept names, best-page links, and tagline on dist/hi & dist/mr homepages, English output unchanged, no EN leakage. Pending live deploy.
 
 ### T7. Localize testimonials on HI/MR homepages
 **Status:** `TODO`
@@ -219,7 +220,7 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 1. **Confirm with the user** (SEO pages stay indexed and internally linked — only removed from the menu).
 2. Remove the 3 items from the nav dropdown (all locales). Keep footer/homepage cross-links and sitemap entries. Do NOT delete or noindex the pages.
 **Verification:** Nav shows 7 departments; the 3 pages still build and remain linked from homepage service cards.
-**Notes:** —
+**Notes:** — (T6 already routes these 3 links through `bestPages[lang]` in BaseLayout — removing from the dropdown now means dropping the `{bestPages[lang].map(...)}` block from the nav `<ul class="dropdown">` while keeping homepage/footer cross-links.)
 
 ### T17. FAQ page: accordions + category jump-nav
 **Status:** `TODO`
