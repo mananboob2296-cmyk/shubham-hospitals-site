@@ -47,7 +47,17 @@ const tset = lang === 'en' ? null : await translatedPaths(lang);
 const L = (p: string) => (tset?.has(p) ? `/${lang}${p}` : p);
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const basePath = stripLangPrefix(Astro.url.pathname);
-const altCodes: Lang[] = altPaths ? (['en', 'hi', 'mr'] as Lang[]).filter((c) => altPaths[c]) : ['en', 'hi', 'mr'];
+// Emit hreflang alternates only for locales where this page actually exists.
+// When a page provides explicit altPaths (e.g. blog articles) trust those;
+// otherwise derive availability from the content collections so we never point
+// hreflang at a non-existent /hi/ or /mr/ URL.
+let altCodes: Lang[];
+if (altPaths) {
+  altCodes = (['en', 'hi', 'mr'] as Lang[]).filter((c) => altPaths[c]);
+} else {
+  const [hiSet, mrSet] = await Promise.all([translatedPaths('hi'), translatedPaths('mr')]);
+  altCodes = ['en', ...(hiSet.has(basePath) ? (['hi'] as Lang[]) : []), ...(mrSet.has(basePath) ? (['mr'] as Lang[]) : [])];
+}
 const alternates: { code: Lang; href: string }[] = altCodes.map((code) => ({
   code,
   href: new URL(altPaths?.[code] ?? (code === 'en' ? basePath : `/${code}${basePath}`), SITE.url).href,
@@ -154,7 +164,7 @@ const taglineByLang: Record<Lang, string> = {
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={SITE.favicon} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    {alternates.map((a) => <link rel="alternate" hreflang={a.code} href={a.href} />)}
+    {alternates.map((a) => <link rel="alternate" hreflang={localeCodes[a.code]} href={a.href} />)}
     <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     {noindex && <meta name="robots" content="noindex, follow" />}
