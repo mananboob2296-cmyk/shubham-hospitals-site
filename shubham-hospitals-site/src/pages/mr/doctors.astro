@@ -27,7 +27,7 @@ const doctors = (await getCollection('doctors')).filter((e) => !e.slug.includes(
             <h3>{d.data.name}</h3>
             <p class="quals">{d.data.qualifications}</p>
             <p class="role">{roles[d.slug] ?? d.data.role}</p>
-            <a class="btn btn-outline" href={`/${d.slug}/`}>{p.viewProfile}</a>
+            <a class="btn btn-outline" href={`/mr/${d.slug}/`}>{p.viewProfile}</a>
           </div>
         ))}
       </div>
