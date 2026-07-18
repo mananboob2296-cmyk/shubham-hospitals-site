@@ -7,8 +7,10 @@ excerpt: "One of the oldest IVF centers in Amravati, with over 1,000 IVF cycles 
 faqs:
   - q: "How long does an IVF cycle take?"
     a: "An IVF cycle typically takes about 4-6 weeks. The process includes ovarian stimulation, egg retrieval, fertilization, and embryo transfer. Some patients may require additional cycles for the best outcome."
+  - q: "How much does IVF cost at Shubham Hospitals in Amravati?"
+    a: "A single IVF cycle usually costs around ₹1.2 to ₹2.5 lakh, depending on your medication dose and add-ons such as ICSI or embryo freezing. You get a fully itemised written estimate before you commit — no hidden charges."
   - q: "What are the chances of success with IVF?"
-    a: "Success rates vary depending on factors such as age, infertility diagnosis, and previous treatments. At Shubham Hospitals, we adhere to international protocols that maximize your chances of success, with high success rates for our IVF treatments."
+    a: "There is no single honest number — success depends on the woman's age, ovarian reserve and the cause of infertility. Backed by 1,000+ successful IVF cycles and internationally accepted protocols, we give you a realistic, personalised assessment of your own chances at consultation."
   - q: "Is IUI less expensive than IVF?"
     a: "Yes, IUI is generally less expensive than IVF and is recommended for couples with mild infertility. It is a less invasive option, but it may not be effective for all infertility causes."
   - q: "Can I freeze my eggs or sperm for future use?"
@@ -19,15 +21,19 @@ faqs:
     a: "Our team provides specialized care for recurrent pregnancy loss, including thorough evaluations to identify the causes. Based on your results, we recommend treatment options to improve the chances of a successful pregnancy."
 ---
 
-At **Shubham Hospitals**, we understand the emotional and physical challenges that come with infertility. As one of the **oldest IVF centers in Amravati**, with over **1,000 IVF cycles completed**, we have helped countless couples fulfill their dreams of becoming parents. Our IVF unit follows **international protocols** and boasts **high success rates**, offering you the most advanced fertility treatments available.
+At **Shubham Hospitals**, we understand the emotional and physical challenges that come with infertility. As one of the **oldest IVF centers in Amravati**, with over **1,000 IVF cycles completed**, we have helped countless couples fulfill their dreams of becoming parents. Our IVF unit follows **international protocols**, offering you the most advanced fertility treatments available. Rather than quoting a single headline success figure, we give every couple an honest, personalised assessment of their chances at consultation.
 
 We provide a range of services tailored to address both male and female fertility concerns, ensuring personalized care at every step of the way.
+
+## Transparent pricing
+
+A single IVF cycle at Shubham Hospitals typically costs **₹1.2–2.5 lakh**, depending on medication dose and add-ons such as ICSI or embryo freezing. You receive a **fully itemised written estimate before you commit to anything — no hidden charges**. For a detailed cost breakdown and an honest look at success rates, see our [Best IVF Centre in Amravati](/best-ivf-centre-in-amravati/) page.
 
 ## Services
 
 ### IVF & ICSI (In-vitro Fertilization & Intracytoplasmic Sperm Injection)
 
-In-vitro Fertilization (IVF) is a widely recognized fertility treatment where eggs are fertilized outside the body before being implanted in the uterus. At Shubham Hospitals, we follow the latest international protocols to ensure the highest success rates.
+In-vitro Fertilization (IVF) is a widely recognized fertility treatment where eggs are fertilized outside the body before being implanted in the uterus. At Shubham Hospitals, we follow the latest international protocols to give you the best realistic chance of success.
 
 For couples facing male infertility issues, Intracytoplasmic Sperm Injection (ICSI) is a powerful technique. It involves injecting a single sperm directly into an egg, which significantly improves the chances of fertilization and is used when sperm quality is a concern.
 
@@ -54,7 +60,7 @@ For couples who have experienced recurrent pregnancy loss, our specialized team 
 ## Benefits of IVF & Fertility Treatments in Amravati
 
 - **Experienced and Compassionate Care**: With years of experience in IVF and fertility treatments, our team provides compassionate care to guide you through the process.
-- **High Success Rates**: We follow **international IVF protocols**, ensuring the best possible outcomes and high success rates.
+- **Honest, Personalised Guidance**: We follow **international IVF protocols** and give you a realistic, personalised estimate of your chances — based on age, ovarian reserve and diagnosis — never an inflated one-size-fits-all number.
 - **Comprehensive Services**: From IVF and IUI to fertility preservation and male infertility treatments, we offer a wide range of fertility services to meet your needs.
 - **Advanced Technology**: We use the latest medical advancements and state-of-the-art facilities to provide the highest quality care.
 - **Personalized Approach**: Every couple's journey is unique, and we create a personalized treatment plan tailored to your individual needs.
