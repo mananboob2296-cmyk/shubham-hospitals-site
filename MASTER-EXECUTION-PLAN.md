@@ -39,6 +39,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | 2026-07-18 | Claude (Cowork) | T6 | DONE (pending deploy) | Localized nav/footer dept names + 3 Best-X links + tagline (HI/MR); build passes |
 | 2026-07-18 | Claude (Cowork) | T7 | DONE (pending deploy) | Translated all 6 testimonials for HI/MR (labeled), names/dates/ratings kept; build passes |
 | 2026-07-18 | Claude (Cowork) | T8 | DONE (pending deploy) | Regional hreflang (en-IN/hi-IN/mr-IN)+x-default, existence-aware alternates; html lang & og:title verified; build passes |
+| 2026-07-18 | Claude (Cowork) | T9 | DONE (pending deploy) | IVF page: transparent pricing + cost FAQ + honest success framing (EN/HI/MR); build passes |
 
 ---
 
@@ -149,14 +150,14 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 ## PHASE 3 — Conversion & content
 
 ### T9. Surface IVF cost + success-rate honesty on the main IVF treatment page
-**Status:** `TODO`
+**Status:** `DONE (pending deploy)`
 **Problem:** The excellent cost range (₹1.2–2.5L) and success-rate FAQ exist only on `/best-ivf-centre-in-amravati/`. The primary `/treatments/ivf-fertility-treatments/` page still says "high success rates" repeatedly with no numbers and no cost info.
 **Steps:**
 1. Port the cost FAQ + success-rate FAQ (same copy) onto `/treatments/ivf-fertility-treatments/` (EN/HI/MR).
 2. Add a small "Transparent pricing" callout linking to the itemised-estimate promise.
 3. Deduplicate wording so the two pages don't read identically (reword one).
 **Verification:** Build; both pages show cost + success info; copy not verbatim-duplicated.
-**Notes:** —
+**Notes:** 2026-07-18. Updated `src/content/treatments/ivf-fertility-treatments.md` (EN/HI/MR). Added a **Transparent pricing** section (₹1.2–2.5 lakh, itemised written estimate, no hidden charges) that cross-links to the locale-appropriate `best-ivf-centre-in-amravati` page. Added a cost FAQ and replaced the vague 'high success rates' success FAQ + body/benefit claims with the honest 'no single number — realistic, personalised assessment' framing (kept 1,000+ cycles as the concrete figure). Copy is reworded, NOT a verbatim duplicate of the landing page (dedup satisfied). Build passes (117 pages); verified pricing section, cost range, honest success FAQ, and cross-link on dist EN/HI/MR, and that 'boasts high success rates' is gone.
 
 ### T10. Add insurance / cashless / payment info
 **Status:** `TODO`
