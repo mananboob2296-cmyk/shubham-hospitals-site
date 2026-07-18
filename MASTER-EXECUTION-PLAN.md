@@ -37,6 +37,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | 2026-07-18 | Claude (Cowork) | T4 | DONE (pending deploy) | Fetal Medicine marked opening-soon (banner + meta + nav/footer label), led by Dr. Darshana Ajmera; EN/HI/MR; build passes |
 | 2026-07-18 | Claude (Cowork) | T5 | DONE (pending deploy) | #book anchor: booking heading (EN/HI/MR) + scroll-margin-top; build passes |
 | 2026-07-18 | Claude (Cowork) | T6 | DONE (pending deploy) | Localized nav/footer dept names + 3 Best-X links + tagline (HI/MR); build passes |
+| 2026-07-18 | Claude (Cowork) | T7 | DONE (pending deploy) | Translated all 6 testimonials for HI/MR (labeled), names/dates/ratings kept; build passes |
 
 ---
 
@@ -124,14 +125,14 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 **Notes:** 2026-07-18. Made `src/layouts/BaseLayout.astro` locale-aware (this one file drives both the nav dropdown and the footer Departments list). Added HI + MR labels for all 7 departments (reusing the content-collection titles; Fetal Medicine carries '(जल्द ही शुरू)' / '(लवकरच सुरू)'), the 3 'Best X in Amravati' landing links (with locale-prefixed hrefs via `L()`), and the tagline (`SITE.tagline` stays English; footer now shows 'हाई-टेक इलाज, वास्तव में किफ़ायती दाम पर!' / 'हाय-टेक उपचार, खरोखर परवडणाऱ्या दरात!'). Build passes (117 pages); verified Devanagari dept names, best-page links, and tagline on dist/hi & dist/mr homepages, English output unchanged, no EN leakage. Pending live deploy.
 
 ### T7. Localize testimonials on HI/MR homepages
-**Status:** `TODO`
+**Status:** `DONE (pending deploy)`
 **Problem:** All six patient reviews on `/hi/` and `/mr/` render in English.
 **Steps:**
 1. Find the testimonials data (likely `src/data/testimonials.*`).
 2. Add translated versions of at least 3 reviews per locale (translations of the real reviews — do not invent new reviewers), keep names + dates + star ratings identical, and note "अनुवादित समीक्षा (मूल: अंग्रेज़ी)" so translated reviews are honestly labeled.
 3. Render locale-appropriate set on HI/MR pages.
 **Verification:** `dist/hi/index.html` shows Devanagari review text with real reviewer names.
-**Notes:** —
+**Notes:** 2026-07-18. Added `text_hi` + `text_mr` to all 6 real reviews in `src/data/reviews.json` (same reviewer names, months, 5-star ratings — no invented reviewers). `Reviews.astro` now picks the locale text and shows an honest label on HI/MR: 'अनुवादित समीक्षा (मूल: अंग्रेज़ी)' / 'अनुवादित पुनरावलोकन (मूळ: इंग्रजी)'. Per owner, acronyms/terms kept in English where natural (IVF, laparo-hysteroscopy, infertility). English homepage unchanged (no label). Build passes (117 pages); verified Devanagari review text + English names + 6 labels on dist/hi & dist/mr. Marathi/Hindi wording is a draft — clinical team may review. Pending live deploy.
 
 ### T8. Add hreflang alternates + verify html lang attributes
 **Status:** `TODO`
@@ -257,7 +258,7 @@ Steps: **ask the user** for ART Act clinic registration no., MMC registration, N
 ### T21. Truncate long testimonials + "Read more"
 **Status:** `TODO`
 Steps: clamp review cards to ~40 words with expander; even card heights. Verify on mobile viewport.
-**Notes:** —
+**Notes:** — (T7 added `text_hi`/`text_mr` to reviews.json and a `.review-translated` label line — clamp logic must account for the localized text length + the label.)
 
 ### T22. Decide AI-crawler policy
 **Status:** `TODO`
