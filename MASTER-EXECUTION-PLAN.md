@@ -38,6 +38,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | 2026-07-18 | Claude (Cowork) | T5 | DONE (pending deploy) | #book anchor: booking heading (EN/HI/MR) + scroll-margin-top; build passes |
 | 2026-07-18 | Claude (Cowork) | T6 | DONE (pending deploy) | Localized nav/footer dept names + 3 Best-X links + tagline (HI/MR); build passes |
 | 2026-07-18 | Claude (Cowork) | T7 | DONE (pending deploy) | Translated all 6 testimonials for HI/MR (labeled), names/dates/ratings kept; build passes |
+| 2026-07-18 | Claude (Cowork) | T8 | DONE (pending deploy) | Regional hreflang (en-IN/hi-IN/mr-IN)+x-default, existence-aware alternates; html lang & og:title verified; build passes |
 
 ---
 
@@ -135,13 +136,13 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 **Notes:** 2026-07-18. Added `text_hi` + `text_mr` to all 6 real reviews in `src/data/reviews.json` (same reviewer names, months, 5-star ratings — no invented reviewers). `Reviews.astro` now picks the locale text and shows an honest label on HI/MR: 'अनुवादित समीक्षा (मूल: अंग्रेज़ी)' / 'अनुवादित पुनरावलोकन (मूळ: इंग्रजी)'. Per owner, acronyms/terms kept in English where natural (IVF, laparo-hysteroscopy, infertility). English homepage unchanged (no label). Build passes (117 pages); verified Devanagari review text + English names + 6 labels on dist/hi & dist/mr. Marathi/Hindi wording is a draft — clinical team may review. Pending live deploy.
 
 ### T8. Add hreflang alternates + verify html lang attributes
-**Status:** `TODO`
+**Status:** `DONE (pending deploy)`
 **Steps:**
 1. In the base layout (`src/layouts/`), confirm `<html lang>` is `hi`/`mr` on those trees (not `en`).
 2. Add `<link rel="alternate" hreflang="en-IN|hi-IN|mr-IN|x-default">` tags for every page that has all three versions (build a helper that maps the current path to its siblings).
 3. Align `<title>` vs `og:title` while in the layout: make `og:title` default to the page `<title>` unless explicitly overridden (fixes the ~9 mismatches flagged by QA, incl. homepage).
 **Verification:** Built HTML for `/`, `/hi/`, `/mr/`, one treatment page and one doctor page contains correct lang + 4 hreflang tags each; title == og:title on those pages.
-**Notes:** —
+**Notes:** 2026-07-18. `<html lang>` was already correct (en/hi/mr) and `og:title` already defaults to the page `<title>` (`ogTitle ?? title`) — the per-page ogTitle overrides that remain are intentional, shorter social titles, not accidental mismatches, so left as-is. Fixed hreflang in `BaseLayout.astro`: now emits regional codes `en-IN`/`hi-IN`/`mr-IN` + `x-default` (was short `en`/`hi`/`mr`), and only for locales where the page actually exists — when a page passes no explicit `altPaths`, availability is derived from the content collections via `translatedPaths()` so hreflang never points at a non-existent /hi/ or /mr/ URL. Blog articles already existence-check their own altPaths. Build passes (117 pages); verified regional hreflang + x-default on `/`, `/hi/`, `/mr/`, a treatment page and a blog article, and that the 404 page emits only `en-IN` + `x-default`. Pending live deploy.
 
 ---
 
