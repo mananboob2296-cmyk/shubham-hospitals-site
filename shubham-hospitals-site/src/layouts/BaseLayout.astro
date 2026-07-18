@@ -53,15 +53,72 @@ const alternates: { code: Lang; href: string }[] = altCodes.map((code) => ({
   href: new URL(altPaths?.[code] ?? (code === 'en' ? basePath : `/${code}${basePath}`), SITE.url).href,
 }));
 
-const treatments = [
-  { title: 'Advanced Laparoscopy & Hysteroscopy', slug: 'advanced-laparoscopy-hysteroscopy' },
-  { title: 'Obstetrics & Gynecology', slug: 'obstetrics-gynecology' },
-  { title: 'IVF & Fertility Treatments', slug: 'ivf-fertility-treatments' },
-  { title: 'Ultrasound & Imaging', slug: 'ultrasound-imaging' },
-  { title: 'General Surgery & Gastroenterology', slug: 'general-surgery-gastroenterology' },
-  { title: 'Cosmetic & Aesthetic Gynecology', slug: 'cosmetic-aesthetic-gynecology' },
-  { title: 'Fetal Medicine (opening soon)', slug: 'fetal-medicine' },
+// Department + landing-page labels, localized. Order is shared across locales.
+const deptOrder = [
+  'advanced-laparoscopy-hysteroscopy',
+  'obstetrics-gynecology',
+  'ivf-fertility-treatments',
+  'ultrasound-imaging',
+  'general-surgery-gastroenterology',
+  'cosmetic-aesthetic-gynecology',
+  'fetal-medicine',
 ];
+const deptNames: Record<Lang, Record<string, string>> = {
+  en: {
+    'advanced-laparoscopy-hysteroscopy': 'Advanced Laparoscopy & Hysteroscopy',
+    'obstetrics-gynecology': 'Obstetrics & Gynecology',
+    'ivf-fertility-treatments': 'IVF & Fertility Treatments',
+    'ultrasound-imaging': 'Ultrasound & Imaging',
+    'general-surgery-gastroenterology': 'General Surgery & Gastroenterology',
+    'cosmetic-aesthetic-gynecology': 'Cosmetic & Aesthetic Gynecology',
+    'fetal-medicine': 'Fetal Medicine (opening soon)',
+  },
+  hi: {
+    'advanced-laparoscopy-hysteroscopy': 'उन्नत लेप्रोस्कोपी और हिस्टेरोस्कोपी',
+    'obstetrics-gynecology': 'प्रसूति एवं स्त्री रोग',
+    'ivf-fertility-treatments': 'IVF और प्रजनन उपचार',
+    'ultrasound-imaging': 'अल्ट्रासाउंड और इमेजिंग',
+    'general-surgery-gastroenterology': 'जनरल सर्जरी और गैस्ट्रोएंटरोलॉजी',
+    'cosmetic-aesthetic-gynecology': 'कॉस्मेटिक और सौंदर्य स्त्री रोग',
+    'fetal-medicine': 'भ्रूण चिकित्सा (जल्द ही शुरू)',
+  },
+  mr: {
+    'advanced-laparoscopy-hysteroscopy': 'प्रगत लॅपरोस्कोपी व हिस्टेरोस्कोपी',
+    'obstetrics-gynecology': 'प्रसूती व स्त्रीरोग',
+    'ivf-fertility-treatments': 'IVF व प्रजनन उपचार',
+    'ultrasound-imaging': 'अल्ट्रासाऊंड व इमेजिंग',
+    'general-surgery-gastroenterology': 'जनरल सर्जरी व गॉस्ट्रोएन्टेरोलॉजी',
+    'cosmetic-aesthetic-gynecology': 'कॉस्मेटिक व सौंदर्य स्त्रीरोग',
+    'fetal-medicine': 'गर्भ वैद्यकशास्त्र (लवकरच सुरू)',
+  },
+};
+const treatments = deptOrder.map((slug) => ({ slug, title: deptNames[lang][slug] }));
+
+// SEO landing pages listed under the Departments dropdown (translated pages exist).
+const bestPages: Record<Lang, { href: string; label: string }[]> = {
+  en: [
+    { href: '/best-ivf-centre-in-amravati/', label: 'Best IVF Centre in Amravati' },
+    { href: '/best-gynecologist-in-amravati/', label: 'Best Gynecologist in Amravati' },
+    { href: '/best-laparoscopic-surgeon-in-amravati/', label: 'Best Laparoscopic Surgeon in Amravati' },
+  ],
+  hi: [
+    { href: '/best-ivf-centre-in-amravati/', label: 'अमरावती में सर्वश्रेष्ठ IVF केंद्र' },
+    { href: '/best-gynecologist-in-amravati/', label: 'अमरावती में सर्वश्रेष्ठ स्त्री रोग विशेषज्ञ' },
+    { href: '/best-laparoscopic-surgeon-in-amravati/', label: 'अमरावती में सर्वश्रेष्ठ लेप्रोस्कोपिक सर्जन' },
+  ],
+  mr: [
+    { href: '/best-ivf-centre-in-amravati/', label: 'अमरावतीतील सर्वोत्तम IVF केंद्र' },
+    { href: '/best-gynecologist-in-amravati/', label: 'अमरावतीतील सर्वोत्तम स्त्रीरोगतज्ज्ञ' },
+    { href: '/best-laparoscopic-surgeon-in-amravati/', label: 'अमरावतीतील सर्वोत्तम लॅपरोस्कोपिक सर्जन' },
+  ],
+};
+
+// Tagline (SITE.tagline is English; localize for display).
+const taglineByLang: Record<Lang, string> = {
+  en: SITE.tagline,
+  hi: 'हाई-टेक इलाज, वास्तव में किफ़ायती दाम पर!',
+  mr: 'हाय-टेक उपचार, खरोखर परवडणाऱ्या दरात!',
+};
 ---
 <!doctype html>
 <html lang={lang}>
@@ -142,9 +199,9 @@ const treatments = [
                 {treatments.map((tr) => (
                   <li><a href={L(`/treatments/${tr.slug}/`)}>{tr.title}</a></li>
                 ))}
-                <li><a href={L('/best-ivf-centre-in-amravati/')}>Best IVF Centre in Amravati</a></li>
-                <li><a href={L('/best-gynecologist-in-amravati/')}>Best Gynecologist in Amravati</a></li>
-                <li><a href={L('/best-laparoscopic-surgeon-in-amravati/')}>Best Laparoscopic Surgeon in Amravati</a></li>
+                {bestPages[lang].map((b) => (
+                  <li><a href={L(b.href)}>{b.label}</a></li>
+                ))}
               </ul>
             </li>
             <li><a href={L('/doctors/')}>{t('nav.doctors')}</a></li>
@@ -165,7 +222,7 @@ const treatments = [
       <div class="container cols">
         <div>
           <img src={SITE.logoWhite} alt={`${SITE.name} logo`} width="200" loading="lazy" />
-          <p>{SITE.tagline}</p>
+          <p>{taglineByLang[lang]}</p>
           <p>{t('footer.trusted')}</p>
           <div class="social-row">
             <a href={SITE.facebook} rel="noopener" target="_blank" aria-label="Facebook">
