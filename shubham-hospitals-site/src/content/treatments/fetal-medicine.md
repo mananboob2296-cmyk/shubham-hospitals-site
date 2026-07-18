@@ -1,9 +1,9 @@
 ---
 title: "Fetal Medicine"
-metaTitle: "Fetal Medicine Centre in Amravati | Shubham Hospitals"
-metaDescription: "Dedicated Fetal Medicine Centre in Amravati — anomaly scans, first-trimester screening, Doppler studies, fetal echocardiography, CVS & amniocentesis."
+metaTitle: "Fetal Medicine Centre in Amravati (Opening Soon) | Shubham Hospitals"
+metaDescription: "Upcoming dedicated Fetal Medicine Centre in Amravati, led by Dr. Darshana Ajmera — anomaly scans, first-trimester screening, Doppler studies, fetal echocardiography, CVS & amniocentesis. Opening soon."
 order: 7
-excerpt: "A dedicated Fetal Medicine Centre focusing on early detection, monitoring, and treatment of fetal conditions."
+excerpt: "Opening soon — an upcoming dedicated Fetal Medicine Centre led by Dr. Darshana Ajmera, focusing on early detection, monitoring, and care of fetal conditions."
 faqs:
   - q: "What is an anomaly scan, and why is it important?"
     a: "An anomaly scan is an ultrasound performed between 18 and 22 weeks to check for any physical abnormalities in the fetus. It evaluates the development of vital organs such as the brain, heart, and kidneys. Early detection allows for timely medical intervention if any abnormalities are found."
@@ -18,6 +18,8 @@ faqs:
   - q: "What kind of counseling is available for complex prenatal conditions?"
     a: "Our team provides fetal counseling for parents dealing with complex diagnoses. This includes discussing treatment options, in-utero therapies, and delivery plans. We are committed to offering emotional support and guidance to help parents make informed decisions."
 ---
+
+> **Opening Soon.** Our dedicated Fetal Medicine Centre is coming soon to Shubham Hi-Tech Hospital, Amravati, led by **Dr. Darshana Ajmera**. The services below describe what the centre will offer. Call us to register your interest or to ask when a specific service becomes available.
 
 Shubham Hospitals is excited to soon launch a **dedicated Fetal Medicine Centre**, focusing on the **early detection**, **monitoring**, and **treatment** of fetal conditions. Our new unit will bring the latest in advanced prenatal care to **expecting parents**, offering precise diagnostics and personalized care to ensure the healthiest outcomes for both mother and baby.
 
