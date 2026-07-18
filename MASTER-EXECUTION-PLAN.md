@@ -33,6 +33,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | 2026-07-18 | Claude (Cowork) | Plan creation | Created this file; re-verified live site | Baseline statuses below reflect live site as of this date |
 | 2026-07-18 | Claude (Cowork) | T1 | DONE (pending deploy) | Locale-aware doctor profile links on /hi/ & /mr/ doctors pages; build passes |
 | 2026-07-18 | Claude (Cowork) | T1 deploy confirm, T2 | T1 DONE (live); T2 DONE (pending deploy) | User confirmed T1 live on Cloudflare; upgraded 404 page to trilingual + nav + phone |
+| 2026-07-18 | Claude (Cowork) | T3 | DONE (pending deploy) | Added /sitemap.xml -> /sitemap-index.xml 301 in _redirects; build passes |
 
 ---
 
@@ -77,13 +78,13 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 **Notes:** 2026-07-18. A minimal EN-only `src/pages/404.astro` already existed; upgraded it to meet spec: EN+HI+MR one-liners, four nav buttons (Home/Departments/Doctors/Contact → `/`, `/departments/`, `/doctors/`, `/contact-us/`), and a phone CTA (`SITE.phoneHref`). Kept `noindex`. Astro static hosting serves one `404.html`; Cloudflare Pages serves it automatically. Build passes (117 pages); `dist/404.html` verified. Pending live deploy.
 
 ### T3. Fix empty /sitemap.xml
-**Status:** `TODO`
+**Status:** `DONE (pending deploy)`
 **Problem (verified live 2026-07-18):** `/sitemap.xml` returns an empty response; `robots.txt` points to `/sitemap-index.xml` which works.
 **Steps:**
 1. Check `astro.config.mjs` — likely `@astrojs/sitemap` generating `sitemap-index.xml`.
 2. Either add a redirect from `/sitemap.xml` → `/sitemap-index.xml` (Cloudflare `_redirects` file in `public/`: `/sitemap.xml /sitemap-index.xml 301`), or delete any stray empty `public/sitemap.xml` that is shadowing the generated one.
 **Verification:** After build, no empty `sitemap.xml` in `dist/`; after deploy, `/sitemap.xml` 301s to the index or serves real XML.
-**Notes:** —
+**Notes:** 2026-07-18. No stray `public/sitemap.xml` existed — Astro's `@astrojs/sitemap` generates `sitemap-index.xml` + `sitemap-0.xml`, and `robots.txt` already points to the index. Added `/sitemap.xml /sitemap-index.xml 301` to `public/_redirects` so the conventional URL resolves. Build passes; `dist/_redirects` contains the rule and no empty `dist/sitemap.xml`. Pending live deploy — then verify `/sitemap.xml` 301s to the index.
 
 ### T4. Resolve Fetal Medicine "opening soon" contradiction
 **Status:** `TODO`
