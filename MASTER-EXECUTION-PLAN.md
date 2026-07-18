@@ -32,6 +32,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 |------|-------------|-----------------|---------|-------|
 | 2026-07-18 | Claude (Cowork) | Plan creation | Created this file; re-verified live site | Baseline statuses below reflect live site as of this date |
 | 2026-07-18 | Claude (Cowork) | T1 | DONE (pending deploy) | Locale-aware doctor profile links on /hi/ & /mr/ doctors pages; build passes |
+| 2026-07-18 | Claude (Cowork) | T1 deploy confirm, T2 | T1 DONE (live); T2 DONE (pending deploy) | User confirmed T1 live on Cloudflare; upgraded 404 page to trilingual + nav + phone |
 
 ---
 
@@ -56,24 +57,24 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 ## PHASE 1 — Quick bug fixes (each task ≈ one short session)
 
 ### T1. Fix Hindi/Marathi doctors pages linking to English profiles
-**Status:** `DONE (pending deploy)`
+**Status:** `DONE`
 **Problem (verified live 2026-07-18):** On `/hi/doctors/` the "पूरा प्रोफ़ाइल देखें" buttons link to English `/dr-murlidhar/`, `/dr-manjushree/`, `/dr-manan/`, `/dr-darshana/` even though translated profiles exist (e.g. `/hi/dr-manan/` is live). Same issue almost certainly on `/mr/doctors/`.
 **Steps:**
 1. Find the doctors listing page source (likely `src/pages/hi/doctors.astro` + `src/pages/mr/doctors.astro`, or a shared component under `src/components/` fed by `src/data/` or `src/i18n/`).
 2. Make profile URLs locale-aware: prefix `/hi/` or `/mr/` when rendering in those locales.
 3. Grep the whole codebase for other hardcoded root-relative internal links inside `hi`/`mr` page trees (`grep -rn '"/dr-' src/ | grep -v en`) and fix the same way.
 **Verification:** Build passes; built HTML in `dist/hi/doctors/index.html` contains `/hi/dr-manan/` etc.; spot-check `dist/mr/doctors/index.html`.
-**Notes:** Fixed 2026-07-18. Only the two listing pages had the bug: `src/pages/hi/doctors.astro` and `src/pages/mr/doctors.astro` used `href={`/${d.slug}/`}` → now `/hi/${d.slug}/` and `/mr/${d.slug}/`. Codebase grep confirmed no other hardcoded root-relative `/dr-` links in hi/mr trees (HomeBody already uses the `L()` locale helper). Build passes (117 pages); verified `dist/hi/doctors/index.html` & `dist/mr/doctors/index.html` link to localized profiles which exist. Pending live deploy.
+**Notes:** Fixed 2026-07-18. Only the two listing pages had the bug: `src/pages/hi/doctors.astro` and `src/pages/mr/doctors.astro` used `href={`/${d.slug}/`}` → now `/hi/${d.slug}/` and `/mr/${d.slug}/`. Codebase grep confirmed no other hardcoded root-relative `/dr-` links in hi/mr trees (HomeBody already uses the `L()` locale helper). Build passes (117 pages); verified `dist/hi/doctors/index.html` & `dist/mr/doctors/index.html` link to localized profiles which exist. Deploy confirmed live by user 2026-07-18.
 
 ### T2. Create a real 404 page
-**Status:** `TODO`
+**Status:** `DONE (pending deploy)`
 **Problem (verified live 2026-07-18):** Unknown URLs return a completely blank page — no message, no nav, no way back.
 **Steps:**
 1. Create `src/pages/404.astro` using the standard site layout: friendly message ("Page not found / पेज नहीं मिला"), links to Home, Departments, Doctors, Contact, and the phone number.
 2. Keep it trilingual-lite: one page with EN + HI + MR one-liners is fine (Astro static hosting serves a single 404).
 3. Check the host config (Cloudflare Pages serves `404.html` automatically; if custom, wire it up).
 **Verification:** `dist/404.html` exists after build and contains nav + links. After deploy, `https://shubham-hospitals.com/nonexistent-xyz/` shows it.
-**Notes:** —
+**Notes:** 2026-07-18. A minimal EN-only `src/pages/404.astro` already existed; upgraded it to meet spec: EN+HI+MR one-liners, four nav buttons (Home/Departments/Doctors/Contact → `/`, `/departments/`, `/doctors/`, `/contact-us/`), and a phone CTA (`SITE.phoneHref`). Kept `noindex`. Astro static hosting serves one `404.html`; Cloudflare Pages serves it automatically. Build passes (117 pages); `dist/404.html` verified. Pending live deploy.
 
 ### T3. Fix empty /sitemap.xml
 **Status:** `TODO`
