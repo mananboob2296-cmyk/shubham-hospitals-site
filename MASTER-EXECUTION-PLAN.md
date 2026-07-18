@@ -31,6 +31,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | Date | Agent/Model | Task(s) touched | Outcome | Notes |
 |------|-------------|-----------------|---------|-------|
 | 2026-07-18 | Claude (Cowork) | Plan creation | Created this file; re-verified live site | Baseline statuses below reflect live site as of this date |
+| 2026-07-18 | Claude (Cowork) | T1 | DONE (pending deploy) | Locale-aware doctor profile links on /hi/ & /mr/ doctors pages; build passes |
 
 ---
 
@@ -55,14 +56,14 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 ## PHASE 1 — Quick bug fixes (each task ≈ one short session)
 
 ### T1. Fix Hindi/Marathi doctors pages linking to English profiles
-**Status:** `TODO`
+**Status:** `DONE (pending deploy)`
 **Problem (verified live 2026-07-18):** On `/hi/doctors/` the "पूरा प्रोफ़ाइल देखें" buttons link to English `/dr-murlidhar/`, `/dr-manjushree/`, `/dr-manan/`, `/dr-darshana/` even though translated profiles exist (e.g. `/hi/dr-manan/` is live). Same issue almost certainly on `/mr/doctors/`.
 **Steps:**
 1. Find the doctors listing page source (likely `src/pages/hi/doctors.astro` + `src/pages/mr/doctors.astro`, or a shared component under `src/components/` fed by `src/data/` or `src/i18n/`).
 2. Make profile URLs locale-aware: prefix `/hi/` or `/mr/` when rendering in those locales.
 3. Grep the whole codebase for other hardcoded root-relative internal links inside `hi`/`mr` page trees (`grep -rn '"/dr-' src/ | grep -v en`) and fix the same way.
 **Verification:** Build passes; built HTML in `dist/hi/doctors/index.html` contains `/hi/dr-manan/` etc.; spot-check `dist/mr/doctors/index.html`.
-**Notes:** —
+**Notes:** Fixed 2026-07-18. Only the two listing pages had the bug: `src/pages/hi/doctors.astro` and `src/pages/mr/doctors.astro` used `href={`/${d.slug}/`}` → now `/hi/${d.slug}/` and `/mr/${d.slug}/`. Codebase grep confirmed no other hardcoded root-relative `/dr-` links in hi/mr trees (HomeBody already uses the `L()` locale helper). Build passes (117 pages); verified `dist/hi/doctors/index.html` & `dist/mr/doctors/index.html` link to localized profiles which exist. Pending live deploy.
 
 ### T2. Create a real 404 page
 **Status:** `TODO`
