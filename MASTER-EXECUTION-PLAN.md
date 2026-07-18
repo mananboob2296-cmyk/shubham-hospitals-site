@@ -34,6 +34,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | 2026-07-18 | Claude (Cowork) | T1 | DONE (pending deploy) | Locale-aware doctor profile links on /hi/ & /mr/ doctors pages; build passes |
 | 2026-07-18 | Claude (Cowork) | T1 deploy confirm, T2 | T1 DONE (live); T2 DONE (pending deploy) | User confirmed T1 live on Cloudflare; upgraded 404 page to trilingual + nav + phone |
 | 2026-07-18 | Claude (Cowork) | T3 | DONE (pending deploy) | Added /sitemap.xml -> /sitemap-index.xml 301 in _redirects; build passes |
+| 2026-07-18 | Claude (Cowork) | T4 | DONE (pending deploy) | Fetal Medicine marked opening-soon (banner + meta + nav/footer label), led by Dr. Darshana Ajmera; EN/HI/MR; build passes |
 
 ---
 
@@ -87,14 +88,14 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 **Notes:** 2026-07-18. No stray `public/sitemap.xml` existed — Astro's `@astrojs/sitemap` generates `sitemap-index.xml` + `sitemap-0.xml`, and `robots.txt` already points to the index. Added `/sitemap.xml /sitemap-index.xml 301` to `public/_redirects` so the conventional URL resolves. Build passes; `dist/_redirects` contains the rule and no empty `dist/sitemap.xml`. Pending live deploy — then verify `/sitemap.xml` 301s to the index.
 
 ### T4. Resolve Fetal Medicine "opening soon" contradiction
-**Status:** `TODO`
+**Status:** `DONE (pending deploy)`
 **Problem (verified live 2026-07-18):** `/treatments/fetal-medicine/` hero + meta describe a **dedicated Fetal Medicine Centre** (present tense), but body copy still says "excited to **soon launch**" and "Our center **will be** staffed…". Site elsewhere presents the department as existing.
 **Steps:**
 1. **Ask the user first** (one question): is the centre operational now or genuinely upcoming?
 2. If operational: rewrite body copy to present tense in the page source (likely `src/pages/treatments/fetal-medicine.astro` or a content collection entry under `src/content/`); mirror the fix in `/hi/` and `/mr/` versions.
 3. If upcoming: add a clear "Opening <month year>" banner and change footer/departments listings to say "(opening soon)".
 **Verification:** No mix of tenses on the page in all three languages; build passes.
-**Notes:** —
+**Notes:** 2026-07-18. Owner confirmed the centre is genuinely UPCOMING, to be led by Dr. Darshana Ajmera. Body copy was already future-tense; the mismatch was meta/excerpt calling it a present 'dedicated Centre'. Added an **Opening Soon** banner (blockquote, first body element) naming Dr. Darshana Ajmera in EN/HI/MR; rewrote metaTitle/metaDescription/excerpt to upcoming tense in all 3 locales; labelled the nav + footer department item 'Fetal Medicine (opening soon)' (BaseLayout.astro treatments array — English label, HI/MR translation deferred to T6). Departments page card now shows the 'Opening soon' excerpt. Build passes (117 pages); verified banner + name in all 3 built pages and label on all 3 homepages. No fabricated opening date (owner gave none). Pending live deploy.
 
 ### T5. Verify and fix the `#book` anchor on /contact-us/
 **Status:** `TODO`
@@ -118,7 +119,7 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 2. Add HI and MR strings for all 7 departments + 3 "Best X" pages + the tagline. (Draft translations, keep medical terms recognizable: e.g. HI "एडवांस्ड लेप्रोस्कोपी एवं हिस्टेरोस्कोपी".)
 3. Wire the components to use locale strings instead of EN constants.
 **Verification:** Build; `dist/hi/index.html` nav/footer contain Devanagari department names; no EN leakage except proper nouns.
-**Notes:** —
+**Notes:** — (T4 added the English "Fetal Medicine (opening soon)" label — carry the "(opening soon)" suffix into the HI/MR translations here.)
 
 ### T7. Localize testimonials on HI/MR homepages
 **Status:** `TODO`
