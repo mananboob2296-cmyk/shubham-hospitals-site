@@ -35,6 +35,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | 2026-07-18 | Claude (Cowork) | T1 deploy confirm, T2 | T1 DONE (live); T2 DONE (pending deploy) | User confirmed T1 live on Cloudflare; upgraded 404 page to trilingual + nav + phone |
 | 2026-07-18 | Claude (Cowork) | T3 | DONE (pending deploy) | Added /sitemap.xml -> /sitemap-index.xml 301 in _redirects; build passes |
 | 2026-07-18 | Claude (Cowork) | T4 | DONE (pending deploy) | Fetal Medicine marked opening-soon (banner + meta + nav/footer label), led by Dr. Darshana Ajmera; EN/HI/MR; build passes |
+| 2026-07-18 | Claude (Cowork) | T5 | DONE (pending deploy) | #book anchor: booking heading (EN/HI/MR) + scroll-margin-top; build passes |
 
 ---
 
@@ -98,14 +99,14 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 **Notes:** 2026-07-18. Owner confirmed the centre is genuinely UPCOMING, to be led by Dr. Darshana Ajmera. Body copy was already future-tense; the mismatch was meta/excerpt calling it a present 'dedicated Centre'. Added an **Opening Soon** banner (blockquote, first body element) naming Dr. Darshana Ajmera in EN/HI/MR; rewrote metaTitle/metaDescription/excerpt to upcoming tense in all 3 locales; labelled the nav + footer department item 'Fetal Medicine (opening soon)' (BaseLayout.astro treatments array — English label, HI/MR translation deferred to T6). Departments page card now shows the 'Opening soon' excerpt. Build passes (117 pages); verified banner + name in all 3 built pages and label on all 3 homepages. No fabricated opening date (owner gave none). Pending live deploy.
 
 ### T5. Verify and fix the `#book` anchor on /contact-us/
-**Status:** `TODO`
+**Status:** `DONE (pending deploy)`
 **Problem:** Every "Book Appointment" CTA site-wide targets `/contact-us/#book`. The form section is headed "Send Us A Message". Whether an element with `id="book"` exists was NOT confirmable from crawls — check in source.
 **Steps:**
 1. Open the contact page source and search for `id="book"`.
 2. If missing, add `id="book"` to the booking form section wrapper (EN, HI, MR pages) with `scroll-margin-top` so the sticky header doesn't cover it.
 3. Rename the section heading to "Book an Appointment / अपॉइंटमेंट बुक करें / अपॉइंटमेंट बुक करा" so the landing point matches the CTA promise.
 **Verification:** Built HTML contains the id on all three locales; clicking a Book CTA on live site scrolls to the form.
-**Notes:** —
+**Notes:** 2026-07-18. `id="book"` already existed on the appointment form (`src/components/AppointmentForm.astro`). Two gaps fixed: (1) heading was "Send Us A Message" / "हमें संदेश भेजें" / "आम्हाला संदेश पाठवा" — now "Book an Appointment" / "अपॉइंटमेंट बुक करें" / "अपॉइंटमेंट बुक करा" (passed as explicit `heading` prop on all 3 contact pages, so no big-file edit); (2) added `style="scroll-margin-top:120px"` on the `#book` div so the sticky header doesn't cover the form when a Book CTA scrolls to it. Build passes (117 pages); verified id + new headings in dist for EN/HI/MR. Pending live deploy.
 
 ---
 
