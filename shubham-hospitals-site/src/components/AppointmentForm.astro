@@ -11,7 +11,7 @@ const { heading = 'Book An Appointment' } = Astro.props;
 // the form only opens WhatsApp on the visitor's own phone with a pre-filled message.
 const WA_NUMBER = '918668954915';
 ---
-<div id="book">
+<div id="book" style="scroll-margin-top:120px">
   <h2>{heading}</h2>
   <form class="appointment" id="wa-booking">
     <input type="text" name="name" placeholder={f.name} required />
