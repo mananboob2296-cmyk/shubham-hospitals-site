@@ -4,6 +4,16 @@ import reviews from '../data/reviews.json';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+// Reviews are collected in English (Google). On HI/MR we show honest
+// translations of the same real reviews, keeping name/date/rating identical.
+const localizedText = (r: { text: string; text_hi?: string; text_mr?: string }) =>
+  lang === 'hi' ? (r.text_hi ?? r.text) : lang === 'mr' ? (r.text_mr ?? r.text) : r.text;
+const translatedLabel: Record<string, string | null> = {
+  en: null,
+  hi: 'अनुवादित समीक्षा (मूल: अंग्रेज़ी)',
+  mr: 'अनुवादित पुनरावलोकन (मूळ: इंग्रजी)',
+};
+const note = translatedLabel[lang];
 ---
 <section class="section soft">
   <div class="container">
@@ -15,7 +25,8 @@ const t = useTranslations(lang);
           <div class="review-stars" aria-label={`${r.rating} out of 5 stars`}>
             {'★'.repeat(r.rating)}<span class="star-dim">{'★'.repeat(5 - r.rating)}</span>
           </div>
-          <p class="review-text">{r.text}</p>
+          <p class="review-text">{localizedText(r)}</p>
+          {note && <p class="review-translated"><small>{note}</small></p>}
           <div class="review-meta">
             <span class="review-avatar" aria-hidden="true">{r.initial}</span>
             <span class="review-name">{r.name}<span class="review-month"> · {r.month}</span></span>
