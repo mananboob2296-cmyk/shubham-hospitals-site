@@ -127,7 +127,7 @@ const bestPages: Record<Lang, { href: string; label: string }[]> = {
 const taglineByLang: Record<Lang, string> = {
   en: SITE.tagline,
   hi: 'हाई-टेक इलाज, वास्तव में किफ़ायती दाम पर!',
-  mr: 'हाय-टेक उपचार, खरोखर परवडणाऱ्या दरात!',
+  mr: 'हाय-टेक उपचार, खरोखर परवडणार्या दरात!',
 };
 ---
 <!doctype html>
@@ -180,6 +180,7 @@ const taglineByLang: Record<Lang, string> = {
     {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="topbar">
         <div class="container">
@@ -191,15 +192,14 @@ const taglineByLang: Record<Lang, string> = {
         </div>
       </div>
       <div class="container nav-wrap">
-        <label class="nav-burger" for="nav-toggle" aria-label="Open menu">☰</label>
+        <button type="button" class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="main-nav">☰</button>
         <a class="logo" href={L('/')} aria-label={SITE.name}>
           <img src={SITE.logoHeader} alt={`${SITE.name} logo`} width="600" height="212" />
         </a>
         <div class="header-actions">
           <LangSwitcher altPaths={altPaths} />
         </div>
-        <input type="checkbox" id="nav-toggle" />
-        <nav class="main-nav" aria-label="Main menu">
+        <nav id="main-nav" class="main-nav" aria-label="Main menu">
           <ul>
             <li><a href={L('/')}>{t('nav.home')}</a></li>
             <li><a href={L('/about-us/')}>{t('nav.about')}</a></li>
@@ -224,7 +224,7 @@ const taglineByLang: Record<Lang, string> = {
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <slot />
     </main>
 
@@ -235,16 +235,16 @@ const taglineByLang: Record<Lang, string> = {
           <p>{taglineByLang[lang]}</p>
           <p>{t('footer.trusted')}</p>
           <div class="social-row">
-            <a href={SITE.facebook} rel="noopener" target="_blank" aria-label="Facebook">
+            <a href={SITE.facebook} rel="noopener" target="_blank" aria-label="Follow us on Facebook">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#1877F2" d="M24 12a12 12 0 1 0-13.88 11.85v-8.38H7.08V12h3.04V9.36c0-3 1.79-4.67 4.53-4.67 1.31 0 2.69.24 2.69.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87V12h3.33l-.53 3.47h-2.8v8.38A12 12 0 0 0 24 12z"/></svg>
             </a>
-            <a href={SITE.instagram} rel="noopener" target="_blank" aria-label="Instagram">
+            <a href={SITE.instagram} rel="noopener" target="_blank" aria-label="Follow us on Instagram">
               <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".25" stop-color="#FA7E1E"/><stop offset=".5" stop-color="#D62976"/><stop offset=".75" stop-color="#962FBF"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><path fill="url(#ig)" d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.41-10.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
             </a>
-            <a href={SITE.youtubeHospital} rel="noopener" target="_blank" aria-label="YouTube">
+            <a href={SITE.youtubeHospital} rel="noopener" target="_blank" aria-label="Subscribe on YouTube">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF0000" d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.55 15.57V8.43L15.82 12z"/></svg>
             </a>
-            <a href={SITE.google} rel="noopener" target="_blank" aria-label="Google Reviews">
+            <a href={SITE.google} rel="noopener" target="_blank" aria-label="Read our Google reviews">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47a5.4 5.4 0 0 1-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09A11.99 11.99 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.27 14.29a7.2 7.2 0 0 1 0-4.58V6.62H1.29a12 12 0 0 0 0 10.76z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42A11.97 11.97 0 0 0 12 0 11.99 11.99 0 0 0 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z"/></svg>
             </a>
           </div>
@@ -287,5 +287,20 @@ const taglineByLang: Record<Lang, string> = {
       <a class="fab fab-wa" href={SITE.whatsapp} target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><WaIcon /></a>
       <a class="fab fab-call" href={SITE.phoneHref} aria-label={t('cta.callNow')}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
     </div>
+    <script is:inline>
+      (function () {
+        var btn = document.querySelector('.nav-burger');
+        var nav = document.getElementById('main-nav');
+        if (!btn || !nav) return;
+        function setOpen(open) {
+          nav.classList.toggle('open', open);
+          document.body.classList.toggle('nav-open', open);
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function () { setOpen(!nav.classList.contains('open')); });
+        nav.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+      })();
+    </script>
   </body>
 </html>

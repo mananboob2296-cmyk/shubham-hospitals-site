@@ -188,3 +188,32 @@ export const contactContent: Record<Lang, ContactContent> = {
     formHeading: 'आम्हाला संदेश पाठवा', findUs: 'आम्हाला शोधा',
   },
 };
+
+export interface FormContent {
+  name: string; mobile: string; age: string; gender: string; female: string; male: string;
+  source: string; friends: string; family: string; google: string; social: string; other: string;
+  issue: string; submit: string; note1: string; note2: string;
+}
+export const formContent: Record<Lang, FormContent> = {
+  en: {
+    name: 'Full Name', mobile: 'Mobile Number', age: 'Age', gender: 'Gender', female: 'Female', male: 'Male',
+    source: 'How did you hear about us?', friends: 'Friends', family: 'Family', google: 'Google', social: 'Social media', other: 'Other',
+    issue: 'What issue are you facing?', submit: 'Book via WhatsApp',
+    note1: 'Submitting opens WhatsApp with your details pre-filled — nothing is sent anywhere else. Prefer to call?',
+    note2: '(24x7 for emergencies) or email',
+  },
+  hi: {
+    name: 'पूरा नाम', mobile: 'मोबाइल नंबर', age: 'उम्र', gender: 'लिंग', female: 'महिला', male: 'पुरुष',
+    source: 'आपको हमारे बारे में कैसे पता चला?', friends: 'दोस्त', family: 'परिवार', google: 'गूगल', social: 'सोशल मीडिया', other: 'अन्य',
+    issue: 'आपको क्या समस्या है?', submit: 'WhatsApp से बुक करें',
+    note1: 'सबमिट करने पर WhatsApp आपकी जानकारी के साथ खुलता है — कहीं और कुछ नहीं भेजा जाता। कॉल करना पसंद करते हैं?',
+    note2: '(आपात स्थिति के लिए 24x7) या ईमेल करें',
+  },
+  mr: {
+    name: 'पूर्ण नाव', mobile: 'मोबाइल क्रमांक', age: 'वय', gender: 'लिंग', female: 'महिला', male: 'पुरुष',
+    source: 'तुम्हाला आमच्याविषयी कसे कळे?', friends: 'मित्र', family: 'कुटुंब', google: 'गूगल', social: 'सोशल मीडिया', other: 'इतर',
+    issue: 'तुम्हाला कोणती समस्या आहे?', submit: 'WhatsApp वरून बुक करा',
+    note1: 'सबमिट केल्यावर WhatsApp तुमच्या माहितीसह उघडतो — इतरत्र काहीही पाठवले जात नाही. कॉल करणे पसंत आहे?',
+    note2: '(आपत्कालीनसाठी 24x7) किंवा ईमेल करा',
+  },
+};
