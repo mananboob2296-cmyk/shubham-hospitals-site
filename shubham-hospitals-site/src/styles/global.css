@@ -52,9 +52,9 @@ h3 { font-size: 1.2rem; }
 .btn-outline { border-color: var(--magenta); color: var(--magenta); background: transparent; }
 .btn-outline:hover { background: var(--purple-50); }
 .btn-white { background: #fff; color: var(--plum); box-shadow: var(--shadow-sm); }
-.btn-whatsapp { background: #075E54; color: #fff !important; box-shadow: var(--shadow-sm); }
-.btn-whatsapp:hover { background: #0a7d6e; }
-.btn-call { background: #fff; color: var(--plum) !important; box-shadow: var(--shadow-sm); }
+.btn-whatsapp, .btn-call { background: linear-gradient(#fff,#fff) padding-box, linear-gradient(135deg,#964298,#DA6C95) border-box; border: 2px solid transparent; color: var(--plum) !important; box-shadow: var(--shadow-sm); }
+.btn-whatsapp .btn-ic { color: #923A94; }
+.btn-whatsapp:hover, .btn-call:hover { background: linear-gradient(#FAF3FA,#FAF3FA) padding-box, linear-gradient(135deg,#964298,#DA6C95) border-box; }
 .btn-ic { width: 18px; height: 18px; vertical-align: -3px; margin-right: 8px; }
 .btn-ic.line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .site-header { position: sticky; top: 0; z-index: 50; background: rgba(251, 248, 250, .92); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line), 0 2px 14px rgba(71,32,63,.06); }
