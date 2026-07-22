@@ -18,8 +18,10 @@ export const SITE = {
   heroSrcset: '/images/hero-hospital-480.webp 480w, /images/hero-hospital-768.webp 768w, /images/hero-hospital-1080.webp 1080w, /images/hero-hospital-1440.webp 1440w, /images/hero-hospital.webp 1920w',
   heroSizes: '(max-width: 820px) 100vw, 48vw',
   mapsEmbed: 'https://maps.google.com/maps?q=Shubham%20Hi-Tech%20Hospital%20%7C%20Best%20Infertility%20and%20Laparoscopy%20Centre%20in%20Amravati%2C%20Badnera%20Rd%2C%20opp.%20Mantri%20Motors%2C%20Deorankar%20Nagar%2C%20Amravati%2C%20Maharashtra%20444605&t=m&z=14&output=embed&iwloc=near',
-  logoHeader: '/images/logo.png',
-  logoWhite: '/images/logo-white.webp',
+  // SVG logos: resolution-independent — never pixelate on high-DPR mobile screens.
+  // PNG originals remain in /public/images for OG/social cards (must stay raster).
+  logoHeader: '/images/logo.svg',
+  logoWhite: '/images/logo-white.svg',
   favicon: '/images/favicon.png',
   ogImage: 'https://shubham-hospitals.com/images/og-logo.png',
 };
