@@ -53,7 +53,7 @@ h3 { font-size: 1.2rem; }
 .btn-outline:hover { background: var(--purple-50); }
 .btn-white { background: #fff; color: var(--plum); box-shadow: var(--shadow-sm); }
 .btn-whatsapp, .btn-call { background: linear-gradient(#fff,#fff) padding-box, linear-gradient(135deg,#964298,#DA6C95) border-box; border: 2px solid transparent; color: var(--plum) !important; box-shadow: var(--shadow-sm); }
-.btn-whatsapp .btn-ic { color: #923A94; }
+.btn-whatsapp .btn-ic { color: #075E54; }
 .btn-whatsapp:hover, .btn-call:hover { background: linear-gradient(#FAF3FA,#FAF3FA) padding-box, linear-gradient(135deg,#964298,#DA6C95) border-box; }
 .btn-ic { width: 18px; height: 18px; vertical-align: -3px; margin-right: 8px; }
 .btn-ic.line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
