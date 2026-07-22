@@ -37,18 +37,36 @@ const WA_NUMBER = '918668954915';
 </div>
 
 <script define:vars={{ WA_NUMBER }}>
-  document.getElementById('wa-booking').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const f = e.target;
-    const msg = [
-      'Hello Shubham Hospitals, I would like to book an appointment.',
-      `Name: ${f.name.value}`,
-      `Mobile: ${f.mobile.value}`,
-      f.age.value ? `Age: ${f.age.value}` : null,
-      `Gender: ${f.gender.value}`,
-      `Issue: ${f.issue.value}`,
-      f.source.value ? `Heard about us via: ${f.source.value}` : null,
-    ].filter(Boolean).join('\n');
-    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
-  });
+  // Delegated so the handler survives Astro view-transition swaps.
+  if (!window.__waBookingBound) {
+    window.__waBookingBound = true;
+    document.addEventListener('submit', (e) => {
+      const form = e.target.closest && e.target.closest('#wa-booking');
+      if (!form) return;
+      e.preventDefault();
+      const f = form;
+      const msg = [
+        'Hello Shubham Hospitals, I would like to book an appointment.',
+        `Name: ${f.name.value}`,
+        `Mobile: ${f.mobile.value}`,
+        f.age.value ? `Age: ${f.age.value}` : null,
+        `Gender: ${f.gender.value}`,
+        `Issue: ${f.issue.value}`,
+        f.source.value ? `Heard about us via: ${f.source.value}` : null,
+      ].filter(Boolean).join('\n');
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn && !btn.dataset.loading) {
+        btn.dataset.loading = '1';
+        const orig = btn.innerHTML;
+        const tpl = document.getElementById('lotus-tpl');
+        if (tpl) {
+          btn.innerHTML = '';
+          btn.appendChild(tpl.content.cloneNode(true));
+          btn.appendChild(document.createTextNode('Opening WhatsApp…'));
+        }
+        setTimeout(() => { btn.innerHTML = orig; delete btn.dataset.loading; }, 1600);
+      }
+      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+    });
+  }
 </script>

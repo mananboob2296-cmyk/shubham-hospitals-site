@@ -240,3 +240,15 @@ form.appointment button { justify-self: start; cursor: pointer; border: none; }
 @media (max-width: 720px) { .doctor-layout { grid-template-columns: 1fr; } .doctor-layout img { margin: 0 auto; } }
 @media (max-width: 720px) { .cta-band { padding: 26px 20px; border-radius: 22px; } .cta-band h2 { font-size: 1.3rem; } }
 .prose { word-break: break-word; }
+
+/* Lotus loader — animated brand mark (LotusLoader.astro) */
+.lotus-loader { display: inline-block; }
+.lotus-loader svg { width: 100%; height: 100%; display: block; }
+.lotus-loader .lp { transform-origin: 72px 190px; animation: lotus-bloom 2.75s infinite cubic-bezier(.4, 0, .2, 1); }
+.lotus-loader .ld { transform-box: fill-box; transform-origin: center; animation: lotus-dot 2.75s infinite ease-in-out; }
+@keyframes lotus-bloom { 0%, 5% { transform: scale(.25); opacity: 0; } 26%, 86% { transform: scale(1); opacity: 1; } 97%, 100% { transform: scale(.25); opacity: 0; } }
+@keyframes lotus-dot { 0%, 24% { transform: translateY(8px); opacity: 0; } 40%, 84% { transform: translateY(0); opacity: 1; } 96%, 100% { transform: translateY(-4px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .lotus-loader .lp, .lotus-loader .ld { animation: none; opacity: 1; transform: none; } }
+#lotus-splash { position: fixed; inset: 0; z-index: 200; background: var(--ivory); display: flex; align-items: center; justify-content: center; transition: opacity .35s var(--ease-out); }
+#lotus-splash.done { opacity: 0; pointer-events: none; }
+.btn .lotus-loader { width: 20px !important; height: 27px !important; vertical-align: -8px; margin-right: 8px; }

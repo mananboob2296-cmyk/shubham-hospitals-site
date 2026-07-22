@@ -29,6 +29,8 @@ import { getLangFromUrl, useTranslations, stripLangPrefix } from '../i18n/utils'
 import { translatedPaths } from '../i18n/translations';
 import { localeCodes, type Lang } from '../i18n/ui';
 import LangSwitcher from '../components/LangSwitcher.astro';
+import LotusLoader from '../components/LotusLoader.astro';
+import { ViewTransitions } from 'astro:transitions';
 import WaIcon from '../components/WaIcon.astro';
 
 const DEVANAGARI_RANGE = 'U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FF';
@@ -143,6 +145,7 @@ const taglineByLang: Record<Lang, string> = {
     <link rel="preload" as="font" type="font/woff2" href={libre600Url} crossorigin />
     <link rel="preload" as="font" type="font/woff2" href={sourceSans400Url} crossorigin />
     <style is:inline set:html={devanagariFaces}></style>
+    <ViewTransitions />
     <script is:inline>
       // First-visit language routing. Respects a manual choice (lang cookie);
       // otherwise sends Hindi/Marathi browsers to their homepage on the root page only.
@@ -189,6 +192,23 @@ const taglineByLang: Record<Lang, string> = {
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
+    <div id="lotus-splash" style="display:none"><LotusLoader uid="ls" size={110} /></div>
+    <template id="lotus-tpl"><LotusLoader uid="lt" size={96} /></template>
+    <script is:inline>
+      // First-visit splash: shows the lotus for ~1s, once per browser session.
+      // Gated on JS + sessionStorage + prefers-reduced-motion; the div ships
+      // display:none so no-JS visitors and crawlers never see it.
+      (function () {
+        var el = document.getElementById('lotus-splash');
+        if (!el) return;
+        try {
+          if (sessionStorage.getItem('lotusSplashSeen') || matchMedia('(prefers-reduced-motion: reduce)').matches) { el.remove(); return; }
+          sessionStorage.setItem('lotusSplashSeen', '1');
+          el.style.display = 'flex';
+          setTimeout(function () { el.classList.add('done'); setTimeout(function () { el.remove(); }, 380); }, 1000);
+        } catch (e) { el.remove(); }
+      })();
+    </script>
     <header class="site-header">
       <div class="topbar">
         <div class="container">
@@ -293,18 +313,56 @@ const taglineByLang: Record<Lang, string> = {
       <a class="fab fab-call" href={SITE.phoneHref} aria-label={t('cta.callNow')}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
     </div>
     <script is:inline>
+      // Mobile nav — event delegation on document so bindings survive Astro
+      // view-transition swaps (elements are replaced; document listeners persist).
       (function () {
-        var btn = document.querySelector('.nav-burger');
-        var nav = document.getElementById('main-nav');
-        if (!btn || !nav) return;
+        if (window.__navBound) return;
+        window.__navBound = true;
         function setOpen(open) {
+          var nav = document.getElementById('main-nav');
+          var btn = document.querySelector('.nav-burger');
+          if (!nav || !btn) return;
           nav.classList.toggle('open', open);
           document.body.classList.toggle('nav-open', open);
           btn.setAttribute('aria-expanded', open ? 'true' : 'false');
         }
-        btn.addEventListener('click', function () { setOpen(!nav.classList.contains('open')); });
-        nav.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+        document.addEventListener('click', function (e) {
+          if (e.target.closest('.nav-burger')) {
+            var nav = document.getElementById('main-nav');
+            setOpen(!(nav && nav.classList.contains('open')));
+            return;
+          }
+          if (e.target.closest('#main-nav a')) setOpen(false);
+        });
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+      })();
+    </script>
+    <script is:inline>
+      // Lotus loader on slow page transitions: if the next page takes >300ms to
+      // prepare, show the lotus overlay (cloned from #lotus-tpl); removed on load.
+      (function () {
+        if (window.__lotusNavBound) return;
+        window.__lotusNavBound = true;
+        var timer = null, ov = null;
+        function clear() {
+          if (timer) { clearTimeout(timer); timer = null; }
+          var el = document.getElementById('lotus-splash');
+          if (ov && el === ov) el.remove();
+          ov = null;
+        }
+        document.addEventListener('astro:before-preparation', function () {
+          if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          clear();
+          timer = setTimeout(function () {
+            var tpl = document.getElementById('lotus-tpl');
+            if (!tpl || document.getElementById('lotus-splash')) return;
+            ov = document.createElement('div');
+            ov.id = 'lotus-splash';
+            ov.appendChild(tpl.content.cloneNode(true));
+            document.body.appendChild(ov);
+          }, 300);
+        });
+        document.addEventListener('astro:page-load', clear);
       })();
     </script>
   </body>
