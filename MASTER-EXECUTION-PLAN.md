@@ -44,6 +44,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | 2026-07-18 | Claude (Cowork) | T14, T15 | T14 DONE (pending deploy); T15 BLOCKED | a11y pass (skip link, real menu button, social labels) + restored formContent (fixes T11 build break). T15 blocked: cannot commit binary WebP assets via API |
 | 2026-07-18 | Claude (Cowork) | T17 | DONE (pending deploy) | FAQ sticky category jump-nav (EN/HI/MR); accordions + FAQPage schema already existed; build passes |
 | 2026-07-21 | Claude (Cowork) | T15 | DONE (pending deploy) | Unblocked via GitHub Actions: runner downloaded originals, committed WebP + ref updates in one bot commit; CI build-gated |
+| 2026-07-22 | Claude (Cowork) | T16 | DONE (pending deploy) | Removed 3 Best-X SEO links from nav dropdown (all locales) + dropped unused bestPages const; 7 depts only. Pages still build, in sitemap, linked from homepage cards. build passes |
 
 ---
 
@@ -128,7 +129,7 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 2. Add HI and MR strings for all 7 departments + 3 "Best X" pages + the tagline. (Draft translations, keep medical terms recognizable: e.g. HI "एडवांस्ड लेप्रोस्कोपी एवं हिस्टेरोस्कोपी".)
 3. Wire the components to use locale strings instead of EN constants.
 **Verification:** Build; `dist/hi/index.html` nav/footer contain Devanagari department names; no EN leakage except proper nouns.
-**Notes:** 2026-07-18. Made `src/layouts/BaseLayout.astro` locale-aware (this one file drives both the nav dropdown and the footer Departments list). Added HI + MR labels for all 7 departments (reusing the content-collection titles; Fetal Medicine carries '(जल्द ही शुरू)' / '(लवकरच सुरू)'), the 3 'Best X in Amravati' landing links (with locale-prefixed hrefs via `L()`), and the tagline (`SITE.tagline` stays English; footer now shows 'हाई-टेक इलाज, वास्तव में किफ़ायती दाम पर!' / 'हाय-टेक उपचार, खरोखर परवडणाऱ्या दरात!'). Build passes (117 pages); verified Devanagari dept names, best-page links, and tagline on dist/hi & dist/mr homepages, English output unchanged, no EN leakage. Pending live deploy.
+**Notes:** 2026-07-18. Made `src/layouts/BaseLayout.astro` locale-aware (this one file drives both the nav dropdown and the footer Departments list). Added HI + MR labels for all 7 departments (reusing the content-collection titles; Fetal Medicine carries '(जल्द ही शुरू)' / '(लवकरच सुरू)'), the 3 'Best X in Amravati' landing links (with locale-prefixed hrefs via `L()`), and the tagline (`SITE.tagline` stays English; footer now shows 'हाई-टेक इलाज, वास्तव में किफ़ायती दाम पर!' / 'हाय-टेक उपचार, खरोखर परवडणाऱ्या दरात!'). Build passes (117 pages); verified Devanagari dept names, best-page links, and tagline on dist/hi & dist/mr homepages, English output unchanged, no EN leakage. Pending live deploy. [T16 later removed the 3 Best-X links from the dropdown — the `bestPages` const is gone.]
 
 ### T7. Localize testimonials on HI/MR homepages
 **Status:** `DONE (pending deploy)`
@@ -221,13 +222,13 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 **Notes (2026-07-21):** DONE via GitHub Actions workaround. The Git-contents API indeed cannot carry binaries, so this session committed text-only tooling: `.github/workflows/t15-image-optimization.yml` + `scripts/t15-update-refs.py`. The Actions runner (full network + GITHUB_TOKEN) downloaded the 4 doctor JPGs, white logo, scaled logo and favicon from the live site (browser UA), converted them (doctor photos 480px+240px WebP q82 in `public/images/doctors/`; `logo-white.webp` 400w; `og-logo.png` 1200w PNG kept for og:image compatibility; `favicon.png` 96px), then ran the ref-update script: 12 doctor md `photo:` fields -> local WebP; consts.ts logoWhite/favicon/ogImage -> local; `srcset`/`sizes` added on 4 card renders + 3 profile pages; og:image absolutized via `new URL(...)` in BaseLayout (doctor photos are now root-relative); `loading="lazy" decoding="async"` on the 3 male-infertility blog figures. CI gated the commit on `npm run build` + dist greps. Also verified locally in sandbox pre-push (build passes, 117 pages; srcset/og/favicon spot-checked in dist). Workflow is idempotent (skips if assets already exist), re-runnable via workflow_dispatch, and safe to delete once deploy is confirmed. Remaining nice-to-have: homepage hero srcset (single 152KB webp today) was NOT changed - optional follow-up.
 
 ### T16. Nav cleanup: move "Best X in Amravati" pages out of Departments dropdown
-**Status:** `TODO`
+**Status:** `DONE (pending deploy)`
 **Problem:** The dropdown mixes 7 real departments with 3 SEO landing pages — confusing and self-praising in the primary nav; also risky under Indian medical-advertising norms.
 **Steps:**
 1. **Confirm with the user** (SEO pages stay indexed and internally linked — only removed from the menu).
 2. Remove the 3 items from the nav dropdown (all locales). Keep footer/homepage cross-links and sitemap entries. Do NOT delete or noindex the pages.
 **Verification:** Nav shows 7 departments; the 3 pages still build and remain linked from homepage service cards.
-**Notes:** — (T6 already routes these 3 links through `bestPages[lang]` in BaseLayout — removing from the dropdown now means dropping the `{bestPages[lang].map(...)}` block from the nav `<ul class="dropdown">` while keeping homepage/footer cross-links.)
+**Notes:** 2026-07-22. Owner confirmed ("Do T16"). Removed the `{bestPages[lang].map(...)}` render block from the nav `<ul class="dropdown">` in `src/layouts/BaseLayout.astro` and deleted the now-unused `bestPages` const (replaced with an explanatory comment). Dropdown now shows exactly the 7 departments (verified in `dist/index.html`: 7 hrefs, no `/best-*` links). The 3 SEO landing pages are UNTOUCHED — still build (`dist/best-ivf-centre-in-amravati/`, `best-gynecologist-in-amravati/`, `best-laparoscopic-surgeon-in-amravati/` all present), still in the sitemap, and still linked from the homepage service cards (`HomeBody.astro` — verified `/best-ivf-centre-in-amravati/` + `/best-laparoscopic-surgeon-in-amravati/` in dist/index.html). No noindex added. Build passes (120 pages). Pending live deploy.
 
 ### T17. FAQ page: accordions + category jump-nav
 **Status:** `DONE (pending deploy)`
