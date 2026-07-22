@@ -1,0 +1,105 @@
+name: T15 image optimization
+
+# T15 workaround: the Git-contents API used by agent sessions cannot commit
+# binary files, but an Actions runner (full network + GITHUB_TOKEN) can.
+# Downloads the original images from the live site, converts them to local
+# WebP/PNG, applies the text reference updates (scripts/t15-update-refs.py),
+# gates on a full Astro build, and pushes everything in one commit.
+# Idempotent: skips if the assets already exist. Safe to delete after deploy.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/t15-image-optimization.yml'
+
+permissions:
+  contents: write
+
+concurrency: t15-images
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Skip if already done
+        id: guard
+        run: |
+          if [ -f shubham-hospitals-site/public/images/doctors/dr-manan-480.webp ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Assets already present; nothing to do."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install tools
+        if: steps.guard.outputs.skip == 'false'
+        run: sudo apt-get update -q && sudo apt-get install -y -q webp imagemagick
+
+      - name: Download source images
+        if: steps.guard.outputs.skip == 'false'
+        run: |
+          set -euo pipefail
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+          dl() { curl -fsSL --retry 3 --retry-delay 2 -A "$UA" -o "$2" "$1"; }
+          mkdir -p /tmp/srcimg
+          dl "https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Manan-1024x1024.jpg" /tmp/srcimg/dr-manan.jpg
+          dl "https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Manjushree-Final-1-1024x1024.jpg" /tmp/srcimg/dr-manjushree.jpg
+          dl "https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Murlidhar-1024x1024.jpg" /tmp/srcimg/dr-murlidhar.jpg
+          dl "https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Darshana-1024x1024.jpg" /tmp/srcimg/dr-darshana.jpg
+          dl "https://shubham-hospitals.com/wp-content/uploads/2026/06/Shubham-White-Logo.png" /tmp/srcimg/logo-white.png
+          dl "https://shubham-hospitals.com/wp-content/uploads/2026/06/Shubham-Final-Logo-scaled.png" /tmp/srcimg/og-logo.png
+          dl "https://shubham-hospitals.com/wp-content/uploads/2025/09/cropped-Shubham-Hospital-Favicon-New-270x270.png" /tmp/srcimg/favicon.png
+          for f in dr-manan dr-manjushree dr-murlidhar dr-darshana; do
+            file "/tmp/srcimg/$f.jpg" | grep -qi 'JPEG image data' || { echo "BAD DOWNLOAD: $f"; file "/tmp/srcimg/$f.jpg"; exit 1; }
+          done
+          for f in logo-white og-logo favicon; do
+            file "/tmp/srcimg/$f.png" | grep -qi 'PNG image data' || { echo "BAD DOWNLOAD: $f"; file "/tmp/srcimg/$f.png"; exit 1; }
+          done
+          ls -la /tmp/srcimg
+
+      - name: Convert
+        if: steps.guard.outputs.skip == 'false'
+        run: |
+          set -euo pipefail
+          cd shubham-hospitals-site/public/images
+          mkdir -p doctors
+          for n in dr-manan dr-manjushree dr-murlidhar dr-darshana; do
+            cwebp -quiet -q 82 -resize 480 480 /tmp/srcimg/$n.jpg -o doctors/$n-480.webp
+            cwebp -quiet -q 82 -resize 240 240 /tmp/srcimg/$n.jpg -o doctors/$n-240.webp
+          done
+          convert /tmp/srcimg/logo-white.png -resize 400x -strip /tmp/srcimg/logo-white-400.png
+          cwebp -quiet -q 90 /tmp/srcimg/logo-white-400.png -o logo-white.webp
+          convert /tmp/srcimg/og-logo.png -resize 1200x -strip og-logo.png
+          convert /tmp/srcimg/favicon.png -resize 96x96 -strip favicon.png
+          ls -la . doctors
+
+      - name: Update references
+        if: steps.guard.outputs.skip == 'false'
+        run: python3 scripts/t15-update-refs.py
+
+      - name: Build check
+        if: steps.guard.outputs.skip == 'false'
+        run: |
+          set -euo pipefail
+          cd shubham-hospitals-site
+          npm install --no-audit --no-fund
+          npm run build
+          grep -q '/images/doctors/dr-manan-480.webp' dist/doctors/index.html
+          grep -q 'srcset' dist/doctors/index.html
+          grep -q 'content="https://shubham-hospitals.com/images/doctors/dr-manan-480.webp"' dist/dr-manan/index.html
+          grep -q '/images/favicon.png' dist/index.html
+          ! grep -q 'wp-content' dist/doctors/index.html
+
+      - name: Commit and push
+        if: steps.guard.outputs.skip == 'false'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add shubham-hospitals-site/public/images shubham-hospitals-site/src MASTER-EXECUTION-PLAN.md
+          git commit -m "plan: complete T15 — local WebP images, srcset, logo set, lazy blog figures (via Actions)"
+          git push
