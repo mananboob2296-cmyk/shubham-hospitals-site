@@ -46,6 +46,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | 2026-07-21 | Claude (Cowork) | T15 | DONE (pending deploy) | Unblocked via GitHub Actions: runner downloaded originals, committed WebP + ref updates in one bot commit; CI build-gated |
 | 2026-07-22 | Claude (Cowork) | T24 (new) | DONE (pending deploy) | PSI mobile 89: hero srcset + responsive preload, logo-300, footer logo height, WhatsApp contrast #075E54, laparo recompress; via T15-style CI |
 | 2026-07-22 | Claude (Cowork) | T16 | DONE (pending deploy) | Removed 3 Best-X SEO links from nav dropdown (all locales) + dropped unused bestPages const; 7 depts only. Pages still build, in sitemap, linked from homepage cards. build passes |
+| 2026-07-22 | Claude (Cowork) | T18 | DONE (pending deploy) | Homepage h1 softened: dropped 16-word "Best IVF & Laparoscopy Centre" self-claim -> "Trusted IVF, 3D Laparoscopy & Maternity Care in Amravati" (9 words, no "Best"); EN/HI/MR via heroH1 in home.ts; title tag unchanged; build passes (120 pages) |
 
 ---
 
@@ -241,13 +242,13 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 **Notes:** 2026-07-18. Steps 1 (accordions grouped by category) and 3 (FAQPage JSON-LD) were ALREADY in place on `/faq/` (EN/HI/MR) — the page renders `<details>/<summary>` under each `<h2 id={category}>` and emits FAQ schema via the `schema` prop. Added the only missing piece: a sticky pill jump-nav (`<nav class="faq-nav">`) linking to each category id, with a localized `aria-label` ('Jump to a topic' / 'किसी विषय पर जाएँ' / 'एखाद्या विषयावर जा'). Added `.faq-nav` styles (sticky `top:108px` desktop, horizontal-scroll on mobile) + `scroll-margin-top` on `.faq-cat h2` so anchor jumps clear the sticky site-header. Build passes (120 pages); verified the pill nav + `#category` anchors + FAQPage schema + accordions on dist EN/HI/MR. Pending live deploy.
 
 ### T18. Soften the homepage h1
-**Status:** `TODO`
+**Status:** `DONE (pending deploy)`
 **Problem:** Current h1 is 17 words and keyword-stuffed ("…Best IVF & Laparoscopy Centre in Amravati"); "Best" self-designation is risky under Indian medical-advertising norms.
 **Steps:**
 1. Propose to the user 2–3 alternatives, e.g. "30 Years of Safe Deliveries & IVF Success in Amravati". Keep keywords in `<title>` (already good).
 2. Update h1 in EN/HI/MR homepages after approval.
 **Verification:** h1 ≤ 10 words, no "Best" claim; title tag unchanged.
-**Notes:** —
+**Notes:** 2026-07-22. Owner approved wording "Trusted IVF, 3D Laparoscopy & Maternity Care in Amravati" (chosen from 3 options, 9 words, no superlative). Changed only `heroH1` for en/hi/mr in `src/i18n/home.ts` (single source that `HomeBody.astro` renders as the homepage `<h1>`). HI: 'अमरावती में भरोसेमंद आईवीएफ, 3D लेप्रोस्कोपी एवं प्रसूति देखभाल'; MR: 'अमरावतीतील विश्वासार्ह आयव्हीएफ, 3D लॅपरोस्कोपी व प्रसूती काळजी'. Keyword-rich `<title>`/og:title/description left untouched. Build passes (120 pages); verified new h1 in dist EN/HI/MR, zero 'Best' in any homepage h1, title tag unchanged. Pending live deploy.
 
 ---
 
