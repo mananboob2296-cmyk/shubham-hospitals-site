@@ -2,7 +2,7 @@
 name: "Dr. Darshana Ajmera"
 qualifications: "MBBS (Nair, Mumbai) | MS (ObGyn, Honors)"
 role: "Obstetrician, Gynecologist & Fetal Medicine Specialist"
-photo: "https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Darshana-1024x1024.jpg"
+photo: "/images/doctors/dr-darshana-480.webp"
 order: 4
 metaTitle: "Dr. Darshana Ajmera | Fetal Medicine Specialist, Amravati"
 metaDescription: "Dr. Darshana Ajmera — MBBS (Nair, Mumbai), MS ObGyn (Honors). Obstetrician, gynecologist & fetal medicine specialist at Shubham Hospitals, Amravati."

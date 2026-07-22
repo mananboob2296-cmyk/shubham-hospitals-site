@@ -2,7 +2,7 @@
 name: "डॉ. मंजूश्री बूब"
 qualifications: "MD, DNB, FICMCH, FICOG"
 role: "बांझपन एवं IVF सलाहकार, प्रसूति एवं स्त्री रोग विशेषज्ञ"
-photo: "https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Manjushree-Final-1-1024x1024.jpg"
+photo: "/images/doctors/dr-manjushree-480.webp"
 order: 2
 metaTitle: "डॉ. मंजूश्री बूब | अमरावती में IVF विशेषज्ञ"
 metaDescription: "डॉ. मंजूश्री बूब — MD, DNB, FICMCH, FICOG। अमरावती में IVF की अग्रणी, शुभम हॉस्पिटल्स की सह-संस्थापक। 1,000+ IVF साइकल, 20,000+ सुरक्षित प्रसव।"

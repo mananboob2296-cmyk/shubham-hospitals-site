@@ -114,7 +114,7 @@ if (type === 'blog') {
       </section>
       <section class="section">
         <div class="container doctor-layout">
-          <img src={entry.data.photo} alt={entry.data.name} width="240" height="240" style="border-radius:16px; width:240px; height:auto;" />
+          <img src={entry.data.photo} srcset={`${entry.data.photo.replace('-480', '-240')} 240w, ${entry.data.photo} 480w`} sizes="240px" alt={entry.data.name} width="240" height="240" style="border-radius:16px; width:240px; height:auto;" />
           <div class="prose">
             <Content />
             {entry.data.honors.length > 0 && (

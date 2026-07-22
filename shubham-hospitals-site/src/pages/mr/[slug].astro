@@ -84,7 +84,7 @@ const t = useTranslations(lang);
       </section>
       <section class="section">
         <div class="container doctor-layout">
-          <img src={e.photo} alt={e.name} width="240" height="240" style="border-radius:16px; width:240px; height:auto;" />
+          <img src={e.photo} srcset={`${e.photo.replace('-480', '-240')} 240w, ${e.photo} 480w`} sizes="240px" alt={e.name} width="240" height="240" style="border-radius:16px; width:240px; height:auto;" />
           <div class="prose">
             <Content />
             {e.honors && e.honors.length > 0 && (

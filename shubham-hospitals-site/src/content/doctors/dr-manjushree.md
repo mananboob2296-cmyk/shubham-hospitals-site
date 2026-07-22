@@ -2,7 +2,7 @@
 name: "Dr. Manjushree Boob"
 qualifications: "MD, DNB, FICMCH, FICOG"
 role: "Infertility & IVF Consultant, Obstetrician & Gynecologist"
-photo: "https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Manjushree-Final-1-1024x1024.jpg"
+photo: "/images/doctors/dr-manjushree-480.webp"
 order: 2
 metaTitle: "Dr. Manjushree Boob | IVF Specialist in Amravati"
 metaDescription: "Dr. Manjushree Boob — MD, DNB, FICMCH, FICOG. Pioneer of IVF in Amravati, co-founder of Shubham Hospitals. 1,000+ IVF cycles, 20,000+ safe deliveries."

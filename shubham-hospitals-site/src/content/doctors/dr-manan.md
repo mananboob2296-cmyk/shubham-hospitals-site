@@ -2,7 +2,7 @@
 name: "Dr. Manan Boob"
 qualifications: "MBBS (KEM, Mumbai) | MS (ObGyn, Sion, Mumbai – Gold Medalist) | DNB (ObGyn)"
 role: "Advanced Laparo-Hysteroscopic Surgeon, Gynecologist"
-photo: "https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Manan-1024x1024.jpg"
+photo: "/images/doctors/dr-manan-480.webp"
 order: 3
 metaTitle: "Dr. Manan Boob | Gynecologist & Laparoscopic Surgeon, Amravati"
 metaDescription: "Dr. Manan Boob — MBBS (KEM), MS ObGyn (Gold Medalist), DNB. Advanced laparo-hysteroscopic surgeon and gynecologist at Shubham Hospitals, Amravati."

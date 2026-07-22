@@ -21,7 +21,7 @@ faqs:
 
 <p>अमरावती आणि विस्तीर्ण विदर्भात, प्रजनन तपासणीचा भार अजूनही जवळजवळ संपूर्णपणे स्त्रीवर पडतो, तर पुरुषाची क्वचितच चाचणी केली जाते. जोडप्यांनी केलेल्या सर्वात सामान्य आणि महाग चुकांपैकी ही एक आहे. जर तुम्ही यशस्वी न होता बाळासाठी प्रयत्न करत असाल, तर सुरुवातीपासूनच दोन्ही भागीदारांचे एकत्रित मूल्यांकन केले पाहिजे. हे मार्गदर्शक पुरुष वंध्यत्व म्हणजे काय, ते कशामुळे होते, त्याची चाचणी कशी केली जाते आणि तज्ञांना कधी भेटायचे हे स्पष्ट करते.</p>
 
-<figure><img src="https://shubham-hospitals.com/wp-content/uploads/2026/07/male-infertility-semen-analysis-amravati.jpeg" alt="Lab technician examining a semen analysis sample under a microscope during male infertility testing in Amravati" /><figcaption>सूक्ष्मदर्शकाखाली तपासले जाणारे वीर्य विश्लेषण ही पुरुष वंध्यत्वाची पहिली आणि सर्वात महत्त्वाची चाचणी आहे.</figcaption></figure>
+<figure><img loading="lazy" decoding="async" src="https://shubham-hospitals.com/wp-content/uploads/2026/07/male-infertility-semen-analysis-amravati.jpeg" alt="Lab technician examining a semen analysis sample under a microscope during male infertility testing in Amravati" /><figcaption>सूक्ष्मदर्शकाखाली तपासले जाणारे वीर्य विश्लेषण ही पुरुष वंध्यत्वाची पहिली आणि सर्वात महत्त्वाची चाचणी आहे.</figcaption></figure>
 
 <h2>पुरुष वंध्यत्व म्हणून काय मोजले जाते?</h2>
 

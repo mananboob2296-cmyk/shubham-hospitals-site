@@ -2,7 +2,7 @@
 name: "Dr. Murlidhar Boob"
 qualifications: "MS (Surgery), FAIS, DLS, FMAS"
 role: "Laparoscopic Surgeon & Surgical Gastroenterologist"
-photo: "https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Murlidhar-1024x1024.jpg"
+photo: "/images/doctors/dr-murlidhar-480.webp"
 order: 1
 metaTitle: "Dr. Murlidhar Boob | Laparoscopic Surgeon in Amravati"
 metaDescription: "Dr. Murlidhar Boob — MS, FAIS, DLS, FMAS. Pioneer of laparoscopic surgery in Amravati with 30+ years of experience and 10,000+ successful GI procedures."

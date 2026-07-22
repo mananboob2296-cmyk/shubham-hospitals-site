@@ -2,7 +2,7 @@
 name: "डॉ. दर्शना अजमेरा"
 qualifications: "MBBS (Nair, Mumbai) | MS (ObGyn, Honors)"
 role: "प्रसूति, स्त्री रोग एवं भ्रूण चिकित्सा विशेषज्ञ"
-photo: "https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Darshana-1024x1024.jpg"
+photo: "/images/doctors/dr-darshana-480.webp"
 order: 4
 metaTitle: "डॉ. दर्शना अजमेरा | भ्रूण चिकित्सा विशेषज्ञ, अमरावती"
 metaDescription: "डॉ. दर्शना अजमेरा — MBBS (नायर, मुंबई), MS ObGyn (ऑनर्स)। शुभम हॉस्पिटल्स, अमरावती में प्रसूति, स्त्री रोग एवं भ्रूण चिकित्सा विशेषज्ञ।"

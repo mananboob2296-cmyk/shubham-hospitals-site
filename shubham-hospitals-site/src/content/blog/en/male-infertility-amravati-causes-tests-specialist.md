@@ -23,7 +23,7 @@ faqs:
 
 <p>In Amravati and the wider Vidarbha region, the burden of fertility investigation still tends to fall almost entirely on the woman, while the man is rarely tested. This is one of the most common and costly mistakes couples make. If you have been trying for a baby without success, both partners should be evaluated together from the very beginning. This guide explains what male infertility means, what causes it, how it is tested, and when to see a specialist.</p>
 
-<figure><img src="https://shubham-hospitals.com/wp-content/uploads/2026/07/male-infertility-semen-analysis-amravati.jpeg" alt="Lab technician examining a semen analysis sample under a microscope during male infertility testing in Amravati" /><figcaption>A semen analysis, examined under a microscope, is the first and most important test for male infertility.</figcaption></figure>
+<figure><img loading="lazy" decoding="async" src="https://shubham-hospitals.com/wp-content/uploads/2026/07/male-infertility-semen-analysis-amravati.jpeg" alt="Lab technician examining a semen analysis sample under a microscope during male infertility testing in Amravati" /><figcaption>A semen analysis, examined under a microscope, is the first and most important test for male infertility.</figcaption></figure>
 
 <h2>What Counts as Male Infertility?</h2>
 

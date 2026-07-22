@@ -2,7 +2,7 @@
 name: "डॉ. मुरलीधर बूब"
 qualifications: "MS (Surgery), FAIS, DLS, FMAS"
 role: "लॅपरोस्कोपिक सर्जन व सर्जिकल गॅस्ट्रोएन्टेरोलॉजिस्ट"
-photo: "https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Murlidhar-1024x1024.jpg"
+photo: "/images/doctors/dr-murlidhar-480.webp"
 order: 1
 metaTitle: "डॉ. मुरलीधर बूब | अमरावतीत लॅपरोस्कोपिक सर्जन"
 metaDescription: "डॉ. मुरलीधर बूब — MS, FAIS, DLS, FMAS. 30+ वर्षांचा अनुभव व 10,000+ यशस्वी GI प्रक्रियांसह अमरावतीत लॅपरोस्कोपिक शस्त्रक्रियेचे अग्रणी."

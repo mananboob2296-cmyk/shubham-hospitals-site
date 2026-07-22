@@ -173,7 +173,7 @@ const taglineByLang: Record<Lang, string> = {
     <meta property="og:description" content={ogDescription ?? description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content={ogType} />
-    <meta property="og:image" content={ogImage ?? SITE.ogImage} />
+    <meta property="og:image" content={new URL(ogImage ?? SITE.ogImage, SITE.url).href} />
     <meta property="og:locale" content={localeCodes[lang].replace('-', '_')} />
     <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json" set:html={JSON.stringify(CLINIC_SCHEMA)} />

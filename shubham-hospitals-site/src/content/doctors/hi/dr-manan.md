@@ -2,7 +2,7 @@
 name: "डॉ. मनन बूब"
 qualifications: "MBBS (KEM, Mumbai) | MS (ObGyn, Sion, Mumbai – Gold Medalist) | DNB (ObGyn)"
 role: "उन्नत लेप्रो-हिस्टेरोस्कोपिक सर्जन, स्त्री रोग विशेषज्ञ"
-photo: "https://shubham-hospitals.com/wp-content/uploads/2025/09/Dr-Manan-1024x1024.jpg"
+photo: "/images/doctors/dr-manan-480.webp"
 order: 3
 metaTitle: "डॉ. मनन बूब | स्त्री रोग विशेषज्ञ एवं लेप्रोस्कोपिक सर्जन, अमरावती"
 metaDescription: "डॉ. मनन बूब — MBBS (KEM), MS ObGyn (गोल्ड मेडलिस्ट), DNB। शुभम हॉस्पिटल्स, अमरावती में उन्नत लेप्रो-हिस्टेरोस्कोपिक सर्जन और स्त्री रोग विशेषज्ञ।"

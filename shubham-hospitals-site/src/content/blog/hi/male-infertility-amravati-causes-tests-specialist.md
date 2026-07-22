@@ -23,7 +23,7 @@ faqs:
 
 <p>अमरावती और व्यापक विदर्भ क्षेत्र में, प्रजनन जांच का बोझ अभी भी लगभग पूरी तरह से महिला पर पड़ता है, जबकि पुरुष का परीक्षण शायद ही कभी किया जाता है। यह जोड़ों द्वारा की जाने वाली सबसे आम और महंगी गलतियों में से एक है। यदि आप सफलता के बिना बच्चे के लिए प्रयास कर रहे हैं, तो शुरू से ही दोनों भागीदारों का एक साथ मूल्यांकन किया जाना चाहिए। यह मार्गदर्शिका बताती है कि पुरुष बांझपन का क्या मतलब है, इसका क्या कारण है, इसका परीक्षण कैसे किया जाता है और किसी विशेषज्ञ को कब दिखाना चाहिए।</p>
 
-<figure><img src="https://shubham-hospitals.com/wp-content/uploads/2026/07/male-infertility-semen-analysis-amravati.jpeg" alt="Lab technician examining a semen analysis sample under a microscope during male infertility testing in Amravati" /><figcaption>माइक्रोस्कोप के तहत जांचा गया वीर्य विश्लेषण, पुरुष बांझपन के लिए पहला और सबसे महत्वपूर्ण परीक्षण है।</figcaption></figure>
+<figure><img loading="lazy" decoding="async" src="https://shubham-hospitals.com/wp-content/uploads/2026/07/male-infertility-semen-analysis-amravati.jpeg" alt="Lab technician examining a semen analysis sample under a microscope during male infertility testing in Amravati" /><figcaption>माइक्रोस्कोप के तहत जांचा गया वीर्य विश्लेषण, पुरुष बांझपन के लिए पहला और सबसे महत्वपूर्ण परीक्षण है।</figcaption></figure>
 
 <h2>पुरुष बांझपन के रूप में क्या गिना जाता है?</h2>
 

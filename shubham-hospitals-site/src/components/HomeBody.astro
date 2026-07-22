@@ -127,7 +127,7 @@ const stats = ['20,000+', '25,000+', '1,000+', '30+'];
     <div class="grid cols-3 doctors-grid">
       {doctors.map((d) => (
         <div class="card doctor-card">
-          <img src={d.data.photo} alt={d.data.name} loading="lazy" width="170" height="170" />
+          <img src={d.data.photo} srcset={`${d.data.photo.replace('-480', '-240')} 240w, ${d.data.photo} 480w`} sizes="170px" alt={d.data.name} loading="lazy" width="170" height="170" />
           <h3>{d.data.name}</h3>
           <p class="quals">{d.data.qualifications}</p>
           <p class="role">{roles[d.slug] ?? d.data.role}</p>
