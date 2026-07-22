@@ -7,13 +7,17 @@ import '@fontsource/source-sans-3/latin-600.css';
 import '@fontsource/source-sans-3/latin-400-italic.css';
 import '@fontsource/playfair-display/latin-500.css';
 import '@fontsource/playfair-display/latin-500-italic.css';
-// Marathi/Devanagari — self-hosted, Marathi-optimised (Ek Type Mukta + Tiro Devanagari Marathi)
-import '@fontsource/mukta/devanagari-400.css';
-import '@fontsource/mukta/devanagari-500.css';
-import '@fontsource/mukta/devanagari-600.css';
-import '@fontsource/mukta/devanagari-700.css';
-import '@fontsource/tiro-devanagari-marathi/devanagari-400.css';
-import '@fontsource/tiro-devanagari-marathi/devanagari-400-italic.css';
+// Marathi/Devanagari (Ek Type Mukta + Tiro Devanagari Marathi) — declared via our
+// own @font-face below (devanagariFaces) instead of the fontsource CSS, because the
+// fontsource per-subset files carry no unicode-range. Without a range, any glyph
+// missing from the Latin fonts (★ stars, ▾ arrows) forced a ~98 KiB Mukta download
+// on English pages. With the range, these fonts load only for Devanagari text.
+import muktaDev400 from '@fontsource/mukta/files/mukta-devanagari-400-normal.woff2?url';
+import muktaDev500 from '@fontsource/mukta/files/mukta-devanagari-500-normal.woff2?url';
+import muktaDev600 from '@fontsource/mukta/files/mukta-devanagari-600-normal.woff2?url';
+import muktaDev700 from '@fontsource/mukta/files/mukta-devanagari-700-normal.woff2?url';
+import tiroDev400 from '@fontsource/tiro-devanagari-marathi/files/tiro-devanagari-marathi-devanagari-400-normal.woff2?url';
+import tiroDev400i from '@fontsource/tiro-devanagari-marathi/files/tiro-devanagari-marathi-devanagari-400-italic.woff2?url';
 import '../styles/global.css';
 import '../styles/font-fallbacks.css';
 // Preload the two above-the-fold-critical fonts (hero h1 = Libre Franklin 600,
@@ -26,6 +30,18 @@ import { translatedPaths } from '../i18n/translations';
 import { localeCodes, type Lang } from '../i18n/ui';
 import LangSwitcher from '../components/LangSwitcher.astro';
 import WaIcon from '../components/WaIcon.astro';
+
+const DEVANAGARI_RANGE = 'U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FF';
+const devanagariFaces = ([
+  ['Mukta', 400, 'normal', muktaDev400],
+  ['Mukta', 500, 'normal', muktaDev500],
+  ['Mukta', 600, 'normal', muktaDev600],
+  ['Mukta', 700, 'normal', muktaDev700],
+  ['Tiro Devanagari Marathi', 400, 'normal', tiroDev400],
+  ['Tiro Devanagari Marathi', 400, 'italic', tiroDev400i],
+] as const)
+  .map(([fam, w, s, u]) => `@font-face{font-family:"${fam}";font-style:${s};font-weight:${w};font-display:swap;src:url(${u}) format("woff2");unicode-range:${DEVANAGARI_RANGE}}`)
+  .join('');
 
 interface Props {
   title: string;
@@ -126,6 +142,7 @@ const taglineByLang: Record<Lang, string> = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preload" as="font" type="font/woff2" href={libre600Url} crossorigin />
     <link rel="preload" as="font" type="font/woff2" href={sourceSans400Url} crossorigin />
+    <style is:inline set:html={devanagariFaces}></style>
     <script is:inline>
       // First-visit language routing. Respects a manual choice (lang cookie);
       // otherwise sends Hindi/Marathi browsers to their homepage on the root page only.
