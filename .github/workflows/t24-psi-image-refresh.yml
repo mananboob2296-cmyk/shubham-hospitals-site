@@ -1,0 +1,85 @@
+name: T24 PSI image refresh
+
+# PageSpeed follow-ups: generates responsive hero/logo variants from images
+# ALREADY IN THE REPO (no external downloads), applies the reference edits
+# (scripts/t24-psi-refs.py), gates on a full Astro build, pushes one commit.
+# Idempotent: skips if variants exist. Safe to delete after deploy confirmed.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/t24-psi-image-refresh.yml'
+
+permissions:
+  contents: write
+
+concurrency: t24-psi
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Skip if already done
+        id: guard
+        run: |
+          if [ -f shubham-hospitals-site/public/images/hero-hospital-1080.webp ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Variants already present; nothing to do."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install tools
+        if: steps.guard.outputs.skip == 'false'
+        run: sudo apt-get update -q && sudo apt-get install -y -q webp imagemagick
+
+      - name: Generate image variants (from in-repo sources)
+        if: steps.guard.outputs.skip == 'false'
+        run: |
+          set -euo pipefail
+          cd shubham-hospitals-site/public/images
+          for w in 480 768 1080 1440; do
+            convert hero-hospital.webp -resize ${w}x -quality 78 hero-hospital-$w.webp
+          done
+          convert logo.png -resize 300x -strip -colors 128 PNG8:logo-300.png
+          # recompress laparoscopy-3d only if it actually gets smaller
+          dwebp -quiet laparoscopy-3d.webp -o /tmp/laparo.png
+          cwebp -quiet -q 75 /tmp/laparo.png -o /tmp/laparo-75.webp
+          if [ "$(stat -c%s /tmp/laparo-75.webp)" -lt "$(stat -c%s laparoscopy-3d.webp)" ]; then
+            cp /tmp/laparo-75.webp laparoscopy-3d.webp
+            echo "laparoscopy-3d.webp recompressed"
+          else
+            echo "recompression not smaller; keeping original"
+          fi
+          ls -la hero-hospital*.webp logo-300.png laparoscopy-3d.webp
+
+      - name: Update references
+        if: steps.guard.outputs.skip == 'false'
+        run: python3 scripts/t24-psi-refs.py
+
+      - name: Build check
+        if: steps.guard.outputs.skip == 'false'
+        run: |
+          set -euo pipefail
+          cd shubham-hospitals-site
+          npm install --no-audit --no-fund
+          npm run build
+          grep -q 'hero-hospital-1080.webp' dist/index.html
+          grep -q 'imagesrcset' dist/index.html
+          grep -q 'logo-300.png' dist/index.html
+          grep -q 'imagesizes' dist/hi/index.html
+          grep -qi '075e54' dist/index.html
+
+      - name: Commit and push
+        if: steps.guard.outputs.skip == 'false'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add shubham-hospitals-site/public/images shubham-hospitals-site/src MASTER-EXECUTION-PLAN.md
+          git commit -m "plan: complete T24 — hero srcset + responsive preload, logo variants, WhatsApp contrast (via Actions)"
+          git push
