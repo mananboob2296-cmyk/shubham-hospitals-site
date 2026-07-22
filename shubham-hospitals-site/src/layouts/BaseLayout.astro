@@ -16,6 +16,11 @@ import '@fontsource/mukta/devanagari-700.css';
 import '@fontsource/tiro-devanagari-marathi/devanagari-400.css';
 import '@fontsource/tiro-devanagari-marathi/devanagari-400-italic.css';
 import '../styles/global.css';
+import '../styles/font-fallbacks.css';
+// Preload the two above-the-fold-critical fonts (hero h1 = Libre Franklin 600,
+// body copy = Source Sans 3 400). ?url resolves the hashed /_astro/ path at build.
+import libre600Url from '@fontsource/libre-franklin/files/libre-franklin-latin-600-normal.woff2?url';
+import sourceSans400Url from '@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2?url';
 import { SITE, CLINIC_SCHEMA } from '../consts';
 import { getLangFromUrl, useTranslations, stripLangPrefix } from '../i18n/utils';
 import { translatedPaths } from '../i18n/translations';
@@ -120,6 +125,8 @@ const taglineByLang: Record<Lang, string> = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" as="font" type="font/woff2" href={libre600Url} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={sourceSans400Url} crossorigin />
     <script is:inline>
       // First-visit language routing. Respects a manual choice (lang cookie);
       // otherwise sends Hindi/Marathi browsers to their homepage on the root page only.

@@ -1,0 +1,24 @@
+/* Metric-matched fallback fonts — eliminate layout shift (CLS) on web-font swap.
+   Values computed from @capsizecss/metrics: Arial adjusted to occupy the same
+   space as the web font, so text does not reflow when the real font arrives.
+   Loaded AFTER global.css so the :root font stacks below win the cascade. */
+@font-face {
+  font-family: "Libre Franklin Fallback";
+  src: local("Arial");
+  size-adjust: 104.31%;
+  ascent-override: 92.61%;
+  descent-override: 23.58%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Source Sans 3 Fallback";
+  src: local("Arial");
+  size-adjust: 93.76%;
+  ascent-override: 109.21%;
+  descent-override: 42.66%;
+  line-gap-override: 0%;
+}
+:root {
+  --font-display: "Libre Franklin", "Libre Franklin Fallback", "Mukta", system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Source Sans 3 Fallback", "Mukta", system-ui, sans-serif;
+}
