@@ -52,8 +52,8 @@ h3 { font-size: 1.2rem; }
 .btn-outline { border-color: var(--magenta); color: var(--magenta); background: transparent; }
 .btn-outline:hover { background: var(--purple-50); }
 .btn-white { background: #fff; color: var(--plum); box-shadow: var(--shadow-sm); }
-.btn-whatsapp { background: #25D366; color: #fff !important; box-shadow: var(--shadow-sm); }
-.btn-whatsapp:hover { background: #1ebe57; }
+.btn-whatsapp { background: #075E54; color: #fff !important; box-shadow: var(--shadow-sm); }
+.btn-whatsapp:hover { background: #0a7d6e; }
 .btn-call { background: #fff; color: var(--plum) !important; box-shadow: var(--shadow-sm); }
 .btn-ic { width: 18px; height: 18px; vertical-align: -3px; margin-right: 8px; }
 .btn-ic.line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }

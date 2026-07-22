@@ -44,6 +44,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | 2026-07-18 | Claude (Cowork) | T14, T15 | T14 DONE (pending deploy); T15 BLOCKED | a11y pass (skip link, real menu button, social labels) + restored formContent (fixes T11 build break). T15 blocked: cannot commit binary WebP assets via API |
 | 2026-07-18 | Claude (Cowork) | T17 | DONE (pending deploy) | FAQ sticky category jump-nav (EN/HI/MR); accordions + FAQPage schema already existed; build passes |
 | 2026-07-21 | Claude (Cowork) | T15 | DONE (pending deploy) | Unblocked via GitHub Actions: runner downloaded originals, committed WebP + ref updates in one bot commit; CI build-gated |
+| 2026-07-22 | Claude (Cowork) | T24 (new) | DONE (pending deploy) | PSI mobile 89: hero srcset + responsive preload, logo-300, footer logo height, WhatsApp contrast #075E54, laparo recompress; via T15-style CI |
 | 2026-07-22 | Claude (Cowork) | T16 | DONE (pending deploy) | Removed 3 Best-X SEO links from nav dropdown (all locales) + dropped unused bestPages const; 7 depts only. Pages still build, in sitemap, linked from homepage cards. build passes |
 
 ---
@@ -277,6 +278,13 @@ Steps: **ask the user**; if opening up, adjust the Cloudflare bot-block settings
 **Status:** `TODO`
 Steps: add preferred-doctor + preferred-day/time fields to the contact form feeding the WhatsApp prefill; optionally follow up with a real scheduling integration later. Verify prefill message contains the new fields.
 **Notes:** —
+
+---
+
+### T24. PageSpeed mobile follow-ups (hero srcset, logo variants, contrast)
+**Status:** `DONE (pending deploy)`
+**Problem (PSI mobile 2026-07-22, score 89):** LCP 3.7s driven by the 152KB 1920px hero webp served to phones ("Improve image delivery - 166 KiB"); header logo 600px served at 287px; footer white logo missing explicit height; white-on-#25D366 WhatsApp buttons fail WCAG contrast (a11y 96); laparoscopy-3d.webp under-compressed.
+**Notes (2026-07-22):** Same CI pattern as T15 (`scripts/t24-psi-refs.py` + `t24-psi-image-refresh.yml`) - all image variants generated from files ALREADY IN THE REPO (no downloads): hero 480/768/1080/1440 webp q78, logo-300.png, laparoscopy-3d recompressed q75. Ref edits: hero srcset/sizes (sizes `(max-width:820px) 100vw, 48vw`) + responsive preload via imagesrcset in BaseLayout; header logo srcset; footer logo height=71; .btn-whatsapp #25D366 -> #075E54 (7.7:1, WhatsApp's own dark teal; hover #0a7d6e). Remaining PSI items intentionally skipped: Cloudflare beacon cache TTL (dashboard-side, ~5KiB - toggle Cloudflare Web Analytics if desired), "Forced reflow"/"Network dependency tree" diagnostics (no score weight).
 
 ---
 

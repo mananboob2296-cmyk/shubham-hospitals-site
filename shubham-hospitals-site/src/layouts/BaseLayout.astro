@@ -151,7 +151,7 @@ const taglineByLang: Record<Lang, string> = {
     <link rel="sitemap" href="/sitemap-index.xml" />
     {alternates.map((a) => <link rel="alternate" hreflang={localeCodes[a.code]} href={a.href} />)}
     <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
-    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} imagesrcset={preloadImage === SITE.heroImage ? SITE.heroSrcset : undefined} imagesizes={preloadImage === SITE.heroImage ? SITE.heroSizes : undefined} fetchpriority="high" />}
     {noindex && <meta name="robots" content="noindex, follow" />}
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={ogTitle ?? title} />
@@ -179,7 +179,7 @@ const taglineByLang: Record<Lang, string> = {
       <div class="container nav-wrap">
         <button type="button" class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="main-nav">☰</button>
         <a class="logo" href={L('/')} aria-label={SITE.name}>
-          <img src={SITE.logoHeader} alt={`${SITE.name} logo`} width="600" height="212" />
+          <img src={SITE.logoHeader} srcset="/images/logo-300.png 300w, /images/logo.png 600w" sizes="287px" alt={`${SITE.name} logo`} width="600" height="212" />
         </a>
         <div class="header-actions">
           <LangSwitcher altPaths={altPaths} />
@@ -213,7 +213,7 @@ const taglineByLang: Record<Lang, string> = {
     <footer class="site-footer">
       <div class="container cols">
         <div>
-          <img src={SITE.logoWhite} alt={`${SITE.name} logo`} width="200" loading="lazy" />
+          <img src={SITE.logoWhite} alt={`${SITE.name} logo`} width="200" height="71" loading="lazy" />
           <p>{taglineByLang[lang]}</p>
           <p>{t('footer.trusted')}</p>
           <div class="social-row">
