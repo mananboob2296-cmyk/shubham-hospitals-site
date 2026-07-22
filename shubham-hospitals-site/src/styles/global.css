@@ -63,7 +63,10 @@ h3 { font-size: 1.2rem; }
 .topbar a { color: #fff; text-decoration: none; }
 .tb-ic { width: 14px; height: 14px; vertical-align: -2px; margin-right: 6px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .topbar-right { display: inline-flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.lang-switch { position: relative; font-size: .85rem; }
+/* System font stack: the switcher renders Devanagari (हिंदी/मराठी) on every
+   page; without this, those glyphs pull the ~98 KiB Mukta webfont onto
+   English pages too. Every OS ships native Devanagari fonts. */
+.lang-switch { position: relative; font-size: .85rem; font-family: system-ui, sans-serif; }
 .lang-switch > summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; color: #fff; padding: 2px 6px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; }
 .lang-switch > summary::-webkit-details-marker { display: none; }
 .lang-switch > summary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; }
@@ -115,7 +118,7 @@ body.nav-open { overflow: hidden; }
 .hero h1 { color: var(--ink); margin: 0 0 14px; max-width: 850px; }
 .hero p { max-width: 720px; font-size: 1.1rem; color: var(--charcoal); }
 .hero .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
-.hero .eyebrow, .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; color: var(--magenta); font-weight: 700; font-family: var(--font-display); }
+.hero .eyebrow, .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; color: var(--magenta); font-weight: 600; font-family: var(--font-display); }
 [lang="hi"] .eyebrow, [lang="mr"] .eyebrow, [lang="hi"] .badge, [lang="mr"] .badge { letter-spacing: normal; text-transform: none; }
 [lang="hi"] h1, [lang="mr"] h1, [lang="hi"] h2, [lang="mr"] h2, [lang="hi"] h3, [lang="mr"] h3 { letter-spacing: normal; }
 .hero .btn-white { border: 2px solid var(--magenta); color: var(--magenta); background: transparent; box-shadow: none; }
@@ -197,7 +200,7 @@ form.appointment button { justify-self: start; cursor: pointer; border: none; }
 .post-card h3 a:hover { color: var(--magenta); }
 .breadcrumbs { font-size: .85rem; color: var(--muted); margin: 18px 0 0; }
 .breadcrumbs a { color: var(--muted); }
-.badge { display: inline-block; background: var(--lilac); color: var(--magenta); border-radius: 999px; padding: 5px 16px; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-family: var(--font-display); }
+.badge { display: inline-block; background: var(--lilac); color: var(--magenta); border-radius: 999px; padding: 5px 16px; font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; font-family: var(--font-display); }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
 .gallery-grid img { border-radius: var(--radius); width: 100%; height: 220px; object-fit: cover; box-shadow: var(--shadow-sm); }
 .hero { position: relative; overflow: hidden; }
@@ -228,7 +231,7 @@ form.appointment button { justify-self: start; cursor: pointer; border: none; }
 .review-text { margin: 10px 0 18px; color: var(--charcoal); }
 .review-translated { margin: -8px 0 14px; color: var(--muted); }
 .review-meta { display: flex; align-items: center; gap: 12px; }
-.review-avatar { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; background: var(--lilac); color: var(--magenta); font-family: var(--font-display); font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.review-avatar { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; background: var(--lilac); color: var(--magenta); font-family: var(--font-display); font-weight: 600; display: flex; align-items: center; justify-content: center; }
 .review-name { font-family: var(--font-editorial); font-style: italic; color: var(--ink); font-size: .98rem; }
 .review-month { color: var(--muted); }
 .reviews-link { margin-top: 26px; }
