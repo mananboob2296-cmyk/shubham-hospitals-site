@@ -42,6 +42,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | 2026-07-18 | Claude (Cowork) | T9 | DONE (pending deploy) | IVF page: transparent pricing + cost FAQ + honest success framing (EN/HI/MR); build passes |
 | 2026-07-18 | Claude (Cowork) | T11 (T10 on hold: partners pending) | DONE (pending deploy) | About stats reconciled (Safe Deliveries, decades, over 30y) + WhatsApp video consult (EN/HI/MR); build passes |
 | 2026-07-18 | Claude (Cowork) | T14, T15 | T14 DONE (pending deploy); T15 BLOCKED | a11y pass (skip link, real menu button, social labels) + restored formContent (fixes T11 build break). T15 blocked: cannot commit binary WebP assets via API |
+| 2026-07-18 | Claude (Cowork) | T17 | DONE (pending deploy) | FAQ sticky category jump-nav (EN/HI/MR); accordions + FAQPage schema already existed; build passes |
 | 2026-07-21 | Claude (Cowork) | T15 | DONE (pending deploy) | Unblocked via GitHub Actions: runner downloaded originals, committed WebP + ref updates in one bot commit; CI build-gated |
 
 ---
@@ -218,7 +219,6 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 3. Add `srcset` for the homepage hero; `loading="lazy"` on below-fold images; explicit `width`/`height` to prevent CLS.
 **Verification:** Build; total image weight of homepage + doctors page reduced (compare `dist/` sizes); no broken images.
 **Notes (2026-07-21):** DONE via GitHub Actions workaround. The Git-contents API indeed cannot carry binaries, so this session committed text-only tooling: `.github/workflows/t15-image-optimization.yml` + `scripts/t15-update-refs.py`. The Actions runner (full network + GITHUB_TOKEN) downloaded the 4 doctor JPGs, white logo, scaled logo and favicon from the live site (browser UA), converted them (doctor photos 480px+240px WebP q82 in `public/images/doctors/`; `logo-white.webp` 400w; `og-logo.png` 1200w PNG kept for og:image compatibility; `favicon.png` 96px), then ran the ref-update script: 12 doctor md `photo:` fields -> local WebP; consts.ts logoWhite/favicon/ogImage -> local; `srcset`/`sizes` added on 4 card renders + 3 profile pages; og:image absolutized via `new URL(...)` in BaseLayout (doctor photos are now root-relative); `loading="lazy" decoding="async"` on the 3 male-infertility blog figures. CI gated the commit on `npm run build` + dist greps. Also verified locally in sandbox pre-push (build passes, 117 pages; srcset/og/favicon spot-checked in dist). Workflow is idempotent (skips if assets already exist), re-runnable via workflow_dispatch, and safe to delete once deploy is confirmed. Remaining nice-to-have: homepage hero srcset (single 152KB webp today) was NOT changed - optional follow-up.
-**Notes:** 2026-07-18. PARTIALLY BLOCKED. The core of T15 (convert the four 1024x1024 doctor JPGs + the 'Shubham-Final-Logo-scaled.png' og:image to lightweight local WebP) needs BINARY image files added to `public/images/`. Verified this session that the GitHub-contents API path used here base64-encodes text and CANNOT commit real binaries (a 70-byte test PNG stored as 96 bytes = my base64 string, double-encoded). Also could not safely switch the doctor photos to smaller WordPress CDN variants (e.g. `-300x300.jpg`) because those URLs are unverifiable from the sandbox (curl is network-blocked; web_fetch returns no usable body for images) and a wrong guess would break every doctor photo. What is already fine: homepage hero + laparoscopy visuals are local WebP (`public/images/*.webp`, preloaded); the header logo is a 6 KB local PNG; doctor `<img>` on listing cards already have `loading="lazy"` + width/height, and profile photos have explicit width/height (no CLS). REMAINING (needs a local checkout + repo write, or `git push` access — cannot be done through this API): (a) `cwebp -q 82 -resize 400 400` the 4 doctor JPGs -> `public/images/dr-*.webp`, update `photo:` in `src/content/doctors/*.md` (+ hi/mr) with `srcset`/`sizes`; (b) create a WebP logo set and repoint `SITE.logoWhite` + `SITE.ogImage` (currently the ~scaled PNG) in `src/consts.ts`; (c) trivial: add `loading="lazy" decoding="async"` to the one `<figure>` image in the 3 `male-infertility-*` blog articles (edit made & built locally this session but not pushed, to avoid a large-file paste for a marginal gain). No build change shipped for T15.
 
 ### T16. Nav cleanup: move "Best X in Amravati" pages out of Departments dropdown
 **Status:** `TODO`
@@ -230,13 +230,13 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 **Notes:** — (T6 already routes these 3 links through `bestPages[lang]` in BaseLayout — removing from the dropdown now means dropping the `{bestPages[lang].map(...)}` block from the nav `<ul class="dropdown">` while keeping homepage/footer cross-links.)
 
 ### T17. FAQ page: accordions + category jump-nav
-**Status:** `TODO`
+**Status:** `DONE (pending deploy)`
 **Steps:**
 1. Convert Q&A blocks on `/faq/` (EN/HI/MR) to `<details>/<summary>` accordions grouped by existing categories.
 2. Add sticky category pill nav with anchor links.
 3. Add FAQPage JSON-LD schema (only for visible Q&As).
 **Verification:** Build; accordions toggle without JS errors; schema validates (paste into validator.schema.org).
-**Notes:** —
+**Notes:** 2026-07-18. Steps 1 (accordions grouped by category) and 3 (FAQPage JSON-LD) were ALREADY in place on `/faq/` (EN/HI/MR) — the page renders `<details>/<summary>` under each `<h2 id={category}>` and emits FAQ schema via the `schema` prop. Added the only missing piece: a sticky pill jump-nav (`<nav class="faq-nav">`) linking to each category id, with a localized `aria-label` ('Jump to a topic' / 'किसी विषय पर जाएँ' / 'एखाद्या विषयावर जा'). Added `.faq-nav` styles (sticky `top:108px` desktop, horizontal-scroll on mobile) + `scroll-margin-top` on `.faq-cat h2` so anchor jumps clear the sticky site-header. Build passes (120 pages); verified the pill nav + `#category` anchors + FAQPage schema + accordions on dist EN/HI/MR. Pending live deploy.
 
 ### T18. Soften the homepage h1
 **Status:** `TODO`
