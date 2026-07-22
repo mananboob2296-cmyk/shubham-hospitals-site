@@ -104,24 +104,9 @@ const deptNames: Record<Lang, Record<string, string>> = {
 };
 const treatments = deptOrder.map((slug) => ({ slug, title: deptNames[lang][slug] }));
 
-// SEO landing pages listed under the Departments dropdown (translated pages exist).
-const bestPages: Record<Lang, { href: string; label: string }[]> = {
-  en: [
-    { href: '/best-ivf-centre-in-amravati/', label: 'Best IVF Centre in Amravati' },
-    { href: '/best-gynecologist-in-amravati/', label: 'Best Gynecologist in Amravati' },
-    { href: '/best-laparoscopic-surgeon-in-amravati/', label: 'Best Laparoscopic Surgeon in Amravati' },
-  ],
-  hi: [
-    { href: '/best-ivf-centre-in-amravati/', label: 'अमरावती में सर्वश्रेष्ठ IVF केंद्र' },
-    { href: '/best-gynecologist-in-amravati/', label: 'अमरावती में सर्वश्रेष्ठ स्त्री रोग विशेषज्ञ' },
-    { href: '/best-laparoscopic-surgeon-in-amravati/', label: 'अमरावती में सर्वश्रेष्ठ लेप्रोस्कोपिक सर्जन' },
-  ],
-  mr: [
-    { href: '/best-ivf-centre-in-amravati/', label: 'अमरावतीतील सर्वोत्तम IVF केंद्र' },
-    { href: '/best-gynecologist-in-amravati/', label: 'अमरावतीतील सर्वोत्तम स्त्रीरोगतज्ज्ञ' },
-    { href: '/best-laparoscopic-surgeon-in-amravati/', label: 'अमरावतीतील सर्वोत्तम लॅपरोस्कोपिक सर्जन' },
-  ],
-};
+// (T16) SEO "Best X in Amravati" landing pages are intentionally NOT in the primary
+// nav dropdown — they remain indexed and linked from the homepage service cards,
+// footer/sitemap. Nav shows the 7 real departments only.
 
 // Tagline (SITE.tagline is English; localize for display).
 const taglineByLang: Record<Lang, string> = {
@@ -208,9 +193,6 @@ const taglineByLang: Record<Lang, string> = {
               <ul class="dropdown">
                 {treatments.map((tr) => (
                   <li><a href={L(`/treatments/${tr.slug}/`)}>{tr.title}</a></li>
-                ))}
-                {bestPages[lang].map((b) => (
-                  <li><a href={L(b.href)}>{b.label}</a></li>
                 ))}
               </ul>
             </li>
