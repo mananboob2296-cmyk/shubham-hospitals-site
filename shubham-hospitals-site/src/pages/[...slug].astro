@@ -4,6 +4,9 @@ import FaqSection from '../components/FaqSection.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
 import { SITE } from '../consts';
+import VideoStrip from '../components/VideoStrip.astro';
+import { latest } from '../lib/videos';
+import { videoStrings } from '../i18n/videos';
 
 export async function getStaticPaths() {
   const blog = await getCollection('blog');
@@ -24,6 +27,8 @@ export async function getStaticPaths() {
 
 const { type, entry } = Astro.props;
 const { Content } = await entry.render();
+const vs = videoStrings.en;
+const drMananVideos = type === 'doctor' && entry.slug === 'dr-manan' ? latest('drManan', 2) : [];
 
 let title = '', description = '', schema: object[] = [];
 let altPaths: Partial<Record<'en' | 'hi' | 'mr', string>> | undefined;
@@ -127,6 +132,12 @@ if (type === 'blog') {
             <ul>{entry.data.expertise.map((e) => <li>{e}</li>)}</ul>
             {entry.slug === 'dr-manan' && (entry.data.youtube ?? SITE.youtubeDrManan) && (
               <p><a class="btn btn-primary" style="color:#fff" href={entry.data.youtube ?? SITE.youtubeDrManan} target="_blank" rel="noopener">▶ Watch Dr Manan on YouTube</a></p>
+            )}
+            {drMananVideos.length > 0 && (
+              <div class="profile-videos">
+                <h2>{vs.profileH2}</h2>
+                <VideoStrip videos={drMananVideos} />
+              </div>
             )}
           </div>
         </div>

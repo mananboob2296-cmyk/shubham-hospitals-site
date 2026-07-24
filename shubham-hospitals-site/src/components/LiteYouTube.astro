@@ -1,0 +1,55 @@
+---
+// Lightweight click-to-play YouTube facade: ships only a thumbnail + play
+// button (no iframe on load → no third-party JS, no CLS). A single delegated
+// handler swaps in the real iframe on click. Degrades to a plain link to the
+// video for no-JS visitors and crawlers.
+interface Props { id: string; title: string; thumb?: string; }
+const { id, title, thumb } = Astro.props;
+const src = thumb || `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+---
+<a
+  class="lite-yt"
+  href={`https://www.youtube.com/watch?v=${id}`}
+  data-ytid={id}
+  target="_blank"
+  rel="noopener"
+  aria-label={`Play video: ${title}`}
+>
+  <img class="lite-yt-thumb" src={src} alt="" loading="lazy" decoding="async" width="480" height="270" />
+  <span class="lite-yt-btn" aria-hidden="true">
+    <svg viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
+  </span>
+</a>
+<style>
+  .lite-yt { position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: #000; box-shadow: var(--shadow-sm); }
+  .lite-yt-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; transition: transform .3s var(--ease-out); }
+  .lite-yt:hover .lite-yt-thumb { transform: scale(1.04); }
+  .lite-yt-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; filter: grayscale(.25); transition: transform .2s var(--ease-out), filter .2s; }
+  .lite-yt-btn svg { width: 100%; height: 100%; display: block; }
+  .lite-yt:hover .lite-yt-btn, .lite-yt:focus-visible .lite-yt-btn { transform: translate(-50%, -50%) scale(1.09); filter: grayscale(0); }
+  .lite-yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+</style>
+<script>
+  // Delegated, bound once at document level so it survives Astro view
+  // transitions and works for every facade on the page.
+  (function () {
+    if ((window as any).__liteYtBound) return;
+    (window as any).__liteYtBound = true;
+    document.addEventListener('click', function (ev) {
+      const t = ev.target as HTMLElement;
+      const link = t.closest('.lite-yt') as HTMLAnchorElement | null;
+      if (!link || link.classList.contains('lite-yt-playing')) return;
+      const id = link.getAttribute('data-ytid');
+      if (!id) return;
+      ev.preventDefault();
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1';
+      iframe.title = link.getAttribute('aria-label') || 'YouTube video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.setAttribute('allowfullscreen', '');
+      link.innerHTML = '';
+      link.appendChild(iframe);
+      link.classList.add('lite-yt-playing');
+    });
+  })();
+</script>

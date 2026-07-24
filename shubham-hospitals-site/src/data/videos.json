@@ -1,0 +1,21 @@
+{
+  "fetchedAt": null,
+  "channels": {
+    "hospital": {
+      "key": "hospital",
+      "name": "Shubham Hi-Tech Hospital",
+      "handle": "@shubhamhitechhospital",
+      "url": "https://youtube.com/@shubhamhitechhospital",
+      "channelId": "UC6p4jRKKnO3ZyqaQvcCfh_Q",
+      "videos": []
+    },
+    "drManan": {
+      "key": "drManan",
+      "name": "Dr Manan Boob — Advanced Gyne Endoscopy",
+      "handle": "@drmananboob.gynendoscopy",
+      "url": "https://youtube.com/@drmananboob.gynendoscopy",
+      "channelId": "UCI4P9DW1UnqAQFlV4pFaIDw",
+      "videos": []
+    }
+  }
+}

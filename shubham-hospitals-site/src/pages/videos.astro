@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VideosBody from '../components/VideosBody.astro';
+import { videoStrings } from '../i18n/videos';
+import { getChannel } from '../lib/videos';
+import { SITE } from '../consts';
+
+const lang = 'en';
+const s = videoStrings[lang];
+const altPaths = { en: '/videos/', hi: '/hi/videos/', mr: '/mr/videos/' };
+
+// VideoObject / ItemList schema for the videos actually shown (SEO — helps the
+// page qualify for video rich results). Only real, published videos are listed.
+const all = [getChannel('hospital'), getChannel('drManan')].flatMap((c) => c.videos);
+const schema = all.length > 0 ? [{
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: all.map((v, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'VideoObject',
+      name: v.title,
+      description: v.description || v.title,
+      thumbnailUrl: v.thumb,
+      uploadDate: v.published || undefined,
+      contentUrl: `https://www.youtube.com/watch?v=${v.id}`,
+      embedUrl: `https://www.youtube-nocookie.com/embed/${v.id}`,
+    },
+  })),
+}] : [];
+---
+<BaseLayout title={s.metaTitle} description={s.metaDescription} lang={lang} altPaths={altPaths} schema={schema}>
+  <VideosBody lang={lang} />
+</BaseLayout>

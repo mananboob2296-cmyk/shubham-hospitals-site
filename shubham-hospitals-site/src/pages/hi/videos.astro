@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VideosBody from '../../components/VideosBody.astro';
+import { videoStrings } from '../../i18n/videos';
+
+const lang = 'hi';
+const s = videoStrings[lang];
+const altPaths = { en: '/videos/', hi: '/hi/videos/', mr: '/mr/videos/' };
+---
+<BaseLayout title={s.metaTitle} description={s.metaDescription} lang={lang} altPaths={altPaths}>
+  <VideosBody lang={lang} />
+</BaseLayout>

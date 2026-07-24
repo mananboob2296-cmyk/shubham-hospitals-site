@@ -4,6 +4,9 @@ import FaqSection from '../../../components/FaqSection.astro';
 import CtaBand from '../../../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
 import { deptContent } from '../../../i18n/pages';
+import VideoStrip from '../../../components/VideoStrip.astro';
+import { latest } from '../../../lib/videos';
+import { videoStrings } from '../../../i18n/videos';
 import { useTranslations } from '../../../i18n/utils';
 
 const lang = 'mr';
@@ -20,6 +23,8 @@ const e = entry.data;
 const { Content } = await entry.render();
 const t = useTranslations(lang);
 const dept = deptContent[lang];
+const vs = videoStrings['mr'];
+const relatedVideos = entry.slug.replace(/^mr\//, '') === 'advanced-laparoscopy-hysteroscopy' ? latest('drManan', 3) : [];
 ---
 <BaseLayout title={e.metaTitle} description={e.metaDescription} lang={lang}>
   <section class="hero">
@@ -38,6 +43,14 @@ const dept = deptContent[lang];
       <Content />
     </div>
   </section>
+  {relatedVideos.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <h2>{vs.treatmentH2}</h2>
+        <VideoStrip videos={relatedVideos} />
+      </div>
+    </section>
+  )}
   <section class="section soft">
     <div class="container prose">
       <FaqSection faqs={e.faqs} heading={t('faq.heading')} />

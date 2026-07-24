@@ -8,6 +8,9 @@ import { translatedPaths } from '../i18n/translations';
 import { useTranslations } from '../i18n/utils';
 import { localeCodes, type Lang } from '../i18n/ui';
 import WaIcon from './WaIcon.astro';
+import VideoStrip from './VideoStrip.astro';
+import { videoStrings } from '../i18n/videos';
+import { latest } from '../lib/videos';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -15,6 +18,8 @@ const s = homeStrings[lang];
 const t = useTranslations(lang);
 const cards = treatmentCards[lang];
 const roles = doctorRole[lang];
+const vs = videoStrings[lang];
+const homeVideos = [...latest('drManan', 2), ...latest('hospital', 1)].slice(0, 3);
 
 // Link helper: keep the English URL unless that page is translated in this language.
 const tset = lang === 'en' ? null : await translatedPaths(lang);
@@ -155,5 +160,16 @@ const stats = ['20,000+', '25,000+', '1,000+', '30+'];
     <p style="margin-top:20px"><a class="btn btn-outline" href={L('/blogs/')}>{s.viewAll}</a></p>
   </div>
 </section>
+
+{homeVideos.length > 0 && (
+  <section class="section soft">
+    <div class="container">
+      <span class="badge">{vs.eyebrow}</span>
+      <h2>{vs.homeH2}</h2>
+      <VideoStrip videos={homeVideos} />
+      <p style="margin-top:22px"><a class="btn btn-outline" href={L('/videos/')}>{vs.watchMore} →</a></p>
+    </div>
+  </section>
+)}
 
 <CtaBand />
