@@ -1,0 +1,58 @@
+name: Refresh YouTube videos
+
+# T19: pulls the latest videos from the two hospital YouTube channels via their
+# public RSS feeds and writes shubham-hospitals-site/src/data/videos.json.
+# The site build only reads that committed JSON, so a deploy can never break if
+# YouTube is slow/unreachable. Runs weekly (keeps the /videos page fresh),
+# on demand, and once on push so the data is populated as soon as this lands.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 6 * * 1' # every Monday 06:17 UTC
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/videos-refresh.yml'
+      - 'scripts/fetch-youtube-videos.mjs'
+
+permissions:
+  contents: write
+
+concurrency: videos-refresh
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch latest videos from YouTube RSS
+        run: node scripts/fetch-youtube-videos.mjs
+
+      - name: Build check
+        run: |
+          set -euo pipefail
+          cd shubham-hospitals-site
+          npm install --no-audit --no-fund
+          npm run build
+          test -f dist/videos/index.html
+          test -f dist/hi/videos/index.html
+          test -f dist/mr/videos/index.html
+
+      - name: Commit if changed
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- shubham-hospitals-site/src/data/videos.json; then
+            echo "No video changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add shubham-hospitals-site/src/data/videos.json
+          git commit -m "chore: refresh YouTube videos (automated)"
+          git push
