@@ -1,0 +1,19 @@
+---
+import LiteYouTube from './LiteYouTube.astro';
+import type { Video } from '../lib/videos';
+interface Props { videos: Video[]; }
+const { videos } = Astro.props;
+---
+<div class="video-grid">
+  {videos.map((v) => (
+    <figure class="video-item">
+      <LiteYouTube id={v.id} title={v.title} thumb={v.thumb} />
+      <figcaption>{v.title}</figcaption>
+    </figure>
+  ))}
+</div>
+<style>
+  .video-grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  .video-item { margin: 0; }
+  .video-item figcaption { margin-top: 10px; font-family: var(--font-display); font-weight: 600; font-size: .98rem; line-height: 1.35; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+</style>
