@@ -1,0 +1,54 @@
+---
+import VideoStrip from './VideoStrip.astro';
+import { getChannel, totalVideos } from '../lib/videos';
+import { videoStrings } from '../i18n/videos';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const s = videoStrings[lang];
+const hospital = getChannel('hospital');
+const drManan = getChannel('drManan');
+const total = totalVideos();
+
+const sections = [
+  { ch: hospital, desc: s.hospitalDesc, soft: false },
+  { ch: drManan, desc: s.drMananDesc, soft: true },
+];
+---
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">{s.eyebrow}</span>
+    <h1>{s.h1}</h1>
+    <p>{s.lead}</p>
+  </div>
+</section>
+
+{total === 0 ? (
+  <section class="section">
+    <div class="container prose">
+      <p>{s.emptyLead}</p>
+      <div class="btn-row" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+        <a class="btn btn-primary" style="color:#fff" href={hospital.url} target="_blank" rel="noopener">{hospital.name} →</a>
+        <a class="btn btn-outline" href={drManan.url} target="_blank" rel="noopener">{drManan.name} →</a>
+      </div>
+    </div>
+  </section>
+) : (
+  sections.map(({ ch, desc, soft }) => (
+    <section class={soft ? 'section soft' : 'section'}>
+      <div class="container">
+        <span class="badge">{ch.name}</span>
+        <p style="max-width:720px;color:var(--charcoal);margin:14px 0 26px">{desc}</p>
+        {ch.videos.length > 0 ? (
+          <VideoStrip videos={ch.videos} />
+        ) : (
+          <p style="color:var(--muted)">{s.emptyChannel}</p>
+        )}
+        <p style="margin-top:26px">
+          <a class="btn btn-outline" href={ch.url} target="_blank" rel="noopener">{s.visitChannel} →</a>
+        </p>
+      </div>
+    </section>
+  ))
+)}
