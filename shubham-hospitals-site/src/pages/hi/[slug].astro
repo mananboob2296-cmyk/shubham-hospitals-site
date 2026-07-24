@@ -5,6 +5,9 @@ import CtaBand from '../../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
 import { useTranslations } from '../../i18n/utils';
 import { SITE } from '../../consts';
+import VideoStrip from '../../components/VideoStrip.astro';
+import { latest } from '../../lib/videos';
+import { videoStrings } from '../../i18n/videos';
 
 const lang = 'hi';
 const teamEyebrow = 'हमारी टीम';
@@ -29,6 +32,8 @@ const slug = entry.slug.replace(/^hi\//, '');
 const e = entry.data;
 const { Content } = await entry.render();
 const t = useTranslations(lang);
+const vs = videoStrings['hi'];
+const drMananVideos = kind === 'doctor' && slug === 'dr-manan' ? latest('drManan', 2) : [];
 ---
 <BaseLayout
   title={e.metaTitle}
@@ -97,6 +102,12 @@ const t = useTranslations(lang);
             <ul>{e.expertise.map((x) => <li>{x}</li>)}</ul>
             {slug === 'dr-manan' && e.youtube && (
               <p><a class="btn btn-primary" style="color:#fff" href={e.youtube} target="_blank" rel="noopener">{ytLabel}</a></p>
+            )}
+            {drMananVideos.length > 0 && (
+              <div class="profile-videos">
+                <h2>{vs.profileH2}</h2>
+                <VideoStrip videos={drMananVideos} />
+              </div>
             )}
           </div>
         </div>
