@@ -11,7 +11,7 @@ import type { Lang } from './ui';
 // NOTE: blog articles are intentionally NOT in these sets — their hi/mr URLs
 // live under /hi/blogs/<slug>/ (a different shape than /<slug>/), so the blog
 // routes pass explicit altPaths to BaseLayout/LangSwitcher instead.
-const CORE = ['/', '/faq/', '/departments/', '/doctors/', '/about-us/', '/contact-us/', '/blogs/'];
+const CORE = ['/', '/faq/', '/departments/', '/doctors/', '/about-us/', '/contact-us/', '/blogs/', '/videos/'];
 
 const cache: Partial<Record<'hi' | 'mr', Promise<Set<string>>>> = {};
 
