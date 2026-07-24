@@ -3,6 +3,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import FaqSection from '../../components/FaqSection.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
+import VideoStrip from '../../components/VideoStrip.astro';
+import { latest } from '../../lib/videos';
+import { videoStrings } from '../../i18n/videos';
 
 export async function getStaticPaths() {
   const treatments = await getCollection('treatments');
@@ -12,6 +15,8 @@ export async function getStaticPaths() {
 }
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+const vs = videoStrings.en;
+const relatedVideos = entry.slug === 'advanced-laparoscopy-hysteroscopy' ? latest('drManan', 3) : [];
 ---
 <BaseLayout title={entry.data.metaTitle} description={entry.data.metaDescription}>
   <section class="hero">
@@ -30,6 +35,14 @@ const { Content } = await entry.render();
       <Content />
     </div>
   </section>
+  {relatedVideos.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <h2>{vs.treatmentH2}</h2>
+        <VideoStrip videos={relatedVideos} />
+      </div>
+    </section>
+  )}
   <section class="section soft">
     <div class="container prose">
       <FaqSection faqs={entry.data.faqs} heading="FAQs" />
