@@ -47,6 +47,7 @@ You are one session in a relay. Previous agents worked before you; others will c
 | 2026-07-22 | Claude (Cowork) | T24 (new) | DONE (pending deploy) | PSI mobile 89: hero srcset + responsive preload, logo-300, footer logo height, WhatsApp contrast #075E54, laparo recompress; via T15-style CI |
 | 2026-07-22 | Claude (Cowork) | T16 | DONE (pending deploy) | Removed 3 Best-X SEO links from nav dropdown (all locales) + dropped unused bestPages const; 7 depts only. Pages still build, in sitemap, linked from homepage cards. build passes |
 | 2026-07-22 | Claude (Cowork) | T18 | DONE (pending deploy) | Homepage h1 softened: dropped 16-word "Best IVF & Laparoscopy Centre" self-claim -> "Trusted IVF, 3D Laparoscopy & Maternity Care in Amravati" (9 words, no "Best"); EN/HI/MR via heroH1 in home.ts; title tag unchanged; build passes (120 pages) |
+| 2026-07-24 | Claude (Cowork) | T19 | DONE (live) | Native /videos (EN/HI/MR, two labelled channel sections) + nav/footer link; lite click-to-play facade (no iframe/JS on load, aspect-ratio box = no CLS, no-JS link fallback); Dr Manan profile + laparoscopy treatment embeds (all locales) + optional compact homepage strip; RSS→videos.json via scripts/fetch-youtube-videos.mjs + weekly videos-refresh.yml Action; VideoObject/ItemList schema; merged via PR #7; build 126 pages |
 
 ---
 
@@ -255,9 +256,9 @@ These were flagged in the original reviews but are confirmed fixed on the live s
 ## PHASE 5 — Trust & growth (lower urgency)
 
 ### T19. Embed videos on-site
-**Status:** `TODO`
+**Status:** `DONE (live)`
 Steps: embed 1–2 YouTube videos (facility tour / Dr Manan's channel) on homepage and relevant profile/treatment pages using lite-youtube-embed (no heavy iframe on load). Verify build + no CLS.
-**Notes:** —
+**Notes:** 2026-07-24 (merged via PR #7, live). Built a full native video system pulling from BOTH channels — hospital `@shubhamhitechhospital` (UC6p4jRKKnO3ZyqaQvcCfh_Q) and `@drmananboob.gynendoscopy` (UCI4P9DW1UnqAQFlV4pFaIDw). Data pipeline: `scripts/fetch-youtube-videos.mjs` reads each channel's public RSS feed (no API key/quota) and writes `src/data/videos.json`; `.github/workflows/videos-refresh.yml` runs it weekly + on demand + on push (build-gated, commits only the JSON). The Astro build ONLY reads the committed JSON, so a slow/unreachable YouTube can never break a deploy; a failed feed keeps last-good videos. Rendering: custom lite click-to-play facade (`LiteYouTube.astro`) — ships only a lazy thumbnail + play button, one delegated module script swaps in a youtube-nocookie iframe on click; `aspect-ratio:16/9` box = zero CLS; degrades to a plain link with no JS. New trilingual `/videos` (EN/HI/MR) via `VideosBody.astro` with TWO labelled channel sections + `VideoStrip.astro` grid; strings in `src/i18n/videos.ts`. Nav + footer 'Videos' link (`nav.videos` in ui.ts; `/videos/` added to translations CORE). Embeds: Dr Manan profile (en/hi/mr — latest 2), advanced-laparoscopy-hysteroscopy treatment page (en/hi/mr — latest 3), and an OPTIONAL compact homepage strip (latest 2 Dr Manan + 1 hospital) — all render nothing until the feed is populated. VideoObject + ItemList JSON-LD on /videos. Build verified on branch: 126 pages. NOTE: the workflow file was added via the GitHub web UI (API token lacked `workflow` scope); it's live and refreshing weekly. FOLLOW-UP: to add video strips to more treatment pages, extend the slug check in the treatment renderers.
 
 ### T20. Display registrations/accreditations
 **Status:** `TODO`
