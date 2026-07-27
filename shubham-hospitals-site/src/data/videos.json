@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-24T14:34:09.204Z",
+  "fetchedAt": "2026-07-27T15:57:29.833Z",
   "channels": {
     "hospital": {
       "key": "hospital",
@@ -87,6 +87,13 @@
       "url": "https://youtube.com/@drmananboob.gynendoscopy",
       "channelId": "UCI4P9DW1UnqAQFlV4pFaIDw",
       "videos": [
+        {
+          "id": "EWgnZnwSYoY",
+          "title": "Nerve Sparing Surgery for Deep Parametrial Endometriosis",
+          "published": "2026-07-26T05:59:16+00:00",
+          "description": "Nerve Sparing Surgery for Deep Parametrial Endometriosis Deep parametrial endometriosis presents a significant surgical challenge: achieving adequate disease excision while preserving the pelvic autonomic nerves responsible for bladder, bowel and sexual function. In this 34-minute operative video, D",
+          "thumb": "https://i.ytimg.com/vi/EWgnZnwSYoY/hqdefault.jpg"
+        },
         {
           "id": "7IgwO3PieY8",
           "title": "Simple Stepwise TLH in 15 mins",
