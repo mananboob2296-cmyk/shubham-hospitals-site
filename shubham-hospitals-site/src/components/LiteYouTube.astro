@@ -47,6 +47,10 @@ const src = thumb || `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
       iframe.title = link.getAttribute('aria-label') || 'YouTube video';
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
       iframe.setAttribute('allowfullscreen', '');
+      // The iframe is created in JS, so Astro's scoped-style attribute is not on
+      // it and the scoped `.lite-yt iframe` CSS won't match. Size it inline so it
+      // always fills the 16:9 box instead of the browser's default 300x150.
+      iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
       link.innerHTML = '';
       link.appendChild(iframe);
       link.classList.add('lite-yt-playing');
