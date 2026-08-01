@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { procContent } from '../../i18n/procedures';
+const lang = 'mr';
+const p = procContent[lang];
+const prefix = `${lang}/`;
+const procedures = (await getCollection('treatments'))
+  .filter((e) => e.slug.startsWith(prefix) && e.data.kind === 'procedure')
+  .sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title={p.title} description={p.description} lang={lang}>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">{p.eyebrow}</span>
+      <h1>{p.h1}</h1>
+      <p>{p.lead}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={`/${lang}/`}>{p.crumbHome}</a> › <a href={`/${lang}/departments/`}>{p.crumbDepartments}</a> › {p.h1}</nav>
+      {procedures.length === 0 ? (
+        <p>{p.empty}</p>
+      ) : (
+        <div class="grid cols-3">
+          {procedures.map((pr) => (
+            <div class="card">
+              <h3>{pr.data.title}</h3>
+              <p>{pr.data.excerpt}</p>
+              <a class="more" href={`/${lang}/treatments/${pr.slug.slice(prefix.length)}/`}>{p.view}</a>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+  <CtaBand />
+</BaseLayout>

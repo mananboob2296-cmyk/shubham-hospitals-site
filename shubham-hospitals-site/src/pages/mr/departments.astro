@@ -3,12 +3,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
 import { deptContent } from '../../i18n/pages';
+import { procContent } from '../../i18n/procedures';
 import { treatmentCards } from '../../i18n/home';
 import { translatedPaths } from '../../i18n/translations';
 const lang = 'mr';
 const p = deptContent[lang];
+const pc = procContent[lang];
 const cards = treatmentCards[lang];
-const treatments = (await getCollection('treatments')).filter((e) => !e.slug.includes('/')).sort((a, b) => a.data.order - b.data.order);
+const all = (await getCollection('treatments')).filter((e) => !e.slug.includes('/'));
+const treatments = all.filter((e) => e.data.kind === 'department').sort((a, b) => a.data.order - b.data.order);
+const hasProcedures = all.some((e) => e.data.kind === 'procedure');
 const tset = await translatedPaths(lang);
 ---
 <BaseLayout title={p.title} description={p.description} lang={lang}>
@@ -33,6 +37,13 @@ const tset = await translatedPaths(lang);
             <a class="more" href={href}>{p.explore}</a>
           </div>
         )})}
+        {hasProcedures && (
+          <div class="card">
+            <h3>{pc.cardTitle}</h3>
+            <p>{pc.cardBlurb}</p>
+            <a class="more" href={`/${lang}/procedures/`}>{pc.cardCta}</a>
+          </div>
+        )}
       </div>
     </div>
   </section>

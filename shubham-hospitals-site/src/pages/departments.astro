@@ -2,7 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
-const treatments = (await getCollection('treatments')).filter((e) => !e.slug.includes('/')).sort((a, b) => a.data.order - b.data.order);
+import { procContent } from '../i18n/procedures';
+const all = (await getCollection('treatments')).filter((e) => !e.slug.includes('/'));
+// Only the top-level departments belong in this grid. Individual procedure pages
+// (kind: 'procedure') are collected behind a single Procedures card below.
+const treatments = all.filter((e) => e.data.kind === 'department').sort((a, b) => a.data.order - b.data.order);
+const hasProcedures = all.some((e) => e.data.kind === 'procedure');
+const pc = procContent.en;
 ---
 <BaseLayout
   title="Departments & Treatments | Shubham Hospitals, Amravati"
@@ -26,6 +32,13 @@ const treatments = (await getCollection('treatments')).filter((e) => !e.slug.inc
             <a class="more" href={`/treatments/${t.slug}/`}>Explore department →</a>
           </div>
         ))}
+        {hasProcedures && (
+          <div class="card">
+            <h3>{pc.cardTitle}</h3>
+            <p>{pc.cardBlurb}</p>
+            <a class="more" href="/procedures/">{pc.cardCta}</a>
+          </div>
+        )}
       </div>
     </div>
   </section>

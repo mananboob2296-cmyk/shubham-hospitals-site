@@ -24,6 +24,10 @@ const treatments = defineCollection({
     metaDescription: z.string(),
     order: z.number(),
     excerpt: z.string(),
+    // 'department' = one of the 7 top-level department pages listed on /departments/.
+    // 'procedure'  = an individual procedure page, listed on /procedures/ instead.
+    // Defaults to 'department' so existing entries need no change.
+    kind: z.enum(['department', 'procedure']).default('department'),
     faqs: z.array(faq).default([]),
   }),
 });

@@ -25,7 +25,8 @@ const homeVideos = [...latest('drManan', 2), ...latest('hospital', 1)].slice(0, 
 const tset = lang === 'en' ? null : await translatedPaths(lang);
 const L = (p: string) => (tset?.has(p) ? `/${lang}${p}` : p);
 
-const treatments = (await getCollection('treatments')).filter((e) => !e.slug.includes('/')).sort((a, b) => a.data.order - b.data.order);
+// Departments only — individual procedure pages (kind: 'procedure') live on /procedures/.
+const treatments = (await getCollection('treatments')).filter((e) => !e.slug.includes('/') && e.data.kind === 'department').sort((a, b) => a.data.order - b.data.order);
 const doctors = (await getCollection('doctors')).filter((e) => !e.slug.includes('/')).sort((a, b) => a.data.order - b.data.order);
 const allPosts = await getCollection('blog');
 const posts = allPosts

@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { procContent } from '../i18n/procedures';
+const p = procContent.en;
+const procedures = (await getCollection('treatments'))
+  .filter((e) => !e.slug.includes('/') && e.data.kind === 'procedure')
+  .sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title={p.title} description={p.description}>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">{p.eyebrow}</span>
+      <h1>{p.h1}</h1>
+      <p>{p.lead}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">{p.crumbHome}</a> › <a href="/departments/">{p.crumbDepartments}</a> › {p.h1}</nav>
+      {procedures.length === 0 ? (
+        <p>{p.empty}</p>
+      ) : (
+        <div class="grid cols-3">
+          {procedures.map((pr) => (
+            <div class="card">
+              <h3>{pr.data.title}</h3>
+              <p>{pr.data.excerpt}</p>
+              <a class="more" href={`/treatments/${pr.slug}/`}>{p.view}</a>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+  <CtaBand />
+</BaseLayout>
