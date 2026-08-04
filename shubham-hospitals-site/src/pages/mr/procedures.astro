@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { getCollection } from 'astro:content';
 import { procContent } from '../../i18n/procedures';
 const lang = 'mr';
@@ -20,7 +21,7 @@ const procedures = (await getCollection('treatments'))
   </section>
   <section class="section">
     <div class="container">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={`/${lang}/`}>{p.crumbHome}</a> › <a href={`/${lang}/departments/`}>{p.crumbDepartments}</a> › {p.h1}</nav>
+      <Breadcrumbs crumbs={[{ label: p.crumbHome, href: `/${lang}/` }, { label: p.crumbProcedures }]} />
       {procedures.length === 0 ? (
         <p>{p.empty}</p>
       ) : (

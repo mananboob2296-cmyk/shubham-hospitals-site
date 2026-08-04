@@ -2,10 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FaqSection from '../../components/FaqSection.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { getCollection } from 'astro:content';
 import VideoStrip from '../../components/VideoStrip.astro';
 import { latest } from '../../lib/videos';
 import { videoStrings } from '../../i18n/videos';
+import { procContent } from '../../i18n/procedures';
 
 export async function getStaticPaths() {
   const treatments = await getCollection('treatments');
@@ -17,11 +19,21 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 const vs = videoStrings.en;
 const relatedVideos = entry.slug === 'advanced-laparoscopy-hysteroscopy' ? latest('drManan', 3) : [];
+
+// Procedure pages sit under /procedures/, not /departments/ — the collection is
+// shared, so the parent is decided by `kind` (see src/i18n/procedures.ts).
+const p = procContent.en;
+const isProcedure = entry.data.kind === 'procedure';
+const eyebrow = isProcedure ? p.singleEyebrow : 'Department';
+const parent = isProcedure
+  ? { label: p.crumbProcedures, href: '/procedures/' }
+  : { label: 'Departments', href: '/departments/' };
+const crumbs = [{ label: 'Home', href: '/' }, parent, { label: entry.data.title }];
 ---
 <BaseLayout title={entry.data.metaTitle} description={entry.data.metaDescription}>
   <section class="hero">
     <div class="container">
-      <span class="eyebrow">Department</span>
+      <span class="eyebrow">{eyebrow}</span>
       <h1>{entry.data.title}</h1>
       <p>{entry.data.excerpt}</p>
       <div class="btn-row">
@@ -31,7 +43,7 @@ const relatedVideos = entry.slug === 'advanced-laparoscopy-hysteroscopy' ? lates
   </section>
   <section class="section">
     <div class="container prose">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/departments/">Departments</a> › {entry.data.title}</nav>
+      <Breadcrumbs crumbs={crumbs} />
       <Content />
     </div>
   </section>

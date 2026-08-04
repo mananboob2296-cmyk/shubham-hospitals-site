@@ -2,8 +2,10 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import FaqSection from '../../../components/FaqSection.astro';
 import CtaBand from '../../../components/CtaBand.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import { getCollection } from 'astro:content';
 import { deptContent } from '../../../i18n/pages';
+import { procContent } from '../../../i18n/procedures';
 import VideoStrip from '../../../components/VideoStrip.astro';
 import { latest } from '../../../lib/videos';
 import { videoStrings } from '../../../i18n/videos';
@@ -25,11 +27,21 @@ const t = useTranslations(lang);
 const dept = deptContent[lang];
 const vs = videoStrings['hi'];
 const relatedVideos = entry.slug.replace(/^hi\//, '') === 'advanced-laparoscopy-hysteroscopy' ? latest('drManan', 3) : [];
+
+// Procedure pages sit under /hi/procedures/, not /hi/departments/ — the collection
+// is shared, so the parent is decided by `kind` (see src/i18n/procedures.ts).
+const p = procContent[lang];
+const isProcedure = e.kind === 'procedure';
+const eyebrow = isProcedure ? p.singleEyebrow : dept.h1;
+const parent = isProcedure
+  ? { label: p.crumbProcedures, href: '/hi/procedures/' }
+  : { label: dept.h1, href: '/hi/departments/' };
+const crumbs = [{ label: t('nav.home'), href: '/hi/' }, parent, { label: e.title }];
 ---
 <BaseLayout title={e.metaTitle} description={e.metaDescription} lang={lang}>
   <section class="hero">
     <div class="container">
-      <span class="eyebrow">विभाग</span>
+      <span class="eyebrow">{eyebrow}</span>
       <h1>{e.title}</h1>
       <p>{e.excerpt}</p>
       <div class="btn-row">
@@ -39,7 +51,7 @@ const relatedVideos = entry.slug.replace(/^hi\//, '') === 'advanced-laparoscopy-
   </section>
   <section class="section">
     <div class="container prose">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/hi/">{t('nav.home')}</a> › <a href="/hi/departments/">{dept.h1}</a> › {e.title}</nav>
+      <Breadcrumbs crumbs={crumbs} />
       <Content />
     </div>
   </section>

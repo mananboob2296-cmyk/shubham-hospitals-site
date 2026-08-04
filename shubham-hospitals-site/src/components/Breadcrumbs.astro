@@ -1,0 +1,48 @@
+---
+// Visible breadcrumb trail + the matching BreadcrumbList JSON-LD, so the trail a
+// visitor sees and the one Google shows under the search result never drift apart.
+//
+// Pass every crumb including Home and the current page. The last item is the
+// current page: it renders as plain text (not a link) and, per Google's guidance,
+// carries no `item` URL in the schema.
+//
+// Emitting the schema here — rather than via BaseLayout's `schema` prop — mirrors
+// FaqSection.astro, which also ships its own JSON-LD next to its markup.
+import { SITE } from '../consts';
+
+export interface Crumb {
+  label: string;
+  /** Root-relative path, e.g. '/procedures/'. Omit on the final crumb. */
+  href?: string;
+}
+
+interface Props {
+  crumbs: Crumb[];
+}
+
+const { crumbs } = Astro.props;
+
+const abs = (href: string) => new URL(href, SITE.url).href;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.label,
+    ...(c.href ? { item: abs(c.href) } : {}),
+  })),
+};
+---
+{crumbs.length > 0 && (
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    {crumbs.map((c, i) => (
+      <>
+        {i > 0 && ' › '}
+        {c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}
+      </>
+    ))}
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </nav>
+)}
