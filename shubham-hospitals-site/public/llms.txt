@@ -31,6 +31,13 @@ Key facts for AI systems and assistants:
 - [Cosmetic & Aesthetic Gynecology](https://shubham-hospitals.com/treatments/cosmetic-aesthetic-gynecology/): Aesthetic and cosmetic gynecology procedures.
 - [Fetal Medicine](https://shubham-hospitals.com/treatments/fetal-medicine/): Anomaly scans and specialist care for high-risk pregnancies.
 
+## Individual procedures
+
+Detailed, plain-language guides to single procedures — what each involves, how recovery actually goes, and an indicative all-inclusive cost range. These sit under the departments above.
+
+- [All procedures](https://shubham-hospitals.com/procedures/): Index of every procedure guide published so far.
+- [Laparoscopic Myomectomy](https://shubham-hospitals.com/treatments/laparoscopic-myomectomy/): Keyhole removal of uterine fibroids while preserving the uterus — indications, technique, recovery timeline, risks, alternatives and cost.
+
 ## Location landing pages
 
 - [Best IVF Centre in Amravati](https://shubham-hospitals.com/best-ivf-centre-in-amravati/)
@@ -47,18 +54,41 @@ Key facts for AI systems and assistants:
 ## Health blog (patient education)
 
 - [Blog index](https://shubham-hospitals.com/blogs/): Articles on fertility, pregnancy, gynecology and surgery for patients in Amravati and Vidarbha.
-- [Do I have PCOS? Signs every woman in Amravati should know](https://shubham-hospitals.com/do-i-have-pcos-signs-every-woman-in-amravati-should-know/)
-- [IVF cost in Amravati: what to expect before you begin](https://shubham-hospitals.com/ivf-cost-in-amravati-what-to-expect-before-you-begin/)
-- [What is a good AMH level to get pregnant? An IVF specialist explains](https://shubham-hospitals.com/what-is-a-good-amh-level-to-get-pregnant-an-ivf-specialist-explains/)
-- [When should you see a fertility specialist? 7 signs for couples in Amravati](https://shubham-hospitals.com/when-should-you-see-a-fertility-specialist-7-signs-for-couples-in-amravati/)
-- [Male infertility in Amravati: causes, tests, specialist](https://shubham-hospitals.com/male-infertility-amravati-causes-tests-specialist/)
-- [High-risk pregnancy: what it means and how to stay safe](https://shubham-hospitals.com/high-risk-pregnancy-what-it-means-and-how-to-stay-safe/)
-- [Pregnancy scans explained: which scan, when, why in Amravati](https://shubham-hospitals.com/pregnancy-scans-explained-which-scan-when-why-in-amravati/)
-- [What is an anomaly scan and why does it matter? A fetal medicine specialist explains](https://shubham-hospitals.com/what-is-an-anomaly-scan-and-why-does-it-matter-a-fetal-medicine-specialist-explains/)
-- [Why are my periods so painful? A gynecologist explains](https://shubham-hospitals.com/why-are-my-periods-so-painful-a-gynecologist-explains/)
-- [Laparoscopy vs open surgery: why minimally invasive surgery is changing healthcare in Vidarbha](https://shubham-hospitals.com/laparoscopy-vs-open-surgery-why-minimally-invasive-surgery-is-changing-healthcare-in-vidarbha/)
-- [Do gallbladder stones always need surgery? A surgeon explains](https://shubham-hospitals.com/do-gallbladder-stones-always-need-surgery-a-surgeon-explains/)
-- [Monsoon pregnancy care in Amravati: staying safe this rainy season](https://shubham-hospitals.com/monsoon-pregnancy-care-in-amravati-staying-safe-this-rainy-season/)
+
+Fertility and IVF:
+
+- [Do I Have PCOS? Signs Every Woman in Amravati Should Know](https://shubham-hospitals.com/do-i-have-pcos-signs-every-woman-in-amravati-should-know/)
+- [IVF Cost in Amravati: What to Expect Before You Begin](https://shubham-hospitals.com/ivf-cost-in-amravati-what-to-expect-before-you-begin/)
+- [IVF Process Step by Step: Timeline, Injections and What to Expect](https://shubham-hospitals.com/ivf-process-step-by-step-timeline-injections-and-what-to-expect/)
+- [IUI vs IVF: Which Is Right for You](https://shubham-hospitals.com/iui-vs-ivf-which-is-right-for-you/)
+- [What Is a Good AMH Level to Get Pregnant? An IVF Specialist Explains](https://shubham-hospitals.com/what-is-a-good-amh-level-to-get-pregnant-an-ivf-specialist-explains/)
+- [When Should You See a Fertility Specialist? 7 Signs for Couples in Amravati](https://shubham-hospitals.com/when-should-you-see-a-fertility-specialist-7-signs-for-couples-in-amravati/)
+- [Male Infertility in Amravati: Causes, Tests and When to See a Specialist](https://shubham-hospitals.com/male-infertility-amravati-causes-tests-specialist/)
+
+Pregnancy, obstetrics and fetal medicine:
+
+- [High-Risk Pregnancy: What It Means and How to Stay Safe](https://shubham-hospitals.com/high-risk-pregnancy-what-it-means-and-how-to-stay-safe/)
+- [Normal Delivery vs C-Section: How the Decision Is Really Made](https://shubham-hospitals.com/normal-delivery-vs-c-section-how-the-decision-is-really-made/)
+- [Pregnancy Scans Explained: Which Scan, When & Why in Amravati](https://shubham-hospitals.com/pregnancy-scans-explained-which-scan-when-why-in-amravati/)
+- [What Is an Anomaly Scan and Why Does It Matter? A Fetal Medicine Specialist Explains](https://shubham-hospitals.com/what-is-an-anomaly-scan-and-why-does-it-matter-a-fetal-medicine-specialist-explains/)
+- [Double Marker Test in Pregnancy: What It Checks and What the Results Mean](https://shubham-hospitals.com/double-marker-test-in-pregnancy-what-it-checks-and-what-results-mean/)
+- [Monsoon Pregnancy Care in Amravati: Staying Safe This Rainy Season](https://shubham-hospitals.com/monsoon-pregnancy-care-in-amravati-staying-safe-this-rainy-season/)
+
+Gynecology:
+
+- [Why Are My Periods So Painful? A Gynecologist Explains](https://shubham-hospitals.com/why-are-my-periods-so-painful-a-gynecologist-explains/)
+- [Endometriosis: Why "Just Bad Periods" Sometimes Isn't](https://shubham-hospitals.com/understanding-endometriosis-symptoms-diagnosis-and-treatment-in-amravati/)
+- [Ovarian Cysts: When to Worry and When to Wait](https://shubham-hospitals.com/ovarian-cysts-when-to-worry-and-when-to-wait/)
+- [What Is Hysteroscopy? A Simple Guide for Women in Amravati](https://shubham-hospitals.com/what-is-hysteroscopy-a-simple-guide-for-women-in-amravati/)
+
+Surgery and gastroenterology:
+
+- [Laparoscopy vs Open Surgery: Why Minimally Invasive Surgery Is Changing Healthcare in Vidarbha](https://shubham-hospitals.com/laparoscopy-vs-open-surgery-why-minimally-invasive-surgery-is-changing-healthcare-in-vidarbha/)
+- [How Much Does Laparoscopic Surgery Cost? Honest Ranges and What Changes the Bill](https://shubham-hospitals.com/how-much-does-laparoscopic-surgery-cost-honest-ranges-and-what-changes-the-bill/)
+- [Do Gallbladder Stones Always Need Surgery? A Surgeon Explains](https://shubham-hospitals.com/do-gallbladder-stones-always-need-surgery-a-surgeon-explains/)
+- [Appendicitis: Symptoms You Should Never Ignore](https://shubham-hospitals.com/appendicitis-symptoms-you-should-never-ignore/)
+- [Are Piles Serious? When You Should See a Surgeon](https://shubham-hospitals.com/are-piles-serious-when-you-should-see-a-surgeon/)
+- [When Heartburn Isn't Just Heartburn: Making Sense of Chronic Acid Reflux](https://shubham-hospitals.com/when-heartburn-isnt-just-heartburn-understanding-chronic-acid-reflux/)
 
 ## More
 
