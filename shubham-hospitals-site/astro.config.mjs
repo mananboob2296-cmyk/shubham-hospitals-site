@@ -10,5 +10,12 @@ export default defineConfig({
     locales: ['en', 'hi', 'mr'],
     routing: { prefixDefaultLocale: false },
   },
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // The two digital visiting cards ship <meta name="robots" content="noindex">.
+      // Listing a noindex URL in the XML sitemap sends Google contradictory signals,
+      // so keep them out of it. They stay reachable and shareable as before.
+      filter: (page) => !/\/(dr-manan-boob-blue|dr-manjushree-boob)\/$/.test(page),
+    }),
+  ],
 });

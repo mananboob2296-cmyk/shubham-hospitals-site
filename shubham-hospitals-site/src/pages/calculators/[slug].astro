@@ -1,0 +1,11 @@
+---
+import CalcPage from '../../components/calculators/CalcPage.astro';
+import { calcSlugs, type CalcSlug } from '../../i18n/calculators';
+
+export function getStaticPaths() {
+  return calcSlugs.map((slug) => ({ params: { slug }, props: { slug } }));
+}
+
+const { slug } = Astro.props as { slug: CalcSlug };
+---
+<CalcPage lang="en" slug={slug} />
