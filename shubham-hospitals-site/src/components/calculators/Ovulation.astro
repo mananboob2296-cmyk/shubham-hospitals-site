@@ -1,0 +1,68 @@
+---
+import CalcShell from './CalcShell.astro';
+import type { CalcCopy, CalcShared } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+interface Props { copy: CalcCopy; shared: CalcShared; lang?: Lang }
+const { copy, shared } = Astro.props;
+const cycles = Array.from({ length: 23 }, (_, i) => i + 22); // 22–44
+const durations = Array.from({ length: 8 }, (_, i) => i + 3); // 3–10
+const u = shared.units;
+---
+<CalcShell name="ovulation" copy={copy} shared={shared}>
+  <div class="calc-field">
+    <label for="ov-lmp">{copy.fields.lmp}</label>
+    <input type="date" id="ov-lmp" name="lmp" />
+  </div>
+  <div class="calc-field">
+    <label for="ov-cycle">{copy.fields.cycle}</label>
+    <select id="ov-cycle" name="cycle">
+      {cycles.map((n) => <option value={n} selected={n === 28}>{n} {u.days}</option>)}
+    </select>
+    {copy.hints?.cycle && <p class="calc-hint">{copy.hints.cycle}</p>}
+  </div>
+  <div class="calc-field">
+    <label for="ov-dur">{copy.fields.duration}</label>
+    <select id="ov-dur" name="duration">
+      {durations.map((n) => <option value={n} selected={n === 5}>{n} {u.days}</option>)}
+    </select>
+  </div>
+</CalcShell>
+
+<script is:inline define:vars={{ L: copy.results }}>
+  SHC.boot('ovulation', function (root) {
+    var lmp = root.querySelector('#ov-lmp');
+    var cyc = root.querySelector('#ov-cycle');
+    var dur = root.querySelector('#ov-dur');
+
+    function run() {
+      var d = SHC.parse(lmp.value);
+      if (!d) return SHC.render(root, null);
+      var cycle = parseInt(cyc.value, 10);
+      var next = SHC.addDays(d, cycle);
+      var ov = SHC.addDays(next, -14);
+      var fs = SHC.addDays(ov, -5);
+      var fe = SHC.addDays(ov, 1);
+      var bs = SHC.addDays(ov, -2);
+      var dd = parseInt(dur.value, 10) || 5;
+      var test = next;
+      SHC.render(root, [
+        { k: L.ovulation, v: SHC.fmt(ov), big: true },
+        { k: L.fertileWindow, v: SHC.range(fs, fe) },
+        { k: L.bestDays, v: SHC.range(bs, ov) },
+        { k: L.nextPeriod, v: SHC.range(next, SHC.addDays(next, dd - 1)) },
+        { k: L.testDate, v: SHC.fmt(test) },
+      ]);
+    }
+
+    root.addEventListener('input', run);
+    root.addEventListener('change', run);
+    var go = root.querySelector('[data-calc-go]');
+    if (go) go.addEventListener('click', run);
+    var clr = root.querySelector('[data-calc-clear]');
+    if (clr) clr.addEventListener('click', function () {
+      lmp.value = ''; cyc.value = '28'; dur.value = '5';
+      SHC.render(root, null);
+    });
+    run();
+  });
+</script>

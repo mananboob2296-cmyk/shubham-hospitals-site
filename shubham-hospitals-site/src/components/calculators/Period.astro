@@ -1,0 +1,78 @@
+---
+import CalcShell from './CalcShell.astro';
+import type { CalcCopy, CalcShared } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+interface Props { copy: CalcCopy; shared: CalcShared; lang: Lang }
+const { copy, shared, lang } = Astro.props;
+const cycles = Array.from({ length: 23 }, (_, i) => i + 22);
+const durations = Array.from({ length: 8 }, (_, i) => i + 3);
+const u = shared.units;
+// Cycle-length verdicts are copy, not calculation — keep them beside the calculator.
+const verdicts: Record<string, [string, string, string]> = {
+  en: ['is in the normal range (21–35 days).', 'is shorter than 21 days — worth discussing with a gynecologist.', 'is longer than 35 days — worth discussing with a gynecologist.'],
+  hi: ['सामान्य सीमा (21–35 दिन) में है।', '21 दिन से छोटा है — स्त्रीरोग विशेषज्ञ से चर्चा करें।', '35 दिन से लंबा है — स्त्रीरोग विशेषज्ञ से चर्चा करें।'],
+  mr: ['सामान्य मर्यादेत (21–35 दिवस) आहे.', '21 दिवसांहून लहान आहे — स्त्रीरोगतज्ज्ञांशी चर्चा करा.', '35 दिवसांहून लांब आहे — स्त्रीरोगतज्ज्ञांशी चर्चा करा.'],
+};
+const verdict = verdicts[lang] ?? verdicts.en;
+---
+<CalcShell name="period" copy={copy} shared={shared}>
+  <div class="calc-field">
+    <label for="pd-lmp">{copy.fields.lmp}</label>
+    <input type="date" id="pd-lmp" name="lmp" />
+    {copy.hints?.lmp && <p class="calc-hint">{copy.hints.lmp}</p>}
+  </div>
+  <div class="calc-field">
+    <label for="pd-cycle">{copy.fields.cycle}</label>
+    <select id="pd-cycle" name="cycle">
+      {cycles.map((n) => <option value={n} selected={n === 28}>{n} {u.days}</option>)}
+    </select>
+  </div>
+  <div class="calc-field">
+    <label for="pd-dur">{copy.fields.duration}</label>
+    <select id="pd-dur" name="duration">
+      {durations.map((n) => <option value={n} selected={n === 5}>{n} {u.days}</option>)}
+    </select>
+  </div>
+</CalcShell>
+
+<script is:inline define:vars={{ L: copy.results, V: verdict }}>
+  SHC.boot('period', function (root) {
+    var lmp = root.querySelector('#pd-lmp');
+    var cyc = root.querySelector('#pd-cycle');
+    var dur = root.querySelector('#pd-dur');
+
+    function run() {
+      var d = SHC.parse(lmp.value);
+      if (!d) return SHC.render(root, null);
+      var cycle = parseInt(cyc.value, 10) || 28;
+      var days = parseInt(dur.value, 10) || 5;
+
+      var starts = [];
+      var cursor = d;
+      var today = SHC.today();
+      // Roll forward to the first period start that has not already happened.
+      while (SHC.diffDays(cursor, today) >= cycle) cursor = SHC.addDays(cursor, cycle);
+      for (var i = 1; i <= 6; i++) starts.push(SHC.addDays(cursor, cycle * i));
+
+      var first = starts[0];
+      var verdict = cycle < 21 ? V[1] : cycle > 35 ? V[2] : V[0];
+
+      SHC.render(root, [
+        { k: L.nextPeriod, v: SHC.fmt(first), big: true },
+        { k: L.nextEnd, v: SHC.fmt(SHC.addDays(first, days - 1)) },
+        { k: L.cycleNote, v: cycle + ' ' + SHC.units.days + ' — ' + verdict },
+        { k: L.upcoming, list: starts.map(function (s) { return SHC.fmtShort(s) + ' – ' + SHC.fmtShort(SHC.addDays(s, days - 1)); }) },
+      ]);
+    }
+
+    root.addEventListener('input', run);
+    root.addEventListener('change', run);
+    var go = root.querySelector('[data-calc-go]');
+    if (go) go.addEventListener('click', run);
+    var clr = root.querySelector('[data-calc-clear]');
+    if (clr) clr.addEventListener('click', function () {
+      lmp.value = ''; cyc.value = '28'; dur.value = '5';
+      SHC.render(root, null);
+    });
+  });
+</script>
