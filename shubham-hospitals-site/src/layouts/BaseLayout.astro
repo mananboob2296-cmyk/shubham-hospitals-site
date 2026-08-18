@@ -19,6 +19,7 @@ import muktaDev700 from '@fontsource/mukta/files/mukta-devanagari-700-normal.wof
 import tiroDev400 from '@fontsource/tiro-devanagari-marathi/files/tiro-devanagari-marathi-devanagari-400-normal.woff2?url';
 import tiroDev400i from '@fontsource/tiro-devanagari-marathi/files/tiro-devanagari-marathi-devanagari-400-italic.woff2?url';
 import '../styles/global.css';
+import '../styles/calculators.css';
 import '../styles/font-fallbacks.css';
 // Preload the two above-the-fold-critical fonts (hero h1 = Libre Franklin 600,
 // body copy = Source Sans 3 400). ?url resolves the hashed /_astro/ path at build.
@@ -118,7 +119,7 @@ const deptNames: Record<Lang, Record<string, string>> = {
     'advanced-laparoscopy-hysteroscopy': 'प्रगत लॅपरोस्कोपी व हिस्टेरोस्कोपी',
     'obstetrics-gynecology': 'प्रसूती व स्त्रीरोग',
     'ivf-fertility-treatments': 'IVF व प्रजनन उपचार',
-    'ultrasound-imaging': 'अल्ट्रासाऊंड व इमेजिंग',
+    'ultrasound-imaging': 'अल्ट्रासाउंड व इमेजिंग',
     'general-surgery-gastroenterology': 'जनरल सर्जरी व गॉस्ट्रोएन्टेरोलॉजी',
     'cosmetic-aesthetic-gynecology': 'कॉस्मेटिक व सौंदर्य स्त्रीरोग',
     'fetal-medicine': 'गर्भ वैद्यकशास्त्र (लवकरच सुरू)',
@@ -240,9 +241,15 @@ const taglineByLang: Record<Lang, string> = {
               </ul>
             </li>
             <li><a href={L('/doctors/')}>{t('nav.doctors')}</a></li>
-            <li><a href={L('/blogs/')}>{t('nav.blogs')}</a></li>
-            <li><a href={L('/videos/')}>{t('nav.videos')}</a></li>
-            <li><a href={L('/faq/')}>{t('nav.faq')}</a></li>
+            <li class="has-dropdown">
+              <a href={L('/blogs/')}>{t('nav.resources')}</a>
+              <ul class="dropdown">
+                <li><a href={L('/blogs/')}>{t('nav.blogs')}</a></li>
+                <li><a href={L('/videos/')}>{t('nav.videos')}</a></li>
+                <li><a href={L('/calculators/')}>{t('nav.calculators')}</a></li>
+                <li><a href={L('/faq/')}>{t('nav.faq')}</a></li>
+              </ul>
+            </li>
             <li><a href={L('/contact-us/')}>{t('nav.contact')}</a></li>
             <li class="nav-cta"><a class="btn btn-primary" href={L('/contact-us/') + '#book'} style="color:#fff">{t('nav.book')}</a></li>
           </ul>
@@ -290,8 +297,10 @@ const taglineByLang: Record<Lang, string> = {
             <li><a href={L('/doctors/')}>{t('footer.ourDoctors')}</a></li>
             <li><a href={L('/blogs/')}>{t('footer.healthBlog')}</a></li>
             <li><a href={L('/videos/')}>{t('nav.videos')}</a></li>
+            <li><a href={L('/calculators/')}>{t('footer.calculators')}</a></li>
             <li><a href={L('/faq/')}>{t('nav.faq')}</a></li>
             <li><a href={L('/contact-us/')}>{t('footer.contactDirections')}</a></li>
+            <li><a href={L('/sitemap/')}>{t('footer.sitemap')}</a></li>
           </ul>
         </div>
         <div>
