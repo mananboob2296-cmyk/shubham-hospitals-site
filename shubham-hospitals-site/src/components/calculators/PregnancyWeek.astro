@@ -1,0 +1,126 @@
+---
+import CalcShell from './CalcShell.astro';
+import type { CalcCopy, CalcShared } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+interface Props { copy: CalcCopy; shared: CalcShared; lang: Lang }
+const { copy, shared, lang } = Astro.props;
+const cycles = Array.from({ length: 23 }, (_, i) => i + 22);
+const u = shared.units;
+
+// Routine antenatal milestones as [startDay, endDay, label] in gestational days.
+const milestones: Record<Lang, [number, number, string][]> = {
+  en: [
+    [42, 63, 'Dating scan (6–9 weeks)'],
+    [77, 97, 'NT scan with double marker (11–13 weeks 6 days)'],
+    [126, 154, 'Anomaly / level 2 scan (18–22 weeks)'],
+    [168, 196, 'Glucose tolerance test (24–28 weeks)'],
+    [224, 252, 'Growth scan with Doppler (32–36 weeks)'],
+    [259, 294, 'Weekly review and fetal monitoring (from 37 weeks)'],
+  ],
+  hi: [
+    [42, 63, 'डेटिंग स्कैन (6–9 सप्ताह)'],
+    [77, 97, 'डबल मार्कर के साथ NT स्कैन (11–13 सप्ताह 6 दिन)'],
+    [126, 154, 'एनॉमली / लेवल 2 स्कैन (18–22 सप्ताह)'],
+    [168, 196, 'ग्लूकोज़ टॉलरेंस टेस्ट (24–28 सप्ताह)'],
+    [224, 252, 'डॉपलर के साथ ग्रोथ स्कैन (32–36 सप्ताह)'],
+    [259, 294, 'साप्ताहिक जाँच और भ्रूण निगरानी (37 सप्ताह से)'],
+  ],
+  mr: [
+    [42, 63, 'डेटिंग स्कॅन (6–9 आठवडे)'],
+    [77, 97, 'डबल मार्करसह NT स्कॅन (11–13 आठवडे 6 दिवस)'],
+    [126, 154, 'एनॉमली / लेव्हल 2 स्कॅन (18–22 आठवडे)'],
+    [168, 196, 'ग्लुकोज टॉलरन्स टेस्ट (24–28 आठवडे)'],
+    [224, 252, 'डॉप्लरसह ग्रोथ स्कॅन (32–36 आठवडे)'],
+    [259, 294, 'साप्ताहिक तपासणी व बाळाचे निरीक्षण (37 आठवड्यांपासून)'],
+  ],
+};
+const nowDue: Record<Lang, string> = { en: 'due now', hi: 'अभी करानी है', mr: 'आत्ता करायची आहे' };
+const doneAll: Record<Lang, string> = {
+  en: 'You are at term — your baby could arrive any day now.',
+  hi: 'आप पूर्ण अवधि पर हैं — बच्चा किसी भी दिन आ सकता है।',
+  mr: 'तुम्ही पूर्ण मुदतीला आहात — बाळ कोणत्याही दिवशी येऊ शकते.',
+};
+---
+<CalcShell name="pregweek" copy={copy} shared={shared}>
+  <div class="calc-field">
+    <label for="pw-method">{copy.fields.method}</label>
+    <select id="pw-method" name="method">
+      <option value="lmp">{copy.options?.['method.lmp']}</option>
+      <option value="edd">{copy.options?.['method.edd']}</option>
+    </select>
+  </div>
+  <div class="calc-field" data-when="lmp">
+    <label for="pw-lmp">{copy.fields.lmp}</label>
+    <input type="date" id="pw-lmp" name="lmp" />
+  </div>
+  <div class="calc-field" data-when="lmp">
+    <label for="pw-cycle">{copy.fields.cycle}</label>
+    <select id="pw-cycle" name="cycle">
+      {cycles.map((n) => <option value={n} selected={n === 28}>{n} {u.days}</option>)}
+    </select>
+  </div>
+  <div class="calc-field" data-when="edd" hidden>
+    <label for="pw-edd">{copy.fields.edd}</label>
+    <input type="date" id="pw-edd" name="edd" />
+  </div>
+</CalcShell>
+
+<script is:inline define:vars={{ L: copy.results, M: milestones[lang], NOW: nowDue[lang], DONE: doneAll[lang] }}>
+  SHC.boot('pregweek', function (root) {
+    var method = root.querySelector('#pw-method');
+
+    function show() {
+      var m = method.value;
+      root.querySelectorAll('[data-when]').forEach(function (el) {
+        el.hidden = el.getAttribute('data-when') !== m;
+      });
+    }
+
+    function nextMilestone(ga) {
+      for (var i = 0; i < M.length; i++) {
+        if (ga <= M[i][1]) return M[i][2] + (ga >= M[i][0] ? ' — ' + NOW : '');
+      }
+      return DONE;
+    }
+
+    function run() {
+      show();
+      var edd;
+      if (method.value === 'lmp') {
+        var lmp = SHC.parse(root.querySelector('#pw-lmp').value);
+        if (!lmp) return SHC.render(root, null);
+        var cycle = parseInt(root.querySelector('#pw-cycle').value, 10) || 28;
+        edd = SHC.addDays(lmp, 280 + (cycle - 28));
+      } else {
+        edd = SHC.parse(root.querySelector('#pw-edd').value);
+        if (!edd) return SHC.render(root, null);
+      }
+      var today = SHC.today();
+      var left = SHC.diffDays(today, edd);
+      var ga = 280 - left;
+      if (ga < 0 || ga > 320) return SHC.render(root, null);
+      var rows = [
+        { k: L.gestAge, v: SHC.weeksDays(ga), big: true },
+        { k: L.trimester, v: SHC.trimester(ga) },
+        { k: L.edd, v: SHC.fmt(edd) },
+      ];
+      if (left >= 0) rows.push({ k: L.daysLeft, v: left + ' ' + SHC.units.days });
+      rows.push({ k: L.milestone, v: nextMilestone(ga) });
+      SHC.render(root, rows);
+    }
+
+    root.addEventListener('input', run);
+    root.addEventListener('change', run);
+    var go = root.querySelector('[data-calc-go]');
+    if (go) go.addEventListener('click', run);
+    var clr = root.querySelector('[data-calc-clear]');
+    if (clr) clr.addEventListener('click', function () {
+      root.querySelectorAll('input').forEach(function (i) { i.value = ''; });
+      root.querySelector('#pw-cycle').value = '28';
+      method.value = 'lmp';
+      show();
+      SHC.render(root, null);
+    });
+    show();
+  });
+</script>
