@@ -1,0 +1,138 @@
+---
+// Shared client-side runtime for every calculator: date helpers, formatting and
+// the result-row renderer. Deliberately `is:inline` (not a bundled module) so it
+// re-executes after an Astro view transition, exactly like the nav/loader scripts
+// in BaseLayout. Everything runs in the visitor's browser — no data leaves the page.
+import { calcShared } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+import { localeCodes } from '../../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const s = calcShared(lang);
+const locale = localeCodes[lang];
+const units = s.units;
+const trimesters = s.trimesters;
+---
+<script is:inline define:vars={{ locale, units, trimesters }}>
+  window.SHC = (function () {
+    var MS = 86400000;
+
+    /** Parse a yyyy-mm-dd input value into a local Date pinned to midday.
+     *  Midday avoids every daylight-saving and timezone off-by-one. */
+    function parse(v) {
+      if (!v) return null;
+      var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(v);
+      if (!m) return null;
+      var dt = new Date(+m[1], +m[2] - 1, +m[3], 12, 0, 0, 0);
+      return isNaN(dt.getTime()) ? null : dt;
+    }
+
+    /** Parse a datetime-local value (yyyy-mm-ddThh:mm) keeping the time. */
+    function parseDT(v) {
+      if (!v) return null;
+      var dt = new Date(v);
+      return isNaN(dt.getTime()) ? null : dt;
+    }
+
+    function addDays(d, n) {
+      var out = new Date(d.getTime());
+      out.setDate(out.getDate() + n);
+      return out;
+    }
+
+    function today() {
+      var n = new Date();
+      return new Date(n.getFullYear(), n.getMonth(), n.getDate(), 12, 0, 0, 0);
+    }
+
+    /** Whole days from a to b (b later => positive). */
+    function diffDays(a, b) {
+      return Math.round((b.getTime() - a.getTime()) / MS);
+    }
+
+    var dateFmt = new Intl.DateTimeFormat(locale, { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+    var shortFmt = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', year: 'numeric' });
+    var timeFmt = new Intl.DateTimeFormat(locale, { hour: 'numeric', minute: '2-digit' });
+
+    function fmt(d) { return d ? dateFmt.format(d) : ''; }
+    function fmtShort(d) { return d ? shortFmt.format(d) : ''; }
+    function fmtTime(d) { return d ? timeFmt.format(d) : ''; }
+    function range(a, b) { return fmtShort(a) + ' ' + units.to + ' ' + fmtShort(b); }
+
+    /** "{w} weeks {d} days" in the active language. */
+    function weeksDays(totalDays) {
+      var w = Math.floor(totalDays / 7);
+      var d = totalDays % 7;
+      return units.weeksDays.replace('{w}', w).replace('{d}', d);
+    }
+
+    /** 0 = first trimester, 1 = second, 2 = third. */
+    function trimester(totalDays) {
+      if (totalDays < 98) return trimesters[0];   // < 14w0d
+      if (totalDays < 196) return trimesters[1];  // < 28w0d
+      return trimesters[2];
+    }
+
+    function num(v, dp) {
+      var n = parseFloat(v);
+      if (!isFinite(n)) return null;
+      return dp === undefined ? n : Math.round(n * Math.pow(10, dp)) / Math.pow(10, dp);
+    }
+
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    /** Render result rows. Each row = { k: label, v: value, note?: string, big?: true }.
+     *  Passing null/undefined resets the panel to its empty state. */
+    function render(root, rows) {
+      var box = root.querySelector('[data-calc-rows]');
+      if (!box) return;
+      if (!rows || !rows.length) {
+        box.innerHTML = '<p class="calc-empty">' + esc(box.getAttribute('data-empty') || '') + '</p>';
+        return;
+      }
+      box.innerHTML = rows
+        .map(function (r) {
+          if (r.list) {
+            return '<div class="calc-row calc-row-list"><span class="calc-k">' + esc(r.k) + '</span><ul class="calc-list">' +
+              r.list.map(function (li) { return '<li>' + esc(li) + '</li>'; }).join('') + '</ul></div>';
+          }
+          return '<div class="calc-row' + (r.big ? ' calc-row-big' : '') + '">' +
+            '<span class="calc-k">' + esc(r.k) + '</span>' +
+            '<span class="calc-v">' + esc(r.v) + '</span>' +
+            (r.note ? '<span class="calc-note">' + esc(r.note) + '</span>' : '') +
+            '</div>';
+        })
+        .join('');
+    }
+
+    /** Wire up a calculator: runs now and after every view transition, once per element. */
+    function boot(name, setup) {
+      function init() {
+        var root = document.querySelector('[data-calc="' + name + '"]');
+        if (!root || root.dataset.ready === '1') return;
+        root.dataset.ready = '1';
+        setup(root);
+      }
+      init();
+      if (!window.__calcBound) {
+        window.__calcBound = {};
+      }
+      if (!window.__calcBound[name]) {
+        window.__calcBound[name] = 1;
+        document.addEventListener('astro:page-load', init);
+      }
+    }
+
+    return {
+      parse: parse, parseDT: parseDT, addDays: addDays, today: today, diffDays: diffDays,
+      fmt: fmt, fmtShort: fmtShort, fmtTime: fmtTime, range: range,
+      weeksDays: weeksDays, trimester: trimester, num: num, esc: esc,
+      render: render, boot: boot, units: units, MS: MS,
+    };
+  })();
+</script>

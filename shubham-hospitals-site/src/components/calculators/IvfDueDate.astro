@@ -1,0 +1,63 @@
+---
+import CalcShell from './CalcShell.astro';
+import type { CalcCopy, CalcShared } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+interface Props { copy: CalcCopy; shared: CalcShared; lang?: Lang }
+const { copy, shared } = Astro.props;
+const methods = ['day3', 'day5', 'day6', 'retrieval', 'iui'] as const;
+---
+<CalcShell name="ivf" copy={copy} shared={shared}>
+  <div class="calc-field">
+    <label for="ivf-method">{copy.fields.method}</label>
+    <select id="ivf-method" name="method">
+      {methods.map((m) => <option value={m}>{copy.options?.[`method.${m}`]}</option>)}
+    </select>
+    {copy.hints?.method && <p class="calc-hint">{copy.hints.method}</p>}
+  </div>
+  <div class="calc-field">
+    <label for="ivf-date">{copy.fields.date}</label>
+    <input type="date" id="ivf-date" name="date" />
+  </div>
+</CalcShell>
+
+<script is:inline define:vars={{ L: copy.results }}>
+  SHC.boot('ivf', function (root) {
+    // Days added to the given date to reach the estimated due date. Pregnancy is
+    // dated from a notional LMP two weeks before ovulation, so a day-5 blastocyst
+    // transfer is already 19 days "into" the pregnancy (14 + 5).
+    var OFFSET = { day3: 263, day5: 261, day6: 260, retrieval: 266, iui: 266 };
+    var BACK = { day3: 17, day5: 19, day6: 20, retrieval: 14, iui: 14 };
+
+    var method = root.querySelector('#ivf-method');
+    var date = root.querySelector('#ivf-date');
+
+    function run() {
+      var d = SHC.parse(date.value);
+      if (!d) return SHC.render(root, null);
+      var m = method.value;
+      var edd = SHC.addDays(d, OFFSET[m]);
+      var lmpEquiv = SHC.addDays(d, -BACK[m]);
+      var today = SHC.today();
+      var ga = SHC.diffDays(lmpEquiv, today);
+      var left = SHC.diffDays(today, edd);
+      var rows = [{ k: L.edd, v: SHC.fmt(edd), big: true }];
+      if (ga >= 0 && ga <= 320) {
+        rows.push({ k: L.gestAge, v: SHC.weeksDays(ga) });
+        rows.push({ k: L.trimester, v: SHC.trimester(ga) });
+      }
+      rows.push({ k: L.lmpEquiv, v: SHC.fmt(lmpEquiv) });
+      if (left >= 0) rows.push({ k: L.daysLeft, v: left + ' ' + SHC.units.days });
+      SHC.render(root, rows);
+    }
+
+    root.addEventListener('input', run);
+    root.addEventListener('change', run);
+    var go = root.querySelector('[data-calc-go]');
+    if (go) go.addEventListener('click', run);
+    var clr = root.querySelector('[data-calc-clear]');
+    if (clr) clr.addEventListener('click', function () {
+      date.value = ''; method.value = 'day5';
+      SHC.render(root, null);
+    });
+  });
+</script>

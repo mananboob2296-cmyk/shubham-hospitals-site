@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../CtaBand.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import CalcIcon from './CalcIcon.astro';
+import CalcRuntime from './CalcRuntime.astro';
+import Ovulation from './Ovulation.astro';
+import DueDate from './DueDate.astro';
+import IvfDueDate from './IvfDueDate.astro';
+import Period from './Period.astro';
+import PregnancyWeek from './PregnancyWeek.astro';
+import WeightGain from './WeightGain.astro';
+import HcgDoubling from './HcgDoubling.astro';
+import KickCounter from './KickCounter.astro';
+import { calcCopy, calcShared, calcPath, relatedCalculators, type CalcSlug } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+import { SITE } from '../../consts';
+
+interface Props { lang: Lang; slug: CalcSlug }
+const { lang, slug } = Astro.props;
+const s = calcShared(lang);
+const copy = calcCopy(lang, slug);
+const related = relatedCalculators(lang, slug);
+const home = lang === 'en' ? '/' : `/${lang}/`;
+const contact = lang === 'en' ? '/contact-us/' : `/${lang}/contact-us/`;
+const url = new URL(calcPath(lang, slug), SITE.url).href;
+
+const components: Record<CalcSlug, any> = {
+  'ovulation-calculator': Ovulation,
+  'pregnancy-due-date-calculator': DueDate,
+  'ivf-due-date-calculator': IvfDueDate,
+  'period-calculator': Period,
+  'pregnancy-week-calculator': PregnancyWeek,
+  'pregnancy-weight-gain-calculator': WeightGain,
+  'hcg-doubling-calculator': HcgDoubling,
+  'kick-counter': KickCounter,
+};
+const Calculator = components[slug];
+
+const blocks = [copy.howTo, copy.limits, copy.help];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalWebPage',
+    name: copy.h1,
+    description: copy.metaDescription,
+    url,
+    inLanguage: lang,
+    about: { '@type': 'MedicalCondition', name: copy.eyebrow },
+    publisher: { '@type': 'MedicalClinic', name: SITE.name, url: SITE.url },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: copy.name,
+    description: copy.card,
+    url,
+    applicationCategory: 'HealthApplication',
+    operatingSystem: 'Any',
+    browserRequirements: 'Requires JavaScript',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+    provider: { '@type': 'MedicalClinic', name: SITE.name, url: SITE.url },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: copy.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+<BaseLayout title={copy.metaTitle} description={copy.metaDescription} schema={schema} lang={lang}>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.h1}</h1>
+      <p>{copy.lead}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs
+        crumbs={[
+          { label: s.crumbHome, href: home },
+          { label: s.crumbCalculators, href: calcPath(lang) },
+          { label: copy.name },
+        ]}
+      />
+      <CalcRuntime lang={lang} />
+      <Calculator copy={copy} shared={s} lang={lang} />
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container calc-editorial">
+      {blocks.map((b) => (
+        <div class="calc-block">
+          <h2>{b.h}</h2>
+          {Array.isArray(b.body) ? <ul>{b.body.map((li) => <li>{li}</li>)}</ul> : <p>{b.body}</p>}
+        </div>
+      ))}
+      <div class="calc-block">
+        <a class="btn btn-primary" href={contact + '#book'}>{s.bookCta}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container calc-editorial">
+      <h2>{s.faqH}</h2>
+      <div class="faq-page">
+        {copy.faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <aside class="calc-disclaimer">
+        <h2>{s.disclaimerH}</h2>
+        <p>{s.disclaimer}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      <h2>{s.relatedH}</h2>
+      <div class="grid cols-3 calc-cards">
+        {related.map((r) => (
+          <article class="card calc-card">
+            <CalcIcon name={r.icon} />
+            <h3>{r.copy.name}</h3>
+            <p>{r.copy.card}</p>
+            <a class="more" href={calcPath(lang, r.slug)}>{s.open} →</a>
+          </article>
+        ))}
+      </div>
+      <p class="calc-all"><a class="more" href={calcPath(lang)}>{s.allCalculators} →</a></p>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

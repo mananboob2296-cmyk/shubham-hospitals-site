@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 import type { Lang } from './ui';
+import { calcBasePaths } from './calculators';
 
 // Translation availability, derived from the content collections at build time:
 // a hi/mr version of a page exists iff its .md file exists under the locale
@@ -11,7 +12,7 @@ import type { Lang } from './ui';
 // NOTE: blog articles are intentionally NOT in these sets — their hi/mr URLs
 // live under /hi/blogs/<slug>/ (a different shape than /<slug>/), so the blog
 // routes pass explicit altPaths to BaseLayout/LangSwitcher instead.
-const CORE = ['/', '/faq/', '/departments/', '/procedures/', '/doctors/', '/about-us/', '/contact-us/', '/blogs/', '/videos/'];
+const CORE = ['/', '/faq/', '/departments/', '/procedures/', '/doctors/', '/about-us/', '/contact-us/', '/blogs/', '/videos/', '/sitemap/', ...calcBasePaths];
 
 const cache: Partial<Record<'hi' | 'mr', Promise<Set<string>>>> = {};
 

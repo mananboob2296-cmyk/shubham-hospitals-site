@@ -1,0 +1,154 @@
+---
+// Human-readable sitemap. Everything is derived from the content collections at
+// build time, so a new blog post, doctor or treatment appears here automatically —
+// there is no hand-maintained list to fall out of date.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from './CtaBand.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../i18n/utils';
+import { languages, type Lang } from '../i18n/ui';
+import { procContent } from '../i18n/procedures';
+import { sitemapCopy } from '../i18n/sitemap';
+import { allCalculators, calcShared, calcPath } from '../i18n/calculators';
+import { SITE } from '../consts';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const c = sitemapCopy[lang];
+const cs = calcShared(lang);
+const p = (path: string) => (lang === 'en' ? path : `/${lang}${path}`);
+const prefix = lang === 'en' ? '' : `${lang}/`;
+/** Collection entries belonging to this locale (root-level for en, lang/ folder otherwise). */
+const mine = <T extends { slug: string }>(entries: T[]) =>
+  entries.filter((e) => (lang === 'en' ? !e.slug.includes('/') : e.slug.startsWith(prefix)));
+const bare = (slug: string) => (lang === 'en' ? slug : slug.slice(prefix.length));
+
+const [treatments, doctors, landing, blog] = await Promise.all([
+  getCollection('treatments'),
+  getCollection('doctors'),
+  getCollection('landing'),
+  getCollection('blog'),
+]);
+
+const depts = mine(treatments)
+  .filter((e) => e.data.kind === 'department')
+  .sort((a, b) => a.data.order - b.data.order);
+const procs = mine(treatments)
+  .filter((e) => e.data.kind === 'procedure')
+  .sort((a, b) => a.data.order - b.data.order);
+const docs = mine(doctors).sort((a, b) => a.data.order - b.data.order);
+const land = mine(landing);
+const posts = blog
+  .filter((e) => e.slug.startsWith(lang === 'en' ? 'en/' : prefix))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const blogPrefix = lang === 'en' ? '/' : `/${lang}/blogs/`;
+const blogBare = (slug: string) => slug.slice(slug.indexOf('/') + 1);
+
+const mainPages: { href: string; label: string }[] = [
+  { href: p('/'), label: t('nav.home') },
+  { href: p('/about-us/'), label: t('nav.about') },
+  { href: p('/departments/'), label: t('nav.departments') },
+  { href: p('/procedures/'), label: procContent[lang].crumbProcedures },
+  { href: p('/doctors/'), label: t('nav.doctors') },
+  { href: p('/blogs/'), label: t('nav.blogs') },
+  { href: p('/videos/'), label: t('nav.videos') },
+  { href: calcPath(lang), label: cs.hubName },
+  { href: p('/faq/'), label: t('nav.faq') },
+  { href: p('/contact-us/'), label: t('nav.contact') },
+  { href: p('/sitemap/'), label: c.name },
+];
+
+const otherLangs = (Object.keys(languages) as Lang[]).filter((l) => l !== lang);
+
+const groups: { key: string; heading: string; links: { href: string; label: string }[] }[] = [
+  { key: 'main', heading: c.sections.main, links: mainPages },
+  {
+    key: 'departments',
+    heading: c.sections.departments,
+    links: depts.map((e) => ({ href: p(`/treatments/${bare(e.slug)}/`), label: e.data.title })),
+  },
+  {
+    key: 'procedures',
+    heading: c.sections.procedures,
+    links: procs.map((e) => ({ href: p(`/treatments/${bare(e.slug)}/`), label: e.data.title })),
+  },
+  {
+    key: 'doctors',
+    heading: c.sections.doctors,
+    links: docs.map((e) => ({ href: p(`/${bare(e.slug)}/`), label: e.data.name })),
+  },
+  {
+    key: 'landing',
+    heading: c.sections.landing,
+    links: land.map((e) => ({ href: p(`/${bare(e.slug)}/`), label: e.data.title })),
+  },
+  {
+    key: 'calculators',
+    heading: c.sections.calculators,
+    links: allCalculators(lang).map((i) => ({ href: calcPath(lang, i.slug), label: i.copy.name })),
+  },
+  {
+    key: 'blog',
+    heading: c.sections.blog,
+    links: posts.map((e) => ({ href: `${blogPrefix}${blogBare(e.slug)}/`, label: e.data.title })),
+  },
+].filter((g) => g.links.length > 0);
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: c.h1,
+    description: c.metaDescription,
+    url: new URL(p('/sitemap/'), SITE.url).href,
+    inLanguage: lang,
+    isPartOf: { '@type': 'WebSite', name: SITE.name, url: SITE.url },
+  },
+];
+---
+<BaseLayout title={c.metaTitle} description={c.metaDescription} schema={schema} lang={lang}>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">{c.eyebrow}</span>
+      <h1>{c.h1}</h1>
+      <p>{c.lead}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs crumbs={[{ label: c.crumbHome, href: p('/') }, { label: c.name }]} />
+
+      <nav class="sitemap-nav" aria-label={c.h1}>
+        {groups.map((g) => <a href={`#${g.key}`}>{g.heading}</a>)}
+        <a href={`#languages`}>{c.sections.languages}</a>
+      </nav>
+
+      <div class="sitemap-groups">
+        {groups.map((g) => (
+          <section class="sitemap-group">
+            <h2 id={g.key}>{g.heading} <span class="sitemap-count">{g.links.length}</span></h2>
+            <ul>
+              {g.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+            </ul>
+          </section>
+        ))}
+
+        <section class="sitemap-group">
+          <h2 id="languages">{c.sections.languages}</h2>
+          <ul>
+            {otherLangs.map((l) => (
+              <li><a href={l === 'en' ? '/sitemap/' : `/${l}/sitemap/`}>{languages[l]} — {sitemapCopy[l].name}</a></li>
+            ))}
+          </ul>
+        </section>
+      </div>
+
+      <p class="sitemap-xml">{c.xmlNote}</p>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

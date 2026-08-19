@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../CtaBand.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import CalcIcon from './CalcIcon.astro';
+import { allCalculators, calcShared, calcPath } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+import { SITE } from '../../consts';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const s = calcShared(lang);
+const items = allCalculators(lang);
+const home = lang === 'en' ? '/' : `/${lang}/`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: s.hubH1,
+    description: s.hubMetaDescription,
+    url: new URL(calcPath(lang), SITE.url).href,
+    inLanguage: lang,
+    isPartOf: { '@type': 'WebSite', name: SITE.name, url: SITE.url },
+    hasPart: items.map((i) => ({
+      '@type': 'WebApplication',
+      name: i.copy.name,
+      description: i.copy.card,
+      url: new URL(calcPath(lang, i.slug), SITE.url).href,
+      applicationCategory: 'HealthApplication',
+      operatingSystem: 'Any',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+    })),
+  },
+];
+---
+<BaseLayout title={s.hubMetaTitle} description={s.hubMetaDescription} schema={schema} lang={lang}>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">{s.hubEyebrow}</span>
+      <h1>{s.hubH1}</h1>
+      <p>{s.hubLead}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs crumbs={[{ label: s.crumbHome, href: home }, { label: s.crumbCalculators }]} />
+      <div class="grid cols-3 calc-cards">
+        {items.map((i) => (
+          <article class="card calc-card">
+            <CalcIcon name={i.icon} />
+            <h2>{i.copy.name}</h2>
+            <p>{i.copy.card}</p>
+            <a class="more" href={calcPath(lang, i.slug)}>{s.open} →</a>
+          </article>
+        ))}
+      </div>
+
+      <aside class="calc-disclaimer">
+        <h2>{s.disclaimerH}</h2>
+        <p>{s.disclaimer}</p>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

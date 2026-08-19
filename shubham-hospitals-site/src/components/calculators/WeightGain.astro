@@ -1,0 +1,119 @@
+---
+import CalcShell from './CalcShell.astro';
+import type { CalcCopy, CalcShared } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+interface Props { copy: CalcCopy; shared: CalcShared; lang: Lang }
+const { copy, shared, lang } = Astro.props;
+
+const bmiLabels: Record<Lang, string[]> = {
+  en: ['Underweight (BMI under 18.5)', 'Normal weight (BMI 18.5–24.9)', 'Overweight (BMI 25–29.9)', 'Obese (BMI 30 or more)'],
+  hi: ['कम वज़न (BMI 18.5 से कम)', 'सामान्य वज़न (BMI 18.5–24.9)', 'अधिक वज़न (BMI 25–29.9)', 'मोटापा (BMI 30 या अधिक)'],
+  mr: ['कमी वजन (BMI 18.5 पेक्षा कमी)', 'सामान्य वजन (BMI 18.5–24.9)', 'जास्त वजन (BMI 25–29.9)', 'लठ्ठपणा (BMI 30 किंवा अधिक)'],
+};
+const statusLabels: Record<Lang, string[]> = {
+  en: ['Below the recommended range for this week', 'Within the recommended range', 'Above the recommended range for this week'],
+  hi: ['इस सप्ताह की अनुशंसित सीमा से कम', 'अनुशंसित सीमा के भीतर', 'इस सप्ताह की अनुशंसित सीमा से अधिक'],
+  mr: ['या आठवड्याच्या शिफारस मर्यादेपेक्षा कमी', 'शिफारस मर्यादेत', 'या आठवड्याच्या शिफारस मर्यादेपेक्षा जास्त'],
+};
+const twinNote: Record<Lang, string> = {
+  en: 'There is no separate IOM guideline for twins at a low starting BMI — the normal-BMI twin range is shown as the closest available guide.',
+  hi: 'कम प्रारंभिक BMI पर जुड़वाँ के लिए अलग IOM दिशानिर्देश नहीं है — निकटतम उपलब्ध मार्गदर्शन के रूप में सामान्य BMI की जुड़वाँ सीमा दिखाई गई है।',
+  mr: 'कमी सुरुवातीच्या BMI ला जुळ्यांसाठी स्वतंत्र IOM मार्गदर्शक नाही — सर्वात जवळचे उपलब्ध मार्गदर्शन म्हणून सामान्य BMI ची जुळी मर्यादा दाखवली आहे.',
+};
+const u = shared.units;
+---
+<CalcShell name="weight" copy={copy} shared={shared}>
+  <div class="calc-field">
+    <label for="wg-height">{copy.fields.height} ({u.cm})</label>
+    <input type="number" id="wg-height" name="height" min="120" max="210" step="0.5" inputmode="decimal" />
+  </div>
+  <div class="calc-field">
+    <label for="wg-pre">{copy.fields.weight} ({u.kg})</label>
+    <input type="number" id="wg-pre" name="pre" min="30" max="200" step="0.1" inputmode="decimal" />
+    {copy.hints?.weight && <p class="calc-hint">{copy.hints.weight}</p>}
+  </div>
+  <div class="calc-row-2">
+    <div class="calc-field">
+      <label for="wg-week">{copy.fields.week}</label>
+      <input type="number" id="wg-week" name="week" min="1" max="42" step="1" inputmode="numeric" />
+    </div>
+    <div class="calc-field">
+      <label for="wg-babies">{copy.fields.babies}</label>
+      <select id="wg-babies" name="babies">
+        <option value="single">{copy.options?.['babies.single']}</option>
+        <option value="twins">{copy.options?.['babies.twins']}</option>
+      </select>
+    </div>
+  </div>
+  <div class="calc-field">
+    <label for="wg-now">{copy.fields.current} ({u.kg})</label>
+    <input type="number" id="wg-now" name="now" min="30" max="220" step="0.1" inputmode="decimal" />
+    {copy.hints?.current && <p class="calc-hint">{copy.hints.current}</p>}
+  </div>
+</CalcShell>
+
+<script is:inline define:vars={{ L: copy.results, BMI: bmiLabels[lang], ST: statusLabels[lang], TWIN_NOTE: twinNote[lang], KG: u.kg, WK: u.weeks }}>
+  SHC.boot('weight', function (root) {
+    // Institute of Medicine (IOM 2009) total gain ranges in kg, by pre-pregnancy
+    // BMI category. First-trimester gain is 0.5–2.0 kg for every category, so the
+    // weekly rate for weeks 14–40 is derived as (total - firstTrimester) / 27.
+    var FIRST = [0.5, 2.0];
+    var SINGLE = [[12.5, 18], [11.5, 16], [7, 11.5], [5, 9]];
+    var TWINS = [[16.8, 24.5], [16.8, 24.5], [14.1, 22.7], [11.3, 19.1]];
+
+    function catOf(bmi) { return bmi < 18.5 ? 0 : bmi < 25 ? 1 : bmi < 30 ? 2 : 3; }
+    function r1(n) { return (Math.round(n * 10) / 10).toFixed(1); }
+    function band(a, b) { return r1(a) + '–' + r1(b) + ' ' + KG; }
+
+    function run() {
+      var h = SHC.num(root.querySelector('#wg-height').value);
+      var pre = SHC.num(root.querySelector('#wg-pre').value);
+      var wk = parseInt(root.querySelector('#wg-week').value, 10);
+      var twins = root.querySelector('#wg-babies').value === 'twins';
+      var now = SHC.num(root.querySelector('#wg-now').value);
+      if (!h || !pre || !isFinite(wk) || h < 100 || pre < 25) return SHC.render(root, null);
+
+      var bmi = pre / Math.pow(h / 100, 2);
+      var c = catOf(bmi);
+      var total = (twins ? TWINS : SINGLE)[c];
+      var rateLo = (total[0] - FIRST[0]) / 27;
+      var rateHi = (total[1] - FIRST[1]) / 27;
+
+      var lo, hi;
+      if (wk <= 13) {
+        lo = FIRST[0] * (wk / 13);
+        hi = FIRST[1] * (wk / 13);
+      } else {
+        var extra = Math.min(wk, 40) - 13;
+        lo = FIRST[0] + rateLo * extra;
+        hi = FIRST[1] + rateHi * extra;
+      }
+
+      var rows = [
+        { k: L.bmi, v: r1(bmi), big: true },
+        { k: L.bmiCat, v: BMI[c] },
+        { k: L.nowTarget.replace('{w}', wk), v: band(lo, hi) },
+        { k: L.totalTarget, v: band(total[0], total[1]) },
+        { k: L.weeklyRate, v: wk <= 13 ? band(FIRST[0] / 13, FIRST[1] / 13) : band(rateLo, rateHi) },
+      ];
+      if (twins && c === 0) rows[1].note = TWIN_NOTE;
+      if (now && now > 25) {
+        var gained = now - pre;
+        var st = gained < lo ? ST[0] : gained > hi ? ST[2] : ST[1];
+        rows.push({ k: L.status, v: r1(gained) + ' ' + KG + ' — ' + st });
+      }
+      SHC.render(root, rows);
+    }
+
+    root.addEventListener('input', run);
+    root.addEventListener('change', run);
+    var go = root.querySelector('[data-calc-go]');
+    if (go) go.addEventListener('click', run);
+    var clr = root.querySelector('[data-calc-clear]');
+    if (clr) clr.addEventListener('click', function () {
+      root.querySelectorAll('input').forEach(function (i) { i.value = ''; });
+      root.querySelector('#wg-babies').value = 'single';
+      SHC.render(root, null);
+    });
+  });
+</script>

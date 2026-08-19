@@ -1,0 +1,121 @@
+---
+import CalcShell from './CalcShell.astro';
+import type { CalcCopy, CalcShared } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+interface Props { copy: CalcCopy; shared: CalcShared; lang: Lang }
+const { copy, shared, lang } = Astro.props;
+
+const ui: Record<Lang, { tap: string; reset: string; goal: string; done: string; slow: string; counting: string }> = {
+  en: {
+    tap: 'I felt a movement',
+    reset: 'Start a new count',
+    goal: 'Counting to 10',
+    done: 'You reached 10 movements. That is reassuring — you can stop for today.',
+    slow: 'Two hours have passed without 10 movements. Please call the hospital now, at any hour.',
+    counting: 'Keep going — tap each time you feel a movement.',
+  },
+  hi: {
+    tap: 'हलचल महसूस हुई',
+    reset: 'नई गिनती शुरू करें',
+    goal: '10 तक गिनती',
+    done: 'आपने 10 हलचलें पूरी कर लीं। यह आश्वस्त करने वाला है — आज के लिए रोक सकती हैं।',
+    slow: 'दो घंटे बीत गए और 10 हलचलें नहीं हुईं। कृपया अभी अस्पताल को फ़ोन करें, चाहे कोई भी समय हो।',
+    counting: 'जारी रखें — हर हलचल पर बटन दबाएँ।',
+  },
+  mr: {
+    tap: 'हालचाल जाणवली',
+    reset: 'नवी मोजणी सुरू करा',
+    goal: '10 पर्यंत मोजणी',
+    done: 'तुम्ही 10 हालचाली पूर्ण केल्या. हे आश्वासक आहे — आजसाठी थांबू शकता.',
+    slow: 'दोन तास उलटले तरी 10 हालचाली झाल्या नाहीत. कृपया आत्ताच रुग्णालयाला फोन करा, कोणतीही वेळ असो.',
+    counting: 'सुरू ठेवा — प्रत्येक हालचालीवर बटण दाबा.',
+  },
+};
+const t = ui[lang];
+---
+<CalcShell name="kick" copy={copy} shared={shared} hideActions>
+  <div class="kick-pad">
+    <p class="kick-goal">{t.goal}</p>
+    <button type="button" class="kick-btn" data-kick-tap>
+      <span class="kick-num" data-kick-num>0</span>
+      <span class="kick-label">{t.tap}</span>
+    </button>
+    <button type="button" class="btn btn-outline kick-reset" data-kick-reset>{t.reset}</button>
+  </div>
+</CalcShell>
+
+<script is:inline define:vars={{ L: copy.results, T: t }}>
+  SHC.boot('kick', function (root) {
+    var KEY = 'sh-kick-session';
+    var tap = root.querySelector('[data-kick-tap]');
+    var numEl = root.querySelector('[data-kick-num]');
+    var reset = root.querySelector('[data-kick-reset]');
+    var timer = null;
+
+    function load() {
+      try {
+        var raw = localStorage.getItem(KEY);
+        if (!raw) return null;
+        var s = JSON.parse(raw);
+        if (!s || !s.start || !Array.isArray(s.taps)) return null;
+        // A session older than 12 hours is stale — start fresh.
+        if (Date.now() - s.start > 12 * 3600000) return null;
+        return s;
+      } catch (e) { return null; }
+    }
+
+    function save(s) {
+      try { s ? localStorage.setItem(KEY, JSON.stringify(s)) : localStorage.removeItem(KEY); } catch (e) {}
+    }
+
+    function paint() {
+      var s = load();
+      var n = s ? s.taps.length : 0;
+      numEl.textContent = String(n);
+      if (!s || !n) {
+        SHC.render(root, null);
+        stop();
+        return;
+      }
+      var start = new Date(s.start);
+      var lastMs = (n >= 10 ? s.taps[9] : Date.now()) - s.start;
+      var mins = Math.max(0, Math.round(lastMs / 60000));
+      var h = Math.floor(mins / 60);
+      var mm = mins % 60;
+      var elapsed = (h ? h + ':' + String(mm).padStart(2, '0') : mm + ' min');
+      var status = n >= 10 ? T.done : (Date.now() - s.start > 2 * 3600000 ? T.slow : T.counting);
+      var rows = [
+        { k: L.count, v: n + ' / 10', big: true },
+        { k: L.started, v: SHC.fmtTime(start) },
+        { k: L.elapsed, v: elapsed },
+        { k: L.status, v: status },
+      ];
+      SHC.render(root, rows);
+      if (n >= 10) stop(); else start_ticking();
+    }
+
+    function start_ticking() {
+      if (timer) return;
+      timer = setInterval(paint, 30000);
+    }
+    function stop() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    tap.addEventListener('click', function () {
+      var s = load() || { start: Date.now(), taps: [] };
+      if (s.taps.length >= 10) return;
+      s.taps.push(Date.now());
+      save(s);
+      paint();
+    });
+
+    reset.addEventListener('click', function () {
+      save(null);
+      paint();
+    });
+
+    document.addEventListener('astro:before-swap', stop);
+    paint();
+  });
+</script>

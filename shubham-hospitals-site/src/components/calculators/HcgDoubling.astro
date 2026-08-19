@@ -1,0 +1,106 @@
+---
+import CalcShell from './CalcShell.astro';
+import type { CalcCopy, CalcShared } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+interface Props { copy: CalcCopy; shared: CalcShared; lang: Lang }
+const { copy, shared, lang } = Astro.props;
+
+const bands: Record<Lang, string[]> = {
+  en: [
+    'Below 1,200 mIU/mL, hCG usually doubles every 48–72 hours.',
+    'Between 1,200 and 6,000 mIU/mL, doubling usually takes 72–96 hours.',
+    'Above 6,000 mIU/mL, doubling usually takes 96 hours or more.',
+  ],
+  hi: [
+    '1,200 mIU/mL से नीचे, hCG आमतौर पर हर 48–72 घंटे में दोगुना होता है।',
+    '1,200 से 6,000 mIU/mL के बीच, दोगुना होने में आमतौर पर 72–96 घंटे लगते हैं।',
+    '6,000 mIU/mL से ऊपर, दोगुना होने में आमतौर पर 96 घंटे या अधिक लगते हैं।',
+  ],
+  mr: [
+    '1,200 mIU/mL च्या खाली, hCG सहसा दर 48–72 तासांनी दुप्पट होते.',
+    '1,200 ते 6,000 mIU/mL दरम्यान, दुप्पट होण्यास सहसा 72–96 तास लागतात.',
+    '6,000 mIU/mL च्या वर, दुप्पट होण्यास सहसा 96 तास किंवा अधिक लागतात.',
+  ],
+};
+const notRising: Record<Lang, string> = {
+  en: 'The second value is not higher than the first, so a doubling time cannot be calculated. Please show both reports to your doctor.',
+  hi: 'दूसरा मान पहले से अधिक नहीं है, इसलिए डबलिंग टाइम नहीं निकाला जा सकता। कृपया दोनों रिपोर्ट अपनी डॉक्टर को दिखाएँ।',
+  mr: 'दुसरे मूल्य पहिल्यापेक्षा जास्त नाही, त्यामुळे डबलिंग टाइम काढता येत नाही. कृपया दोन्ही अहवाल तुमच्या डॉक्टरांना दाखवा.',
+};
+const tooClose: Record<Lang, string> = {
+  en: 'The two samples are less than 24 hours apart, so the trend is not reliable. Repeat after at least 48 hours.',
+  hi: 'दोनों सैंपल के बीच 24 घंटे से कम अंतर है, इसलिए रुझान भरोसेमंद नहीं है। कम से कम 48 घंटे बाद दोहराएँ।',
+  mr: 'दोन नमुन्यांमध्ये 24 तासांहून कमी अंतर आहे, त्यामुळे कल विश्वासार्ह नाही. किमान 48 तासांनंतर पुन्हा करा.',
+};
+---
+<CalcShell name="hcg" copy={copy} shared={shared}>
+  <div class="calc-row-2">
+    <div class="calc-field">
+      <label for="hc-v1">{copy.fields.v1}</label>
+      <input type="number" id="hc-v1" name="v1" min="1" step="0.1" inputmode="decimal" />
+    </div>
+    <div class="calc-field">
+      <label for="hc-d1">{copy.fields.d1}</label>
+      <input type="datetime-local" id="hc-d1" name="d1" />
+    </div>
+  </div>
+  <div class="calc-row-2">
+    <div class="calc-field">
+      <label for="hc-v2">{copy.fields.v2}</label>
+      <input type="number" id="hc-v2" name="v2" min="1" step="0.1" inputmode="decimal" />
+    </div>
+    <div class="calc-field">
+      <label for="hc-d2">{copy.fields.d2}</label>
+      <input type="datetime-local" id="hc-d2" name="d2" />
+    </div>
+  </div>
+  {copy.hints?.d1 && <p class="calc-hint">{copy.hints.d1}</p>}
+</CalcShell>
+
+<script is:inline define:vars={{ L: copy.results, BANDS: bands[lang], NOT_RISING: notRising[lang], TOO_CLOSE: tooClose[lang], HRS: shared.units.hours }}>
+  SHC.boot('hcg', function (root) {
+    function run() {
+      var v1 = SHC.num(root.querySelector('#hc-v1').value);
+      var v2 = SHC.num(root.querySelector('#hc-v2').value);
+      var d1 = SHC.parseDT(root.querySelector('#hc-d1').value);
+      var d2 = SHC.parseDT(root.querySelector('#hc-d2').value);
+      if (!v1 || !v2 || !d1 || !d2 || v1 <= 0 || v2 <= 0) return SHC.render(root, null);
+
+      var hours = (d2.getTime() - d1.getTime()) / 3600000;
+      if (hours <= 0) return SHC.render(root, null);
+
+      var band = v1 < 1200 ? BANDS[0] : v1 < 6000 ? BANDS[1] : BANDS[2];
+      var rise = ((v2 - v1) / v1) * 100;
+      var elapsed = (Math.round(hours * 10) / 10) + ' ' + HRS;
+
+      if (v2 <= v1) {
+        return SHC.render(root, [
+          { k: L.rise, v: (Math.round(rise * 10) / 10) + '%', big: true },
+          { k: L.elapsed, v: elapsed },
+          { k: L.doubling, v: '—', note: NOT_RISING },
+          { k: L.expected, v: band },
+        ]);
+      }
+
+      var doubling = (hours * Math.LN2) / Math.log(v2 / v1);
+      var rows = [
+        { k: L.doubling, v: (Math.round(doubling * 10) / 10) + ' ' + HRS, big: true },
+        { k: L.rise, v: '+' + (Math.round(rise * 10) / 10) + '%' },
+        { k: L.elapsed, v: elapsed },
+        { k: L.expected, v: band },
+      ];
+      if (hours < 24) rows[2].note = TOO_CLOSE;
+      SHC.render(root, rows);
+    }
+
+    root.addEventListener('input', run);
+    root.addEventListener('change', run);
+    var go = root.querySelector('[data-calc-go]');
+    if (go) go.addEventListener('click', run);
+    var clr = root.querySelector('[data-calc-clear]');
+    if (clr) clr.addEventListener('click', function () {
+      root.querySelectorAll('input').forEach(function (i) { i.value = ''; });
+      SHC.render(root, null);
+    });
+  });
+</script>

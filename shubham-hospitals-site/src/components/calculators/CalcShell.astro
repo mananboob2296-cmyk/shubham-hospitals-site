@@ -1,0 +1,38 @@
+---
+// Common chrome for every calculator: the input panel, the live result panel and
+// the privacy note. Individual calculators fill the default slot with their fields
+// and ship their own inline script.
+import type { CalcCopy, CalcShared } from '../../i18n/calculators';
+
+interface Props {
+  /** data-calc key the calculator's script binds to. */
+  name: string;
+  copy: CalcCopy;
+  shared: CalcShared;
+  /** Hide the Calculate button when the tool updates purely on interaction. */
+  hideActions?: boolean;
+}
+const { name, copy, shared, hideActions = false } = Astro.props;
+---
+<div class="calc" data-calc={name}>
+  <form class="calc-form" novalidate onsubmit="return false;">
+    <slot />
+    {!hideActions && (
+      <div class="calc-actions">
+        <button type="button" class="btn btn-primary" data-calc-go>{shared.calculate}</button>
+        <button type="button" class="btn btn-outline" data-calc-clear>{shared.clear}</button>
+      </div>
+    )}
+  </form>
+
+  <aside class="calc-out">
+    <h2>{shared.yourResult}</h2>
+    <div class="calc-rows" data-calc-rows data-empty={copy.empty} aria-live="polite" aria-atomic="true">
+      <p class="calc-empty">{copy.empty}</p>
+    </div>
+    <p class="calc-privacy">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.4-3 8.3-7 9.5-4-1.2-7-5.1-7-9.5V6z"/><path d="M9.5 12.2l1.8 1.8 3.4-3.6"/></svg>
+      {shared.privacy}
+    </p>
+  </aside>
+</div>

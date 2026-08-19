@@ -1,0 +1,119 @@
+---
+import CalcShell from './CalcShell.astro';
+import type { CalcCopy, CalcShared } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+interface Props { copy: CalcCopy; shared: CalcShared; lang?: Lang }
+const { copy, shared } = Astro.props;
+const cycles = Array.from({ length: 23 }, (_, i) => i + 22);
+const u = shared.units;
+---
+<CalcShell name="duedate" copy={copy} shared={shared}>
+  <div class="calc-field">
+    <label for="dd-method">{copy.fields.method}</label>
+    <select id="dd-method" name="method">
+      <option value="lmp">{copy.options?.['method.lmp']}</option>
+      <option value="conception">{copy.options?.['method.conception']}</option>
+      <option value="scan">{copy.options?.['method.scan']}</option>
+    </select>
+  </div>
+
+  <div class="calc-field" data-when="lmp">
+    <label for="dd-lmp">{copy.fields.lmp}</label>
+    <input type="date" id="dd-lmp" name="lmp" />
+  </div>
+  <div class="calc-field" data-when="lmp">
+    <label for="dd-cycle">{copy.fields.cycle}</label>
+    <select id="dd-cycle" name="cycle">
+      {cycles.map((n) => <option value={n} selected={n === 28}>{n} {u.days}</option>)}
+    </select>
+    {copy.hints?.cycle && <p class="calc-hint">{copy.hints.cycle}</p>}
+  </div>
+
+  <div class="calc-field" data-when="conception" hidden>
+    <label for="dd-conc">{copy.fields.conception}</label>
+    <input type="date" id="dd-conc" name="conception" />
+  </div>
+
+  <div class="calc-field" data-when="scan" hidden>
+    <label for="dd-scan">{copy.fields.scanDate}</label>
+    <input type="date" id="dd-scan" name="scanDate" />
+    {copy.hints?.scanDate && <p class="calc-hint">{copy.hints.scanDate}</p>}
+  </div>
+  <div class="calc-row-2" data-when="scan" hidden>
+    <div class="calc-field">
+      <label for="dd-sw">{copy.fields.scanWeeks}</label>
+      <input type="number" id="dd-sw" name="scanWeeks" min="4" max="42" step="1" inputmode="numeric" />
+    </div>
+    <div class="calc-field">
+      <label for="dd-sd">{copy.fields.scanDays}</label>
+      <input type="number" id="dd-sd" name="scanDays" min="0" max="6" step="1" value="0" inputmode="numeric" />
+    </div>
+  </div>
+</CalcShell>
+
+<script is:inline define:vars={{ L: copy.results }}>
+  SHC.boot('duedate', function (root) {
+    var method = root.querySelector('#dd-method');
+
+    function show() {
+      var m = method.value;
+      root.querySelectorAll('[data-when]').forEach(function (el) {
+        el.hidden = el.getAttribute('data-when') !== m;
+      });
+    }
+
+    function run() {
+      show();
+      var m = method.value;
+      var edd = null;
+      var conception = null;
+
+      if (m === 'lmp') {
+        var lmp = SHC.parse(root.querySelector('#dd-lmp').value);
+        if (!lmp) return SHC.render(root, null);
+        var cycle = parseInt(root.querySelector('#dd-cycle').value, 10) || 28;
+        // Naegele's rule, adjusted for cycles that are not 28 days.
+        edd = SHC.addDays(lmp, 280 + (cycle - 28));
+        conception = SHC.addDays(lmp, 14 + (cycle - 28));
+      } else if (m === 'conception') {
+        conception = SHC.parse(root.querySelector('#dd-conc').value);
+        if (!conception) return SHC.render(root, null);
+        edd = SHC.addDays(conception, 266);
+      } else {
+        var sd = SHC.parse(root.querySelector('#dd-scan').value);
+        var sw = parseInt(root.querySelector('#dd-sw').value, 10);
+        var sdy = parseInt(root.querySelector('#dd-sd').value, 10) || 0;
+        if (!sd || !isFinite(sw)) return SHC.render(root, null);
+        var gaAtScan = sw * 7 + sdy;
+        edd = SHC.addDays(sd, 280 - gaAtScan);
+        conception = SHC.addDays(edd, -266);
+      }
+
+      var today = SHC.today();
+      var ga = 280 - SHC.diffDays(today, edd);
+      var left = SHC.diffDays(today, edd);
+      var rows = [{ k: L.edd, v: SHC.fmt(edd), big: true }];
+      if (ga >= 0 && ga <= 320) {
+        rows.push({ k: L.gestAge, v: SHC.weeksDays(ga) });
+        rows.push({ k: L.trimester, v: SHC.trimester(ga) });
+      }
+      rows.push({ k: L.conceptionEst, v: SHC.fmt(conception) });
+      if (left >= 0) rows.push({ k: L.daysLeft, v: left + ' ' + SHC.units.days });
+      SHC.render(root, rows);
+    }
+
+    root.addEventListener('input', run);
+    root.addEventListener('change', run);
+    var go = root.querySelector('[data-calc-go]');
+    if (go) go.addEventListener('click', run);
+    var clr = root.querySelector('[data-calc-clear]');
+    if (clr) clr.addEventListener('click', function () {
+      root.querySelectorAll('input').forEach(function (i) { i.value = i.id === 'dd-sd' ? '0' : ''; });
+      root.querySelector('#dd-cycle').value = '28';
+      method.value = 'lmp';
+      show();
+      SHC.render(root, null);
+    });
+    show();
+  });
+</script>
