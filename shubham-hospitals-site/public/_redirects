@@ -1,2 +1,10 @@
 /gallery/ /about-us/ 301
 /sitemap.xml /sitemap-index.xml 301
+
+# English blog posts live at the site root (/<slug>/), while Hindi and Marathi
+# use a /blogs/ prefix. Anyone inferring the English URL from the hi/mr pattern
+# lands on /blogs/<slug>/ and 404s. Send them to the real page.
+# Uses a :placeholder, NOT a splat: Cloudflare follows redirects even when a
+# real asset matches, so /blogs/* would hijack the /blogs/ index page itself.
+/blogs/:slug/ /:slug/ 301
+/blogs/:slug /:slug/ 301
