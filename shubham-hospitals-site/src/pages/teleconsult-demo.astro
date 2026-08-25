@@ -1,0 +1,565 @@
+---
+// PROTOTYPE — teleconsultation booking form, dropdown ("Google Form") layout.
+//
+// This page is a self-contained interactive mock for internal review only.
+// It is noindex, excluded from the sitemap, and makes NO booking: there is no
+// server, no database, no payment and no patient record. The real application
+// (Next.js + PostgreSQL, separate repository) holds the availability engine,
+// slot holds, coupon validation and consent records; this page reproduces only
+// the screen flow so the doctors can judge the wording and the form layout.
+//
+// Slot times are generated in the browser from the same rules the real engine
+// uses — weekdays, 4:00–6:00 PM IST, 20-minute consultations with a 5-minute
+// buffer, a 2-hour minimum notice — so the dropdowns behave realistically
+// without a backend.
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Teleconsultation booking — prototype"
+  description="Internal prototype of the teleconsultation booking form. Not a live booking service."
+  noindex={true}
+>
+  <div class="container tc-wrap">
+    <div class="tc-banner">
+      <strong>Prototype for internal review.</strong> Nothing on this page books an
+      appointment, takes a payment or stores any information. Times are illustrative.
+      Consent and policy wording is draft text pending legal and clinical approval.
+    </div>
+
+    <h1 class="tc-title">Book a video teleconsultation</h1>
+    <p class="tc-lede">
+      A scheduled video consultation with one of our doctors, followed by a signed
+      prescription and a written summary. Available to patients located in India.
+    </p>
+
+    <!-- 1 ------------------------------------------------------------ safety -->
+    <section class="tc-card" data-sec="1">
+      <div class="tc-step">Step 1 of 5</div>
+      <h2>Safety check</h2>
+      <p class="tc-help">
+        Please tick anything that is happening now. This is a safety check, not a diagnosis.
+      </p>
+      <div id="tc-flags"></div>
+      <div id="tc-flag-stop" class="tc-alert tc-alert-stop" hidden>
+        <strong>Please do not book a video consultation.</strong>
+        What you have described needs to be seen in person now. Call the hospital on
+        <a href="tel:+918668954915">+91 86689 54915</a> or go to the nearest emergency department.
+      </div>
+      <div class="tc-actions">
+        <button class="btn btn-primary" id="tc-go-2" type="button">Continue</button>
+      </div>
+    </section>
+
+    <!-- 2 ------------------------------------------------------------- slots -->
+    <section class="tc-card" data-sec="2" hidden>
+      <div class="tc-step">Step 2 of 5</div>
+      <h2>Choose your appointment</h2>
+      <p class="tc-help">Each choice narrows the next one, so you only ever see times that are free.</p>
+
+      <label for="tc-type">Consultation type</label>
+      <select id="tc-type">
+        <option value="FIRST_CONSULT">First consultation — ₹600, 20 minutes</option>
+        <option value="FOLLOW_UP">Follow-up — ₹300, 15 minutes</option>
+      </select>
+
+      <label for="tc-doctor">Doctor</label>
+      <select id="tc-doctor">
+        <option value="ANY">First available</option>
+        <option value="manan">Dr Manan Boob</option>
+        <option value="manjushree">Dr Manjushree Boob</option>
+      </select>
+
+      <label for="tc-date">Date</label>
+      <select id="tc-date"><option value="">Choose a date</option></select>
+
+      <label for="tc-time">Time (IST)</label>
+      <select id="tc-time" disabled><option value="">Choose a date first</option></select>
+
+      <p class="tc-summary" id="tc-slot-summary" hidden></p>
+
+      <div class="tc-actions">
+        <button class="btn btn-primary" id="tc-go-3" type="button" disabled>Continue</button>
+        <button class="btn btn-outline" data-back="1" type="button">Back</button>
+      </div>
+    </section>
+
+    <!-- 3 ------------------------------------------------------------ details -->
+    <section class="tc-card" data-sec="3" hidden>
+      <div class="tc-step">Step 3 of 5</div>
+      <h2>Patient details</h2>
+
+      <label for="tc-name">Full name</label>
+      <input id="tc-name" type="text" autocomplete="name" />
+
+      <label for="tc-mobile">Mobile number (India, 10 digits)</label>
+      <input id="tc-mobile" type="tel" inputmode="numeric" maxlength="10" placeholder="9876543210" />
+      <p class="tc-help">
+        In the real system this number receives a one-time code before the booking is
+        accepted, and later receives the secure link to your prescription.
+      </p>
+
+      <label for="tc-age">Age (years)</label>
+      <input id="tc-age" type="number" min="0" max="120" />
+
+      <label for="tc-gender">Gender</label>
+      <select id="tc-gender">
+        <option value="">Prefer not to say</option>
+        <option>Female</option>
+        <option>Male</option>
+        <option>Other</option>
+      </select>
+
+      <label for="tc-city">City and state</label>
+      <input id="tc-city" type="text" placeholder="Amravati, Maharashtra" />
+
+      <label for="tc-channel">Send my documents by</label>
+      <select id="tc-channel">
+        <option>SMS</option><option>WhatsApp</option><option>Email</option>
+      </select>
+
+      <div id="tc-guardian" hidden>
+        <h3>Guardian details</h3>
+        <p class="tc-help">A patient under 18 must be booked and attended by a parent or guardian.</p>
+        <label for="tc-g-name">Guardian name</label>
+        <input id="tc-g-name" type="text" />
+        <label for="tc-g-rel">Relationship to patient</label>
+        <select id="tc-g-rel">
+          <option value="">Choose</option>
+          <option>Mother</option><option>Father</option>
+          <option>Grandparent</option><option>Legal guardian</option>
+        </select>
+        <label for="tc-g-mobile">Guardian mobile</label>
+        <input id="tc-g-mobile" type="tel" inputmode="numeric" maxlength="10" />
+      </div>
+
+      <h3>About this consultation</h3>
+      <label for="tc-concern">What would you like the doctor to help with?</label>
+      <textarea id="tc-concern" rows="3"></textarea>
+
+      <label for="tc-allergies">Allergies (write &quot;none&quot; if none)</label>
+      <input id="tc-allergies" type="text" />
+
+      <label for="tc-meds">Medicines you take now</label>
+      <input id="tc-meds" type="text" />
+
+      <label for="tc-india">Location</label>
+      <select id="tc-india">
+        <option value="">Choose</option>
+        <option value="yes">The patient will be in India during the consultation</option>
+        <option value="no">The patient will be outside India</option>
+      </select>
+      <div id="tc-india-stop" class="tc-alert tc-alert-stop" hidden>
+        Teleconsultation is available only to patients located in India.
+      </div>
+
+      <div class="tc-actions">
+        <button class="btn btn-primary" id="tc-go-4" type="button">Continue</button>
+        <button class="btn btn-outline" data-back="2" type="button">Back</button>
+      </div>
+    </section>
+
+    <!-- 4 ------------------------------------------------------------ consent -->
+    <section class="tc-card" data-sec="4" hidden>
+      <div class="tc-step">Step 4 of 5</div>
+      <h2>Consent</h2>
+      <p class="tc-help">
+        The real system records which exact version of each document you accepted, and when.
+      </p>
+      <div id="tc-consents"></div>
+      <div class="tc-actions">
+        <button class="btn btn-primary" id="tc-go-5" type="button">Continue</button>
+        <button class="btn btn-outline" data-back="3" type="button">Back</button>
+      </div>
+    </section>
+
+    <!-- 5 ---------------------------------------------------------------- fee -->
+    <section class="tc-card" data-sec="5" hidden>
+      <div class="tc-step">Step 5 of 5</div>
+      <h2>Fee</h2>
+      <div class="tc-price"><span>Consultation fee</span><span id="tc-base">₹600.00</span></div>
+      <div class="tc-price" id="tc-discount-row" hidden><span id="tc-discount-label">Discount</span><span id="tc-discount">− ₹0.00</span></div>
+      <div class="tc-price tc-price-total"><span>Amount payable</span><span id="tc-total">₹600.00</span></div>
+
+      <label for="tc-code">Have a code?</label>
+      <div class="tc-code-row">
+        <input id="tc-code" type="text" placeholder="Enter code" />
+        <button class="btn btn-outline" id="tc-apply" type="button">Apply</button>
+      </div>
+      <p class="tc-code-msg" id="tc-code-msg" hidden></p>
+      <p class="tc-help">
+        In the real system codes are checked on the server only — the browser never
+        decides a price. Try <code>WELCOME100</code>.
+      </p>
+
+      <div id="tc-pay-note" class="tc-alert">
+        Online payment is a later stage of the build. For this prototype, a booking can
+        only be completed with a code that brings the amount to ₹0.
+      </div>
+
+      <div class="tc-actions">
+        <button class="btn btn-primary" id="tc-confirm" type="button" disabled>Confirm booking</button>
+        <button class="btn btn-outline" data-back="4" type="button">Back</button>
+      </div>
+    </section>
+
+    <!-- done ------------------------------------------------------------------ -->
+    <section class="tc-card" data-sec="6" hidden>
+      <h2>Booking confirmed <span class="tc-demo-tag">prototype</span></h2>
+      <p>
+        Reference <strong id="tc-ref"></strong> — <span id="tc-recap"></span>
+      </p>
+      <div class="tc-alert">
+        <strong>No appointment has been made.</strong> This screen shows what a patient would
+        see. In the real system this point also creates a unique Google Meet link on the
+        doctor&apos;s calendar, sends the confirmation, schedules reminders at 24 hours, 2 hours
+        and 15 minutes, and opens a secure page for uploading reports.
+      </div>
+      <div class="tc-actions">
+        <button class="btn btn-outline" id="tc-restart" type="button">Start again</button>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .tc-wrap { max-width: 720px; padding-top: 32px; padding-bottom: 64px; }
+  .tc-banner {
+    background: #fff8e6; border: 1px solid #f0c987; color: #7a5210;
+    border-radius: 14px; padding: 14px 18px; font-size: .95rem; margin-bottom: 28px;
+  }
+  .tc-title { margin: 0 0 6px; color: var(--plum); }
+  .tc-lede { color: var(--muted); margin: 0 0 26px; }
+
+  .tc-card {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow-sm); padding: 26px 28px; margin-bottom: 20px;
+  }
+  .tc-card h2 { margin: 0 0 4px; color: var(--plum); font-size: 1.35rem; }
+  .tc-card h3 { margin: 24px 0 4px; color: var(--charcoal); font-size: 1.05rem; }
+  .tc-step {
+    font-family: var(--font-display); font-size: .72rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--magenta); margin-bottom: 6px;
+  }
+  .tc-help { color: var(--muted); font-size: .9rem; margin: 6px 0 4px; }
+
+  .tc-card label {
+    display: block; font-family: var(--font-display); font-weight: 600;
+    font-size: .92rem; color: var(--charcoal); margin: 18px 0 6px;
+  }
+  .tc-card select, .tc-card input[type=text], .tc-card input[type=tel],
+  .tc-card input[type=number], .tc-card textarea {
+    width: 100%; padding: 12px 14px; font: inherit; color: var(--ink);
+    background: #fff; border: 1px solid var(--line-strong); border-radius: 12px;
+  }
+  .tc-card select:focus, .tc-card input:focus, .tc-card textarea:focus {
+    outline: 2px solid var(--magenta); outline-offset: 1px; border-color: var(--magenta);
+  }
+  .tc-card select:disabled { background: var(--ivory); color: var(--muted); }
+  .tc-card textarea { resize: vertical; }
+
+  .tc-check {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-family: var(--font-body); font-weight: 400; font-size: .95rem;
+    margin: 10px 0; color: var(--ink); cursor: pointer;
+  }
+  .tc-check input { margin-top: 4px; flex: none; width: 17px; height: 17px; accent-color: var(--magenta); }
+  .tc-policy { font-size: .84rem; color: var(--muted); border-left: 2px solid var(--line); padding-left: 12px; margin: 2px 0 14px 27px; }
+  .tc-ver { color: var(--muted); font-weight: 400; }
+
+  .tc-alert {
+    background: var(--lilac); border: 1px solid var(--line-strong); color: var(--charcoal);
+    border-radius: 12px; padding: 13px 16px; font-size: .9rem; margin: 16px 0;
+  }
+  .tc-alert-stop { background: #fdecec; border-color: #e8a3a0; color: #8c2420; }
+  .tc-alert-stop a { color: #8c2420; }
+
+  .tc-summary {
+    background: var(--lilac); border-radius: 12px; padding: 12px 16px;
+    font-size: .92rem; color: var(--plum-deep); margin-top: 18px;
+  }
+
+  .tc-price { display: flex; justify-content: space-between; padding: 7px 0; font-size: .98rem; }
+  .tc-price-total {
+    border-top: 1px solid var(--line); margin-top: 8px; padding-top: 12px;
+    font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--plum);
+  }
+  .tc-code-row { display: flex; gap: 10px; align-items: stretch; }
+  .tc-code-row input { flex: 1; }
+  .tc-code-row .btn { padding: 12px 22px; white-space: nowrap; }
+  .tc-code-msg { font-size: .9rem; margin: 8px 0 0; }
+  .tc-code-msg.ok { color: #1c7a52; }
+  .tc-code-msg.bad { color: #a1231f; }
+
+  .tc-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+  .tc-actions .btn { cursor: pointer; font-size: .95rem; padding: 12px 26px; }
+  .tc-actions .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+  .tc-demo-tag {
+    font-family: var(--font-display); font-size: .6em; font-weight: 600; vertical-align: middle;
+    background: var(--lilac); color: var(--plum); border-radius: 999px; padding: 4px 12px; margin-left: 8px;
+  }
+
+  @media (max-width: 560px) {
+    .tc-card { padding: 22px 18px; }
+    .tc-code-row { flex-direction: column; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var IST = 330, MIN = 60000;
+
+    // Placeholder until the doctors approve the list.
+    var RED_FLAGS = [
+      'Chest pain, pressure or tightness',
+      'Severe difficulty breathing',
+      'Sudden weakness or numbness on one side, slurred speech or a drooping face',
+      'Heavy or uncontrolled bleeding',
+      'Fainting, unresponsiveness or new confusion',
+      'A serious injury, burn or suspected fracture',
+      'Severe or rapidly worsening abdominal pain',
+      'A baby under 3 months who is unwell, or a child who is drowsy and not feeding',
+      'Thoughts of harming yourself or someone else'
+    ];
+
+    // Draft wording, pending legal and clinical approval.
+    var POLICIES = [
+      ['Patient information sheet', '0.1-draft', 'What a teleconsultation is, what it can and cannot safely handle, the fee, the duration, and when to seek emergency in-person care instead.'],
+      ['Teleconsultation consent', '0.1-draft', 'Consent to a consultation conducted by video, including the limits of examination by video, the possibility that in-person review is required, and the record that will be kept.'],
+      ['Privacy notice', '0.1-draft', 'What personal and health data is collected, why, who processes it, how long it is kept by record class, and how to contact the grievance officer.'],
+      ['Cancellation and refund policy', '0.1-draft', 'Cancellation notice periods, how a missed appointment is treated, and how refunds are issued and tracked.']
+    ];
+
+    var DOCTORS = [
+      { id: 'manan', name: 'Dr Manan Boob' },
+      { id: 'manjushree', name: 'Dr Manjushree Boob' }
+    ];
+    var FEES = { FIRST_CONSULT: { paise: 60000, mins: 20 }, FOLLOW_UP: { paise: 30000, mins: 15 } };
+
+    var state = { slots: [], selected: null, base: 60000, discount: 0, code: null };
+
+    /* ------------------------------------------------- slot generation ---- */
+    function dateKey(d) { return new Date(d.getTime() + IST * MIN).toISOString().slice(0, 10); }
+    function istToUtc(key, minute) {
+      var p = key.split('-');
+      return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]) + (minute - IST) * MIN);
+    }
+    function addDays(key, n) {
+      var p = key.split('-');
+      return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2] + n)).toISOString().slice(0, 10);
+    }
+    // Deterministic stand-in for "already booked", so the demo shows real gaps.
+    function taken(id, iso) {
+      var h = 0, s = id + iso;
+      for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+      return h % 10 < 3;
+    }
+    function build(type, doctorId) {
+      // Weekdays, 4:00–6:00 PM IST, 20-minute slots with a 5-minute buffer,
+      // at least 2 hours' notice, up to 30 days ahead.
+      var now = new Date(), earliest = now.getTime() + 120 * MIN;
+      var start = dateKey(now), out = [], mins = FEES[type].mins;
+      var docs = doctorId === 'ANY' ? DOCTORS : DOCTORS.filter(function (d) { return d.id === doctorId; });
+      for (var i = 0; i <= 30; i++) {
+        var key = addDays(start, i);
+        var wd = new Date(key + 'T00:00:00Z').getUTCDay();
+        if (wd === 0 || wd === 6) continue;
+        for (var m = 16 * 60; m + mins <= 18 * 60; m += mins + 5) {
+          for (var j = 0; j < docs.length; j++) {
+            var st = istToUtc(key, m), iso = st.toISOString();
+            if (st.getTime() < earliest) continue;
+            if (taken(docs[j].id, iso)) continue;
+            out.push({ doctorId: docs[j].id, doctorName: docs[j].name, dateKey: key, startUtc: iso, mins: mins });
+          }
+        }
+      }
+      out.sort(function (a, b) { return a.startUtc < b.startUtc ? -1 : a.startUtc > b.startUtc ? 1 : a.doctorName.localeCompare(b.doctorName); });
+      return out;
+    }
+
+    /* ------------------------------------------------------- formatting --- */
+    function timeLabel(iso) {
+      return new Date(iso).toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: '2-digit', hour12: true });
+    }
+    function dayLabel(key) {
+      return new Date(key + 'T12:00:00Z').toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', weekday: 'long', day: 'numeric', month: 'long' });
+    }
+    function rupees(p) { return '₹' + (p / 100).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+    /* -------------------------------------------------------------- init -- */
+    function init() {
+      var root = document.querySelector('.tc-wrap');
+      if (!root || root.dataset.ready) return;
+      root.dataset.ready = '1';
+      var $ = function (id) { return document.getElementById(id); };
+      var show = function (n) {
+        root.querySelectorAll('[data-sec]').forEach(function (s) { s.hidden = s.dataset.sec !== String(n); });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      /* step 1 — red flags */
+      var flagBox = $('tc-flags');
+      RED_FLAGS.forEach(function (f, i) {
+        var l = document.createElement('label');
+        l.className = 'tc-check';
+        l.innerHTML = '<input type="checkbox" data-flag="' + i + '"><span></span>';
+        l.querySelector('span').textContent = f;
+        flagBox.appendChild(l);
+      });
+      flagBox.addEventListener('change', function () {
+        var any = flagBox.querySelectorAll('input:checked').length > 0;
+        $('tc-flag-stop').hidden = !any;
+        $('tc-go-2').disabled = any;
+      });
+
+      /* step 4 — consent list */
+      var consentBox = $('tc-consents');
+      POLICIES.forEach(function (p, i) {
+        var wrap = document.createElement('div');
+        var l = document.createElement('label');
+        l.className = 'tc-check';
+        l.innerHTML = '<input type="checkbox" data-consent="' + i + '"><span>I have read and accept the <strong></strong> <span class="tc-ver"></span></span>';
+        l.querySelector('strong').textContent = p[0];
+        l.querySelector('.tc-ver').textContent = '(version ' + p[1] + ')';
+        var body = document.createElement('div');
+        body.className = 'tc-policy';
+        body.textContent = p[2] + ' [Draft — pending approval]';
+        wrap.appendChild(l); wrap.appendChild(body);
+        consentBox.appendChild(wrap);
+      });
+
+      /* step 2 — cascading dropdowns */
+      function refreshDates() {
+        state.slots = build($('tc-type').value, $('tc-doctor').value);
+        state.selected = null;
+        var keys = [], seen = {};
+        state.slots.forEach(function (s) { if (!seen[s.dateKey]) { seen[s.dateKey] = 1; keys.push(s.dateKey); } });
+        var d = $('tc-date');
+        d.innerHTML = '<option value="">Choose a date</option>';
+        keys.forEach(function (k) {
+          var o = document.createElement('option');
+          o.value = k; o.textContent = dayLabel(k);
+          d.appendChild(o);
+        });
+        refreshTimes();
+      }
+      function refreshTimes() {
+        var t = $('tc-time'), key = $('tc-date').value;
+        t.innerHTML = '';
+        if (!key) {
+          t.disabled = true;
+          t.innerHTML = '<option value="">Choose a date first</option>';
+        } else {
+          t.disabled = false;
+          t.innerHTML = '<option value="">Choose a time</option>';
+          state.slots.filter(function (s) { return s.dateKey === key; }).forEach(function (s) {
+            var o = document.createElement('option');
+            o.value = s.doctorId + '|' + s.startUtc;
+            o.textContent = timeLabel(s.startUtc) + ($('tc-doctor').value === 'ANY' ? ' — ' + s.doctorName : '');
+            t.appendChild(o);
+          });
+        }
+        state.selected = null;
+        updateSlotSummary();
+      }
+      function updateSlotSummary() {
+        var el = $('tc-slot-summary');
+        if (!state.selected) { el.hidden = true; $('tc-go-3').disabled = true; return; }
+        var s = state.selected;
+        var typeLabel = $('tc-type').value === 'FIRST_CONSULT' ? 'first consultation' : 'follow-up';
+        el.textContent = s.mins + '-minute ' + typeLabel + ' with ' + s.doctorName + ' on ' + dayLabel(s.dateKey) + ' at ' + timeLabel(s.startUtc) + '.';
+        el.hidden = false;
+        $('tc-go-3').disabled = false;
+      }
+      $('tc-type').addEventListener('change', function () {
+        state.base = FEES[this.value].paise; state.discount = 0; state.code = null;
+        refreshDates();
+      });
+      $('tc-doctor').addEventListener('change', refreshDates);
+      $('tc-date').addEventListener('change', refreshTimes);
+      $('tc-time').addEventListener('change', function () {
+        var v = this.value.split('|');
+        state.selected = state.slots.filter(function (s) { return s.doctorId === v[0] && s.startUtc === v[1]; })[0] || null;
+        updateSlotSummary();
+      });
+      refreshDates();
+
+      /* step 3 — guardian and location */
+      $('tc-age').addEventListener('input', function () {
+        var a = parseInt(this.value, 10);
+        $('tc-guardian').hidden = !(this.value !== '' && a < 18);
+      });
+      $('tc-india').addEventListener('change', function () {
+        $('tc-india-stop').hidden = this.value !== 'no';
+      });
+
+      /* step 5 — pricing */
+      function paint() {
+        $('tc-base').textContent = rupees(state.base);
+        $('tc-discount-row').hidden = state.discount <= 0;
+        $('tc-discount').textContent = '− ' + rupees(state.discount);
+        var total = state.base - state.discount;
+        $('tc-total').textContent = rupees(total);
+        $('tc-confirm').disabled = total !== 0;
+        $('tc-pay-note').hidden = total === 0;
+      }
+      $('tc-apply').addEventListener('click', function () {
+        var code = ($('tc-code').value || '').trim().toUpperCase();
+        var msg = $('tc-code-msg');
+        msg.hidden = false;
+        if (code === 'WELCOME100') {
+          state.discount = state.base; state.code = code;
+          $('tc-discount-label').textContent = 'Complimentary consultation (100%)';
+          msg.className = 'tc-code-msg ok';
+          msg.textContent = 'Complimentary consultation applied.';
+        } else {
+          state.discount = 0; state.code = null;
+          msg.className = 'tc-code-msg bad';
+          msg.textContent = 'This code is not valid for this booking.';
+        }
+        paint();
+      });
+
+      /* navigation */
+      $('tc-go-2').addEventListener('click', function () { show(2); });
+      $('tc-go-3').addEventListener('click', function () { show(3); });
+      $('tc-go-4').addEventListener('click', function () {
+        var missing = [];
+        if (!$('tc-name').value.trim()) missing.push('name');
+        if (!/^[6-9]\d{9}$/.test($('tc-mobile').value)) missing.push('a valid 10-digit mobile number');
+        if ($('tc-age').value === '') missing.push('age');
+        if (!$('tc-concern').value.trim()) missing.push('what you would like help with');
+        if ($('tc-india').value !== 'yes') missing.push('confirmation that the patient is in India');
+        if (!$('tc-guardian').hidden && !$('tc-g-name').value.trim()) missing.push('guardian details');
+        if (missing.length) { alert('Please complete: ' + missing.join(', ') + '.'); return; }
+        show(4);
+      });
+      $('tc-go-5').addEventListener('click', function () {
+        if (consentBox.querySelectorAll('input:checked').length !== POLICIES.length) {
+          alert('All four documents must be accepted before a consultation can be booked.');
+          return;
+        }
+        paint(); show(5);
+      });
+      $('tc-confirm').addEventListener('click', function () {
+        var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', ref = 'SH-';
+        for (var i = 0; i < 6; i++) ref += chars.charAt(Math.floor(Math.random() * chars.length));
+        $('tc-ref').textContent = ref;
+        var s = state.selected;
+        $('tc-recap').textContent = s
+          ? s.doctorName + ', ' + dayLabel(s.dateKey) + ' at ' + timeLabel(s.startUtc) + '.'
+          : '';
+        show(6);
+      });
+      $('tc-restart').addEventListener('click', function () { location.reload(); });
+      root.querySelectorAll('[data-back]').forEach(function (b) {
+        b.addEventListener('click', function () { show(+b.dataset.back); });
+      });
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+    document.addEventListener('astro:page-load', init);
+  })();
+</script>
