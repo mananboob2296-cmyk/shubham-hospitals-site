@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-31T13:49:51.462Z",
+  "fetchedAt": "2026-09-05T17:29:59.832Z",
   "channels": {
     "hospital": {
       "key": "hospital",
@@ -87,6 +87,13 @@
       "url": "https://youtube.com/@drmananboob.gynendoscopy",
       "channelId": "UCI4P9DW1UnqAQFlV4pFaIDw",
       "videos": [
+        {
+          "id": "my1WxROIiD4",
+          "title": "Laparoscopic Myomectomy - Stepwise Surgical Video",
+          "published": "2026-09-03T15:36:27+00:00",
+          "description": "Laparoscopic Myomectomy – Stepwise Surgical Video In this video, Dr. Manan Boob (Consultant Gynecologist & Advanced Laparo-Hysteroscopic Surgeon, Shubham HiTech Hospital & Test Tube Baby Centre, Amravati) presents a stepwise walkthrough of a laparoscopic myomectomy — covering port placement, myoma e",
+          "thumb": "https://i.ytimg.com/vi/my1WxROIiD4/hqdefault.jpg"
+        },
         {
           "id": "EWgnZnwSYoY",
           "title": "Nerve Sparing Surgery for Deep Parametrial Endometriosis",
