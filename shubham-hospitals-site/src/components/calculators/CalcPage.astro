@@ -12,7 +12,9 @@ import PregnancyWeek from './PregnancyWeek.astro';
 import WeightGain from './WeightGain.astro';
 import HcgDoubling from './HcgDoubling.astro';
 import KickCounter from './KickCounter.astro';
-import { calcCopy, calcShared, calcPath, relatedCalculators, type CalcSlug } from '../../i18n/calculators';
+import PregnancyDating from './PregnancyDating.astro';
+import CycleCalculator from './CycleCalculator.astro';
+import { calcCopy, calcShared, calcPath, relatedCalculators, legacyEnRoutes, enDestination, type CalcSlug } from '../../i18n/calculators';
 import type { Lang } from '../../i18n/ui';
 import { SITE } from '../../consts';
 
@@ -25,6 +27,9 @@ const home = lang === 'en' ? '/' : `/${lang}/`;
 const contact = lang === 'en' ? '/contact-us/' : `/${lang}/contact-us/`;
 const url = new URL(calcPath(lang, slug), SITE.url).href;
 
+// Hindi and Marathi still run the original one-method-per-page components:
+// consolidating them means merging their clinical copy, which needs a reviewer
+// rather than a translation guess. English gets the consolidated engines.
 const components: Record<CalcSlug, any> = {
   'ovulation-calculator': Ovulation,
   'pregnancy-due-date-calculator': DueDate,
@@ -35,9 +40,26 @@ const components: Record<CalcSlug, any> = {
   'hcg-doubling-calculator': HcgDoubling,
   'kick-counter': KickCounter,
 };
-const Calculator = components[slug];
+const enComponents: Partial<Record<CalcSlug, any>> = {
+  'pregnancy-due-date-calculator': PregnancyDating,
+  'ovulation-calculator': CycleCalculator,
+};
+const Calculator = (lang === 'en' && enComponents[slug]) || components[slug];
 
-const blocks = [copy.howTo, copy.limits, copy.help];
+// A hi/mr page whose English counterpart was consolidated away must not claim
+// an English URL that now 301s. Point its English alternate at the surviving
+// page instead, so hreflang resolves in one hop to a real document.
+const moved = lang !== 'en' && legacyEnRoutes[slug];
+const altPaths = moved
+  ? { en: enDestination(slug), [lang]: calcPath(lang, slug) }
+  : undefined;
+
+// An urgent help block is lifted out of the editorial run and rendered directly
+// beneath the calculator, with a telephone action. Someone reading "call straight
+// away" should not have to scroll past two explainer sections to find a number,
+// and must not be handed a routine booking link as the only thing to click.
+const urgent = copy.helpUrgent ? copy.help : null;
+const blocks = urgent ? [copy.howTo, copy.limits] : [copy.howTo, copy.limits, copy.help];
 
 const schema = [
   {
@@ -73,16 +95,8 @@ const schema = [
   },
 ];
 ---
-<BaseLayout title={copy.metaTitle} description={copy.metaDescription} schema={schema} lang={lang}>
-  <section class="hero">
-    <div class="container">
-      <span class="eyebrow">{copy.eyebrow}</span>
-      <h1>{copy.h1}</h1>
-      <p>{copy.lead}</p>
-    </div>
-  </section>
-
-  <section class="section">
+<BaseLayout title={copy.metaTitle} description={copy.metaDescription} schema={schema} lang={lang} altPaths={altPaths}>
+  <section class="hero calc-hero">
     <div class="container">
       <Breadcrumbs
         crumbs={[
@@ -91,8 +105,29 @@ const schema = [
           { label: copy.name },
         ]}
       />
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.h1}</h1>
+      <p>{copy.lead}</p>
+    </div>
+  </section>
+
+  <section class="section calc-section">
+    <div class="container">
       <CalcRuntime lang={lang} />
       <Calculator copy={copy} shared={s} lang={lang} />
+
+      {urgent && (
+        <aside class="calc-urgent" role="note">
+          <h2>{urgent.h}</h2>
+          {Array.isArray(urgent.body)
+            ? urgent.body.map((line) => <p>{line}</p>)
+            : <p>{urgent.body}</p>}
+          <a class="calc-call" href={SITE.phoneHref}>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.4 11.4 0 003.6.58 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.4 11.4 0 00.58 3.6 1 1 0 01-.25 1z"/></svg>
+            {s.callNow} — {SITE.phone}
+          </a>
+        </aside>
+      )}
     </div>
   </section>
 
@@ -104,6 +139,14 @@ const schema = [
           {Array.isArray(b.body) ? <ul>{b.body.map((li) => <li>{li}</li>)}</ul> : <p>{b.body}</p>}
         </div>
       ))}
+      {copy.clinical && (
+        <details class="calc-clinical">
+          <summary>{s.resultUi?.clinicalH ?? copy.clinical.h}</summary>
+          {Array.isArray(copy.clinical.body)
+            ? <ul>{copy.clinical.body.map((li) => <li>{li}</li>)}</ul>
+            : <p>{copy.clinical.body}</p>}
+        </details>
+      )}
       <div class="calc-block">
         <a class="btn btn-primary" href={contact + '#book'}>{s.bookCta}</a>
       </div>
@@ -129,10 +172,11 @@ const schema = [
     </div>
   </section>
 
+  {related.length > 0 && (
   <section class="section soft">
     <div class="container">
       <h2>{s.relatedH}</h2>
-      <div class="grid cols-3 calc-cards">
+      <div class:list={['grid', related.length > 2 ? 'cols-3' : 'cols-2', 'calc-cards']}>
         {related.map((r) => (
           <article class="card calc-card">
             <CalcIcon name={r.icon} />
@@ -145,6 +189,7 @@ const schema = [
       <p class="calc-all"><a class="more" href={calcPath(lang)}>{s.allCalculators} →</a></p>
     </div>
   </section>
+  )}
 
   <CtaBand />
 </BaseLayout>
