@@ -11,8 +11,16 @@ interface Props {
   shared: CalcShared;
   /** Hide the Calculate button when the tool updates purely on interaction. */
   hideActions?: boolean;
+  /** Consolidated calculators add a supporting-detail block under the result,
+   *  an out-of-date warning and a Copy summary action. Off by default so the
+   *  tools that have not been rebuilt yet render exactly as before. */
+  enhanced?: boolean;
+  /** Heading for the result panel. Defaults to the generic shared label; the
+   *  rebuilt tools pass something that says what was actually worked out. */
+  resultH?: string;
 }
-const { name, copy, shared, hideActions = false } = Astro.props;
+const { name, copy, shared, hideActions = false, enhanced = false, resultH } = Astro.props;
+const ui = shared.resultUi;
 ---
 <div class="calc" data-calc={name}>
   <form class="calc-form" novalidate onsubmit="return false;">
@@ -26,10 +34,17 @@ const { name, copy, shared, hideActions = false } = Astro.props;
   </form>
 
   <aside class="calc-out">
-    <h2>{shared.yourResult}</h2>
+    <h2>{resultH ?? shared.yourResult}</h2>
+    {enhanced && ui && <p class="calc-stale" data-calc-stale hidden role="status">{ui.stale}</p>}
     <div class="calc-rows" data-calc-rows data-empty={copy.empty} aria-live="polite" aria-atomic="true">
       <p class="calc-empty">{copy.empty}</p>
     </div>
+    {enhanced && <div class="calc-meta" data-calc-meta></div>}
+    {enhanced && ui && (
+      <div class="calc-out-actions">
+        <button type="button" class="btn btn-outline btn-sm" data-calc-copy disabled>{ui.copy}</button>
+      </div>
+    )}
     <p class="calc-privacy">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.4-3 8.3-7 9.5-4-1.2-7-5.1-7-9.5V6z"/><path d="M9.5 12.2l1.8 1.8 3.4-3.6"/></svg>
       {shared.privacy}

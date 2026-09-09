@@ -8,3 +8,13 @@
 # real asset matches, so /blogs/* would hijack the /blogs/ index page itself.
 /blogs/:slug/ /:slug/ 301
 /blogs/:slug /:slug/ 301
+
+# Calculator consolidation: three tools were merged into two. Each retired route
+# opens the surviving calculator in the matching state. Query values are method
+# and view names only - they never carry anything the visitor typed.
+/calculators/ivf-due-date-calculator/ /calculators/pregnancy-due-date-calculator/?method=ivf 301
+/calculators/ivf-due-date-calculator /calculators/pregnancy-due-date-calculator/?method=ivf 301
+/calculators/pregnancy-week-calculator/ /calculators/pregnancy-due-date-calculator/?method=edd 301
+/calculators/pregnancy-week-calculator /calculators/pregnancy-due-date-calculator/?method=edd 301
+/calculators/period-calculator/ /calculators/ovulation-calculator/?view=period 301
+/calculators/period-calculator /calculators/ovulation-calculator/?view=period 301
