@@ -85,13 +85,18 @@ const doneAll: Record<Lang, string> = {
 
     function run() {
       show();
+      SHC.clearErrors(root);
       var edd;
       if (method.value === 'lmp') {
-        var lmp = SHC.parse(root.querySelector('#pw-lmp').value);
+        var lmpEl = root.querySelector('#pw-lmp');
+        var lmp = SHC.parse(lmpEl.value);
         if (!lmp) return SHC.render(root, null);
+        if (SHC.rejectFuture(root, lmpEl)) return;
         var cycle = parseInt(root.querySelector('#pw-cycle').value, 10) || 28;
         edd = SHC.addDays(lmp, 280 + (cycle - 28));
       } else {
+        // A due date given by a clinician is expected to be in the future, so it
+        // is deliberately not capped or rejected the way an LMP is.
         edd = SHC.parse(root.querySelector('#pw-edd').value);
         if (!edd) return SHC.render(root, null);
       }
@@ -119,8 +124,10 @@ const doneAll: Record<Lang, string> = {
       root.querySelector('#pw-cycle').value = '28';
       method.value = 'lmp';
       show();
+      SHC.clearErrors(root);
       SHC.render(root, null);
     });
+    SHC.capToday(root.querySelector('#pw-lmp'));
     show();
   });
 </script>

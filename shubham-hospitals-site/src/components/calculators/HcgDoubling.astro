@@ -60,6 +60,7 @@ const tooClose: Record<Lang, string> = {
 <script is:inline define:vars={{ L: copy.results, BANDS: bands[lang], NOT_RISING: notRising[lang], TOO_CLOSE: tooClose[lang], HRS: shared.units.hours }}>
   SHC.boot('hcg', function (root) {
     function run() {
+      SHC.clearErrors(root);
       var v1 = SHC.num(root.querySelector('#hc-v1').value);
       var v2 = SHC.num(root.querySelector('#hc-v2').value);
       var d1 = SHC.parseDT(root.querySelector('#hc-d1').value);
@@ -67,25 +68,29 @@ const tooClose: Record<Lang, string> = {
       if (!v1 || !v2 || !d1 || !d2 || v1 <= 0 || v2 <= 0) return SHC.render(root, null);
 
       var hours = (d2.getTime() - d1.getTime()) / 3600000;
-      if (hours <= 0) return SHC.render(root, null);
+      if (hours <= 0) {
+        return SHC.fieldError(root, root.querySelector('#hc-d2'), SHC.errors.notLater);
+      }
 
       var band = v1 < 1200 ? BANDS[0] : v1 < 6000 ? BANDS[1] : BANDS[2];
-      var rise = ((v2 - v1) / v1) * 100;
+      var change = ((v2 - v1) / v1) * 100;
       var elapsed = (Math.round(hours * 10) / 10) + ' ' + HRS;
 
       if (v2 <= v1) {
+        // A level that has not risen has no doubling time, and the "typical at
+        // this level" band describes how a RISING hCG behaves — showing it here
+        // read as reassurance against a falling result, so it is omitted.
         return SHC.render(root, [
-          { k: L.rise, v: (Math.round(rise * 10) / 10) + '%', big: true },
+          { k: L.change, v: (Math.round(change * 10) / 10) + '%', big: true },
           { k: L.elapsed, v: elapsed },
           { k: L.doubling, v: '—', note: NOT_RISING },
-          { k: L.expected, v: band },
         ]);
       }
 
       var doubling = (hours * Math.LN2) / Math.log(v2 / v1);
       var rows = [
         { k: L.doubling, v: (Math.round(doubling * 10) / 10) + ' ' + HRS, big: true },
-        { k: L.rise, v: '+' + (Math.round(rise * 10) / 10) + '%' },
+        { k: L.rise, v: '+' + (Math.round(change * 10) / 10) + '%' },
         { k: L.elapsed, v: elapsed },
         { k: L.expected, v: band },
       ];
@@ -100,6 +105,7 @@ const tooClose: Record<Lang, string> = {
     var clr = root.querySelector('[data-calc-clear]');
     if (clr) clr.addEventListener('click', function () {
       root.querySelectorAll('input').forEach(function (i) { i.value = ''; });
+      SHC.clearErrors(root);
       SHC.render(root, null);
     });
   });
