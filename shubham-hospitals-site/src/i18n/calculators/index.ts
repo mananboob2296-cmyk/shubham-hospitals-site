@@ -86,7 +86,25 @@ const enRelated: Partial<Record<CalcSlug, CalcSlug[]>> = {
 };
 
 export function calcShared(lang: Lang): CalcShared {
-  return packs[lang].shared;
+  const s = packs[lang].shared;
+  if (lang === 'en') return s;
+  // A locale pack written before a shared string was added hands the runtime
+  // `undefined`, which throws the first time that string is used — adding
+  // `errors` broke the hi/mr calculators exactly this way until the packs
+  // caught up. Per-calculator copy already falls back to English (see
+  // calcCopy); shared chrome now does the same, so a missing key degrades to
+  // English text instead of crashing the page.
+  //
+  // `hub` and `resultUi` are deliberately not inherited: they are opt-in
+  // configuration for the consolidated English directory, not text every
+  // locale should silently pick up.
+  const { hub, resultUi, ...enText } = packs.en.shared;
+  return {
+    ...enText,
+    ...s,
+    errors: { ...enText.errors, ...(s.errors ?? {}) },
+    units: { ...enText.units, ...(s.units ?? {}) },
+  };
 }
 
 export function calcCopy(lang: Lang, slug: CalcSlug): CalcCopy {
