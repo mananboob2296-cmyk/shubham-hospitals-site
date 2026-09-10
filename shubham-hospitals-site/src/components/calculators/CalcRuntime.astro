@@ -12,9 +12,11 @@ const { lang } = Astro.props;
 const s = calcShared(lang);
 const locale = localeCodes[lang];
 const units = s.units;
+const errors = s.errors;
+const resultUi = s.resultUi ?? null;
 const trimesters = s.trimesters;
 ---
-<script is:inline define:vars={{ locale, units, trimesters }}>
+<script is:inline define:vars={{ locale, units, trimesters, errors, resultUi }}>
   window.SHC = (function () {
     var MS = 86400000;
 
@@ -49,6 +51,28 @@ const trimesters = s.trimesters;
     /** Whole days from a to b (b later => positive). */
     function diffDays(a, b) {
       return Math.round((b.getTime() - a.getTime()) / MS);
+    }
+
+    /** Today as yyyy-mm-dd, for pinning `max` on a historical date input.
+     *  Computed in the browser, never at build time, so it never goes stale. */
+    function todayISO() {
+      var n = new Date();
+      var m = String(n.getMonth() + 1).padStart(2, '0');
+      var d = String(n.getDate()).padStart(2, '0');
+      return n.getFullYear() + '-' + m + '-' + d;
+    }
+
+    /** True when d is after today. Used to reject a date for an event that is
+     *  said to have already happened — a typo'd year must not return an estimate
+     *  that looks like a normal current pregnancy. */
+    function isFuture(d) {
+      return !!d && diffDays(today(), d) > 0;
+    }
+
+    /** Cap a date input at today and keep that cap correct across midnight. */
+    function capToday(input) {
+      if (!input) return;
+      input.setAttribute('max', todayISO());
     }
 
     var dateFmt = new Intl.DateTimeFormat(locale, { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
@@ -110,6 +134,134 @@ const trimesters = s.trimesters;
         .join('');
     }
 
+    /** Show a validation message under `input` and clear the result panel, so a
+     *  rejected value never leaves a stale estimate looking like a current one. */
+    function fieldError(root, input, message) {
+      clearErrors(root);
+      var field = input && input.closest ? input.closest('.calc-field') : null;
+      if (field) {
+        field.classList.add('calc-field-invalid');
+        var p = document.createElement('p');
+        p.className = 'calc-err';
+        p.id = (input.id || 'calc') + '-err';
+        p.textContent = message;
+        field.appendChild(p);
+        input.setAttribute('aria-invalid', 'true');
+        input.setAttribute('aria-describedby', p.id);
+      }
+      var box = root.querySelector('[data-calc-rows]');
+      if (box) box.innerHTML = '<p class="calc-err">' + esc(message) + '</p>';
+    }
+
+    /** Remove every validation message and invalid marker from the form. */
+    function clearErrors(root) {
+      root.querySelectorAll('.calc-field-invalid').forEach(function (f) {
+        f.classList.remove('calc-field-invalid');
+      });
+      root.querySelectorAll('.calc-form .calc-err').forEach(function (e) { e.remove(); });
+      root.querySelectorAll('[aria-invalid]').forEach(function (i) {
+        i.removeAttribute('aria-invalid');
+        i.removeAttribute('aria-describedby');
+      });
+    }
+
+    /** Reject a historical date that sits in the future. Returns true when the
+     *  value is unusable, having already reported it to the visitor. */
+    function rejectFuture(root, input) {
+      var d = parse(input.value);
+      if (!isFuture(d)) return false;
+      fieldError(root, input, errors.futureDate);
+      return true;
+    }
+
+    /** Read an allowlisted ?param= value. Anything unrecognised falls back to
+     *  the default: the query may pick a starting state, never carry data into
+     *  the page. Method and view names only — never a date, weight or result. */
+    function queryChoice(param, allowed, fallback) {
+      try {
+        var v = new URLSearchParams(window.location.search).get(param);
+        return allowed.indexOf(v) >= 0 ? v : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+
+    /** Supporting lines under the result: the method used, the as-of date, the
+     *  limitation that applies, and one next step. */
+    function renderMeta(root, meta) {
+      var box = root.querySelector('[data-calc-meta]');
+      if (!box) return;
+      if (!meta || !resultUi) { box.innerHTML = ''; return; }
+      var parts = [];
+      function row(label, value) {
+        if (!value) return;
+        parts.push('<div class="calc-meta-row"><span class="calc-meta-k">' + esc(label) +
+          '</span><span class="calc-meta-v">' + esc(value) + '</span></div>');
+      }
+      row(resultUi.method, meta.method);
+      row(resultUi.asOf, meta.asOf);
+      row(resultUi.limitation, meta.limitation);
+      row(resultUi.nextStep, meta.nextStep);
+      box.innerHTML = parts.join('');
+    }
+
+    /** Mark an existing result as out of date the moment an input changes, and
+     *  block copying until it is recalculated. A stale estimate shown as a
+     *  current one is the failure mode worth designing against here. */
+    function setStale(root, stale) {
+      var banner = root.querySelector('[data-calc-stale]');
+      var copyBtn = root.querySelector('[data-calc-copy]');
+      var hasResult = !!root.querySelector('[data-calc-rows] .calc-row');
+      var on = !!stale && hasResult;
+      if (banner) {
+        banner.hidden = !on;
+        if (on && resultUi) banner.textContent = resultUi.stale;
+      }
+      if (copyBtn) copyBtn.disabled = on || !hasResult;
+      var panel = root.querySelector('.calc-out');
+      if (panel) panel.classList.toggle('calc-out-stale', on);
+    }
+
+    /** Clear the result panel completely: rows, meta and the stale banner. */
+    function resetResult(root) {
+      render(root, null);
+      renderMeta(root, null);
+      setStale(root, false);
+    }
+
+    /** Wire a user-initiated Copy summary. Never writes to the clipboard on its
+     *  own, and never includes a name or any identifier — just the numbers the
+     *  visitor already entered and the answer shown on screen. */
+    function wireCopy(root, buildText) {
+      var btn = root.querySelector('[data-calc-copy]');
+      if (!btn || !resultUi) return;
+      btn.addEventListener('click', function () {
+        var text = buildText();
+        if (!text) return;
+        var done = function () {
+          var was = btn.textContent;
+          btn.textContent = resultUi.copied;
+          setTimeout(function () { btn.textContent = was; }, 1600);
+        };
+        try {
+          navigator.clipboard.writeText(text).then(done, function () {});
+        } catch (e) {}
+      });
+    }
+
+    /** Turn the rendered rows into plain text for Copy summary. */
+    function summaryText(root, heading) {
+      var out = heading ? [heading] : [];
+      root.querySelectorAll('[data-calc-rows] .calc-row').forEach(function (r) {
+        var k = r.querySelector('.calc-k'), v = r.querySelector('.calc-v');
+        if (k && v) out.push(k.textContent + ': ' + v.textContent);
+      });
+      root.querySelectorAll('[data-calc-meta] .calc-meta-row').forEach(function (r) {
+        out.push(r.querySelector('.calc-meta-k').textContent + ': ' + r.querySelector('.calc-meta-v').textContent);
+      });
+      return out.join('\n');
+    }
+
     /** Wire up a calculator: runs now and after every view transition, once per element. */
     function boot(name, setup) {
       function init() {
@@ -133,6 +285,12 @@ const trimesters = s.trimesters;
       fmt: fmt, fmtShort: fmtShort, fmtTime: fmtTime, range: range,
       weeksDays: weeksDays, trimester: trimester, num: num, esc: esc,
       render: render, boot: boot, units: units, MS: MS,
+      todayISO: todayISO, isFuture: isFuture, capToday: capToday,
+      queryChoice: queryChoice, renderMeta: renderMeta, setStale: setStale,
+      resetResult: resetResult, wireCopy: wireCopy, summaryText: summaryText,
+      resultUi: resultUi,
+      fieldError: fieldError, clearErrors: clearErrors, rejectFuture: rejectFuture,
+      errors: errors,
     };
   })();
 </script>

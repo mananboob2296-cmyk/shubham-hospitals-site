@@ -27,6 +27,14 @@ const notRising: Record<Lang, string> = {
   hi: 'दूसरा मान पहले से अधिक नहीं है, इसलिए डबलिंग टाइम नहीं निकाला जा सकता। कृपया दोनों रिपोर्ट अपनी डॉक्टर को दिखाएँ।',
   mr: 'दुसरे मूल्य पहिल्यापेक्षा जास्त नाही, त्यामुळे डबलिंग टाइम काढता येत नाही. कृपया दोन्ही अहवाल तुमच्या डॉक्टरांना दाखवा.',
 };
+// The doubling bands come from singleton intrauterine pregnancies. Multiples
+// run higher, and no cut-off here settles viability either way — so the scope
+// travels with the number rather than sitting in an explainer further down.
+const scopeNote: Record<Lang, string> = {
+  en: 'These ranges describe singleton pregnancies. Levels run higher with twins or more, and no threshold here can confirm or rule out a healthy pregnancy.',
+  hi: 'ये सीमाएँ एकल गर्भावस्था के लिए हैं। जुड़वाँ या अधिक होने पर स्तर अधिक रहता है, और यहाँ दी गई कोई भी सीमा स्वस्थ गर्भावस्था की पुष्टि या इनकार नहीं कर सकती।',
+  mr: 'या मर्यादा एकल गर्भधारणेसाठी आहेत. जुळी किंवा अधिक असल्यास पातळी जास्त असते, आणि इथली कोणतीही मर्यादा निरोगी गर्भधारणेची खात्री देऊ शकत नाही किंवा नाकारू शकत नाही.',
+};
 const tooClose: Record<Lang, string> = {
   en: 'The two samples are less than 24 hours apart, so the trend is not reliable. Repeat after at least 48 hours.',
   hi: 'दोनों सैंपल के बीच 24 घंटे से कम अंतर है, इसलिए रुझान भरोसेमंद नहीं है। कम से कम 48 घंटे बाद दोहराएँ।',
@@ -57,9 +65,10 @@ const tooClose: Record<Lang, string> = {
   {copy.hints?.d1 && <p class="calc-hint">{copy.hints.d1}</p>}
 </CalcShell>
 
-<script is:inline define:vars={{ L: copy.results, BANDS: bands[lang], NOT_RISING: notRising[lang], TOO_CLOSE: tooClose[lang], HRS: shared.units.hours }}>
+<script is:inline define:vars={{ L: copy.results, BANDS: bands[lang], NOT_RISING: notRising[lang], TOO_CLOSE: tooClose[lang], SCOPE: scopeNote[lang], HRS: shared.units.hours }}>
   SHC.boot('hcg', function (root) {
     function run() {
+      SHC.clearErrors(root);
       var v1 = SHC.num(root.querySelector('#hc-v1').value);
       var v2 = SHC.num(root.querySelector('#hc-v2').value);
       var d1 = SHC.parseDT(root.querySelector('#hc-d1').value);
@@ -67,27 +76,31 @@ const tooClose: Record<Lang, string> = {
       if (!v1 || !v2 || !d1 || !d2 || v1 <= 0 || v2 <= 0) return SHC.render(root, null);
 
       var hours = (d2.getTime() - d1.getTime()) / 3600000;
-      if (hours <= 0) return SHC.render(root, null);
+      if (hours <= 0) {
+        return SHC.fieldError(root, root.querySelector('#hc-d2'), SHC.errors.notLater);
+      }
 
       var band = v1 < 1200 ? BANDS[0] : v1 < 6000 ? BANDS[1] : BANDS[2];
-      var rise = ((v2 - v1) / v1) * 100;
+      var change = ((v2 - v1) / v1) * 100;
       var elapsed = (Math.round(hours * 10) / 10) + ' ' + HRS;
 
       if (v2 <= v1) {
+        // A level that has not risen has no doubling time, and the "typical at
+        // this level" band describes how a RISING hCG behaves — showing it here
+        // read as reassurance against a falling result, so it is omitted.
         return SHC.render(root, [
-          { k: L.rise, v: (Math.round(rise * 10) / 10) + '%', big: true },
+          { k: L.change, v: (Math.round(change * 10) / 10) + '%', big: true },
           { k: L.elapsed, v: elapsed },
           { k: L.doubling, v: '—', note: NOT_RISING },
-          { k: L.expected, v: band },
         ]);
       }
 
       var doubling = (hours * Math.LN2) / Math.log(v2 / v1);
       var rows = [
         { k: L.doubling, v: (Math.round(doubling * 10) / 10) + ' ' + HRS, big: true },
-        { k: L.rise, v: '+' + (Math.round(rise * 10) / 10) + '%' },
+        { k: L.rise, v: '+' + (Math.round(change * 10) / 10) + '%' },
         { k: L.elapsed, v: elapsed },
-        { k: L.expected, v: band },
+        { k: L.expected, v: band, note: SCOPE },
       ];
       if (hours < 24) rows[2].note = TOO_CLOSE;
       SHC.render(root, rows);
@@ -100,6 +113,7 @@ const tooClose: Record<Lang, string> = {
     var clr = root.querySelector('[data-calc-clear]');
     if (clr) clr.addEventListener('click', function () {
       root.querySelectorAll('input').forEach(function (i) { i.value = ''; });
+      SHC.clearErrors(root);
       SHC.render(root, null);
     });
   });

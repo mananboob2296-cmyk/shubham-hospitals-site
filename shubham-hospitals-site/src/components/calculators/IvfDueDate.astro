@@ -32,8 +32,12 @@ const methods = ['day3', 'day5', 'day6', 'retrieval', 'iui'] as const;
     var date = root.querySelector('#ivf-date');
 
     function run() {
+      SHC.clearErrors(root);
       var d = SHC.parse(date.value);
       if (!d) return SHC.render(root, null);
+      // Transfer, retrieval and IUI are all past events by the time anyone dates
+      // a pregnancy from them.
+      if (SHC.rejectFuture(root, date)) return;
       var m = method.value;
       var edd = SHC.addDays(d, OFFSET[m]);
       var lmpEquiv = SHC.addDays(d, -BACK[m]);
@@ -57,7 +61,9 @@ const methods = ['day3', 'day5', 'day6', 'retrieval', 'iui'] as const;
     var clr = root.querySelector('[data-calc-clear]');
     if (clr) clr.addEventListener('click', function () {
       date.value = ''; method.value = 'day5';
+      SHC.clearErrors(root);
       SHC.render(root, null);
     });
+    SHC.capToday(date);
   });
 </script>

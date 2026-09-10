@@ -1,0 +1,173 @@
+---
+// Period projection and fertile window from one set of cycle inputs. The two
+// used to be separate calculators asking for the same three answers, and could
+// disagree about when the next period was due. The view switch changes what is
+// emphasised; it never changes the stored values or the calculation source.
+//
+// Used by every language. Anything shown to the visitor comes from the copy
+// pack or from the per-language verdicts below, never hardcoded in one language.
+import CalcShell from './CalcShell.astro';
+import type { CalcCopy, CalcShared } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { copy: CalcCopy; shared: CalcShared; lang: Lang }
+const { copy, shared, lang } = Astro.props;
+// Cycle-length verdicts are copy, not calculation. Carried over verbatim from
+// the period calculator this replaced, so the reviewed hi/mr wording survives.
+const verdicts: Record<string, [string, string, string]> = {
+  en: ['is in the normal range (21–35 days).', 'is shorter than 21 days — worth discussing with a gynecologist.', 'is longer than 35 days — worth discussing with a gynecologist.'],
+  hi: ['सामान्य सीमा (21–35 दिन) में है।', '21 दिन से छोटा है — स्त्रीरोग विशेषज्ञ से चर्चा करें।', '35 दिन से लंबा है — स्त्रीरोग विशेषज्ञ से चर्चा करें।'],
+  mr: ['सामान्य मर्यादेत (21–35 दिवस) आहे.', '21 दिवसांहून लहान आहे — स्त्रीरोगतज्ज्ञांशी चर्चा करा.', '35 दिवसांहून लांब आहे — स्त्रीरोगतज्ज्ञांशी चर्चा करा.'],
+};
+const verdict = verdicts[lang] ?? verdicts.en;
+const u = shared.units;
+const cycles = Array.from({ length: 24 }, (_, i) => i + 21);
+const durations = Array.from({ length: 9 }, (_, i) => i + 2);
+---
+<CalcShell name="cycle" copy={copy} shared={shared} enhanced>
+  <fieldset class="calc-methods calc-methods-inline">
+    <legend>{copy.fields.view}</legend>
+    <label class="calc-method">
+      <input type="radio" name="cy-view" value="period" />
+      <span class="calc-method-body"><span class="calc-method-label">{copy.options?.['view.period']}</span></span>
+    </label>
+    <label class="calc-method">
+      <input type="radio" name="cy-view" value="fertility" checked />
+      <span class="calc-method-body"><span class="calc-method-label">{copy.options?.['view.fertility']}</span></span>
+    </label>
+  </fieldset>
+
+  <div class="calc-field">
+    <label for="cy-lmp">{copy.fields.lmp}</label>
+    <input type="date" id="cy-lmp" name="lmp" />
+    {copy.hints?.lmp && <p class="calc-hint">{copy.hints.lmp}</p>}
+  </div>
+  <div class="calc-field">
+    <label for="cy-cycle">{copy.fields.cycle}</label>
+    <select id="cy-cycle" name="cycle">
+      {cycles.map((n) => <option value={n} selected={n === 28}>{n} {u.days}</option>)}
+    </select>
+    {copy.hints?.cycle && <p class="calc-hint">{copy.hints.cycle}</p>}
+  </div>
+  <div class="calc-field" data-when="period">
+    <label for="cy-dur">{copy.fields.duration}</label>
+    <select id="cy-dur" name="duration">
+      {durations.map((n) => <option value={n} selected={n === 5}>{n} {u.days}</option>)}
+    </select>
+    {copy.hints?.duration && <p class="calc-hint">{copy.hints.duration}</p>}
+  </div>
+</CalcShell>
+
+<script is:inline define:vars={{ L: copy.results, N: copy.notes, V: verdict, HEAD: copy.h1 }}>
+  SHC.boot('cycle', function (root) {
+    var radios = root.querySelectorAll('input[name="cy-view"]');
+    var lmp = root.querySelector('#cy-lmp');
+    var cyc = root.querySelector('#cy-cycle');
+    var dur = root.querySelector('#cy-dur');
+    var headEl = root.querySelector('.calc-out > h2');
+    var ready = false;
+
+    function view() {
+      for (var i = 0; i < radios.length; i++) if (radios[i].checked) return radios[i].value;
+      return 'fertility';
+    }
+
+    /** Bleeding duration only affects the projected end of a period, so it is
+     *  shown for the period view and hidden for the fertile window. */
+    function show() {
+      var v = view();
+      root.querySelectorAll('[data-when]').forEach(function (el) {
+        el.hidden = el.getAttribute('data-when') !== v;
+      });
+      if (headEl) headEl.textContent = v === 'period' ? N.resultHeadingPeriod : N.resultHeadingFertility;
+    }
+
+    function run() {
+      SHC.clearErrors(root);
+      var d = SHC.parse(lmp.value);
+      if (!d) return SHC.resetResult(root);
+      if (SHC.rejectFuture(root, lmp)) return;
+
+      var cycle = parseInt(cyc.value, 10) || 28;
+      var days = parseInt(dur.value, 10) || 5;
+      var v = view();
+
+      // Roll forward to the first period start that has not already happened.
+      var cursor = d;
+      var today = SHC.today();
+      while (SHC.diffDays(cursor, today) >= cycle) cursor = SHC.addDays(cursor, cycle);
+      var next = SHC.addDays(cursor, cycle);
+
+      var rows, meta;
+      if (v === 'period') {
+        var later = [];
+        for (var i = 1; i <= 5; i++) {
+          var st = SHC.addDays(next, cycle * i);
+          later.push(SHC.fmtShort(st) + ' – ' + SHC.fmtShort(SHC.addDays(st, days - 1)));
+        }
+        rows = [
+          { k: L.nextPeriod, v: SHC.fmt(next), big: true },
+          { k: L.nextEnd, v: SHC.fmt(SHC.addDays(next, days - 1)) },
+          { k: L.cycleNote, v: cycle + ' ' + SHC.units.days + cycleVerdict(cycle) },
+          { k: L.upcoming, list: later, note: N.futureDrift },
+        ];
+        meta = { method: N['method.period'], limitation: N.limitationIrregular, nextStep: N.nextStep };
+      } else {
+        var ov = SHC.addDays(next, -14);
+        // Six days ending on ovulation, inclusive (ASRM fertile interval).
+        rows = [
+          { k: L.fertileWindow, v: SHC.range(SHC.addDays(ov, -5), ov), big: true },
+          { k: L.ovulation, v: SHC.fmt(ov) },
+          { k: L.bestDays, v: SHC.range(SHC.addDays(ov, -2), ov) },
+          { k: L.nextPeriod, v: SHC.fmt(next) },
+          { k: L.testDate, v: SHC.fmt(next) },
+        ];
+        meta = { method: N['method.fertility'], limitation: N.contraception, nextStep: N.nextStep };
+      }
+
+      SHC.render(root, rows);
+      SHC.renderMeta(root, meta);
+      SHC.setStale(root, false);
+      ready = true;
+    }
+
+    /** A flag, not a diagnosis: unusual lengths are still calculated. */
+    function cycleVerdict(cycle) {
+      return ' — ' + (cycle < 21 ? V[1] : cycle > 35 ? V[2] : V[0]);
+    }
+
+    root.addEventListener('change', function (e) {
+      if (e.target && e.target.name === 'cy-view') {
+        // Switching view keeps the inputs but invalidates the shown answer,
+        // so a fertile window is never left on screen labelled as period dates.
+        show();
+        if (ready) run(); else SHC.resetResult(root);
+        return;
+      }
+      SHC.setStale(root, true);
+    });
+    root.addEventListener('input', function () { SHC.setStale(root, true); });
+
+    var go = root.querySelector('[data-calc-go]');
+    if (go) go.addEventListener('click', run);
+    root.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); run(); });
+
+    var clr = root.querySelector('[data-calc-clear]');
+    if (clr) clr.addEventListener('click', function () {
+      lmp.value = ''; cyc.value = '28'; dur.value = '5';
+      ready = false;
+      SHC.clearErrors(root);
+      SHC.resetResult(root);
+    });
+
+    SHC.wireCopy(root, function () { return ready ? SHC.summaryText(root, HEAD) : ''; });
+    SHC.capToday(lmp);
+
+    // ?view= picks the starting emphasis. Without it the legacy ovulation URL
+    // keeps its fertile-window default, so existing visitors land where they
+    // expect; the hub links explicitly to ?view=period.
+    var initial = SHC.queryChoice('view', ['period', 'fertility'], 'fertility');
+    for (var i = 0; i < radios.length; i++) radios[i].checked = radios[i].value === initial;
+    show();
+  });
+</script>

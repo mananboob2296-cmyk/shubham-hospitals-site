@@ -4,8 +4,10 @@ import type { CalcCopy, CalcShared } from '../../i18n/calculators';
 import type { Lang } from '../../i18n/ui';
 interface Props { copy: CalcCopy; shared: CalcShared; lang?: Lang }
 const { copy, shared } = Astro.props;
-const cycles = Array.from({ length: 23 }, (_, i) => i + 22); // 22–44
-const durations = Array.from({ length: 8 }, (_, i) => i + 3); // 3–10
+// 21–44: the copy calls 21–35 a normal cycle, so 21 must be selectable.
+const cycles = Array.from({ length: 24 }, (_, i) => i + 21);
+// 2–10: the copy calls 2–7 days of bleeding normal, so 2 must be selectable.
+const durations = Array.from({ length: 9 }, (_, i) => i + 2);
 const u = shared.units;
 ---
 <CalcShell name="ovulation" copy={copy} shared={shared}>
@@ -35,13 +37,17 @@ const u = shared.units;
     var dur = root.querySelector('#ov-dur');
 
     function run() {
+      SHC.clearErrors(root);
       var d = SHC.parse(lmp.value);
       if (!d) return SHC.render(root, null);
+      if (SHC.rejectFuture(root, lmp)) return;
       var cycle = parseInt(cyc.value, 10);
       var next = SHC.addDays(d, cycle);
       var ov = SHC.addDays(next, -14);
+      // Six days ending on ovulation (ASRM), inclusive — matches the six days
+      // promised in the page copy. It previously ran to ov+1, giving seven.
       var fs = SHC.addDays(ov, -5);
-      var fe = SHC.addDays(ov, 1);
+      var fe = ov;
       var bs = SHC.addDays(ov, -2);
       var dd = parseInt(dur.value, 10) || 5;
       var test = next;
@@ -61,8 +67,10 @@ const u = shared.units;
     var clr = root.querySelector('[data-calc-clear]');
     if (clr) clr.addEventListener('click', function () {
       lmp.value = ''; cyc.value = '28'; dur.value = '5';
+      SHC.clearErrors(root);
       SHC.render(root, null);
     });
+    SHC.capToday(lmp);
     run();
   });
 </script>

@@ -1,9 +1,12 @@
 ---
 import CalcPage from '../../components/calculators/CalcPage.astro';
-import { calcSlugs, type CalcSlug } from '../../i18n/calculators';
+import { liveSlugs, type CalcSlug } from '../../i18n/calculators';
 
+// Only the surviving calculators are built, in every language. The three
+// retired slugs are 301'd to the tool that absorbed them (public/_redirects)
+// rather than left as duplicate engines that could drift out of agreement.
 export function getStaticPaths() {
-  return calcSlugs.map((slug) => ({ params: { slug }, props: { slug } }));
+  return liveSlugs.map((slug) => ({ params: { slug }, props: { slug } }));
 }
 
 const { slug } = Astro.props as { slug: CalcSlug };

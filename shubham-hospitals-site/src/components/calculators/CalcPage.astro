@@ -4,15 +4,16 @@ import CtaBand from '../CtaBand.astro';
 import Breadcrumbs from '../Breadcrumbs.astro';
 import CalcIcon from './CalcIcon.astro';
 import CalcRuntime from './CalcRuntime.astro';
-import Ovulation from './Ovulation.astro';
-import DueDate from './DueDate.astro';
+import UrgentPanel from './UrgentPanel.astro';
 import IvfDueDate from './IvfDueDate.astro';
 import Period from './Period.astro';
 import PregnancyWeek from './PregnancyWeek.astro';
 import WeightGain from './WeightGain.astro';
 import HcgDoubling from './HcgDoubling.astro';
 import KickCounter from './KickCounter.astro';
-import { calcCopy, calcShared, calcPath, relatedCalculators, type CalcSlug } from '../../i18n/calculators';
+import PregnancyDating from './PregnancyDating.astro';
+import CycleCalculator from './CycleCalculator.astro';
+import { calcCopy, calcShared, calcPath, relatedCalculators, urgentHelp, urgentHelpFirst, type CalcSlug } from '../../i18n/calculators';
 import type { Lang } from '../../i18n/ui';
 import { SITE } from '../../consts';
 
@@ -25,9 +26,12 @@ const home = lang === 'en' ? '/' : `/${lang}/`;
 const contact = lang === 'en' ? '/contact-us/' : `/${lang}/contact-us/`;
 const url = new URL(calcPath(lang, slug), SITE.url).href;
 
+// Every language runs the consolidated engines. The one-method-per-page
+// components remain only for the retired slugs, which are no longer built as
+// pages but still exist in each pack because the type requires all eight keys.
 const components: Record<CalcSlug, any> = {
-  'ovulation-calculator': Ovulation,
-  'pregnancy-due-date-calculator': DueDate,
+  'ovulation-calculator': CycleCalculator,
+  'pregnancy-due-date-calculator': PregnancyDating,
   'ivf-due-date-calculator': IvfDueDate,
   'period-calculator': Period,
   'pregnancy-week-calculator': PregnancyWeek,
@@ -37,7 +41,15 @@ const components: Record<CalcSlug, any> = {
 };
 const Calculator = components[slug];
 
-const blocks = [copy.howTo, copy.limits, copy.help];
+// An urgent help block is lifted out of the editorial run and rendered as a
+// panel with a telephone action, beside the tool rather than below three
+// sections of explanation. Someone reading "call straight away" should not have
+// to scroll to find a number, and must not be handed a routine booking link as
+// the only thing to click. `urgentHelpFirst` puts it above the tool where the
+// tool itself could delay the call.
+const urgent = urgentHelp.includes(slug) ? copy.help : null;
+const urgentFirst = urgentHelpFirst.includes(slug);
+const blocks = urgent ? [copy.howTo, copy.limits] : [copy.howTo, copy.limits, copy.help];
 
 const schema = [
   {
@@ -74,15 +86,7 @@ const schema = [
 ];
 ---
 <BaseLayout title={copy.metaTitle} description={copy.metaDescription} schema={schema} lang={lang}>
-  <section class="hero">
-    <div class="container">
-      <span class="eyebrow">{copy.eyebrow}</span>
-      <h1>{copy.h1}</h1>
-      <p>{copy.lead}</p>
-    </div>
-  </section>
-
-  <section class="section">
+  <section class="hero calc-hero">
     <div class="container">
       <Breadcrumbs
         crumbs={[
@@ -91,8 +95,20 @@ const schema = [
           { label: copy.name },
         ]}
       />
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.h1}</h1>
+      <p>{copy.lead}</p>
+    </div>
+  </section>
+
+  <section class="section calc-section">
+    <div class="container">
       <CalcRuntime lang={lang} />
+
+      {urgent && urgentFirst && <UrgentPanel block={urgent} shared={s} />}
       <Calculator copy={copy} shared={s} lang={lang} />
+
+      {urgent && !urgentFirst && <UrgentPanel block={urgent} shared={s} />}
     </div>
   </section>
 
@@ -104,6 +120,14 @@ const schema = [
           {Array.isArray(b.body) ? <ul>{b.body.map((li) => <li>{li}</li>)}</ul> : <p>{b.body}</p>}
         </div>
       ))}
+      {copy.clinical && (
+        <details class="calc-clinical">
+          <summary>{s.resultUi?.clinicalH ?? copy.clinical.h}</summary>
+          {Array.isArray(copy.clinical.body)
+            ? <ul>{copy.clinical.body.map((li) => <li>{li}</li>)}</ul>
+            : <p>{copy.clinical.body}</p>}
+        </details>
+      )}
       <div class="calc-block">
         <a class="btn btn-primary" href={contact + '#book'}>{s.bookCta}</a>
       </div>
@@ -129,10 +153,11 @@ const schema = [
     </div>
   </section>
 
+  {related.length > 0 && (
   <section class="section soft">
     <div class="container">
       <h2>{s.relatedH}</h2>
-      <div class="grid cols-3 calc-cards">
+      <div class:list={['grid', related.length === 1 ? 'calc-cards-one' : 'cols-2', 'calc-cards']}>
         {related.map((r) => (
           <article class="card calc-card">
             <CalcIcon name={r.icon} />
@@ -145,6 +170,7 @@ const schema = [
       <p class="calc-all"><a class="more" href={calcPath(lang)}>{s.allCalculators} →</a></p>
     </div>
   </section>
+  )}
 
   <CtaBand />
 </BaseLayout>

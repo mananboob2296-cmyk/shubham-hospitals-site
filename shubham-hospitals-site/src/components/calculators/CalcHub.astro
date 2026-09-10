@@ -3,15 +3,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import CtaBand from '../CtaBand.astro';
 import Breadcrumbs from '../Breadcrumbs.astro';
 import CalcIcon from './CalcIcon.astro';
-import { allCalculators, calcShared, calcPath } from '../../i18n/calculators';
+import { calcShared, calcPath, calcCopy, hubGroups } from '../../i18n/calculators';
 import type { Lang } from '../../i18n/ui';
 import { SITE } from '../../consts';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const s = calcShared(lang);
-const items = allCalculators(lang);
 const home = lang === 'en' ? '/' : `/${lang}/`;
+
+// Four tools, grouped by the question being asked. Four need no search box,
+// filter chips or role gate. `hub` is what a language pack gains when its
+// consolidated copy lands, so a pack still mid-migration falls back rather
+// than rendering an empty grouping.
+const consolidated = !!s.hub;
+const groupLabel: Record<string, string> = s.hub
+  ? { pregnancy: s.hub.groupPregnancy, cycle: s.hub.groupCycle, lab: s.hub.groupLab }
+  : {};
+const items = hubGroups.map((c) => ({
+  slug: c.slug,
+  icon: c.icon,
+  copy: calcCopy(lang, c.slug),
+  href: calcPath(lang, c.slug) + (c.query ? `?${c.query}` : ''),
+  group: groupLabel[c.group],
+}));
 
 const schema = [
   {
@@ -35,27 +50,38 @@ const schema = [
 ];
 ---
 <BaseLayout title={s.hubMetaTitle} description={s.hubMetaDescription} schema={schema} lang={lang}>
-  <section class="hero">
+  <section class="hero calc-hero">
     <div class="container">
+      <Breadcrumbs crumbs={[{ label: s.crumbHome, href: home }, { label: s.crumbCalculators }]} />
       <span class="eyebrow">{s.hubEyebrow}</span>
       <h1>{s.hubH1}</h1>
       <p>{s.hubLead}</p>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section calc-section">
     <div class="container">
-      <Breadcrumbs crumbs={[{ label: s.crumbHome, href: home }, { label: s.crumbCalculators }]} />
-      <div class="grid cols-3 calc-cards">
+      {consolidated && s.hub && <p class="calc-method-note">{s.hub.methodNote}</p>}
+
+      <div class:list={['grid', consolidated ? 'calc-cards-4' : 'cols-3', 'calc-cards']}>
         {items.map((i) => (
           <article class="card calc-card">
             <CalcIcon name={i.icon} />
-            <h2>{i.copy.name}</h2>
+            {i.group && <span class="calc-group">{i.group}</span>}
+            <h2><a class="calc-card-link" href={i.href}>{i.copy.name}</a></h2>
             <p>{i.copy.card}</p>
-            <a class="more" href={calcPath(lang, i.slug)}>{s.open} →</a>
+            {i.copy.audience && <span class="calc-audience">{i.copy.audience}</span>}
           </article>
         ))}
       </div>
+
+      {consolidated && s.hub && (
+        <aside class="calc-info">
+          <h2>{s.hub.infoH}</h2>
+          <p>{s.hub.infoLead}</p>
+          <a class="more" href={calcPath(lang, 'kick-counter')}>{s.hub.infoLink} →</a>
+        </aside>
+      )}
 
       <aside class="calc-disclaimer">
         <h2>{s.disclaimerH}</h2>

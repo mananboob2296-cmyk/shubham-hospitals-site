@@ -64,26 +64,35 @@ const u = shared.units;
 
     function run() {
       show();
+      SHC.clearErrors(root);
       var m = method.value;
       var edd = null;
       var conception = null;
 
       if (m === 'lmp') {
-        var lmp = SHC.parse(root.querySelector('#dd-lmp').value);
+        var lmpEl = root.querySelector('#dd-lmp');
+        var lmp = SHC.parse(lmpEl.value);
         if (!lmp) return SHC.render(root, null);
+        // A last period, a conception and a scan have all already happened. A
+        // future date here is a typo, not a pregnancy — never estimate from it.
+        if (SHC.rejectFuture(root, lmpEl)) return;
         var cycle = parseInt(root.querySelector('#dd-cycle').value, 10) || 28;
         // Naegele's rule, adjusted for cycles that are not 28 days.
         edd = SHC.addDays(lmp, 280 + (cycle - 28));
         conception = SHC.addDays(lmp, 14 + (cycle - 28));
       } else if (m === 'conception') {
-        conception = SHC.parse(root.querySelector('#dd-conc').value);
+        var concEl = root.querySelector('#dd-conc');
+        conception = SHC.parse(concEl.value);
         if (!conception) return SHC.render(root, null);
+        if (SHC.rejectFuture(root, concEl)) return;
         edd = SHC.addDays(conception, 266);
       } else {
-        var sd = SHC.parse(root.querySelector('#dd-scan').value);
+        var scanEl = root.querySelector('#dd-scan');
+        var sd = SHC.parse(scanEl.value);
         var sw = parseInt(root.querySelector('#dd-sw').value, 10);
         var sdy = parseInt(root.querySelector('#dd-sd').value, 10) || 0;
         if (!sd || !isFinite(sw)) return SHC.render(root, null);
+        if (SHC.rejectFuture(root, scanEl)) return;
         var gaAtScan = sw * 7 + sdy;
         edd = SHC.addDays(sd, 280 - gaAtScan);
         conception = SHC.addDays(edd, -266);
@@ -112,7 +121,11 @@ const u = shared.units;
       root.querySelector('#dd-cycle').value = '28';
       method.value = 'lmp';
       show();
+      SHC.clearErrors(root);
       SHC.render(root, null);
+    });
+    ['#dd-lmp', '#dd-conc', '#dd-scan'].forEach(function (sel) {
+      SHC.capToday(root.querySelector(sel));
     });
     show();
   });

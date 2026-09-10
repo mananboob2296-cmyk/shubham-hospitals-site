@@ -3,7 +3,8 @@ import type { CalcCopy } from '../types';
 export const part: Record<string, CalcCopy> = {
   'pregnancy-weight-gain-calculator': {
     name: 'प्रेग्नन्सी वेट गेन कॅल्क्युलेटर',
-    card: 'गर्भधारणेपूर्वीच्या BMI नुसार आठवड्यागणिक वजनवाढ योग्य आहे का ते तपासा.',
+    audience: 'रुग्ण व डॉक्टर',
+    card: 'तुमच्या गर्भारपणापूर्वीच्या मापांवरून या आठवड्याची सामान्य संदर्भ मर्यादा पाहा.',
     eyebrow: 'गर्भधारणा',
     h1: 'प्रेग्नन्सी वेट गेन कॅल्क्युलेटर',
     lead:

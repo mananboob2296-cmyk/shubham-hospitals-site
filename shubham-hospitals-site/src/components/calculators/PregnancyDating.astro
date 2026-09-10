@@ -1,0 +1,320 @@
+---
+// The consolidated dating tool: one engine behind four common ways of dating a
+// pregnancy, plus three less common ones in a disclosure. It replaces the
+// separate due-date, IVF and pregnancy-week calculators, which asked for
+// overlapping inputs and could disagree with each other.
+//
+// Used by every language. Anything shown to the visitor comes from the copy
+// pack or from the per-language tables below, never hardcoded in one language.
+import CalcShell from './CalcShell.astro';
+import type { CalcCopy, CalcShared } from '../../i18n/calculators';
+import type { Lang } from '../../i18n/ui';
+
+interface Props { copy: CalcCopy; shared: CalcShared; lang: Lang }
+const { copy, shared, lang } = Astro.props;
+const u = shared.units;
+const ui = shared.resultUi!;
+const cycles = Array.from({ length: 24 }, (_, i) => i + 21);
+const methods = copy.methods ?? [];
+const main = methods.filter((m) => !m.advanced);
+const advanced = methods.filter((m) => m.advanced);
+
+// Routine antenatal milestones as [startDay, endDay, label] in gestational
+// days, and the two status lines that go with them. Carried over verbatim
+// from the pregnancy-week calculator this replaced, so the reviewed hi/mr
+// wording survives consolidation rather than being re-translated.
+const milestones: Record<Lang, [number, number, string][]> = {
+  en: [
+    [42, 63, 'Dating scan (6–9 weeks)'],
+    [77, 97, 'NT scan with double marker (11–13 weeks 6 days)'],
+    [126, 154, 'Anomaly / level 2 scan (18–22 weeks)'],
+    [168, 196, 'Glucose tolerance test (24–28 weeks)'],
+    [224, 252, 'Growth scan with Doppler (32–36 weeks)'],
+    [259, 294, 'Weekly review and fetal monitoring (from 37 weeks)'],
+  ],
+  hi: [
+    [42, 63, 'डेटिंग स्कैन (6–9 सप्ताह)'],
+    [77, 97, 'डबल मार्कर के साथ NT स्कैन (11–13 सप्ताह 6 दिन)'],
+    [126, 154, 'एनॉमली / लेवल 2 स्कैन (18–22 सप्ताह)'],
+    [168, 196, 'ग्लूकोज़ टॉलरेंस टेस्ट (24–28 सप्ताह)'],
+    [224, 252, 'डॉपलर के साथ ग्रोथ स्कैन (32–36 सप्ताह)'],
+    [259, 294, 'साप्ताहिक जाँच और भ्रूण निगरानी (37 सप्ताह से)'],
+  ],
+  mr: [
+    [42, 63, 'डेटिंग स्कॅन (6–9 आठवडे)'],
+    [77, 97, 'डबल मार्करसह NT स्कॅन (11–13 आठवडे 6 दिवस)'],
+    [126, 154, 'एनॉमली / लेव्हल 2 स्कॅन (18–22 आठवडे)'],
+    [168, 196, 'ग्लुकोज टॉलरन्स टेस्ट (24–28 आठवडे)'],
+    [224, 252, 'डॉप्लरसह ग्रोथ स्कॅन (32–36 आठवडे)'],
+    [259, 294, 'साप्ताहिक तपासणी व बाळाचे निरीक्षण (37 आठवड्यांपासून)'],
+  ],
+};
+const nowDue: Record<Lang, string> = { en: 'due now', hi: 'अभी करानी है', mr: 'आत्ता करायची आहे' };
+const doneAll: Record<Lang, string> = {
+  en: 'You are at term — your baby could arrive any day now.',
+  hi: 'आप पूर्ण अवधि पर हैं — बच्चा किसी भी दिन आ सकता है।',
+  mr: 'तुम्ही पूर्ण मुदतीला आहात — बाळ कोणत्याही दिवशी येऊ शकते.',
+};
+---
+<CalcShell name="pregdating" copy={copy} shared={shared} enhanced resultH={copy.notes?.resultHeading}>
+  <fieldset class="calc-methods">
+    <legend>{copy.fields.method}</legend>
+    {main.map((m, i) => (
+      <label class="calc-method">
+        <input type="radio" name="pd-method" value={m.id} checked={i === 0} />
+        <span class="calc-method-body">
+          <span class="calc-method-label">{m.label}</span>
+          {m.hint && <span class="calc-method-hint">{m.hint}</span>}
+        </span>
+      </label>
+    ))}
+  </fieldset>
+
+  {advanced.length > 0 && (
+    <details class="calc-disclose" data-calc-advanced>
+      <summary>{ui.advancedH}</summary>
+      <div class="calc-methods calc-methods-inline">
+        {advanced.map((m) => (
+          <label class="calc-method">
+            <input type="radio" name="pd-method" value={m.id} />
+            <span class="calc-method-body"><span class="calc-method-label">{m.label}</span></span>
+          </label>
+        ))}
+      </div>
+    </details>
+  )}
+
+  <div class="calc-field" data-when="lmp">
+    <label for="pd-lmp">{copy.fields.lmp}</label>
+    <input type="date" id="pd-lmp" name="lmp" />
+  </div>
+  <div class="calc-field" data-when="lmp">
+    <label for="pd-cycle">{copy.fields.cycle}</label>
+    <select id="pd-cycle" name="cycle">
+      {cycles.map((n) => <option value={n} selected={n === 28}>{n} {u.days}</option>)}
+    </select>
+    {copy.hints?.cycle && <p class="calc-hint">{copy.hints.cycle}</p>}
+  </div>
+
+  <div class="calc-field" data-when="ivf" hidden>
+    <label for="pd-transfer">{copy.fields.transferDate}</label>
+    <input type="date" id="pd-transfer" name="transferDate" />
+    {copy.hints?.transferDate && <p class="calc-hint">{copy.hints.transferDate}</p>}
+  </div>
+  <div class="calc-field" data-when="ivf" hidden>
+    <label for="pd-embryo">{copy.fields.embryoDay}</label>
+    <select id="pd-embryo" name="embryoDay">
+      <option value="day3">{copy.options?.['embryoDay.day3']}</option>
+      <option value="day5" selected>{copy.options?.['embryoDay.day5']}</option>
+      <option value="day6">{copy.options?.['embryoDay.day6']}</option>
+    </select>
+    {copy.hints?.embryoDay && <p class="calc-hint">{copy.hints.embryoDay}</p>}
+  </div>
+
+  <div class="calc-field" data-when="scan" hidden>
+    <label for="pd-scan">{copy.fields.scanDate}</label>
+    <input type="date" id="pd-scan" name="scanDate" />
+  </div>
+  <div class="calc-row-2" data-when="scan" hidden>
+    <div class="calc-field">
+      <label for="pd-sw">{copy.fields.scanWeeks}</label>
+      <input type="number" id="pd-sw" name="scanWeeks" min="4" max="42" step="1" inputmode="numeric" />
+    </div>
+    <div class="calc-field">
+      <label for="pd-sd">{copy.fields.scanDays}</label>
+      <input type="number" id="pd-sd" name="scanDays" min="0" max="6" step="1" value="0" inputmode="numeric" />
+      {copy.hints?.scanDays && <p class="calc-hint">{copy.hints.scanDays}</p>}
+    </div>
+  </div>
+
+  <div class="calc-field" data-when="edd" hidden>
+    <label for="pd-edd">{copy.fields.edd}</label>
+    <input type="date" id="pd-edd" name="edd" />
+    {copy.hints?.edd && <p class="calc-hint">{copy.hints.edd}</p>}
+  </div>
+
+  <div class="calc-field" data-when="conception retrieval iui" hidden>
+    <label for="pd-other">{copy.fields.otherDate}</label>
+    <input type="date" id="pd-other" name="otherDate" />
+  </div>
+
+  <details class="calc-disclose">
+    <summary>{ui.asOfH}</summary>
+    <div class="calc-field">
+      <label for="pd-asof">{copy.fields.asOf}</label>
+      <input type="date" id="pd-asof" name="asOf" />
+      {copy.hints?.asOf && <p class="calc-hint">{copy.hints.asOf}</p>}
+    </div>
+  </details>
+</CalcShell>
+
+<script is:inline define:vars={{ L: copy.results, N: copy.notes, M: milestones[lang], NOW: nowDue[lang], DONE: doneAll[lang], HEAD: copy.h1 }}>
+  SHC.boot('pregdating', function (root) {
+    // Days from the given date to the estimated due date. Pregnancy is dated
+    // from a notional LMP two weeks before ovulation, so a day-5 blastocyst is
+    // already 19 days "into" the pregnancy (14 + 5) on the day it is put back.
+    var EMBRYO = { day3: 263, day5: 261, day6: 260 };
+    var BACK = { day3: 17, day5: 19, day6: 20 };
+    var IDS = ['lmp', 'ivf', 'scan', 'edd', 'conception', 'retrieval', 'iui'];
+
+    var radios = root.querySelectorAll('input[name="pd-method"]');
+    var asOfEl = root.querySelector('#pd-asof');
+    var lastRows = null;
+
+    function method() {
+      for (var i = 0; i < radios.length; i++) if (radios[i].checked) return radios[i].value;
+      return 'lmp';
+    }
+
+    /** Show only the active branch. `data-when` may list several methods, so a
+     *  field shared by the three "other known dates" options is written once. */
+    function show() {
+      var m = method();
+      root.querySelectorAll('[data-when]').forEach(function (el) {
+        el.hidden = el.getAttribute('data-when').split(' ').indexOf(m) < 0;
+      });
+    }
+
+    function nextMilestone(ga) {
+      for (var i = 0; i < M.length; i++) {
+        if (ga <= M[i][1]) return M[i][2] + (ga >= M[i][0] ? ' — ' + NOW : '');
+      }
+      return DONE;
+    }
+
+    /** Reject a date for an event that has already happened. */
+    function past(el) {
+      return SHC.rejectFuture(root, el);
+    }
+
+    function run() {
+      SHC.clearErrors(root);
+      var m = method();
+      var asOf = SHC.parse(asOfEl.value) || SHC.today();
+      var edd = null, conception = null, lmpEquiv = null, note = N['method.' + m];
+
+      if (m === 'lmp') {
+        var lmpEl = root.querySelector('#pd-lmp');
+        var lmp = SHC.parse(lmpEl.value);
+        if (!lmp) return SHC.resetResult(root);
+        if (past(lmpEl)) return;
+        var cyc = parseInt(root.querySelector('#pd-cycle').value, 10) || 28;
+        edd = SHC.addDays(lmp, 280 + (cyc - 28));
+        conception = SHC.addDays(lmp, 14 + (cyc - 28));
+      } else if (m === 'ivf') {
+        var tEl = root.querySelector('#pd-transfer');
+        var t = SHC.parse(tEl.value);
+        if (!t) return SHC.resetResult(root);
+        if (past(tEl)) return;
+        var day = root.querySelector('#pd-embryo').value;
+        edd = SHC.addDays(t, EMBRYO[day]);
+        lmpEquiv = SHC.addDays(t, -BACK[day]);
+      } else if (m === 'scan') {
+        var sEl = root.querySelector('#pd-scan');
+        var sd = SHC.parse(sEl.value);
+        var swEl = root.querySelector('#pd-sw');
+        var sdyEl = root.querySelector('#pd-sd');
+        var sw = parseInt(swEl.value, 10);
+        var sdy = parseInt(sdyEl.value, 10);
+        if (!sd || !isFinite(sw)) return SHC.resetResult(root);
+        if (past(sEl)) return;
+        if (!isFinite(sdy) || sdy < 0 || sdy > 6) {
+          return SHC.fieldError(root, sdyEl, N.scanDaysError);
+        }
+        if (sw < 4 || sw > 42) {
+          return SHC.fieldError(root, swEl, N.scanWeeksError);
+        }
+        edd = SHC.addDays(sd, 280 - (sw * 7 + sdy));
+      } else if (m === 'edd') {
+        // A due date given by a clinician is used exactly as supplied, and is
+        // expected to be in the future — so it is never capped or re-derived.
+        edd = SHC.parse(root.querySelector('#pd-edd').value);
+        if (!edd) return SHC.resetResult(root);
+      } else {
+        var oEl = root.querySelector('#pd-other');
+        var o = SHC.parse(oEl.value);
+        if (!o) return SHC.resetResult(root);
+        if (past(oEl)) return;
+        edd = SHC.addDays(o, 266);
+        if (m === 'conception') conception = o;
+      }
+
+      var ga = 280 - SHC.diffDays(asOf, edd);
+      // A date that produces an impossible pregnancy length is a data-entry
+      // problem, not a result. Say so rather than printing a plausible number.
+      if (ga < 0 || ga > 320) {
+        SHC.render(root, null);
+        SHC.renderMeta(root, null);
+        var box = root.querySelector('[data-calc-rows]');
+        if (box) box.innerHTML = '<p class="calc-err">' + SHC.esc(N.rangeError) + '</p>';
+        SHC.setStale(root, false);
+        return;
+      }
+
+      var left = SHC.diffDays(asOf, edd);
+      var rows = [
+        { k: L.edd, v: SHC.fmt(edd), big: true },
+        { k: L.gestAge, v: SHC.weeksDays(ga) },
+        { k: L.trimester, v: SHC.trimester(ga) },
+      ];
+      // Never render a negative countdown — past the date is its own statement.
+      if (left >= 0) rows.push({ k: L.daysLeft, v: left + ' ' + SHC.units.days });
+      else rows.push({ k: L.pastDue, v: Math.abs(left) + ' ' + SHC.units.days });
+      rows.push({ k: L.milestone, v: nextMilestone(ga) });
+      if (conception) rows.push({ k: L.conceptionEst, v: SHC.fmt(conception), note: N.derived });
+      if (lmpEquiv) rows.push({ k: L.lmpEquiv, v: SHC.fmt(lmpEquiv), note: N.derived });
+
+      SHC.render(root, rows);
+      SHC.renderMeta(root, {
+        method: note,
+        asOf: SHC.fmt(asOf),
+        limitation: m === 'edd' ? N.limitationEdd : N.limitation,
+        nextStep: N.nextStep,
+      });
+      SHC.setStale(root, false);
+      lastRows = rows;
+    }
+
+    // Explicit submission. Changing anything marks the shown result out of date
+    // rather than silently replacing it, so a half-edited form never reads as a
+    // finished answer.
+    root.addEventListener('change', function (e) {
+      if (e.target && e.target.name === 'pd-method') { show(); SHC.clearErrors(root); SHC.resetResult(root); return; }
+      SHC.setStale(root, true);
+    });
+    root.addEventListener('input', function () { SHC.setStale(root, true); });
+
+    var go = root.querySelector('[data-calc-go]');
+    if (go) go.addEventListener('click', run);
+    root.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); run(); });
+
+    var clr = root.querySelector('[data-calc-clear]');
+    if (clr) clr.addEventListener('click', function () {
+      root.querySelectorAll('input[type="date"], input[type="number"]').forEach(function (i) {
+        i.value = i.id === 'pd-sd' ? '0' : '';
+      });
+      root.querySelector('#pd-cycle').value = '28';
+      root.querySelector('#pd-embryo').value = 'day5';
+      radios[0].checked = true;
+      show();
+      SHC.clearErrors(root);
+      SHC.resetResult(root);
+    });
+
+    SHC.wireCopy(root, function () { return lastRows ? SHC.summaryText(root, HEAD) : ''; });
+
+    ['#pd-lmp', '#pd-transfer', '#pd-scan', '#pd-other'].forEach(function (sel) {
+      SHC.capToday(root.querySelector(sel));
+    });
+
+    // ?method= may choose a starting branch. Allowlisted, and it carries only a
+    // method name — never a date or anything else the visitor typed.
+    var initial = SHC.queryChoice('method', IDS, null);
+    if (initial) {
+      for (var i = 0; i < radios.length; i++) if (radios[i].value === initial) radios[i].checked = true;
+      var adv = root.querySelector('[data-calc-advanced]');
+      if (adv && ['conception', 'retrieval', 'iui'].indexOf(initial) >= 0) adv.open = true;
+    }
+    show();
+  });
+</script>
