@@ -116,10 +116,6 @@ nav.main-nav > ul > li > a { white-space: nowrap; }
 /* Hub: four cards, grouped by the question being asked. One link per card,
    covering the whole card, so nothing is nested inside the tap target. */
 .calc-method-note { margin: 0 0 22px; color: var(--muted); font-size: .9rem; max-width: 62ch; }
-/* Four cards read as a deliberate set in a 2x2, where the shared auto-fill grid
-   would leave a 3 + 1 orphan at common desktop widths. */
-.calc-cards-4 { grid-template-columns: 1fr; }
-@media (min-width: 880px) { .calc-cards-4 { grid-template-columns: 1fr 1fr; } }
 /* Related links are curated down to one relevant next step, and the shared
    auto-fill grid then lays out three tracks and leaves that card at a third of
    the width beside two empty ones. Give a single card a deliberate width. */
@@ -131,9 +127,6 @@ nav.main-nav > ul > li > a { white-space: nowrap; }
 .calc-card-link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
 .calc-card:focus-within { outline: 3px solid rgba(164, 84, 161, .3); outline-offset: 3px; }
 .calc-audience { font-size: .8rem; color: var(--muted); font-weight: 600; }
-.calc-info { margin: 30px 0 0; padding: 22px 24px; border: 1px dashed var(--line-strong); border-radius: var(--radius); background: transparent; }
-.calc-info h2 { margin: 0 0 6px; font-size: 1.05rem; color: var(--plum-deep); font-family: var(--font-display); }
-.calc-info p { margin: 0 0 12px; color: var(--charcoal); }
 
 /* Method choice: a real radio group, styled as cards. Selection state is the
    native :checked, so keyboard and screen-reader behaviour comes for free. */
