@@ -50,9 +50,10 @@ export interface CalcCopy {
   howTo: Block;
   limits: Block;
   help: Block;
-  /** Render `help` as an urgent-care panel with a phone action instead of plain
-   *  editorial text. Set only where the block describes symptoms needing
-   *  same-day assessment, so routine booking never absorbs an emergency. */
+  /** Superseded by `urgentHelp` in the registry, which decides this per tool
+   *  rather than per language. Still present in the hi/mr packs; delete it
+   *  there when those packs are next edited. Reading it here would let one
+   *  language quietly drop an emergency panel the others show. */
   helpUrgent?: boolean;
   /** Short strings shown beside a result: the method used, the limitation that
    *  applies, and the one next step. Keyed by the id the component asks for. */

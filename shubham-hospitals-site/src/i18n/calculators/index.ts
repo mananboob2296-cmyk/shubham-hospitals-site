@@ -2,10 +2,10 @@ import type { Lang } from '../ui';
 import { en } from './en';
 import { hi } from './hi';
 import { mr } from './mr';
-import { calcSlugs, type CalcSlug, type CalcLangPack, type CalcCopy, type CalcShared } from './types';
+import { calcSlugs, type CalcSlug, type CalcLangPack, type CalcCopy, type CalcShared, type Block } from './types';
 
 export { calcSlugs };
-export type { CalcSlug, CalcCopy, CalcShared };
+export type { CalcSlug, CalcCopy, CalcShared, Block };
 
 const packs: Record<Lang, CalcLangPack> = { en, hi, mr };
 
@@ -84,6 +84,21 @@ const enRelated: Partial<Record<CalcSlug, CalcSlug[]>> = {
   'hcg-doubling-calculator': ['pregnancy-due-date-calculator'],
   'kick-counter': ['pregnancy-due-date-calculator'],
 };
+
+/** Calculators whose `help` block describes symptoms needing assessment today.
+ *  It renders as a panel with a telephone action instead of plain editorial
+ *  text, and routine booking stays visually separate.
+ *
+ *  This lives with the tool rather than in each language pack: whether a block
+ *  is urgent is a property of the calculator, not of a translation, and a
+ *  per-locale flag can silently disagree between languages. */
+export const urgentHelp: CalcSlug[] = ['hcg-doubling-calculator', 'kick-counter'];
+
+/** Urgent advice sits above the tool where the tool itself is the thing that
+ *  can delay a call — someone worried about movements must not have to finish
+ *  a timer before they see the number. Elsewhere it sits directly beneath the
+ *  result, next to the number it applies to. */
+export const urgentHelpFirst: CalcSlug[] = ['kick-counter'];
 
 export function calcShared(lang: Lang): CalcShared {
   const s = packs[lang].shared;

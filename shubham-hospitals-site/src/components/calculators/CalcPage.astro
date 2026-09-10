@@ -4,6 +4,7 @@ import CtaBand from '../CtaBand.astro';
 import Breadcrumbs from '../Breadcrumbs.astro';
 import CalcIcon from './CalcIcon.astro';
 import CalcRuntime from './CalcRuntime.astro';
+import UrgentPanel from './UrgentPanel.astro';
 import Ovulation from './Ovulation.astro';
 import DueDate from './DueDate.astro';
 import IvfDueDate from './IvfDueDate.astro';
@@ -14,7 +15,7 @@ import HcgDoubling from './HcgDoubling.astro';
 import KickCounter from './KickCounter.astro';
 import PregnancyDating from './PregnancyDating.astro';
 import CycleCalculator from './CycleCalculator.astro';
-import { calcCopy, calcShared, calcPath, relatedCalculators, legacyEnRoutes, enDestination, type CalcSlug } from '../../i18n/calculators';
+import { calcCopy, calcShared, calcPath, relatedCalculators, legacyEnRoutes, enDestination, urgentHelp, urgentHelpFirst, type CalcSlug } from '../../i18n/calculators';
 import type { Lang } from '../../i18n/ui';
 import { SITE } from '../../consts';
 
@@ -54,11 +55,14 @@ const altPaths = moved
   ? { en: enDestination(slug), [lang]: calcPath(lang, slug) }
   : undefined;
 
-// An urgent help block is lifted out of the editorial run and rendered directly
-// beneath the calculator, with a telephone action. Someone reading "call straight
-// away" should not have to scroll past two explainer sections to find a number,
-// and must not be handed a routine booking link as the only thing to click.
-const urgent = copy.helpUrgent ? copy.help : null;
+// An urgent help block is lifted out of the editorial run and rendered as a
+// panel with a telephone action, beside the tool rather than below three
+// sections of explanation. Someone reading "call straight away" should not have
+// to scroll to find a number, and must not be handed a routine booking link as
+// the only thing to click. `urgentHelpFirst` puts it above the tool where the
+// tool itself could delay the call.
+const urgent = urgentHelp.includes(slug) ? copy.help : null;
+const urgentFirst = urgentHelpFirst.includes(slug);
 const blocks = urgent ? [copy.howTo, copy.limits] : [copy.howTo, copy.limits, copy.help];
 
 const schema = [
@@ -114,20 +118,11 @@ const schema = [
   <section class="section calc-section">
     <div class="container">
       <CalcRuntime lang={lang} />
+
+      {urgent && urgentFirst && <UrgentPanel block={urgent} shared={s} />}
       <Calculator copy={copy} shared={s} lang={lang} />
 
-      {urgent && (
-        <aside class="calc-urgent" role="note">
-          <h2>{urgent.h}</h2>
-          {Array.isArray(urgent.body)
-            ? urgent.body.map((line) => <p>{line}</p>)
-            : <p>{urgent.body}</p>}
-          <a class="calc-call" href={SITE.phoneHref}>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.4 11.4 0 003.6.58 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.4 11.4 0 00.58 3.6 1 1 0 01-.25 1z"/></svg>
-            {s.callNow} — {SITE.phone}
-          </a>
-        </aside>
-      )}
+      {urgent && !urgentFirst && <UrgentPanel block={urgent} shared={s} />}
     </div>
   </section>
 
