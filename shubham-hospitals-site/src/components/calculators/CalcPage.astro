@@ -157,7 +157,7 @@ const schema = [
   <section class="section soft">
     <div class="container">
       <h2>{s.relatedH}</h2>
-      <div class:list={['grid', related.length > 2 ? 'cols-3' : 'cols-2', 'calc-cards']}>
+      <div class:list={['grid', related.length === 1 ? 'calc-cards-one' : 'cols-2', 'calc-cards']}>
         {related.map((r) => (
           <article class="card calc-card">
             <CalcIcon name={r.icon} />
