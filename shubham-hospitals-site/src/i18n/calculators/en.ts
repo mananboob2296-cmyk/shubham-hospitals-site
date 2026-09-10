@@ -682,6 +682,7 @@ export const en: CalcLangPack = {
 
     'kick-counter': {
       name: 'Baby Kick Counter',
+      audience: 'Patients & clinicians',
       card: 'Count your baby’s movements to ten and see how long it took — the simple daily check from 28 weeks.',
       eyebrow: 'Third trimester',
       h1: 'Baby Kick Counter',
