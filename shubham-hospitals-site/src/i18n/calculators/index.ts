@@ -2,15 +2,16 @@ import type { Lang } from '../ui';
 import { en } from './en';
 import { hi } from './hi';
 import { mr } from './mr';
-import { calcSlugs, type CalcSlug, type CalcLangPack, type CalcCopy, type CalcShared, type Block } from './types';
+import { type CalcSlug, type CalcLangPack, type CalcCopy, type CalcShared, type Block } from './types';
 
-export { calcSlugs };
 export type { CalcSlug, CalcCopy, CalcShared, Block };
 
 const packs: Record<Lang, CalcLangPack> = { en, hi, mr };
 
-/** Display order on the hub + in the sitemap, and the icon each card uses. */
-export const calcRegistry: { slug: CalcSlug; icon: string }[] = [
+/** Display order on the hub + in the sitemap, and the icon each card uses.
+ *  Module-local: callers should go through `allCalculators` or `liveSlugs` so
+ *  they cannot accidentally offer a retired slug. */
+const calcRegistry: { slug: CalcSlug; icon: string }[] = [
   { slug: 'ovulation-calculator', icon: 'target' },
   { slug: 'pregnancy-due-date-calculator', icon: 'calendar' },
   { slug: 'ivf-due-date-calculator', icon: 'flask' },
@@ -27,11 +28,13 @@ export const calcRegistry: { slug: CalcSlug; icon: string }[] = [
  *  Three tools were merged into two: dating by LMP, scan, IVF/FET and a known
  *  due date is one question asked four ways, and period projection and fertile
  *  window share one set of cycle inputs. The retired slugs still resolve — see
- *  `legacyRoutes` and public/_redirects — and their unique teaching content
- *  moved into the surviving page rather than being dropped.
+ *  public/_redirects — and their unique teaching content moved into the
+ *  surviving page rather than being dropped.
  *
  *  The retired slugs stay in `calcSlugs` and in every language pack because the
  *  pack type requires all eight keys; they are simply no longer built as pages.
+ *  Their 301s live in public/_redirects, which is the only place that mapping
+ *  is written down — a second copy here would drift from it unnoticed.
  */
 export const liveSlugs: CalcSlug[] = [
   'pregnancy-due-date-calculator',
@@ -40,23 +43,6 @@ export const liveSlugs: CalcSlug[] = [
   'hcg-doubling-calculator',
   'kick-counter',
 ];
-
-/** Retired routes → the surviving route and the state it opens in.
- *  Mirrored as 301s in public/_redirects; kept here so the sitemap, the
- *  language switcher and the hi/mr hreflang wiring all agree with them. */
-export const legacyRoutes: Record<string, { slug: CalcSlug; query: string }> = {
-  'ivf-due-date-calculator': { slug: 'pregnancy-due-date-calculator', query: 'method=ivf' },
-  'pregnancy-week-calculator': { slug: 'pregnancy-due-date-calculator', query: 'method=edd' },
-  'period-calculator': { slug: 'ovulation-calculator', query: 'view=period' },
-};
-
-/** Where a visitor should land for a slug, following consolidation. Retired
- *  slugs resolve to the surviving page in the right state, in their language. */
-export function destinationFor(lang: Lang, slug: CalcSlug): string {
-  const moved = legacyRoutes[slug];
-  const prefix = lang === 'en' ? '' : `/${lang}`;
-  return moved ? `${prefix}/calculators/${moved.slug}/?${moved.query}` : `${prefix}/calculators/${slug}/`;
-}
 
 /** Cards shown on the hub, grouped by the question the visitor is asking.
  *  Movement guidance is deliberately absent: it is an information resource,
