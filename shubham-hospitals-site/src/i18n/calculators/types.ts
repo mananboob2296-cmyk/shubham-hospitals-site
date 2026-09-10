@@ -104,12 +104,15 @@ export interface CalcShared {
   faqH: string;
   /** Label on the telephone action inside an urgent-care panel. */
   callNow: string;
-  /** Hub grouping labels and the movement-information link. Present only where
-   *  the consolidated four-card directory has shipped for that language. */
+  /** Hub grouping labels. Present only where the consolidated directory has
+   *  shipped for that language. */
   hub?: {
     groupPregnancy: string;
     groupCycle: string;
     groupLab: string;
+    /** No longer rendered: the movement counter is a hub card now, and a text
+     *  link to the same page below it just repeated the destination. Still in
+     *  the packs; drop them there when those files are next edited. */
     infoH: string;
     infoLead: string;
     infoLink: string;
