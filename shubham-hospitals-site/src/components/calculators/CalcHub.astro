@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import CtaBand from '../CtaBand.astro';
 import Breadcrumbs from '../Breadcrumbs.astro';
 import CalcIcon from './CalcIcon.astro';
-import { allCalculators, calcShared, calcPath, calcCopy, enHubGroups } from '../../i18n/calculators';
+import { calcShared, calcPath, calcCopy, hubGroups } from '../../i18n/calculators';
 import type { Lang } from '../../i18n/ui';
 import { SITE } from '../../consts';
 
@@ -12,29 +12,21 @@ const { lang } = Astro.props;
 const s = calcShared(lang);
 const home = lang === 'en' ? '/' : `/${lang}/`;
 
-// English shows the four consolidated tools, grouped by the question being
-// asked. Four tools need no search box, filter chips or role gate. Hindi and
-// Marathi keep the original eight-card grid until they are consolidated too.
-const consolidated = lang === 'en' && !!s.hub;
+// Four tools, grouped by the question being asked. Four need no search box,
+// filter chips or role gate. `hub` is what a language pack gains when its
+// consolidated copy lands, so a pack still mid-migration falls back rather
+// than rendering an empty grouping.
+const consolidated = !!s.hub;
 const groupLabel: Record<string, string> = s.hub
   ? { pregnancy: s.hub.groupPregnancy, cycle: s.hub.groupCycle, lab: s.hub.groupLab }
   : {};
-const cards = consolidated
-  ? enHubGroups.map((c) => ({
-      slug: c.slug,
-      icon: c.icon,
-      copy: calcCopy(lang, c.slug),
-      href: c.href ?? calcPath(lang, c.slug),
-      group: groupLabel[c.group],
-    }))
-  : allCalculators(lang).map((i) => ({
-      slug: i.slug,
-      icon: i.icon,
-      copy: i.copy,
-      href: calcPath(lang, i.slug),
-      group: undefined as string | undefined,
-    }));
-const items = cards;
+const items = hubGroups.map((c) => ({
+  slug: c.slug,
+  icon: c.icon,
+  copy: calcCopy(lang, c.slug),
+  href: calcPath(lang, c.slug) + (c.query ? `?${c.query}` : ''),
+  group: groupLabel[c.group],
+}));
 
 const schema = [
   {

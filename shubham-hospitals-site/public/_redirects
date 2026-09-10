@@ -9,12 +9,25 @@
 /blogs/:slug/ /:slug/ 301
 /blogs/:slug /:slug/ 301
 
-# Calculator consolidation: three tools were merged into two. Each retired route
-# opens the surviving calculator in the matching state. Query values are method
-# and view names only - they never carry anything the visitor typed.
+# Calculator consolidation: three tools were merged into two, in every language.
+# Each retired route opens the surviving calculator in the matching state. Query
+# values are method and view names only - they never carry anything the visitor
+# typed. A visitor is kept in the language they arrived in.
 /calculators/ivf-due-date-calculator/ /calculators/pregnancy-due-date-calculator/?method=ivf 301
 /calculators/ivf-due-date-calculator /calculators/pregnancy-due-date-calculator/?method=ivf 301
 /calculators/pregnancy-week-calculator/ /calculators/pregnancy-due-date-calculator/?method=edd 301
 /calculators/pregnancy-week-calculator /calculators/pregnancy-due-date-calculator/?method=edd 301
 /calculators/period-calculator/ /calculators/ovulation-calculator/?view=period 301
 /calculators/period-calculator /calculators/ovulation-calculator/?view=period 301
+/hi/calculators/ivf-due-date-calculator/ /hi/calculators/pregnancy-due-date-calculator/?method=ivf 301
+/hi/calculators/ivf-due-date-calculator /hi/calculators/pregnancy-due-date-calculator/?method=ivf 301
+/hi/calculators/pregnancy-week-calculator/ /hi/calculators/pregnancy-due-date-calculator/?method=edd 301
+/hi/calculators/pregnancy-week-calculator /hi/calculators/pregnancy-due-date-calculator/?method=edd 301
+/hi/calculators/period-calculator/ /hi/calculators/ovulation-calculator/?view=period 301
+/hi/calculators/period-calculator /hi/calculators/ovulation-calculator/?view=period 301
+/mr/calculators/ivf-due-date-calculator/ /mr/calculators/pregnancy-due-date-calculator/?method=ivf 301
+/mr/calculators/ivf-due-date-calculator /mr/calculators/pregnancy-due-date-calculator/?method=ivf 301
+/mr/calculators/pregnancy-week-calculator/ /mr/calculators/pregnancy-due-date-calculator/?method=edd 301
+/mr/calculators/pregnancy-week-calculator /mr/calculators/pregnancy-due-date-calculator/?method=edd 301
+/mr/calculators/period-calculator/ /mr/calculators/ovulation-calculator/?view=period 301
+/mr/calculators/period-calculator /mr/calculators/ovulation-calculator/?view=period 301
