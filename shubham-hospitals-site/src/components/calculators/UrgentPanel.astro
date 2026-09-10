@@ -1,0 +1,19 @@
+---
+// Symptoms needing assessment today, rendered as a distinct surface with a
+// telephone action. Kept separate from the routine "Book an appointment"
+// button: someone reading "call straight away" must not be handed a booking
+// form as the only thing to click.
+import type { Block, CalcShared } from '../../i18n/calculators';
+import { SITE } from '../../consts';
+
+interface Props { block: Block; shared: CalcShared }
+const { block, shared } = Astro.props;
+---
+<aside class="calc-urgent" role="note">
+  <h2>{block.h}</h2>
+  {Array.isArray(block.body) ? block.body.map((line) => <p>{line}</p>) : <p>{block.body}</p>}
+  <a class="calc-call" href={SITE.phoneHref}>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.4 11.4 0 003.6.58 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.4 11.4 0 00.58 3.6 1 1 0 01-.25 1z"/></svg>
+    {shared.callNow} — {SITE.phone}
+  </a>
+</aside>
