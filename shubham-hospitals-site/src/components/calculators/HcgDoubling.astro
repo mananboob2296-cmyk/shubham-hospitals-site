@@ -27,6 +27,14 @@ const notRising: Record<Lang, string> = {
   hi: 'दूसरा मान पहले से अधिक नहीं है, इसलिए डबलिंग टाइम नहीं निकाला जा सकता। कृपया दोनों रिपोर्ट अपनी डॉक्टर को दिखाएँ।',
   mr: 'दुसरे मूल्य पहिल्यापेक्षा जास्त नाही, त्यामुळे डबलिंग टाइम काढता येत नाही. कृपया दोन्ही अहवाल तुमच्या डॉक्टरांना दाखवा.',
 };
+// The doubling bands come from singleton intrauterine pregnancies. Multiples
+// run higher, and no cut-off here settles viability either way — so the scope
+// travels with the number rather than sitting in an explainer further down.
+const scopeNote: Record<Lang, string> = {
+  en: 'These ranges describe singleton pregnancies. Levels run higher with twins or more, and no threshold here can confirm or rule out a healthy pregnancy.',
+  hi: 'ये सीमाएँ एकल गर्भावस्था के लिए हैं। जुड़वाँ या अधिक होने पर स्तर अधिक रहता है, और यहाँ दी गई कोई भी सीमा स्वस्थ गर्भावस्था की पुष्टि या इनकार नहीं कर सकती।',
+  mr: 'या मर्यादा एकल गर्भधारणेसाठी आहेत. जुळी किंवा अधिक असल्यास पातळी जास्त असते, आणि इथली कोणतीही मर्यादा निरोगी गर्भधारणेची खात्री देऊ शकत नाही किंवा नाकारू शकत नाही.',
+};
 const tooClose: Record<Lang, string> = {
   en: 'The two samples are less than 24 hours apart, so the trend is not reliable. Repeat after at least 48 hours.',
   hi: 'दोनों सैंपल के बीच 24 घंटे से कम अंतर है, इसलिए रुझान भरोसेमंद नहीं है। कम से कम 48 घंटे बाद दोहराएँ।',
@@ -57,7 +65,7 @@ const tooClose: Record<Lang, string> = {
   {copy.hints?.d1 && <p class="calc-hint">{copy.hints.d1}</p>}
 </CalcShell>
 
-<script is:inline define:vars={{ L: copy.results, BANDS: bands[lang], NOT_RISING: notRising[lang], TOO_CLOSE: tooClose[lang], HRS: shared.units.hours }}>
+<script is:inline define:vars={{ L: copy.results, BANDS: bands[lang], NOT_RISING: notRising[lang], TOO_CLOSE: tooClose[lang], SCOPE: scopeNote[lang], HRS: shared.units.hours }}>
   SHC.boot('hcg', function (root) {
     function run() {
       SHC.clearErrors(root);
@@ -92,7 +100,7 @@ const tooClose: Record<Lang, string> = {
         { k: L.doubling, v: (Math.round(doubling * 10) / 10) + ' ' + HRS, big: true },
         { k: L.rise, v: '+' + (Math.round(change * 10) / 10) + '%' },
         { k: L.elapsed, v: elapsed },
-        { k: L.expected, v: band },
+        { k: L.expected, v: band, note: SCOPE },
       ];
       if (hours < 24) rows[2].note = TOO_CLOSE;
       SHC.render(root, rows);

@@ -15,6 +15,15 @@ const statusLabels: Record<Lang, string[]> = {
   hi: ['इस सप्ताह की अनुशंसित सीमा से कम', 'अनुशंसित सीमा के भीतर', 'इस सप्ताह की अनुशंसित सीमा से अधिक'],
   mr: ['या आठवड्याच्या शिफारस मर्यादेपेक्षा कमी', 'शिफारस मर्यादेत', 'या आठवड्याच्या शिफारस मर्यादेपेक्षा जास्त'],
 };
+// The IOM twin ranges are provisional: the guideline gives no week-by-week
+// figures for twins and no range at all for a low starting BMI, so the
+// week-by-week twin numbers here are interpolated from a total. Say so next to
+// the number rather than leaving it to look as settled as the singleton one.
+const twinScope: Record<Lang, string> = {
+  en: 'Twin ranges rest on weaker evidence than the singleton ones and are not given week by week in the guideline, so this week’s figure is interpolated. Ask your obstetrician for a target set for you.',
+  hi: 'जुड़वाँ की सीमाएँ एकल गर्भावस्था की तुलना में कमज़ोर प्रमाण पर आधारित हैं और दिशानिर्देश में सप्ताह-दर-सप्ताह नहीं दी गईं, इसलिए इस सप्ताह का आँकड़ा अनुमानित है। अपनी प्रसूति विशेषज्ञ से अपने लिए तय लक्ष्य पूछें।',
+  mr: 'जुळ्यांच्या मर्यादा एकल गर्भधारणेपेक्षा कमकुवत पुराव्यावर आधारित आहेत आणि मार्गदर्शकात आठवड्यानुसार दिलेल्या नाहीत, त्यामुळे या आठवड्याचा आकडा अंदाजे आहे. तुमच्यासाठी ठरवलेले लक्ष्य तुमच्या प्रसूतितज्ज्ञांना विचारा.',
+};
 const twinNote: Record<Lang, string> = {
   en: 'There is no separate IOM guideline for twins at a low starting BMI — the normal-BMI twin range is shown as the closest available guide.',
   hi: 'कम प्रारंभिक BMI पर जुड़वाँ के लिए अलग IOM दिशानिर्देश नहीं है — निकटतम उपलब्ध मार्गदर्शन के रूप में सामान्य BMI की जुड़वाँ सीमा दिखाई गई है।',
@@ -52,7 +61,7 @@ const u = shared.units;
   </div>
 </CalcShell>
 
-<script is:inline define:vars={{ L: copy.results, BMI: bmiLabels[lang], ST: statusLabels[lang], TWIN_NOTE: twinNote[lang], KG: u.kg, WK: u.weeks }}>
+<script is:inline define:vars={{ L: copy.results, BMI: bmiLabels[lang], ST: statusLabels[lang], TWIN_NOTE: twinNote[lang], TWIN_SCOPE: twinScope[lang], KG: u.kg, WK: u.weeks }}>
   SHC.boot('weight', function (root) {
     // Institute of Medicine (IOM 2009) total gain ranges in kg, by pre-pregnancy
     // BMI category. First-trimester gain is 0.5–2.0 kg for every category, so the
@@ -96,7 +105,10 @@ const u = shared.units;
         { k: L.totalTarget, v: band(total[0], total[1]) },
         { k: L.weeklyRate, v: wk <= 13 ? band(FIRST[0] / 13, FIRST[1] / 13) : band(rateLo, rateHi) },
       ];
-      if (twins && c === 0) rows[1].note = TWIN_NOTE;
+      if (twins) {
+        // The low-BMI gap is a further caveat on top of the general one.
+        rows[2].note = (c === 0 ? TWIN_NOTE + ' ' : '') + TWIN_SCOPE;
+      }
       if (now && now > 25) {
         var gained = now - pre;
         var st = gained < lo ? ST[0] : gained > hi ? ST[2] : ST[1];
