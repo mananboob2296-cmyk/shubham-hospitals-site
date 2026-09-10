@@ -4,14 +4,22 @@
 // disagree about when the next period was due. The view switch changes what is
 // emphasised; it never changes the stored values or the calculation source.
 //
-// English only for now — hi/mr still render the original Ovulation and Period
-// components until their merged copy has been through clinical review.
+// Used by every language. Anything shown to the visitor comes from the copy
+// pack or from the per-language verdicts below, never hardcoded in one language.
 import CalcShell from './CalcShell.astro';
 import type { CalcCopy, CalcShared } from '../../i18n/calculators';
 import type { Lang } from '../../i18n/ui';
 
-interface Props { copy: CalcCopy; shared: CalcShared; lang?: Lang }
-const { copy, shared } = Astro.props;
+interface Props { copy: CalcCopy; shared: CalcShared; lang: Lang }
+const { copy, shared, lang } = Astro.props;
+// Cycle-length verdicts are copy, not calculation. Carried over verbatim from
+// the period calculator this replaced, so the reviewed hi/mr wording survives.
+const verdicts: Record<string, [string, string, string]> = {
+  en: ['is in the normal range (21–35 days).', 'is shorter than 21 days — worth discussing with a gynecologist.', 'is longer than 35 days — worth discussing with a gynecologist.'],
+  hi: ['सामान्य सीमा (21–35 दिन) में है।', '21 दिन से छोटा है — स्त्रीरोग विशेषज्ञ से चर्चा करें।', '35 दिन से लंबा है — स्त्रीरोग विशेषज्ञ से चर्चा करें।'],
+  mr: ['सामान्य मर्यादेत (21–35 दिवस) आहे.', '21 दिवसांहून लहान आहे — स्त्रीरोगतज्ज्ञांशी चर्चा करा.', '35 दिवसांहून लांब आहे — स्त्रीरोगतज्ज्ञांशी चर्चा करा.'],
+};
+const verdict = verdicts[lang] ?? verdicts.en;
 const u = shared.units;
 const cycles = Array.from({ length: 24 }, (_, i) => i + 21);
 const durations = Array.from({ length: 9 }, (_, i) => i + 2);
@@ -50,7 +58,7 @@ const durations = Array.from({ length: 9 }, (_, i) => i + 2);
   </div>
 </CalcShell>
 
-<script is:inline define:vars={{ L: copy.results, N: copy.notes, HEAD: copy.h1 }}>
+<script is:inline define:vars={{ L: copy.results, N: copy.notes, V: verdict, HEAD: copy.h1 }}>
   SHC.boot('cycle', function (root) {
     var radios = root.querySelectorAll('input[name="cy-view"]');
     var lmp = root.querySelector('#cy-lmp');
@@ -125,9 +133,7 @@ const durations = Array.from({ length: 9 }, (_, i) => i + 2);
 
     /** A flag, not a diagnosis: unusual lengths are still calculated. */
     function cycleVerdict(cycle) {
-      if (cycle < 21) return ' — shorter than 21 days, worth discussing with a gynaecologist.';
-      if (cycle > 35) return ' — longer than 35 days, worth discussing with a gynaecologist.';
-      return ' — in the normal range (21–35 days).';
+      return ' — ' + (cycle < 21 ? V[1] : cycle > 35 ? V[2] : V[0]);
     }
 
     root.addEventListener('change', function (e) {
