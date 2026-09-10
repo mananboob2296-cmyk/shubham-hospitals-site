@@ -4,14 +4,14 @@
 // separate due-date, IVF and pregnancy-week calculators, which asked for
 // overlapping inputs and could disagree with each other.
 //
-// English only for now. Hindi and Marathi still render the original three
-// components, because merging them means merging their clinical copy too.
+// Used by every language. Anything shown to the visitor comes from the copy
+// pack or from the per-language tables below, never hardcoded in one language.
 import CalcShell from './CalcShell.astro';
 import type { CalcCopy, CalcShared } from '../../i18n/calculators';
 import type { Lang } from '../../i18n/ui';
 
-interface Props { copy: CalcCopy; shared: CalcShared; lang?: Lang }
-const { copy, shared } = Astro.props;
+interface Props { copy: CalcCopy; shared: CalcShared; lang: Lang }
+const { copy, shared, lang } = Astro.props;
 const u = shared.units;
 const ui = shared.resultUi!;
 const cycles = Array.from({ length: 24 }, (_, i) => i + 21);
@@ -19,17 +19,42 @@ const methods = copy.methods ?? [];
 const main = methods.filter((m) => !m.advanced);
 const advanced = methods.filter((m) => m.advanced);
 
-// Routine antenatal milestones as [startDay, endDay, label] in gestational days.
-// Carried over from the pregnancy-week calculator so consolidation does not
-// quietly drop its most useful output.
-const milestones: [number, number, string][] = [
-  [42, 63, 'Dating scan (6–9 weeks)'],
-  [77, 97, 'NT scan with double marker (11–13 weeks 6 days)'],
-  [126, 154, 'Anomaly / level 2 scan (18–22 weeks)'],
-  [168, 196, 'Glucose tolerance test (24–28 weeks)'],
-  [224, 252, 'Growth scan with Doppler (32–36 weeks)'],
-  [259, 294, 'Weekly review and fetal monitoring (from 37 weeks)'],
-];
+// Routine antenatal milestones as [startDay, endDay, label] in gestational
+// days, and the two status lines that go with them. Carried over verbatim
+// from the pregnancy-week calculator this replaced, so the reviewed hi/mr
+// wording survives consolidation rather than being re-translated.
+const milestones: Record<Lang, [number, number, string][]> = {
+  en: [
+    [42, 63, 'Dating scan (6–9 weeks)'],
+    [77, 97, 'NT scan with double marker (11–13 weeks 6 days)'],
+    [126, 154, 'Anomaly / level 2 scan (18–22 weeks)'],
+    [168, 196, 'Glucose tolerance test (24–28 weeks)'],
+    [224, 252, 'Growth scan with Doppler (32–36 weeks)'],
+    [259, 294, 'Weekly review and fetal monitoring (from 37 weeks)'],
+  ],
+  hi: [
+    [42, 63, 'डेटिंग स्कैन (6–9 सप्ताह)'],
+    [77, 97, 'डबल मार्कर के साथ NT स्कैन (11–13 सप्ताह 6 दिन)'],
+    [126, 154, 'एनॉमली / लेवल 2 स्कैन (18–22 सप्ताह)'],
+    [168, 196, 'ग्लूकोज़ टॉलरेंस टेस्ट (24–28 सप्ताह)'],
+    [224, 252, 'डॉपलर के साथ ग्रोथ स्कैन (32–36 सप्ताह)'],
+    [259, 294, 'साप्ताहिक जाँच और भ्रूण निगरानी (37 सप्ताह से)'],
+  ],
+  mr: [
+    [42, 63, 'डेटिंग स्कॅन (6–9 आठवडे)'],
+    [77, 97, 'डबल मार्करसह NT स्कॅन (11–13 आठवडे 6 दिवस)'],
+    [126, 154, 'एनॉमली / लेव्हल 2 स्कॅन (18–22 आठवडे)'],
+    [168, 196, 'ग्लुकोज टॉलरन्स टेस्ट (24–28 आठवडे)'],
+    [224, 252, 'डॉप्लरसह ग्रोथ स्कॅन (32–36 आठवडे)'],
+    [259, 294, 'साप्ताहिक तपासणी व बाळाचे निरीक्षण (37 आठवड्यांपासून)'],
+  ],
+};
+const nowDue: Record<Lang, string> = { en: 'due now', hi: 'अभी करानी है', mr: 'आत्ता करायची आहे' };
+const doneAll: Record<Lang, string> = {
+  en: 'You are at term — your baby could arrive any day now.',
+  hi: 'आप पूर्ण अवधि पर हैं — बच्चा किसी भी दिन आ सकता है।',
+  mr: 'तुम्ही पूर्ण मुदतीला आहात — बाळ कोणत्याही दिवशी येऊ शकते.',
+};
 ---
 <CalcShell name="pregdating" copy={copy} shared={shared} enhanced resultH={copy.notes?.resultHeading}>
   <fieldset class="calc-methods">
@@ -123,7 +148,7 @@ const milestones: [number, number, string][] = [
   </details>
 </CalcShell>
 
-<script is:inline define:vars={{ L: copy.results, N: copy.notes, M: milestones, HEAD: copy.h1 }}>
+<script is:inline define:vars={{ L: copy.results, N: copy.notes, M: milestones[lang], NOW: nowDue[lang], DONE: doneAll[lang], HEAD: copy.h1 }}>
   SHC.boot('pregdating', function (root) {
     // Days from the given date to the estimated due date. Pregnancy is dated
     // from a notional LMP two weeks before ovulation, so a day-5 blastocyst is
@@ -152,9 +177,9 @@ const milestones: [number, number, string][] = [
 
     function nextMilestone(ga) {
       for (var i = 0; i < M.length; i++) {
-        if (ga <= M[i][1]) return M[i][2] + (ga >= M[i][0] ? ' — due now' : '');
+        if (ga <= M[i][1]) return M[i][2] + (ga >= M[i][0] ? ' — ' + NOW : '');
       }
-      return 'You are at term — your baby could arrive any day now.';
+      return DONE;
     }
 
     /** Reject a date for an event that has already happened. */
