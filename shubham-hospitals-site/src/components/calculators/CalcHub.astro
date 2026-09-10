@@ -12,10 +12,10 @@ const { lang } = Astro.props;
 const s = calcShared(lang);
 const home = lang === 'en' ? '/' : `/${lang}/`;
 
-// Four tools, grouped by the question being asked. Four need no search box,
+// Five tools, grouped by the question being asked. Five need no search box,
 // filter chips or role gate. `hub` is what a language pack gains when its
-// consolidated copy lands, so a pack still mid-migration falls back rather
-// than rendering an empty grouping.
+// consolidated copy lands; a pack still mid-migration renders the cards
+// without their group labels rather than breaking.
 const consolidated = !!s.hub;
 const groupLabel: Record<string, string> = s.hub
   ? { pregnancy: s.hub.groupPregnancy, cycle: s.hub.groupCycle, lab: s.hub.groupLab }
@@ -63,7 +63,7 @@ const schema = [
     <div class="container">
       {consolidated && s.hub && <p class="calc-method-note">{s.hub.methodNote}</p>}
 
-      <div class:list={['grid', consolidated ? 'calc-cards-4' : 'cols-3', 'calc-cards']}>
+      <div class="grid cols-3 calc-cards">
         {items.map((i) => (
           <article class="card calc-card">
             <CalcIcon name={i.icon} />
@@ -74,14 +74,6 @@ const schema = [
           </article>
         ))}
       </div>
-
-      {consolidated && s.hub && (
-        <aside class="calc-info">
-          <h2>{s.hub.infoH}</h2>
-          <p>{s.hub.infoLead}</p>
-          <a class="more" href={calcPath(lang, 'kick-counter')}>{s.hub.infoLink} →</a>
-        </aside>
-      )}
 
       <aside class="calc-disclaimer">
         <h2>{s.disclaimerH}</h2>

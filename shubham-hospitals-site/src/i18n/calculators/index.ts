@@ -45,13 +45,18 @@ export const liveSlugs: CalcSlug[] = [
 ];
 
 /** Cards shown on the hub, grouped by the question the visitor is asking.
- *  Movement guidance is deliberately absent: it is an information resource,
- *  linked as text below the cards rather than styled as a calculator. */
+ *
+ *  The movement counter is listed here as a tool rather than as separate
+ *  information: the hospital's decision, taken knowing the argument against it.
+ *  What made the old counter unsafe was the verdict it printed on reaching ten,
+ *  and that is gone — it now reports the count and says it is not a check on
+ *  the baby, with the call-now panel above the tool rather than after it. */
 export const hubGroups: { group: 'pregnancy' | 'cycle' | 'lab'; slug: CalcSlug; icon: string; query?: string }[] = [
   { group: 'pregnancy', slug: 'pregnancy-due-date-calculator', icon: 'calendar' },
   { group: 'cycle', slug: 'ovulation-calculator', icon: 'target', query: 'view=period' },
   { group: 'pregnancy', slug: 'pregnancy-weight-gain-calculator', icon: 'scale' },
   { group: 'lab', slug: 'hcg-doubling-calculator', icon: 'chart' },
+  { group: 'pregnancy', slug: 'kick-counter', icon: 'foot' },
 ];
 
 /** Curated next steps: at most two per tool, chosen for the care stage the
