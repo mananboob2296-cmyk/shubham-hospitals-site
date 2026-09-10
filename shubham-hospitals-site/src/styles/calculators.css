@@ -120,6 +120,10 @@ nav.main-nav > ul > li > a { white-space: nowrap; }
    would leave a 3 + 1 orphan at common desktop widths. */
 .calc-cards-4 { grid-template-columns: 1fr; }
 @media (min-width: 880px) { .calc-cards-4 { grid-template-columns: 1fr 1fr; } }
+/* Related links are curated down to one relevant next step, and the shared
+   auto-fill grid then lays out three tracks and leaves that card at a third of
+   the width beside two empty ones. Give a single card a deliberate width. */
+.calc-cards-one { grid-template-columns: minmax(0, 520px); }
 .calc-cards .calc-card { position: relative; }
 .calc-group { font-family: var(--font-display); font-weight: 600; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--magenta); }
 [lang="hi"] .calc-group, [lang="mr"] .calc-group { text-transform: none; letter-spacing: .02em; }
