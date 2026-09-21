@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-14T12:46:38.073Z",
+  "fetchedAt": "2026-09-21T12:47:55.451Z",
   "channels": {
     "hospital": {
       "key": "hospital",
@@ -87,6 +87,13 @@
       "url": "https://youtube.com/@drmananboob.gynendoscopy",
       "channelId": "UCI4P9DW1UnqAQFlV4pFaIDw",
       "videos": [
+        {
+          "id": "r5-makfsyRM",
+          "title": "Laparoscopic Management of Interstitial Ectopic Pregnancy",
+          "published": "2026-09-19T14:58:05+00:00",
+          "description": "This video presents the laparoscopic management of an interstitial ectopic pregnancy, with emphasis on operative anatomy, careful surgical technique, haemostasis and preservation of surrounding structures. The video is intended for gynaecologists, laparoscopic surgeons, postgraduate students and oth",
+          "thumb": "https://i.ytimg.com/vi/r5-makfsyRM/hqdefault.jpg"
+        },
         {
           "id": "my1WxROIiD4",
           "title": "Laparoscopic Myomectomy - Stepwise Surgical Video",
