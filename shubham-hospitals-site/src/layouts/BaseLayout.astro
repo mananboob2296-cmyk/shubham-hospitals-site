@@ -95,6 +95,7 @@ const deptOrder = [
   'general-surgery-gastroenterology',
   'cosmetic-aesthetic-gynecology',
   'fetal-medicine',
+  'gynecologic-oncology',
 ];
 const deptNames: Record<Lang, Record<string, string>> = {
   en: {
@@ -105,6 +106,7 @@ const deptNames: Record<Lang, Record<string, string>> = {
     'general-surgery-gastroenterology': 'General Surgery & Gastroenterology',
     'cosmetic-aesthetic-gynecology': 'Cosmetic & Aesthetic Gynecology',
     'fetal-medicine': 'Fetal Medicine (opening soon)',
+    'gynecologic-oncology': 'Gynecologic Oncology',
   },
   hi: {
     'advanced-laparoscopy-hysteroscopy': 'उन्नत लेप्रोस्कोपी और हिस्टेरोस्कोपी',
@@ -114,6 +116,7 @@ const deptNames: Record<Lang, Record<string, string>> = {
     'general-surgery-gastroenterology': 'जनरल सर्जरी और गैस्ट्रोएंटरोलॉजी',
     'cosmetic-aesthetic-gynecology': 'कॉस्मेटिक और सौंदर्य स्त्री रोग',
     'fetal-medicine': 'भ्रूण चिकित्सा (जल्द ही शुरू)',
+    'gynecologic-oncology': 'स्त्री रोग कैंसर (गायनी ऑन्कोलॉजी)',
   },
   mr: {
     'advanced-laparoscopy-hysteroscopy': 'प्रगत लॅपरोस्कोपी व हिस्टेरोस्कोपी',
@@ -123,13 +126,14 @@ const deptNames: Record<Lang, Record<string, string>> = {
     'general-surgery-gastroenterology': 'जनरल सर्जरी व गॉस्ट्रोएन्टेरोलॉजी',
     'cosmetic-aesthetic-gynecology': 'कॉस्मेटिक व सौंदर्य स्त्रीरोग',
     'fetal-medicine': 'गर्भ वैद्यकशास्त्र (लवकरच सुरू)',
+    'gynecologic-oncology': 'स्त्रीरोग कर्करोग (गायनी ऑन्कोलॉजी)',
   },
 };
 const treatments = deptOrder.map((slug) => ({ slug, title: deptNames[lang][slug] }));
 
 // (T16) SEO "Best X in Amravati" landing pages are intentionally NOT in the primary
 // nav dropdown — they remain indexed and linked from the homepage service cards,
-// footer/sitemap. Nav shows the 7 real departments only.
+// footer/sitemap. Nav shows the 8 real departments only.
 
 // Tagline (SITE.tagline is English; localize for display).
 const taglineByLang: Record<Lang, string> = {
