@@ -49,7 +49,7 @@ The pelvic lymph nodes are usually dealt with first. They are removed from along
 
 The surgeon then frees the womb, cervix and surrounding tissue. The ureters, the thin tubes that carry urine from the kidneys to the bladder, are identified and moved aside so that the tissue around the cervix can be removed without damaging them. The bladder and rectum are gently separated from the cervix. The blood supply is sealed, a cuff of the upper vagina is taken, and the whole specimen is removed. The top of the vagina is closed, a drain may be left in the pelvis, and the cuts are closed.
 
-The tubes are removed. The ovaries are often left in place in younger women with early disease, if we both agree that this is safe.
+The tubes are removed. The ovaries are sometimes left in place in younger women with early disease, if we both agree that this is safe.
 
 ## Anaesthesia, duration and hospital stay
 
